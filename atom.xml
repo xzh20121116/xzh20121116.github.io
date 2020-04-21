@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xzh20121116.github.io</id>
     <title>温故知新</title>
-    <updated>2020-04-21T13:28:31.688Z</updated>
+    <updated>2020-04-21T13:54:49.781Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xzh20121116.github.io"/>
     <link rel="self" href="https://xzh20121116.github.io/atom.xml"/>
@@ -11,12 +11,34 @@
     <icon>https://xzh20121116.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 温故知新</rights>
     <entry>
+        <title type="html"><![CDATA[mysql之锁]]></title>
+        <id>https://xzh20121116.github.io/post/mysql-zhi-suo/</id>
+        <link href="https://xzh20121116.github.io/post/mysql-zhi-suo/">
+        </link>
+        <updated>2020-04-21T13:53:28.000Z</updated>
+        <content type="html"><![CDATA[<p>mysql之锁</p>
+<p>mysql 里面<strong>表级别</strong>的锁有两种：表锁、元数据锁（meta data lock ，MDL）</p>
+<p><strong>表锁</strong></p>
+<blockquote>
+<p>表锁的语法是 lock tables ... read/write。与 FTWRL类似，可以用 <strong>unlock tables</strong>主动释放锁，也可以在客户端断开连接的时候自动释放。需要注意：lock tables 语法除了会限制其他的线程的读写之外，也限定了本线程接下来的操作对象</p>
+<p><strong>举个例子</strong>：</p>
+<p>线程A中执行 lock tables  t1 read，t2 write  这个语句，则其他线程写 t1 ，读t2 的语句都会被阻塞。线程A 在释放锁之前，也只能 执行读 t1、写t2的操作。连写t1都不允许，自然也不能访问其他表</p>
+<p>对于innodb来说，一般不使用lock tables命令，影响太大</p>
+</blockquote>
+<p>MDL</p>
+<blockquote>
+<p>mdl不需要显式使用，在访问一个表的时候会自动加上。</p>
+<p><strong>mdl的作用</strong>：保证读写的正确性</p>
+</blockquote>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[面试准备]]></title>
         <id>https://xzh20121116.github.io/post/we/</id>
         <link href="https://xzh20121116.github.io/post/we/">
         </link>
         <updated>2020-04-21T04:34:37.000Z</updated>
-        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="img/Mysql%E5%AE%9E%E6%88%9845%E8%AE%B2.assets/image-20200416102643022.png" alt="image-20200416102643022" loading="lazy"></figure>
+        <content type="html"><![CDATA[<figure data-type="image" tabindex="1"><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200421213015.png" alt="image-20200416102643022" loading="lazy"></figure>
 <h1 id="全部使用长连接可能会导致mysql占用内存涨得特别快">全部使用长连接，可能会导致mysql占用内存涨得特别快？</h1>
 <p>因为mysql在执行过程中临时使用的内存是管理在连接对象里面的，这些资源会在连接断开的时候才释放，如果长连接累计下来，导致内存占用太大，被系统强行杀掉（oom），从现象看就是mysql异常重启了</p>
 <h1 id="如何解决呢">如何解决呢？</h1>
@@ -129,7 +151,7 @@
 <p>不同时刻启动的事务会有不同的 read-view，同一条记录在系统中可以存在多个版本，这就是数据库的多版本并发控制</p>
 <blockquote>
 <p>一个值被按顺序 从 1 修改为 2、3、4，对于read-view a，要得到1，就必须将当前值依次执行图中的所有回滚操作得到</p>
-<figure data-type="image" tabindex="2"><img src="img/Mysql%E5%AE%9E%E6%88%9845%E8%AE%B2.assets/image-20200416165224236.png" alt="image-20200416165224236" loading="lazy"></figure>
+<figure data-type="image" tabindex="2"><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200421213037.png" alt="image-20200416165224236" loading="lazy"></figure>
 </blockquote>
 <h2 id="快照在mvcc里是怎么工作的">快照在mvcc里是怎么工作的</h2>
 <p>对于<strong>可重复读</strong>：事务启动的时候就“<strong>拍了个快照</strong>”，注意，这个快照是基于整库的。</p>
@@ -211,13 +233,13 @@
 <li>在mysql5.6之前，只能从id3开始一个个回表，到主键索引上找出数据行，在对比字段值</li>
 <li>5.6版本引入了 <strong>索引下推优化</strong>，可以在索引遍历过程中，对索引中包含的字段先做判断，直接过滤掉不满足条件的记录，减少回表次数</li>
 </ul>
-<figure data-type="image" tabindex="3"><img src="img/Mysql%E5%AE%9E%E6%88%9845%E8%AE%B2.assets/image-20200416135213919.png" alt="image-20200416135213919" loading="lazy"></figure>
+<figure data-type="image" tabindex="3"><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200421213058.png" alt="image-20200416135213919" loading="lazy"></figure>
 <p>上面是无索引下推执行流程</p>
 <blockquote>
 <p>每一个虚线箭头表示回表一次。</p>
 <p>在 (name,age) 索引里面我特意去掉了 age 的值，这个过程 InnoDB 并不会去看 age 的值，只是按顺序把“name 第一个字是’张’”的记录一条条取出来回表。因此，需要回表 4 次。</p>
 </blockquote>
-<figure data-type="image" tabindex="4"><img src="img/Mysql%E5%AE%9E%E6%88%9845%E8%AE%B2.assets/image-20200416135243161.png" alt="image-20200416135243161" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200421213108.png" alt="image-20200416135243161" loading="lazy"></figure>
 <p>上面索引下推执行流程</p>
 <blockquote>
 <p>InnoDB 在 (name,age) 索引内部就判断了 age 是否等于 10，对于不等于 10 的记录，直接判断并跳过。在我们的这个例子中，只需要对 ID4、ID5 这两条记录回表取数据判断，就只需要回表 2 次。</p>
