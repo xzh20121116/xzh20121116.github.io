@@ -7,7 +7,7 @@
 <title>
     mysql之锁 | 温故知新
 </title>
-<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587521464581">
+<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587521660748">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -40,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://xzh20121116.github.io">
-                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587521464581" alt="">
+                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587521660748" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -117,7 +117,7 @@
                             <time class="post-time">2020-04-21</time>
                             
                                 <a href="https://xzh20121116.github.io/tag/gOINufb6v/" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-other_2">
                             #mysql
                         </a>
                                 
@@ -128,24 +128,20 @@
 <p>mysql 里面<strong>表级别</strong>的锁有两种：表锁、元数据锁（meta data lock ，MDL）</p>
 <!-- more -->
 <h2 id="表锁"><strong>表锁</strong></h2>
-<blockquote>
 <p>表锁的语法是 lock tables ... read/write。与 FTWRL类似，可以用 <strong>unlock tables</strong>主动释放锁，也可以在客户端断开连接的时候自动释放。需要注意：lock tables 语法除了会限制其他的线程的读写之外，也限定了本线程接下来的操作对象</p>
 <p><strong>举个例子</strong>：</p>
 <p>线程A中执行 lock tables  t1 read，t2 write  这个语句，则其他线程写 t1 ，读t2 的语句都会被阻塞。线程A 在释放锁之前，也只能 执行读 t1、写t2的操作。连写t1都不允许，自然也不能访问其他表</p>
 <p>对于innodb来说，一般不使用lock tables命令，影响太大</p>
-</blockquote>
 <h2 id="mdl">MDL</h2>
-<blockquote>
 <p>mdl不需要显式使用，在访问一个表的时候会自动加上。你可以想象一下，如果一个查询正在遍历一个表中的数据，而执行期间另一个线程对这个表结构做变更，删了一列，那么查询线程拿到的结果跟表结构对不上，肯定是不行的。</p>
 <p>因此，在 MySQL 5.5 版本中引入了 MDL，</p>
-<p>MDL 读锁：对一个表做增删改查操作，自动加</p>
-<p>MDL 写锁：对表做结构变更操作的时候，自动加</p>
+<p><strong>MDL 读锁：对一个表做增删改查操作，自动加</strong></p>
+<p><strong>MDL 写锁：对表做结构变更操作的时候，自动加</strong></p>
 <ul>
 <li>读锁之间不互斥，即：多个线程可以同时对一张表增删改查</li>
 <li>读写之间互斥、写锁之间互斥：保证变更表结构操作的安全性。因此如果有两个线程要同事给一个表加字段，需要一个等待另一个执行完才能开始</li>
 </ul>
 <p><strong>mdl的作用</strong>：保证读写的正确性</p>
-</blockquote>
 <h1 id="行级锁">行级锁</h1>
 <p>mysql的行锁是引擎层各自实现的，但并不是所有的引擎都支持行锁，MyIsam不支持行锁。</p>
 <blockquote>
