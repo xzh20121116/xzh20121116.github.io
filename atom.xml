@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xzh20121116.github.io</id>
     <title>温故知新</title>
-    <updated>2020-04-22T07:17:11.320Z</updated>
+    <updated>2020-04-22T07:29:27.274Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xzh20121116.github.io"/>
     <link rel="self" href="https://xzh20121116.github.io/atom.xml"/>
@@ -10,6 +10,22 @@
     <logo>https://xzh20121116.github.io/images/avatar.png</logo>
     <icon>https://xzh20121116.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 温故知新</rights>
+    <entry>
+        <title type="html"><![CDATA[count(*)、count(字段)、count(主键)、count(xx)]]></title>
+        <id>https://xzh20121116.github.io/post/countcountzi-duan-countzhu-jian-countxx/</id>
+        <link href="https://xzh20121116.github.io/post/countcountzi-duan-countzhu-jian-countxx/">
+        </link>
+        <updated>2020-04-22T07:28:14.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="count的实现方式">count（*）的实现方式</h1>
+<h2 id="无条件筛选的情况下是这样实现的"><strong>无条件筛选</strong>的情况下是这样实现的：</h2>
+<ul>
+<li>MyIsam：把表的总行数存在了磁盘上，因此执行count（*）的时候直接返回这个数，效率高</li>
+<li>Innodb：需要把数据一行一行的从引擎里读出来，然后累积计数</li>
+</ul>
+<h1 id="为什么innodb-不跟-myisam一样存个总数">为什么innodb 不跟 MyIsam一样，存个总数</h1>
+<p>因为，即使在<strong>同一个时刻</strong>的<strong>多个查询</strong>，由于mvcc的原因，该返回多少行是不确定的</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[mysql的几个日志]]></title>
         <id>https://xzh20121116.github.io/post/mysql-de-ji-ge-ri-zhi/</id>

@@ -7,7 +7,7 @@
 <title>
     mysql | 温故知新
 </title>
-<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587539830003">
+<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587540564759">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -39,7 +39,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://xzh20121116.github.io">
-                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587539830003" alt="">
+                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587540564759" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -116,6 +116,42 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://xzh20121116.github.io/post/countcountzi-duan-countzhu-jian-countxx/">
+                        count(*)、count(字段)、count(主键)、count(xx)
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-04-22</time>
+                    
+                        <a href="https://xzh20121116.github.io/tag/gOINufb6v/" class="post-tag i-tag
+                            i-tag-other_2">
+            #mysql
+        </a>
+                        
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            count（*）的实现方式
+无条件筛选的情况下是这样实现的：
+
+MyIsam：把表的总行数存在了磁盘上，因此执行count（*）的时候直接返回这个数，效率高
+Innodb：需要把数据一行一行的从引擎里读出来，然后累积计数
+
+为什么innodb 不跟 MyIsam一样，存个总数
+因为，即使在同一个时刻的多个查询，由于mvcc的原因，该返回多少行是不确定的
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://xzh20121116.github.io/post/countcountzi-duan-countzhu-jian-countxx/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://xzh20121116.github.io/post/mysql-de-ji-ge-ri-zhi/">
                         mysql的几个日志
                     </a>
@@ -124,7 +160,7 @@
                     <time class="post-time">2020-04-22</time>
                     
                         <a href="https://xzh20121116.github.io/tag/gOINufb6v/" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-">
             #mysql
         </a>
                         
@@ -153,7 +189,7 @@
                     <time class="post-time">2020-04-21</time>
                     
                         <a href="https://xzh20121116.github.io/tag/gOINufb6v/" class="post-tag i-tag
-                            i-tag-banana">
+                            i-tag-info">
             #mysql
         </a>
                         
@@ -184,7 +220,7 @@
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://xzh20121116.github.io/images/avatar.png?v=1587539830003)">
+        <div class="id_card-avatar" style="background-image: url(https://xzh20121116.github.io/images/avatar.png?v=1587540564759)">
         </div>
         <h1 class="id_card-title">
             温故知新
