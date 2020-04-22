@@ -7,7 +7,7 @@
 <title>
     mysql的几个日志 | 温故知新
 </title>
-<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587536090029">
+<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587539375397">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -40,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://xzh20121116.github.io">
-                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587536090029" alt="">
+                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587539375397" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -117,7 +117,7 @@
                             <time class="post-time">2020-04-22</time>
                             
                                 <a href="https://xzh20121116.github.io/tag/gOINufb6v/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_4">
                             #mysql
                         </a>
                                 
@@ -140,23 +140,34 @@
 <blockquote>
 <p>为了<strong>持久化</strong>。写完内存，如果数据库挂了，那我们可以通过redo log 来恢复内存，将redo log加载到内存就能恢复到挂调之前的数据了。</p>
 </blockquote>
+<p><strong>redolog 一般设置多大</strong></p>
+<blockquote>
+<p>如果是几个tb的磁盘，设置为4个文件，每个文件1gb</p>
+<p>设置太小的话，很导致很快就被写满，导致强行刷redo log，这样<strong>wal</strong>机制的能力就发挥不出来</p>
+<p>备注：wal：Write-Ahead Logging。即：先写日志，再写磁盘</p>
+</blockquote>
 <p>InnoDB独有的日志</p>
 <p>特点：记录的是数据页的物理修改</p>
-<p>redolog 分为两部分：</p>
+<p><strong>redolog 分为两部分：</strong></p>
 <ul>
 <li>
 <p>日志缓冲（redo log buffer）</p>
 <blockquote>
-<p>在内存中，该部分日志容易丢失</p>
+<p>内存中，该部分日志容易丢失</p>
 </blockquote>
 </li>
 <li>
 <p>redo log file</p>
 <blockquote>
-<p>磁盘上的日志文件，是持久的</p>
+<p>磁盘上，是持久的</p>
 </blockquote>
 </li>
 </ul>
+<pre><code class="language-sql">begin;
+insert into t1 .../* 数据的内存被修改，redolog buffer 写入了日志，还未写到redolog文件*/
+insert into t2 .../* 数据的内存被修改，redolog buffer 写入了日志，还未写到redolog文件*/
+commit; /* 写到redolog文件中 */
+</code></pre>
 <h1 id="binlog">binlog</h1>
 <p>server层的日志，所有的引擎都看可以使用。</p>
 <p>记录了<strong>表结构和数据</strong>的变更，比如<strong>update、delete、insert、truncate、create</strong>，不记录<strong>select</strong>。</p>
@@ -165,13 +176,13 @@
 <li>
 <p>statement</p>
 <blockquote>
-<p>记录的是sql语句</p>
+<p>记录的是sql语句，最后有一个commit</p>
 </blockquote>
 </li>
 <li>
 <p>row（常用）</p>
 <blockquote>
-<p>记录的是修改前、修改后数据</p>
+<p>记录的是修改前、修改后数据。最后有一个xid event</p>
 </blockquote>
 </li>
 </ul>
@@ -211,6 +222,50 @@
 <p><strong>不能</strong>，因为redo log 存储的数屋里数据的变更，如果内存中的数据已经刷到磁盘了，那么redo log里的数据就无效了</p>
 <p><strong>因为redo log 是循环写的，不会保存所有历史数据，文件内容会被覆盖</strong></p>
 </blockquote>
+<h1 id="两阶段提交">两阶段提交</h1>
+<p>示意图：「深色：执行器执行的」。「浅色：innodb内部执行的」</p>
+<figure data-type="image" tabindex="1"><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200422142011.png" alt="image-20200422142011097" loading="lazy"></figure>
+<p><strong>作用</strong></p>
+<blockquote>
+<p>解决binlog和redo log的数据一致性的问题，让两份日志之间的逻辑一致</p>
+</blockquote>
+<p>如果<strong>时刻A</strong>发生了崩溃，由于binlog还没写，redolog也没提交，所以恢复的时候，这个事务会回滚。</p>
+<p>如果<strong>时刻B</strong>发生了崩溃，mysql会这样处理</p>
+<blockquote>
+<p>崩溃恢复的规则：</p>
+<ol>
+<li>如果redo log 里面的事务是完整的（也就是有了commit表示），则直接提交</li>
+<li>如果redo log 里面的事务只有<strong>prepare</strong>，则判断对应的<strong>binlog是否存在并完整</strong>
+<ul>
+<li>是：提交事务</li>
+<li>否：回滚事务</li>
+</ul>
+</li>
+</ol>
+</blockquote>
+<h1 id="追问1mysql是如何指定binlog是完整的">追问1：mysql是如何指定binlog是完整的？</h1>
+<blockquote>
+<ul>
+<li>statement格式：最后会有commit</li>
+<li>row格式：最后会有一个xid event</li>
+</ul>
+<p>mysql 5.6.2版本之后，还引入了<strong>binlog-checksum</strong> 参数，用来校验binlog内容的正确性</p>
+</blockquote>
+<h1 id="追问2redolog和binlog-是如何关联起来的">追问2：redolog和binlog 是如何关联起来的？</h1>
+<blockquote>
+<p>他们有一个共同的数据字段，<strong>XID</strong>，恢复的时候，会按顺序扫描 redolog：</p>
+<ul>
+<li>既有<strong>prepare</strong>、又有<strong>commit</strong>的redolog，直接提交</li>
+<li><strong>只有prepare</strong>，<strong>没有commit</strong>的redolog，拿着xid去binlog找对应的事务</li>
+</ul>
+</blockquote>
+<h1 id="数据落盘-changer-buffer-和redolog">数据落盘、changer buffer 和redolog</h1>
+<ol>
+<li>数据更新的时候如果数据页不再内存中，那么会写入change buffer中，节省从磁盘读取数据页到内存的操作，下次读的时候，会将change buffer做一个merge，所有数据落盘和change buffer 没什么关系</li>
+<li>在<strong>内存中数据页</strong>被修改后和磁盘上数据页不一致，称为脏页。</li>
+<li>数据落盘：把<strong>内存中的数据页</strong>写到磁盘上，这个过程和redolog没什么关系</li>
+<li>崩溃恢复的时候，如果innodb 判断到数据页在崩溃的时候丢失了更新，就会<strong>读取数据页到内存</strong>中，让redo log 更新内存内容。更新之后内存页变成<strong>脏页</strong></li>
+</ol>
 
                                 </div>
                     </article>
@@ -243,6 +298,10 @@
 <li><a href="#binlog">binlog</a></li>
 <li><a href="#undo-log">undo log</a></li>
 <li><a href="#%E5%BB%B6%E4%BC%B8%E9%97%AE%E9%A2%98">延伸问题</a></li>
+<li><a href="#%E4%B8%A4%E9%98%B6%E6%AE%B5%E6%8F%90%E4%BA%A4">两阶段提交</a></li>
+<li><a href="#%E8%BF%BD%E9%97%AE1mysql%E6%98%AF%E5%A6%82%E4%BD%95%E6%8C%87%E5%AE%9Abinlog%E6%98%AF%E5%AE%8C%E6%95%B4%E7%9A%84">追问1：mysql是如何指定binlog是完整的？</a></li>
+<li><a href="#%E8%BF%BD%E9%97%AE2redolog%E5%92%8Cbinlog-%E6%98%AF%E5%A6%82%E4%BD%95%E5%85%B3%E8%81%94%E8%B5%B7%E6%9D%A5%E7%9A%84">追问2：redolog和binlog 是如何关联起来的？</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E8%90%BD%E7%9B%98-changer-buffer-%E5%92%8Credolog">数据落盘、changer buffer 和redolog</a></li>
 </ul>
 
         </div>
