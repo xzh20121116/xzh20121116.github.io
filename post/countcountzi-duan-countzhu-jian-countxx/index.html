@@ -5,9 +5,9 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    count(*)、count(字段)、count(主键)、count(xx) | 温故知新
+    count(*)、count(主键 id)、count(字段) 和 count(1) 等不同用法的性能差别 | 温故知新
 </title>
-<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587540564759">
+<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587542448354">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -40,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://xzh20121116.github.io">
-                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587540564759" alt="">
+                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587542448354" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -111,27 +111,89 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            count(*)、count(字段)、count(主键)、count(xx)
+                            count(*)、count(主键 id)、count(字段) 和 count(1) 等不同用法的性能差别
                         </h2>
                         <div class="post-info">
                             <time class="post-time">2020-04-22</time>
                             
                                 <a href="https://xzh20121116.github.io/tag/gOINufb6v/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-error">
                             #mysql
                         </a>
                                 
                         </div>
                         
                                 <div class="post-content">
-                                    <h1 id="count的实现方式">count（*）的实现方式</h1>
-<h2 id="无条件筛选的情况下是这样实现的"><strong>无条件筛选</strong>的情况下是这样实现的：</h2>
+                                    <h1 id="count">count（*）</h1>
+<p><strong>count（*）的实现方式</strong></p>
+<blockquote>
+<p><strong>无条件筛选</strong>的情况下是这样实现的：</p>
 <ul>
 <li>MyIsam：把表的总行数存在了磁盘上，因此执行count（*）的时候直接返回这个数，效率高</li>
 <li>Innodb：需要把数据一行一行的从引擎里读出来，然后累积计数</li>
 </ul>
-<h1 id="为什么innodb-不跟-myisam一样存个总数">为什么innodb 不跟 MyIsam一样，存个总数</h1>
+</blockquote>
+<p><strong>为什么innodb 不跟 MyIsam一样，存个总数</strong></p>
+<blockquote>
 <p>因为，即使在<strong>同一个时刻</strong>的<strong>多个查询</strong>，由于mvcc的原因，该返回多少行是不确定的</p>
+</blockquote>
+<p>InnoDB，主键索引树叶子节点存的是数据，普通索引树的叶子节点村的是主键值，所有：普通索引树比主键索引树小很多。</p>
+<p>对于<strong>count(*)</strong>，遍历哪个树，结果都是一样的，因此，mysql的优化器会找到最小的树来遍历</p>
+<p><strong>为什么不用show table status</strong></p>
+<blockquote>
+<p>这个命令的输出结果里面有一个<strong>table_rows</strong>用于显示这个表当前有多少行。</p>
+<p>索引统计的值是通过采样估算出来的，<strong>table_rows</strong>也是采样估算的，很不准确，官方称误差达到40%到50%</p>
+</blockquote>
+<p><strong>小结</strong></p>
+<blockquote>
+<ul>
+<li>MyISAM 表虽然 count(*) 很快，但是不支持事务；</li>
+<li>show table status 命令虽然返回很快，但是不准确；</li>
+<li>InnoDB 表直接 count(*) 会遍历全表，虽然结果准确，但会导致性能问题</li>
+</ul>
+</blockquote>
+<h1 id="不同count-用法">不同count（） 用法</h1>
+<blockquote>
+<p><strong>以下内容基于InnoDB</strong></p>
+</blockquote>
+<p>count(*)、count(主键 id)、count(字段) 和 count(1) 等不同用法的性能，有哪些差别。</p>
+<p><strong>count() 是一个聚合函数</strong>，对于返回的结果集，一行行地判断，如果 count 函数的参数不是 NULL，累计值就加 1，否则不加。最后返回累计值。</p>
+<p>所以，count(*)、count(主键 id) 和 count(1) 都表示返回满足条件的结果集的总行数；而 count(字段），则表示返回满足条件的数据行里面，参数“字段”不为 NULL 的总个数。</p>
+<h2 id="分析性能差别的原则"><strong>分析性能差别的原则</strong></h2>
+<ol>
+<li>server层要什么就给什么</li>
+<li>InnoDB只给必要的值</li>
+<li>现在的优化器只优化了 count(*) 的语义为“取行数”，其他“显而易见”的优化并没有做。</li>
+</ol>
+<p>这是什么意思呢？下面一个个分析</p>
+<h2 id="count主键-id"><strong>count(主键 id)</strong></h2>
+<p>InnoDB <strong>遍历整个表</strong> ，把每一行的id<strong>值都取出来</strong>，返回给server层。server层拿到id后，判断是不可能为空的，就按行累加</p>
+<h2 id="count1"><strong>count(1)</strong></h2>
+<p>InnoDB 引擎<strong>遍历整张表</strong>，但<strong>不取值</strong>。server 层对于返回的每一行，放一个数字“1”进去，判断是不可能为空的，按行累加。</p>
+<p>比**count（主键id）**快，因为这里不涉及解析数据行、拷贝字段值的操作</p>
+<h2 id="count字段"><strong>count(字段)</strong></h2>
+<!-- more -->
+<p>需要区分<strong>字段是否not null</strong></p>
+<ul>
+<li>
+<p>非空</p>
+<blockquote>
+<p>一行行的从记录里面读出这个字段，判断不能为null，按行累加</p>
+</blockquote>
+</li>
+<li>
+<p>可以为空</p>
+<blockquote>
+<p>一行行的从记录里面读出这个字段，把值取出来，不是null，才累加</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>以上都对应第一条原则：server要什么字段，innoDB就给什么字段</strong>，但是count（*）是个例外</p>
+<h2 id="count-2">count（*）</h2>
+<p>count(*)  并不会把全部字段取出来，而是专门做了优化，<strong>不取值</strong>。count( *) 肯定不是 null，<strong>按行累加</strong>。</p>
+<h1 id="效率排行">效率排行</h1>
+<p>count(字段) &lt; count(主键 id) &lt;  count(1) ≈ count(*)</p>
+<p>推荐使用 count（*），因为有专门的优化</p>
 
                                 </div>
                     </article>
@@ -160,12 +222,17 @@
         <div class="toc-title i-card-title">目录</div>
         <div class="toc-content">
             <ul class="markdownIt-TOC">
-<li><a href="#count%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F">count（*）的实现方式</a>
+<li><a href="#count">count（*）</a></li>
+<li><a href="#%E4%B8%8D%E5%90%8Ccount-%E7%94%A8%E6%B3%95">不同count（） 用法</a>
 <ul>
-<li><a href="#%E6%97%A0%E6%9D%A1%E4%BB%B6%E7%AD%9B%E9%80%89%E7%9A%84%E6%83%85%E5%86%B5%E4%B8%8B%E6%98%AF%E8%BF%99%E6%A0%B7%E5%AE%9E%E7%8E%B0%E7%9A%84"><strong>无条件筛选</strong>的情况下是这样实现的：</a></li>
+<li><a href="#%E5%88%86%E6%9E%90%E6%80%A7%E8%83%BD%E5%B7%AE%E5%88%AB%E7%9A%84%E5%8E%9F%E5%88%99"><strong>分析性能差别的原则</strong></a></li>
+<li><a href="#count%E4%B8%BB%E9%94%AE-id"><strong>count(主键 id)</strong></a></li>
+<li><a href="#count1"><strong>count(1)</strong></a></li>
+<li><a href="#count%E5%AD%97%E6%AE%B5"><strong>count(字段)</strong></a></li>
+<li><a href="#count-2">count（*）</a></li>
 </ul>
 </li>
-<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88innodb-%E4%B8%8D%E8%B7%9F-myisam%E4%B8%80%E6%A0%B7%E5%AD%98%E4%B8%AA%E6%80%BB%E6%95%B0">为什么innodb 不跟 MyIsam一样，存个总数</a></li>
+<li><a href="#%E6%95%88%E7%8E%87%E6%8E%92%E8%A1%8C">效率排行</a></li>
 </ul>
 
         </div>
