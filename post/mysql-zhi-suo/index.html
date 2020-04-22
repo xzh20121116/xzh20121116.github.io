@@ -7,7 +7,7 @@
 <title>
     mysql之锁 | 温故知新
 </title>
-<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587521406421">
+<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587521464581">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -40,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://xzh20121116.github.io">
-                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587521406421" alt="">
+                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587521464581" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -117,7 +117,7 @@
                             <time class="post-time">2020-04-21</time>
                             
                                 <a href="https://xzh20121116.github.io/tag/gOINufb6v/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-error">
                             #mysql
                         </a>
                                 
@@ -126,6 +126,7 @@
                                 <div class="post-content">
                                     <h1 id="表级锁">表级锁</h1>
 <p>mysql 里面<strong>表级别</strong>的锁有两种：表锁、元数据锁（meta data lock ，MDL）</p>
+<!-- more -->
 <h2 id="表锁"><strong>表锁</strong></h2>
 <blockquote>
 <p>表锁的语法是 lock tables ... read/write。与 FTWRL类似，可以用 <strong>unlock tables</strong>主动释放锁，也可以在客户端断开连接的时候自动释放。需要注意：lock tables 语法除了会限制其他的线程的读写之外，也限定了本线程接下来的操作对象</p>
