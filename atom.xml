@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xzh20121116.github.io</id>
     <title>温故知新</title>
-    <updated>2020-04-22T07:15:35.185Z</updated>
+    <updated>2020-04-22T07:16:01.238Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xzh20121116.github.io"/>
     <link rel="self" href="https://xzh20121116.github.io/atom.xml"/>
@@ -23,7 +23,7 @@
 <h1 id="redo-log">redo log</h1>
 <p>redolog的背景：</p>
 <blockquote>
-<pre><code class="language-sql">update user_table set name='java3y' where id = '3'
+<pre><code class="language-sql">update user_table set name='王大锤' where id = '3'
 </code></pre>
 <p>针对这条sql，它的执行过程是这样的：先把id=3的行查出来，然后将name 字段改成 java 3y，看起来没问题。</p>
 <p>实际上 mysql 基本存储结构是 <strong>页（记录都在页里面）</strong>，所以mysql是先把这条记录 所在的页找到，然后把该页<strong>加载到</strong> <strong>内存</strong>，然后把内存修改。</p>
