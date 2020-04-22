@@ -7,7 +7,7 @@
 <title>
     温故知新
 </title>
-<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587539375397">
+<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587539733571">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -39,7 +39,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://xzh20121116.github.io">
-                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587539375397" alt="">
+                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587539733571" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -119,7 +119,7 @@
                     <time class="post-time">2020-04-22</time>
                     
                         <a href="https://xzh20121116.github.io/tag/gOINufb6v/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-other_4">
             #mysql
         </a>
                         
@@ -128,152 +128,11 @@
                     
                             <div class="post-content">
                                 
-                                        <div class="post-content-content">
-                                            
-redo log
-redolog的背景：
-
-update user_table set name=&#39;java3y&#39; where id = &#39;3&#39;
-
-针对这条sql，它的执行过程是这样的：先把id=3的行查出来，然后将name 字段改成 java 3y，看起来没问题。
-实际上 mysql 基本存储结构是 页（记录都在页里面），所以mysql是先把这条记录 所在的页找到，然后把该页加载到 内存，然后把内存修改。
-这种情况就存在一个问题，如果内存中数据改了，但是还没刷盘，数据库此时挂了，那么这条修改就丢失了。
-如果每次修改之后就刷盘，那么速度会很慢。因此，引入了redo log：内存写完了，会写一份redo log，这份 redo log 记录了这次在某个页上做了什么修改。
-总结：redolog的存在是为了：当我修改的时候，内存改完了，但数据还没有刷盘的时候，此时数据库挂了，我们可以根据redo log 来对数据进行恢复，因为redolog 顺序 IO，所以写入速度快，并且 redo log 记录的是 物理变化（xxx页做了xxx修改），文件的体积很小，恢复速度很快
-
-redolog的作用
-
-为了持久化。写完内存，如果数据库挂了，那我们可以通过redo log 来恢复内存，将redo log加载到内存就能恢复到挂调之前的数据了。
-
-redolog 一般设置多大
-
-如果是几个tb的磁盘，设置为4个文件，每个文件1gb
-设置太小的话，很导致很快就被写满，导致强行刷redo log，这样wal机制的能力就发挥不出来
-备注：wal：Write-Ahead Logging。即：先写日志，再写磁盘
-
-InnoDB独有的日志
-特点：记录的是数据页的物理修改
-redolog 分为两部分：
-
-
-日志缓冲（redo log buffer）
-
-内存中，该部分日志容易丢失
-
-
-
-redo log file
-
-磁盘上，是持久的
-
-
-
-begin;
-insert into t1 .../* 数据的内存被修改，redolog buffer 写入了日志，还未写到redolog文件*/
-insert into t2 .../* 数据的内存被修改，redolog buffer 写入了日志，还未写到redolog文件*/
-commit; /* 写到redolog文件中 */
-
-binlog
-server层的日志，所有的引擎都看可以使用。
-记录了表结构和数据的变更，比如update、delete、insert、truncate、create，不记录select。
-两种存储格式
-
-
-statement
-
-记录的是sql语句，最后有一个commit
-
-
-
-row（常用）
-
-记录的是修改前、修改后数据。最后有一个xid event
-
-
-
-binlog的作用
-
-
-复制数据
-
-mysql 在 一主多从的情况下，备库与主库的数据同步就是通过binlog来实现的
-
-
-
-恢复数据
-
-数据库异常中断，可以 通过binlog来恢复数据
-
-
-
-undo log
-作用
-
-
-回滚
-
-修改数据的时候，不仅存了redo log ，还存了 undo log
-存储的是逻辑日志，如果我们 insert 一条数据，那么undolog 会有对应的delete日志
-
-
-
-多版本控制（mvcc）
-
-
-
-延伸问题
-如果整个数据库的数据都被删除了，可以用redolog来恢复吗？
-
-不能，因为redo log 存储的数屋里数据的变更，如果内存中的数据已经刷到磁盘了，那么redo log里的数据就无效了
-因为redo log 是循环写的，不会保存所有历史数据，文件内容会被覆盖
-
-两阶段提交
-示意图：「深色：执行器执行的」。「浅色：innodb内部执行的」
-
-作用
-
-解决binlog和redo log的数据一致性的问题，让两份日志之间的逻辑一致
-
-如果时刻A发生了崩溃，由于binlog还没写，redolog也没提交，所以恢复的时候，这个事务会回滚。
-如果时刻B发生了崩溃，mysql会这样处理
-
-崩溃恢复的规则：
-
-如果redo log 里面的事务是完整的（也就是有了commit表示），则直接提交
-如果redo log 里面的事务只有prepare，则判断对应的binlog是否存在并完整
-
-是：提交事务
-否：回滚事务
-
-
-
-
-追问1：mysql是如何指定binlog是完整的？
-
-
-statement格式：最后会有commit
-row格式：最后会有一个xid event
-
-mysql 5.6.2版本之后，还引入了binlog-checksum 参数，用来校验binlog内容的正确性
-
-追问2：redolog和binlog 是如何关联起来的？
-
-他们有一个共同的数据字段，XID，恢复的时候，会按顺序扫描 redolog：
-
-既有prepare、又有commit的redolog，直接提交
-只有prepare，没有commit的redolog，拿着xid去binlog找对应的事务
-
-
-数据落盘、changer buffer 和redolog
-
-数据更新的时候如果数据页不再内存中，那么会写入change buffer中，节省从磁盘读取数据页到内存的操作，下次读的时候，会将change buffer做一个merge，所有数据落盘和change buffer 没什么关系
-在内存中数据页被修改后和磁盘上数据页不一致，称为脏页。
-数据落盘：把内存中的数据页写到磁盘上，这个过程和redolog没什么关系
-崩溃恢复的时候，如果innodb 判断到数据页在崩溃的时候丢失了更新，就会读取数据页到内存中，让redo log 更新内存内容。更新之后内存页变成脏页
-
-
-                                        </div>
-                                        
+                                    <div class="post-content-abstract">
+                                        <p>mysql的几个日志，有innodb的 redolog，有server层的binlog，还有用于回滚的 undolog</p>
+
+                                    </div>
+                                    
                                             <a class="btn btn-text" href="https://xzh20121116.github.io/post/mysql-de-ji-ge-ri-zhi/">Read More ~</a>
                             </div>
                 </div>
@@ -289,7 +148,7 @@ mysql 5.6.2版本之后，还引入了binlog-checksum 参数，用来校验binlo
                     <time class="post-time">2020-04-21</time>
                     
                         <a href="https://xzh20121116.github.io/tag/gOINufb6v/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-other_2">
             #mysql
         </a>
                         
@@ -319,7 +178,7 @@ mysql 5.6.2版本之后，还引入了binlog-checksum 参数，用来校验binlo
                     <time class="post-time">2018-12-12</time>
                     
                         <a href="https://xzh20121116.github.io/tag/j-wXpbjuw/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-other_4">
             #Gridea
         </a>
                         
@@ -350,7 +209,7 @@ mysql 5.6.2版本之后，还引入了binlog-checksum 参数，用来校验binlo
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://xzh20121116.github.io/images/avatar.png?v=1587539375397)">
+        <div class="id_card-avatar" style="background-image: url(https://xzh20121116.github.io/images/avatar.png?v=1587539733571)">
         </div>
         <h1 class="id_card-title">
             温故知新
