@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xzh20121116.github.io</id>
     <title>温故知新</title>
-    <updated>2020-04-22T02:14:23.199Z</updated>
+    <updated>2020-04-22T06:14:14.153Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xzh20121116.github.io"/>
     <link rel="self" href="https://xzh20121116.github.io/atom.xml"/>
@@ -10,6 +10,101 @@
     <logo>https://xzh20121116.github.io/images/avatar.png</logo>
     <icon>https://xzh20121116.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 温故知新</rights>
+    <entry>
+        <title type="html"><![CDATA[mysql的几个日志]]></title>
+        <id>https://xzh20121116.github.io/post/mysql-de-ji-ge-ri-zhi/</id>
+        <link href="https://xzh20121116.github.io/post/mysql-de-ji-ge-ri-zhi/">
+        </link>
+        <updated>2020-04-22T06:13:41.000Z</updated>
+        <content type="html"><![CDATA[<!-- more -->
+<h1 id="redo-log">redo log</h1>
+<p>redolog的背景：</p>
+<blockquote>
+<pre><code class="language-sql">update user_table set name='java3y' where id = '3'
+</code></pre>
+<p>针对这条sql，它的执行过程是这样的：先把id=3的行查出来，然后将name 字段改成 java 3y，看起来没问题。</p>
+<p>实际上 mysql 基本存储结构是 <strong>页（记录都在页里面）</strong>，所以mysql是先把这条记录 所在的页找到，然后把该页<strong>加载到</strong> <strong>内存</strong>，然后把内存修改。</p>
+<p>这种情况就存在一个问题，如果内存中数据改了，但是还没刷盘，数据库此时挂了，那么这条修改就丢失了。</p>
+<p>如果每次修改之后就刷盘，那么速度会很慢。因此，引入了redo log：内存写完了，会写一份redo log，这份 redo log 记录了这次在某个页上做了什么修改。</p>
+<p><strong>总结：<strong>redolog的存在是为了：当我修改的时候，内存改完了，但数据还没有刷盘的时候，此时数据库挂了，我们可以根据</strong>redo log</strong> 来对数据进行恢复，因为<strong>redolog 顺序 IO</strong>，所以写入速度快，并且 redo log 记录的是 物理变化（xxx页做了xxx修改），文件的体积很小，恢复速度很快</p>
+</blockquote>
+<p><strong>redolog的作用</strong></p>
+<blockquote>
+<p>为了<strong>持久化</strong>。写完内存，如果数据库挂了，那我们可以通过redo log 来恢复内存，将redo log加载到内存就能恢复到挂调之前的数据了。</p>
+</blockquote>
+<p>InnoDB独有的日志</p>
+<p>特点：记录的是数据页的物理修改</p>
+<p>redolog 分为两部分：</p>
+<ul>
+<li>
+<p>日志缓冲（redo log buffer）</p>
+<blockquote>
+<p>在内存中，该部分日志容易丢失</p>
+</blockquote>
+</li>
+<li>
+<p>redo log file</p>
+<blockquote>
+<p>磁盘上的日志文件，是持久的</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="binlog">binlog</h1>
+<p>server层的日志，所有的引擎都看可以使用。</p>
+<p>记录了<strong>表结构和数据</strong>的变更，比如<strong>update、delete、insert、truncate、create</strong>，不记录<strong>select</strong>。</p>
+<p><strong>两种存储格式</strong></p>
+<ul>
+<li>
+<p>statement</p>
+<blockquote>
+<p>记录的是sql语句</p>
+</blockquote>
+</li>
+<li>
+<p>row（常用）</p>
+<blockquote>
+<p>记录的是修改前、修改后数据</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>binlog的作用</strong></p>
+<ul>
+<li>
+<p>复制数据</p>
+<blockquote>
+<p>mysql 在 一主多从的情况下，备库与主库的数据同步就是通过binlog来实现的</p>
+</blockquote>
+</li>
+<li>
+<p>恢复数据</p>
+<blockquote>
+<p>数据库异常中断，可以 通过binlog来恢复数据</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="undo-log">undo log</h1>
+<p><strong>作用</strong></p>
+<ul>
+<li>
+<p>回滚</p>
+<blockquote>
+<p>修改数据的时候，不仅存了redo log ，还存了 undo log</p>
+<p>存储的是逻辑日志，如果我们 <strong>insert</strong> 一条数据，那么undolog 会有对应的<strong>delete</strong>日志</p>
+</blockquote>
+</li>
+<li>
+<p>多版本控制（mvcc）</p>
+<blockquote></blockquote>
+</li>
+</ul>
+<h1 id="延伸问题">延伸问题</h1>
+<p><strong>如果整个数据库的数据都被删除了，可以用redolog来恢复吗？</strong></p>
+<blockquote>
+<p><strong>不能</strong>，因为redo log 存储的数屋里数据的变更，如果内存中的数据已经刷到磁盘了，那么redo log里的数据就无效了</p>
+<p><strong>因为redo log 是循环写的，不会保存所有历史数据，文件内容会被覆盖</strong></p>
+</blockquote>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[mysql之锁]]></title>
         <id>https://xzh20121116.github.io/post/mysql-zhi-suo/</id>

@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    关于 | 温故知新
+    mysql的几个日志 | 温故知新
 </title>
 <link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587536051384">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -111,26 +111,115 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            关于
+                            mysql的几个日志
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2019-01-25</time>
+                            <time class="post-time">2020-04-22</time>
                             
                         </div>
                         
                                 <div class="post-content">
-                                    <blockquote>
-<p>欢迎来到我的小站呀，很高兴遇见你！🤝</p>
+                                    <!-- more -->
+<h1 id="redo-log">redo log</h1>
+<p>redolog的背景：</p>
+<blockquote>
+<pre><code class="language-sql">update user_table set name='java3y' where id = '3'
+</code></pre>
+<p>针对这条sql，它的执行过程是这样的：先把id=3的行查出来，然后将name 字段改成 java 3y，看起来没问题。</p>
+<p>实际上 mysql 基本存储结构是 <strong>页（记录都在页里面）</strong>，所以mysql是先把这条记录 所在的页找到，然后把该页<strong>加载到</strong> <strong>内存</strong>，然后把内存修改。</p>
+<p>这种情况就存在一个问题，如果内存中数据改了，但是还没刷盘，数据库此时挂了，那么这条修改就丢失了。</p>
+<p>如果每次修改之后就刷盘，那么速度会很慢。因此，引入了redo log：内存写完了，会写一份redo log，这份 redo log 记录了这次在某个页上做了什么修改。</p>
+<p><strong>总结：<strong>redolog的存在是为了：当我修改的时候，内存改完了，但数据还没有刷盘的时候，此时数据库挂了，我们可以根据</strong>redo log</strong> 来对数据进行恢复，因为<strong>redolog 顺序 IO</strong>，所以写入速度快，并且 redo log 记录的是 物理变化（xxx页做了xxx修改），文件的体积很小，恢复速度很快</p>
 </blockquote>
-<h2 id="关于本站">🏠 关于本站</h2>
-<h2 id="博主是谁">👨‍💻 博主是谁</h2>
-<h2 id="兴趣爱好">⛹ 兴趣爱好</h2>
-<h2 id="联系我呀">📬 联系我呀</h2>
+<p><strong>redolog的作用</strong></p>
+<blockquote>
+<p>为了<strong>持久化</strong>。写完内存，如果数据库挂了，那我们可以通过redo log 来恢复内存，将redo log加载到内存就能恢复到挂调之前的数据了。</p>
+</blockquote>
+<p>InnoDB独有的日志</p>
+<p>特点：记录的是数据页的物理修改</p>
+<p>redolog 分为两部分：</p>
+<ul>
+<li>
+<p>日志缓冲（redo log buffer）</p>
+<blockquote>
+<p>在内存中，该部分日志容易丢失</p>
+</blockquote>
+</li>
+<li>
+<p>redo log file</p>
+<blockquote>
+<p>磁盘上的日志文件，是持久的</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="binlog">binlog</h1>
+<p>server层的日志，所有的引擎都看可以使用。</p>
+<p>记录了<strong>表结构和数据</strong>的变更，比如<strong>update、delete、insert、truncate、create</strong>，不记录<strong>select</strong>。</p>
+<p><strong>两种存储格式</strong></p>
+<ul>
+<li>
+<p>statement</p>
+<blockquote>
+<p>记录的是sql语句</p>
+</blockquote>
+</li>
+<li>
+<p>row（常用）</p>
+<blockquote>
+<p>记录的是修改前、修改后数据</p>
+</blockquote>
+</li>
+</ul>
+<p><strong>binlog的作用</strong></p>
+<ul>
+<li>
+<p>复制数据</p>
+<blockquote>
+<p>mysql 在 一主多从的情况下，备库与主库的数据同步就是通过binlog来实现的</p>
+</blockquote>
+</li>
+<li>
+<p>恢复数据</p>
+<blockquote>
+<p>数据库异常中断，可以 通过binlog来恢复数据</p>
+</blockquote>
+</li>
+</ul>
+<h1 id="undo-log">undo log</h1>
+<p><strong>作用</strong></p>
+<ul>
+<li>
+<p>回滚</p>
+<blockquote>
+<p>修改数据的时候，不仅存了redo log ，还存了 undo log</p>
+<p>存储的是逻辑日志，如果我们 <strong>insert</strong> 一条数据，那么undolog 会有对应的<strong>delete</strong>日志</p>
+</blockquote>
+</li>
+<li>
+<p>多版本控制（mvcc）</p>
+<blockquote></blockquote>
+</li>
+</ul>
+<h1 id="延伸问题">延伸问题</h1>
+<p><strong>如果整个数据库的数据都被删除了，可以用redolog来恢复吗？</strong></p>
+<blockquote>
+<p><strong>不能</strong>，因为redo log 存储的数屋里数据的变更，如果内存中的数据已经刷到磁盘了，那么redo log里的数据就无效了</p>
+<p><strong>因为redo log 是循环写的，不会保存所有历史数据，文件内容会被覆盖</strong></p>
+</blockquote>
 
                                 </div>
                     </article>
                     <!--  -->
                     
+                        <div class="next-post">
+                            <div class="next">下一篇</div>
+                            <a href="https://xzh20121116.github.io/post/mysql-zhi-suo/">
+                                <h3 class="post-title">
+                                    mysql之锁
+                                </h3>
+                            </a>
+                        </div>
+                        
                             <div id="disqus_thread"></div>
                             <div id="gitalk-container"></div>
                 </div>
@@ -145,14 +234,10 @@
         <div class="toc-title i-card-title">目录</div>
         <div class="toc-content">
             <ul class="markdownIt-TOC">
-<li>
-<ul>
-<li><a href="#%E5%85%B3%E4%BA%8E%E6%9C%AC%E7%AB%99">🏠 关于本站</a></li>
-<li><a href="#%E5%8D%9A%E4%B8%BB%E6%98%AF%E8%B0%81">👨‍💻 博主是谁</a></li>
-<li><a href="#%E5%85%B4%E8%B6%A3%E7%88%B1%E5%A5%BD">⛹ 兴趣爱好</a></li>
-<li><a href="#%E8%81%94%E7%B3%BB%E6%88%91%E5%91%80">📬 联系我呀</a></li>
-</ul>
-</li>
+<li><a href="#redo-log">redo log</a></li>
+<li><a href="#binlog">binlog</a></li>
+<li><a href="#undo-log">undo log</a></li>
+<li><a href="#%E5%BB%B6%E4%BC%B8%E9%97%AE%E9%A2%98">延伸问题</a></li>
 </ul>
 
         </div>

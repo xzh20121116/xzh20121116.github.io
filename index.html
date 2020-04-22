@@ -7,7 +7,7 @@
 <title>
     温故知新
 </title>
-<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587521660748">
+<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587536051384">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -39,7 +39,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://xzh20121116.github.io">
-                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587521660748" alt="">
+                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587536051384" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -111,6 +111,116 @@
         
             <article class="post i-card">
                 <h2 class="post-title">
+                    <a href="https://xzh20121116.github.io/post/mysql-de-ji-ge-ri-zhi/">
+                        mysql的几个日志
+                    </a>
+                </h2>
+                <div class="post-info">
+                    <time class="post-time">2020-04-22</time>
+                    
+                </div>
+                <div class="post-article">
+                    
+                            <div class="post-content">
+                                
+                                        <div class="post-content-content">
+                                            
+redo log
+redolog的背景：
+
+update user_table set name=&#39;java3y&#39; where id = &#39;3&#39;
+
+针对这条sql，它的执行过程是这样的：先把id=3的行查出来，然后将name 字段改成 java 3y，看起来没问题。
+实际上 mysql 基本存储结构是 页（记录都在页里面），所以mysql是先把这条记录 所在的页找到，然后把该页加载到 内存，然后把内存修改。
+这种情况就存在一个问题，如果内存中数据改了，但是还没刷盘，数据库此时挂了，那么这条修改就丢失了。
+如果每次修改之后就刷盘，那么速度会很慢。因此，引入了redo log：内存写完了，会写一份redo log，这份 redo log 记录了这次在某个页上做了什么修改。
+总结：redolog的存在是为了：当我修改的时候，内存改完了，但数据还没有刷盘的时候，此时数据库挂了，我们可以根据redo log 来对数据进行恢复，因为redolog 顺序 IO，所以写入速度快，并且 redo log 记录的是 物理变化（xxx页做了xxx修改），文件的体积很小，恢复速度很快
+
+redolog的作用
+
+为了持久化。写完内存，如果数据库挂了，那我们可以通过redo log 来恢复内存，将redo log加载到内存就能恢复到挂调之前的数据了。
+
+InnoDB独有的日志
+特点：记录的是数据页的物理修改
+redolog 分为两部分：
+
+
+日志缓冲（redo log buffer）
+
+在内存中，该部分日志容易丢失
+
+
+
+redo log file
+
+磁盘上的日志文件，是持久的
+
+
+
+binlog
+server层的日志，所有的引擎都看可以使用。
+记录了表结构和数据的变更，比如update、delete、insert、truncate、create，不记录select。
+两种存储格式
+
+
+statement
+
+记录的是sql语句
+
+
+
+row（常用）
+
+记录的是修改前、修改后数据
+
+
+
+binlog的作用
+
+
+复制数据
+
+mysql 在 一主多从的情况下，备库与主库的数据同步就是通过binlog来实现的
+
+
+
+恢复数据
+
+数据库异常中断，可以 通过binlog来恢复数据
+
+
+
+undo log
+作用
+
+
+回滚
+
+修改数据的时候，不仅存了redo log ，还存了 undo log
+存储的是逻辑日志，如果我们 insert 一条数据，那么undolog 会有对应的delete日志
+
+
+
+多版本控制（mvcc）
+
+
+
+延伸问题
+如果整个数据库的数据都被删除了，可以用redolog来恢复吗？
+
+不能，因为redo log 存储的数屋里数据的变更，如果内存中的数据已经刷到磁盘了，那么redo log里的数据就无效了
+因为redo log 是循环写的，不会保存所有历史数据，文件内容会被覆盖
+
+
+                                        </div>
+                                        
+                                            <a class="btn btn-text" href="https://xzh20121116.github.io/post/mysql-de-ji-ge-ri-zhi/">Read More ~</a>
+                            </div>
+                </div>
+            </article>
+            
+            <article class="post i-card">
+                <h2 class="post-title">
                     <a href="https://xzh20121116.github.io/post/mysql-zhi-suo/">
                         mysql之锁
                     </a>
@@ -119,7 +229,7 @@
                     <time class="post-time">2020-04-21</time>
                     
                         <a href="https://xzh20121116.github.io/tag/gOINufb6v/" class="post-tag i-tag
-                            i-tag-other_3">
+                            i-tag-">
             #mysql
         </a>
                         
@@ -534,7 +644,7 @@ mysql为什么会选错索引？
                     <time class="post-time">2018-12-12</time>
                     
                         <a href="https://xzh20121116.github.io/tag/j-wXpbjuw/" class="post-tag i-tag
-                            i-tag-success">
+                            i-tag-warning">
             #Gridea
         </a>
                         
@@ -565,7 +675,7 @@ mysql为什么会选错索引？
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://xzh20121116.github.io/images/avatar.png?v=1587521660748)">
+        <div class="id_card-avatar" style="background-image: url(https://xzh20121116.github.io/images/avatar.png?v=1587536051384)">
         </div>
         <h1 class="id_card-title">
             温故知新
