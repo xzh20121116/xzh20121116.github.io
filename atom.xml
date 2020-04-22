@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xzh20121116.github.io</id>
     <title>温故知新</title>
-    <updated>2020-04-22T01:59:59.952Z</updated>
+    <updated>2020-04-22T02:10:27.960Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xzh20121116.github.io"/>
     <link rel="self" href="https://xzh20121116.github.io/atom.xml"/>
@@ -16,20 +16,74 @@
         <link href="https://xzh20121116.github.io/post/mysql-zhi-suo/">
         </link>
         <updated>2020-04-21T13:53:28.000Z</updated>
-        <content type="html"><![CDATA[<p>mysql之锁</p>
+        <content type="html"><![CDATA[<h1 id="表级锁">表级锁</h1>
 <p>mysql 里面<strong>表级别</strong>的锁有两种：表锁、元数据锁（meta data lock ，MDL）</p>
-<p><strong>表锁</strong></p>
+<h2 id="表锁"><strong>表锁</strong></h2>
 <blockquote>
 <p>表锁的语法是 lock tables ... read/write。与 FTWRL类似，可以用 <strong>unlock tables</strong>主动释放锁，也可以在客户端断开连接的时候自动释放。需要注意：lock tables 语法除了会限制其他的线程的读写之外，也限定了本线程接下来的操作对象</p>
 <p><strong>举个例子</strong>：</p>
 <p>线程A中执行 lock tables  t1 read，t2 write  这个语句，则其他线程写 t1 ，读t2 的语句都会被阻塞。线程A 在释放锁之前，也只能 执行读 t1、写t2的操作。连写t1都不允许，自然也不能访问其他表</p>
 <p>对于innodb来说，一般不使用lock tables命令，影响太大</p>
 </blockquote>
-<p>MDL</p>
+<h2 id="mdl">MDL</h2>
 <blockquote>
-<p>mdl不需要显式使用，在访问一个表的时候会自动加上。</p>
+<p>mdl不需要显式使用，在访问一个表的时候会自动加上。你可以想象一下，如果一个查询正在遍历一个表中的数据，而执行期间另一个线程对这个表结构做变更，删了一列，那么查询线程拿到的结果跟表结构对不上，肯定是不行的。</p>
+<p>因此，在 MySQL 5.5 版本中引入了 MDL，</p>
+<p>MDL 读锁：对一个表做增删改查操作，自动加</p>
+<p>MDL 写锁：对表做结构变更操作的时候，自动加</p>
+<ul>
+<li>读锁之间不互斥，即：多个线程可以同时对一张表增删改查</li>
+<li>读写之间互斥、写锁之间互斥：保证变更表结构操作的安全性。因此如果有两个线程要同事给一个表加字段，需要一个等待另一个执行完才能开始</li>
+</ul>
 <p><strong>mdl的作用</strong>：保证读写的正确性</p>
 </blockquote>
+<h1 id="行级锁">行级锁</h1>
+<p>mysql的行锁是引擎层各自实现的，但并不是所有的引擎都支持行锁，MyIsam不支持行锁。</p>
+<blockquote>
+<p>事务a更新1行数据，事务b也更新同一行数据，那么B要等A执行完之后，才能进行更新</p>
+</blockquote>
+<h2 id="两阶段锁">两阶段锁</h2>
+<p>在innodb中，行锁是在需要的时候才加上的，但并不是不用了就立刻释放，而是等待事务结束了才释放（commit提交后事务结束）。</p>
+<p>如果事务中需要锁多行，要把可能造成锁冲突，最可能影响并发度的锁尽量往后放</p>
+<h2 id="死锁">死锁</h2>
+<table>
+<thead>
+<tr>
+<th>时间点</th>
+<th>事务a</th>
+<th>事务b</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>t1</td>
+<td>begin; set k=xx where id =1</td>
+<td>begin;</td>
+</tr>
+<tr>
+<td>t2</td>
+<td></td>
+<td>set k =yy where id=2</td>
+</tr>
+<tr>
+<td>t3</td>
+<td>set k =yy where id=2</td>
+<td></td>
+</tr>
+<tr>
+<td>t4</td>
+<td></td>
+<td>set k=xx where id =1</td>
+</tr>
+</tbody>
+</table>
+<p>这个时候，事务A在等待事务B释放 id =2的行锁，而事务B在等待事务A释放id =1 的行锁，互相等待对方释放锁资源，即进入<strong>死锁</strong>状态</p>
+<h2 id="mvcc">MVCC</h2>
+<p>mysql中，实际上每条记录在更新的时候都会同步记录一条回滚操作，通过回滚操作都可以得到前一个状态的值。</p>
+<p>假如一个值1被按顺序修改为2、3、4，在回滚日志里就会有类似下面的记录</p>
+<figure data-type="image" tabindex="1"><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200422100302.png" alt="image-20200422100302567" loading="lazy"></figure>
+<p>当前值是4，但是在查询这条记录的时候，不同时刻启动的事务会有不同的 <strong>read-view</strong>，在视图A、B、C里面记录的分别是1、2、4</p>
+<p>同一条记录在系统中可以存在多个版本，这就是数据库的<strong>多版本并发控制</strong>——MVCC</p>
 ]]></content>
     </entry>
     <entry>

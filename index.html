@@ -7,7 +7,7 @@
 <title>
     温故知新
 </title>
-<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587520768200">
+<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587521406421">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -39,7 +39,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://xzh20121116.github.io">
-                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587520768200" alt="">
+                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587521406421" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -119,7 +119,7 @@
                     <time class="post-time">2020-04-21</time>
                     
                         <a href="https://xzh20121116.github.io/tag/gOINufb6v/" class="post-tag i-tag
-                            i-tag-primary">
+                            i-tag-other_2">
             #mysql
         </a>
                         
@@ -129,7 +129,7 @@
                             <div class="post-content">
                                 
                                         <div class="post-content-content">
-                                            mysql之锁
+                                            表级锁
 mysql 里面表级别的锁有两种：表锁、元数据锁（meta data lock ，MDL）
 表锁
 
@@ -140,9 +140,63 @@ mysql 里面表级别的锁有两种：表锁、元数据锁（meta data lock �
 
 MDL
 
-mdl不需要显式使用，在访问一个表的时候会自动加上。
+mdl不需要显式使用，在访问一个表的时候会自动加上。你可以想象一下，如果一个查询正在遍历一个表中的数据，而执行期间另一个线程对这个表结构做变更，删了一列，那么查询线程拿到的结果跟表结构对不上，肯定是不行的。
+因此，在 MySQL 5.5 版本中引入了 MDL，
+MDL 读锁：对一个表做增删改查操作，自动加
+MDL 写锁：对表做结构变更操作的时候，自动加
+
+读锁之间不互斥，即：多个线程可以同时对一张表增删改查
+读写之间互斥、写锁之间互斥：保证变更表结构操作的安全性。因此如果有两个线程要同事给一个表加字段，需要一个等待另一个执行完才能开始
+
 mdl的作用：保证读写的正确性
 
+行级锁
+mysql的行锁是引擎层各自实现的，但并不是所有的引擎都支持行锁，MyIsam不支持行锁。
+
+事务a更新1行数据，事务b也更新同一行数据，那么B要等A执行完之后，才能进行更新
+
+两阶段锁
+在innodb中，行锁是在需要的时候才加上的，但并不是不用了就立刻释放，而是等待事务结束了才释放（commit提交后事务结束）。
+如果事务中需要锁多行，要把可能造成锁冲突，最可能影响并发度的锁尽量往后放
+死锁
+
+
+
+时间点
+事务a
+事务b
+
+
+
+
+t1
+begin; set k=xx where id =1
+begin;
+
+
+t2
+
+set k =yy where id=2
+
+
+t3
+set k =yy where id=2
+
+
+
+t4
+
+set k=xx where id =1
+
+
+
+这个时候，事务A在等待事务B释放 id =2的行锁，而事务B在等待事务A释放id =1 的行锁，互相等待对方释放锁资源，即进入死锁状态
+MVCC
+mysql中，实际上每条记录在更新的时候都会同步记录一条回滚操作，通过回滚操作都可以得到前一个状态的值。
+假如一个值1被按顺序修改为2、3、4，在回滚日志里就会有类似下面的记录
+
+当前值是4，但是在查询这条记录的时候，不同时刻启动的事务会有不同的 read-view，在视图A、B、C里面记录的分别是1、2、4
+同一条记录在系统中可以存在多个版本，这就是数据库的多版本并发控制——MVCC
 
                                         </div>
                                         
@@ -577,7 +631,7 @@ mysql为什么会选错索引？
                     <!-- 个人信息 -->
                     
     <div class="id_card i-card">
-        <div class="id_card-avatar" style="background-image: url(https://xzh20121116.github.io/images/avatar.png?v=1587520768200)">
+        <div class="id_card-avatar" style="background-image: url(https://xzh20121116.github.io/images/avatar.png?v=1587521406421)">
         </div>
         <h1 class="id_card-title">
             温故知新
