@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xzh20121116.github.io</id>
     <title>温故知新</title>
-    <updated>2020-04-22T08:24:24.989Z</updated>
+    <updated>2020-04-22T08:27:07.702Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xzh20121116.github.io"/>
     <link rel="self" href="https://xzh20121116.github.io/atom.xml"/>
@@ -16,11 +16,13 @@
         <link href="https://xzh20121116.github.io/post/countcountzi-duan-countzhu-jian-countxx/">
         </link>
         <updated>2020-04-22T07:28:14.000Z</updated>
-        <summary type="html"><![CDATA[<p>为什么使用count(*)呢</p>
+        <summary type="html"><![CDATA[<p>count(*)、count(主键 id)、count(字段) 和 count(1) 等不同用法的性能，有哪些差别。</p>
 ]]></summary>
-        <content type="html"><![CDATA[<p>为什么使用count(*)呢</p>
-<!-- more -->
-<h1 id="count">count（*）</h1>
+        <content type="html"><![CDATA[<p>count(*)、count(主键 id)、count(字段) 和 count(1) 等不同用法的性能，有哪些差别。</p>
+<!--more-->
+<p><strong>count() 是一个聚合函数</strong>，对于返回的结果集，一行行地判断，如果 count 函数的参数不是 NULL，累计值就加 1，否则不加。最后返回累计值。</p>
+<p>所以，count(*)、count(主键 id) 和 count(1) 都表示返回满足条件的结果集的总行数；而 count(字段），则表示返回满足条件的数据行里面，参数“字段”不为 NULL 的总个数。</p>
+<h2 id="count">count（*）</h2>
 <p><strong>count（*）的实现方式</strong></p>
 <blockquote>
 <p><strong>无条件筛选</strong>的情况下是这样实现的：</p>
@@ -34,6 +36,7 @@
 <p>因为，即使在<strong>同一个时刻</strong>的<strong>多个查询</strong>，由于mvcc的原因，该返回多少行是不确定的</p>
 </blockquote>
 <p>InnoDB，主键索引树叶子节点存的是数据，普通索引树的叶子节点村的是主键值，所有：普通索引树比主键索引树小很多。</p>
+<p>count(*)  并不会把全部字段取出来，而是专门做了优化，<strong>不取值</strong>。count( *) 肯定不是 null，<strong>按行累加</strong>。</p>
 <p>对于<strong>count(*)</strong>，遍历哪个树，结果都是一样的，因此，mysql的优化器会找到最小的树来遍历</p>
 <p><strong>为什么不用show table status</strong></p>
 <blockquote>
@@ -48,13 +51,6 @@
 <li>InnoDB 表直接 count(*) 会遍历全表，虽然结果准确，但会导致性能问题</li>
 </ul>
 </blockquote>
-<h1 id="不同count-用法">不同count（） 用法</h1>
-<blockquote>
-<p><strong>以下内容基于InnoDB</strong></p>
-</blockquote>
-<p>count(*)、count(主键 id)、count(字段) 和 count(1) 等不同用法的性能，有哪些差别。</p>
-<p><strong>count() 是一个聚合函数</strong>，对于返回的结果集，一行行地判断，如果 count 函数的参数不是 NULL，累计值就加 1，否则不加。最后返回累计值。</p>
-<p>所以，count(*)、count(主键 id) 和 count(1) 都表示返回满足条件的结果集的总行数；而 count(字段），则表示返回满足条件的数据行里面，参数“字段”不为 NULL 的总个数。</p>
 <h2 id="分析性能差别的原则"><strong>分析性能差别的原则</strong></h2>
 <ol>
 <li>server层要什么就给什么</li>
@@ -84,9 +80,7 @@
 </li>
 </ul>
 <p><strong>以上都对应第一条原则：server要什么字段，innoDB就给什么字段</strong>，但是count（*）是个例外</p>
-<h2 id="count-2">count（*）</h2>
-<p>count(*)  并不会把全部字段取出来，而是专门做了优化，<strong>不取值</strong>。count( *) 肯定不是 null，<strong>按行累加</strong>。</p>
-<h1 id="效率排行">效率排行</h1>
+<h2 id="效率排行">效率排行</h2>
 <p>count(字段) &lt; count(主键 id) &lt;  count(1) ≈ count(*)</p>
 <p>推荐使用 count（*），因为有专门的优化</p>
 ]]></content>
