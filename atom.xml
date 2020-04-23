@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xzh20121116.github.io</id>
     <title>温故知新</title>
-    <updated>2020-04-22T09:25:09.046Z</updated>
+    <updated>2020-04-23T02:44:07.607Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xzh20121116.github.io"/>
     <link rel="self" href="https://xzh20121116.github.io/atom.xml"/>
@@ -10,6 +10,68 @@
     <logo>https://xzh20121116.github.io/images/avatar.png</logo>
     <icon>https://xzh20121116.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 温故知新</rights>
+    <entry>
+        <title type="html"><![CDATA[为什么删了数据，表的大小不变？]]></title>
+        <id>https://xzh20121116.github.io/post/wei-shi-me-shan-liao-shu-ju-biao-de-da-xiao-bu-bian/</id>
+        <link href="https://xzh20121116.github.io/post/wei-shi-me-shan-liao-shu-ju-biao-de-da-xiao-bu-bian/">
+        </link>
+        <updated>2020-04-23T02:43:35.000Z</updated>
+        <summary type="html"><![CDATA[<p>为什么删了数据，表的大小不变？</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>为什么删了数据，表的大小不变？</p>
+<!--more-->
+<h1 id="背景">背景</h1>
+<p>InnoDB表包含两部分：表结构、表数据</p>
+<p>InnoDB的数据是按页存储的，删除数据的时候，该数据的位置会被<strong>标记为可复用</strong>。同理，删除一个数据页，该页就被标记为可复用了。</p>
+<p>当整个页被从B+树上摘掉之后，可以复用到任何位置。</p>
+<p>如果用<strong>delete</strong>删除整个表的数据，那么整个表会被标记为可复用，但大小不变（磁盘文件大小）</p>
+<p>delete只是把记录的位置或者数据页标记为<strong>可复用</strong>，但大小不变（磁盘文件大小）。</p>
+<p>这些可复用，而没有被使用的空间，看起来就像<strong>空洞</strong>。</p>
+<p>如果数据按照索引递增插入，那么索引是紧凑的，如果是随机插入的，就可能造成数据页的分裂。</p>
+<p>经过大量增删改的表，都是可能存在空洞的。</p>
+<p>如果能把空洞去掉，就能达到收缩表空间的目的。</p>
+<p><strong>重建表可以收缩表空间</strong></p>
+<h1 id="重建表的三种方式">重建表的三种方式</h1>
+<ol>
+<li>alter table t engine = InnoDB（也就是 recreate）</li>
+<li>analyze table t 其实不是重建表，只是对表的索引信息做重新统计，没有修改数据，这个过程中加了 MDL 读锁；</li>
+<li>optimize table t 等于 recreate+analyze。</li>
+</ol>
+<h2 id="alter-table-a-engineinnodb-命令来重建表">alter table A engine=InnoDB 命令来重建表</h2>
+<p><strong>内部的流程（5.6版本之前）：</strong></p>
+<ol>
+<li>新建一个与A结构相同的表</li>
+<li>按照主键id递增的顺序，把数据一行行的从表A里读出来，插入到B表总</li>
+</ol>
+<p>问题：如果在插入临时表的过程中，有新数据写入a表的话， 就会造成数据丢失</p>
+<p>整个ddl过程不是online的</p>
+<p><strong>内部的流程（5.6版本之后）：</strong></p>
+<p>引入了online ddl，重建表的流程</p>
+<ol>
+<li>建立一个临时文件，扫描A主键的所有数据页</li>
+<li>用数据页中A的记录生成B+树，存储到临时文件中</li>
+<li>生成临时文件的过程中，将所有对A的操作记录在一个日志文件（row log）中，对应的是图中state2的状态；</li>
+<li>临时文件生成后，将日志文件 中的操作应用到临时文件，得到一个逻辑数据上与表a相同的数据文件，对应的就是state3的状态</li>
+<li>用临时文件替换表a的数据文件</li>
+<li><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200423103730.png" alt="image-20200423103730471" loading="lazy"></li>
+</ol>
+<h1 id="延伸问题">延伸问题</h1>
+<p>想要收缩表空间，结果适得其反？</p>
+<ol>
+<li>一个表  t 文件大小为1TB</li>
+<li>对这个表执行alter table t engine=InnoDB；</li>
+<li>执行结束，发现空间不仅没变小，还稍微大了一些，比如变成1.01TB</li>
+</ol>
+<p><strong>出现上述情况的原因：</strong></p>
+<p>重建表，innodb不会把整张表占满，每个页留了1/16给后溪的更新用</p>
+<p><strong>场景复现</strong></p>
+<ol>
+<li>将t重建一次</li>
+<li>插入一部分数据，但是插入的数据用掉了一部分的预留空间</li>
+<li>再将t重建一次，就会出现这种问题</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[mysql如何主备一致+双m循环复制解决方案]]></title>
         <id>https://xzh20121116.github.io/post/mysql-ru-he-zhu-bei-yi-zhi-shuang-m-xun-huan-fu-zhi-jie-jue-fang-an/</id>
