@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xzh20121116.github.io</id>
     <title>温故知新</title>
-    <updated>2020-04-23T07:37:03.078Z</updated>
+    <updated>2020-04-23T08:13:47.759Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xzh20121116.github.io"/>
     <link rel="self" href="https://xzh20121116.github.io/atom.xml"/>
@@ -10,6 +10,85 @@
     <logo>https://xzh20121116.github.io/images/avatar.png</logo>
     <icon>https://xzh20121116.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 温故知新</rights>
+    <entry>
+        <title type="html"><![CDATA[Synchronized的实现原理、锁的存储、以及锁是如何升级的]]></title>
+        <id>https://xzh20121116.github.io/post/synchronized-de-shi-xian-yuan-li-suo-de-cun-chu-yi-ji-suo-shi-ru-he-sheng-ji-de/</id>
+        <link href="https://xzh20121116.github.io/post/synchronized-de-shi-xian-yuan-li-suo-de-cun-chu-yi-ji-suo-shi-ru-he-sheng-ji-de/">
+        </link>
+        <updated>2020-04-23T08:13:30.000Z</updated>
+        <summary type="html"><![CDATA[<p>Synchronized的实现原理、锁的存储、以及锁是如何升级的</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>Synchronized的实现原理、锁的存储、以及锁是如何升级的</p>
+<!--more-->
+<h1 id="实现原理">实现原理</h1>
+<p>**结论：**无论是代码块，还是方法，都是通过持有对象的锁来实现同步的</p>
+<h1 id="什么是对象的锁">什么是对象的锁？</h1>
+<p>对象在内存中存储的布局分为三个区域：</p>
+<ol>
+<li>
+<p><strong>对象头</strong>（header）</p>
+<ol>
+<li>
+<p><strong>mark word</strong></p>
+<blockquote>
+<p>存储对象自身的运行时数据，比如hashcod，gc分代年龄、<em><strong>锁的相关信息</strong></em></p>
+</blockquote>
+</li>
+<li>
+<p>klass point（类型指针）</p>
+<blockquote>
+<p>指针指向对象的类元数据，vm通过这个指针来确定该对象是哪个类的实例</p>
+</blockquote>
+</li>
+<li>
+<p>数组长度（如果对象是数组的话，则有这个，否则没有）</p>
+</li>
+</ol>
+</li>
+<li>
+<p>实例数据（instance data）</p>
+<blockquote>
+<p>对象属性信息，包括父类的属性信息</p>
+</blockquote>
+</li>
+<li>
+<p>对其填充（padding）</p>
+<blockquote>
+<p>vm要求对象字节必须是8的倍数，凑数用的</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>markword中，存储的内容如下</strong></p>
+<figure data-type="image" tabindex="1"><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200423155922.png" alt="image-20200423155921960" loading="lazy"></figure>
+<h1 id="锁升级流程">锁升级流程</h1>
+<p>无状态--&gt;偏向锁--&gt;轻量级锁--&gt;重量级锁</p>
+<p>每个线程在准备获取共享资源时：</p>
+<ol>
+<li>
+<p>检查<strong>markword</strong>里是不是存放自己的threadID，如果是，当前为<strong>偏向锁</strong></p>
+</li>
+<li>
+<p>如果不是，锁升级为<strong>轻量级锁</strong>，这时，用<strong>CAS</strong>来执行切换，新的线程根据<strong>markword</strong>里现有的<strong>threadId</strong>，通知之前的线程暂停，之前线程将<strong>markWord</strong>置为空</p>
+</li>
+<li>
+<p>两个线程都把锁对象的<strong>hashcode</strong>复制一份到各自新建的用于存储锁的记录空间；</p>
+<p>接着开始cas操作：把锁对象的<strong>markword</strong>的内容修改为各自新建的记录空间的地址</p>
+</li>
+<li>
+<p>在上一步中修改成功获得资源，失败的开始自旋</p>
+</li>
+<li>
+<p>自旋的过程中，成功获得资源则整个状态依然是轻量级锁</p>
+<blockquote>
+<p>自旋中获得资源，说明之前获得资源的线程执行完了，并释放了资源</p>
+</blockquote>
+</li>
+<li>
+<p>自旋一致失败，进入重量级锁，此时，自旋的线程阻塞，等待之前线程执行完并唤醒自己</p>
+</li>
+</ol>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[谈谈线程的通信与协作：sleep、wait、notify、yield、join的区别]]></title>
         <id>https://xzh20121116.github.io/post/tan-tan-xian-cheng-de-tong-xin-yu-xie-zuo-sleepwaitnotifyyieldjoin-de-qu-bie/</id>
