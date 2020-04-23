@@ -7,7 +7,7 @@
 <title>
     谈谈线程的通信与协作：sleep、wait、notify、yield、join的区别 | 温故知新
 </title>
-<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587627295249">
+<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587627352887">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -40,7 +40,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://xzh20121116.github.io">
-                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587627295249" alt="">
+                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587627352887" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -117,12 +117,12 @@
                             <time class="post-time">2020-04-23</time>
                             
                                 <a href="https://xzh20121116.github.io/tag/VadQwd1qw/" class="post-tag i-tag
-                            i-tag-other_1">
+                            i-tag-other_2">
                             #java
                         </a>
                                 
                                 <a href="https://xzh20121116.github.io/tag/9tvO-JXYPa/" class="post-tag i-tag
-                            i-tag-warning">
+                            i-tag-other_3">
                             #线程
                         </a>
                                 
@@ -254,7 +254,7 @@
 </blockquote>
 <h1 id="三-pipedinputstream">三、PipedInputStream</h1>
 <p>用流在两个线程间通信，但是<strong>java中的Stream是单向</strong>的，需要在两个线程中分别建立input和output，性能差</p>
-<h2 id="四-blockingqueue阻塞队列">四、BlockingQueue（阻塞队列）</h2>
+<h1 id="四-blockingqueue阻塞队列">四、BlockingQueue（阻塞队列）</h1>
 <p>BlockingQueue有一个特征：</p>
 <p>当生产者线程试图向BlockingQueue中放入元素的时候，如果该队列已经满了，则该线程被阻塞;</p>
 <p>当消费者试图从BlockingQueue中取出元素的时候，如果该队列已空，则线程被阻塞。</p>
@@ -313,11 +313,8 @@
 <li><a href="#cyclicbarrier">CyclicBarrier</a></li>
 </ul>
 </li>
-<li><a href="#%E4%B8%89-pipedinputstream">三、PipedInputStream</a>
-<ul>
+<li><a href="#%E4%B8%89-pipedinputstream">三、PipedInputStream</a></li>
 <li><a href="#%E5%9B%9B-blockingqueue%E9%98%BB%E5%A1%9E%E9%98%9F%E5%88%97">四、BlockingQueue（阻塞队列）</a></li>
-</ul>
-</li>
 </ul>
 
         </div>
