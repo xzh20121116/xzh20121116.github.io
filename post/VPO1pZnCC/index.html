@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    为什么删了数据，表的大小不变？ | 温故知新
+    大厂面试必考：聊聊java内存模型、volatile的实现原理 | 温故知新
 </title>
 <link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587702608107">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -118,71 +118,91 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            为什么删了数据，表的大小不变？
+                            大厂面试必考：聊聊java内存模型、volatile的实现原理
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2020-04-23</time>
+                            <time class="post-time">2020-04-24</time>
                             
-                                <a href="https://xzh20121116.github.io/tag/gOINufb6v/" class="post-tag i-tag
-                            i-tag-info">
-                            #mysql
+                                <a href="https://xzh20121116.github.io/tag/6DXxwTbdM/" class="post-tag i-tag
+                            i-tag-">
+                            #jmm
+                        </a>
+                                
+                                <a href="https://xzh20121116.github.io/tag/VadQwd1qw/" class="post-tag i-tag
+                            i-tag-">
+                            #java
                         </a>
                                 
                         </div>
                         
                                 <div class="post-content">
-                                    <p>为什么删了数据，表的大小不变？</p>
-<!--more-->
-<h1 id="背景">背景</h1>
-<p>InnoDB表包含两部分：表结构、表数据</p>
-<p>InnoDB的数据是按页存储的，删除数据的时候，该数据的位置会被<strong>标记为可复用</strong>。同理，删除一个数据页，该页就被标记为可复用了。</p>
-<p>当整个页被从B+树上摘掉之后，可以复用到任何位置。</p>
-<p>如果用<strong>delete</strong>删除整个表的数据，那么整个表会被标记为可复用，但大小不变（磁盘文件大小）</p>
-<p>delete只是把记录的位置或者数据页标记为<strong>可复用</strong>，但大小不变（磁盘文件大小）。</p>
-<p>这些可复用，而没有被使用的空间，看起来就像<strong>空洞</strong>。</p>
-<p>如果数据按照索引递增插入，那么索引是紧凑的，如果是随机插入的，就可能造成数据页的分裂。</p>
-<p>经过大量增删改的表，都是可能存在空洞的。</p>
-<p>如果能把空洞去掉，就能达到收缩表空间的目的。</p>
-<p><strong>重建表可以收缩表空间</strong></p>
-<h1 id="重建表的三种方式">重建表的三种方式</h1>
+                                    <p>大厂面试必考：聊聊java内存模型、volatile的实现原理</p>
+<!-- more -->
+<h1 id="java内存模型-jmm">Java内存模型 jmm</h1>
+<p>是一个抽象的概念，他描述了一组规则，定义了程序中各个变量的访问方式</p>
+<p>JMM同步规定</p>
 <ol>
-<li>alter table t engine = InnoDB（也就是 recreate）</li>
-<li>analyze table t 其实不是重建表，只是对表的索引信息做重新统计，没有修改数据，这个过程中加了 MDL 读锁；</li>
-<li>optimize table t 等于 recreate+analyze。</li>
+<li>线程解锁前，必须把共享变量的值刷新会主内存</li>
+<li>线程加锁前，必须读取主内存的最新值到自己的工作内存</li>
+<li>加锁、解锁是同一把锁</li>
 </ol>
-<h2 id="alter-table-a-engineinnodb-命令来重建表">alter table A engine=InnoDB 命令来重建表</h2>
-<p><strong>内部的流程（5.6版本之前）：</strong></p>
-<ol>
-<li>新建一个与A结构相同的表</li>
-<li>按照主键id递增的顺序，把数据一行行的从表A里读出来，插入到B表总</li>
-</ol>
-<p>问题：如果在插入临时表的过程中，有新数据写入a表的话， 就会造成数据丢失</p>
-<p>整个ddl过程不是online的</p>
-<p><strong>内部的流程（5.6版本之后）：</strong></p>
-<p>引入了online ddl，重建表的流程</p>
-<ol>
-<li>建立一个临时文件，扫描A主键的所有数据页</li>
-<li>用数据页中A的记录生成B+树，存储到临时文件中</li>
-<li>生成临时文件的过程中，将所有对A的操作记录在一个日志文件（row log）中，对应的是图中state2的状态；</li>
-<li>临时文件生成后，将日志文件 中的操作应用到临时文件，得到一个逻辑数据上与表a相同的数据文件，对应的就是state3的状态</li>
-<li>用临时文件替换表a的数据文件</li>
-<li><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200423103730.png" alt="image-20200423103730471" loading="lazy"></li>
-</ol>
-<h1 id="延伸问题">延伸问题</h1>
-<p>想要收缩表空间，结果适得其反？</p>
-<ol>
-<li>一个表  t 文件大小为1TB</li>
-<li>对这个表执行alter table t engine=InnoDB；</li>
-<li>执行结束，发现空间不仅没变小，还稍微大了一些，比如变成1.01TB</li>
-</ol>
-<p><strong>出现上述情况的原因：</strong></p>
-<p>重建表，innodb不会把整张表占满，每个页留了1/16给后溪的更新用</p>
-<p><strong>场景复现</strong></p>
-<ol>
-<li>将t重建一次</li>
-<li>插入一部分数据，但是插入的数据用掉了一部分的预留空间</li>
-<li>再将t重建一次，就会出现这种问题</li>
-</ol>
+<p>jvm运行程序的实体是线程，每个线程创建的时候，jvm都会给他创建一个工作内存（栈空间），是每个线程的私有数据区域。而jmm规定，所有变量都存储在主内存，主内存是共享内存的，所有线程都可以访问，但<code>线程对变量的操作（读取赋值）</code>不能直接操作主内存中的变量，各个线程的工作内存中存储着主内存中变量的副本。</p>
+<h1 id="主内存与工作内存之间操作有8种">主内存与工作内存之间操作有8种</h1>
+<p><code>lock（锁定）</code>：</p>
+<blockquote>
+<p>作用于<code>主内存</code>的变量，把一个变量标识为一条线程独占的状态。</p>
+</blockquote>
+<p><code>unclock（解锁）</code>：</p>
+<blockquote>
+<p>作用于<code>主内存</code>的变量，把一个处于锁定的状态释放出来。</p>
+</blockquote>
+<p><code>read（读取）</code>：</p>
+<blockquote>
+<p>作用于<code>主内存</code>的变量，把一个变量的值从主内存传输到线程的工作内存中</p>
+</blockquote>
+<p><code>load（载入）</code>：</p>
+<blockquote>
+<p>作用于<code>工作内存</code>的变量，把read操作从主内存 得到的变量值放入工作内存的变量副本中。</p>
+</blockquote>
+<p><code>use（使用）</code>：</p>
+<blockquote>
+<p>作用于<code>工作内存</code>的变量，把工作内存中一个变量的值传递给执行引擎，每当虚拟机遇到一个需要使用到变量的                             值的字节码指令时将会执行这个操作。</p>
+</blockquote>
+<p><code>assign（赋值）</code>：</p>
+<blockquote>
+<p>作用于<code>工作内存</code>的变量，把一个从执行引擎接收到的值 赋值给工作内存的变量，每当虚拟机遇到一个给变量赋值的字节码指令时执行这个操作。</p>
+</blockquote>
+<p><code>store（存储）</code>：</p>
+<blockquote>
+<p>作用于<code>工作内存</code>的变量，把工作内存中的一个变量的值传递到主内存，以便write操作使用。</p>
+</blockquote>
+<p><code>write（写入）</code>：</p>
+<blockquote>
+<p>作用于<code>主内存</code>的变量，把store操作从工作内存中得到的变量的值放入主内存的变量中。</p>
+</blockquote>
+<h1 id="内存模型三大特性">内存模型三大特性</h1>
+<p>原子性、可见性、有序性</p>
+<p><code>原子性：</code></p>
+<blockquote>
+<p>一个操作是不可中断的，即使多个线程一起执行的时候，一个操作一旦开始，就不会被其他线程干扰</p>
+</blockquote>
+<p><code>可见性</code></p>
+<blockquote>
+<p>当某一个线程修改某个共享变量的值，其他线程能否立刻知道这个修改</p>
+<p>并行程序，会存在问题</p>
+</blockquote>
+<p><code>有序性</code></p>
+<blockquote>
+<p>对一个一个程序的执行代码，总是习惯的认为代码的执行从前往后，依次执行，起始不是，因为会有指令重排</p>
+</blockquote>
+<h1 id="volatile两大特性">volatile两大特性</h1>
+<p>可见性、有序性</p>
+<h1 id="volatile-可见性的实现原理">volatile--可见性的实现原理</h1>
+<p>操作volatile修饰的变量时，jvm会向处理器发送一条<code>lock</code>前缀的指令，将当前变量的数据写回到系统内存，这个写回操作会导致其他工作内存的里对应的备份数据无效</p>
+<h1 id="volatile-有序性的实现原理">volatile--有序性的实现原理</h1>
+<p>防止指令重排</p>
+<p>lock前缀指令实际上相当与一个内存屏障，确保指令重排序时，不会把屏障后指令放到屏障前，也不会把屏障前的指令放到屏障后</p>
+<p>即：在执行到内存屏障这句指令的时候，前面的操作已经全部完成</p>
 
                                 </div>
                     </article>
@@ -190,9 +210,9 @@
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://xzh20121116.github.io/post/mysql-ru-he-zhu-bei-yi-zhi-shuang-m-xun-huan-fu-zhi-jie-jue-fang-an/">
+                            <a href="https://xzh20121116.github.io/post/y5o20dvpK/">
                                 <h3 class="post-title">
-                                    mysql如何主备一致+双m循环复制解决方案
+                                    Reentrantlock的实现原理、以及公平锁和非公平锁的区别
                                 </h3>
                             </a>
                         </div>
@@ -211,13 +231,12 @@
         <div class="toc-title i-card-title">目录</div>
         <div class="toc-content">
             <ul class="markdownIt-TOC">
-<li><a href="#%E8%83%8C%E6%99%AF">背景</a></li>
-<li><a href="#%E9%87%8D%E5%BB%BA%E8%A1%A8%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E5%BC%8F">重建表的三种方式</a>
-<ul>
-<li><a href="#alter-table-a-engineinnodb-%E5%91%BD%E4%BB%A4%E6%9D%A5%E9%87%8D%E5%BB%BA%E8%A1%A8">alter table A engine=InnoDB 命令来重建表</a></li>
-</ul>
-</li>
-<li><a href="#%E5%BB%B6%E4%BC%B8%E9%97%AE%E9%A2%98">延伸问题</a></li>
+<li><a href="#java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B-jmm">Java内存模型 jmm</a></li>
+<li><a href="#%E4%B8%BB%E5%86%85%E5%AD%98%E4%B8%8E%E5%B7%A5%E4%BD%9C%E5%86%85%E5%AD%98%E4%B9%8B%E9%97%B4%E6%93%8D%E4%BD%9C%E6%9C%898%E7%A7%8D">主内存与工作内存之间操作有8种</a></li>
+<li><a href="#%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7">内存模型三大特性</a></li>
+<li><a href="#volatile%E4%B8%A4%E5%A4%A7%E7%89%B9%E6%80%A7">volatile两大特性</a></li>
+<li><a href="#volatile-%E5%8F%AF%E8%A7%81%E6%80%A7%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86">volatile--可见性的实现原理</a></li>
+<li><a href="#volatile-%E6%9C%89%E5%BA%8F%E6%80%A7%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86">volatile--有序性的实现原理</a></li>
 </ul>
 
         </div>
