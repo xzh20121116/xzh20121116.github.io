@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xzh20121116.github.io</id>
     <title>温故知新</title>
-    <updated>2020-04-23T08:21:44.154Z</updated>
+    <updated>2020-04-24T02:40:27.954Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xzh20121116.github.io"/>
     <link rel="self" href="https://xzh20121116.github.io/atom.xml"/>
@@ -10,6 +10,17 @@
     <logo>https://xzh20121116.github.io/images/avatar.png</logo>
     <icon>https://xzh20121116.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 温故知新</rights>
+    <entry>
+        <title type="html"><![CDATA[AQS的核心成员、数据模型、锁的实现原理]]></title>
+        <id>https://xzh20121116.github.io/post/aqs-de-he-xin-cheng-yuan-shu-ju-mo-xing-suo-de-shi-xian-yuan-li/</id>
+        <link href="https://xzh20121116.github.io/post/aqs-de-he-xin-cheng-yuan-shu-ju-mo-xing-suo-de-shi-xian-yuan-li/">
+        </link>
+        <updated>2020-04-24T02:39:27.000Z</updated>
+        <summary type="html"><![CDATA[<p>AQS（AbstractQueuedSynchronizer）就是一个抽象的队列同步器，AQS定义了一套多线程访问共享资源的同步器框架，许多同步类的实现都依赖于他</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>AQS（AbstractQueuedSynchronizer）就是一个抽象的队列同步器，AQS定义了一套多线程访问共享资源的同步器框架，许多同步类的实现都依赖于他</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Synchronized的实现原理、锁的存储、以及锁是如何升级的]]></title>
         <id>https://xzh20121116.github.io/post/synchronized-de-shi-xian-yuan-li-suo-de-cun-chu-yi-ji-suo-shi-ru-he-sheng-ji-de/</id>

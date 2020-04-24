@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    mysql之锁 | 温故知新
+    AQS的核心成员、数据模型、锁的实现原理 | 温故知新
 </title>
 <link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587696025571">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -118,84 +118,148 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            mysql之锁
+                            AQS的核心成员、数据模型、锁的实现原理
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2020-04-21</time>
+                            <time class="post-time">2020-04-24</time>
                             
-                                <a href="https://xzh20121116.github.io/tag/gOINufb6v/" class="post-tag i-tag
+                                <a href="https://xzh20121116.github.io/tag/VadQwd1qw/" class="post-tag i-tag
                             i-tag-other_2">
-                            #mysql
+                            #java
+                        </a>
+                                
+                                <a href="https://xzh20121116.github.io/tag/9tvO-JXYPa/" class="post-tag i-tag
+                            i-tag-info">
+                            #线程
                         </a>
                                 
                         </div>
                         
                                 <div class="post-content">
-                                    <h1 id="表级锁">表级锁</h1>
-<p>mysql 里面<strong>表级别</strong>的锁有两种：表锁、元数据锁（meta data lock ，MDL）</p>
-<!-- more -->
-<h2 id="表锁"><strong>表锁</strong></h2>
-<p>表锁的语法是 lock tables ... read/write。与 FTWRL类似，可以用 <strong>unlock tables</strong>主动释放锁，也可以在客户端断开连接的时候自动释放。需要注意：lock tables 语法除了会限制其他的线程的读写之外，也限定了本线程接下来的操作对象</p>
-<p><strong>举个例子</strong>：</p>
-<p>线程A中执行 lock tables  t1 read，t2 write  这个语句，则其他线程写 t1 ，读t2 的语句都会被阻塞。线程A 在释放锁之前，也只能 执行读 t1、写t2的操作。连写t1都不允许，自然也不能访问其他表</p>
-<p>对于innodb来说，一般不使用lock tables命令，影响太大</p>
-<h2 id="mdl">MDL</h2>
-<p>mdl不需要显式使用，在访问一个表的时候会自动加上。你可以想象一下，如果一个查询正在遍历一个表中的数据，而执行期间另一个线程对这个表结构做变更，删了一列，那么查询线程拿到的结果跟表结构对不上，肯定是不行的。</p>
-<p>因此，在 MySQL 5.5 版本中引入了 MDL，</p>
-<p><strong>MDL 读锁：对一个表做增删改查操作，自动加</strong></p>
-<p><strong>MDL 写锁：对表做结构变更操作的时候，自动加</strong></p>
+                                    <p>AQS（AbstractQueuedSynchronizer）就是一个抽象的队列同步器，AQS定义了一套多线程访问共享资源的同步器框架，许多同步类的实现都依赖于他</p>
+<!--more-->
+<h1 id="什么是aqs">什么是AQS</h1>
+<p>AQS（AbstractQueuedSynchronizer）就是一个抽象的队列同步器，AQS定义了一套多线程访问共享资源的同步器框架，许多同步类的实现都依赖于他，比如下面四个</p>
 <ul>
-<li>读锁之间不互斥，即：多个线程可以同时对一张表增删改查</li>
-<li>读写之间互斥、写锁之间互斥：保证变更表结构操作的安全性。因此如果有两个线程要同事给一个表加字段，需要一个等待另一个执行完才能开始</li>
+<li>ReentrantLock</li>
+<li>Semaphore</li>
+<li>CountDownLatch</li>
+<li>CyclicBarrier</li>
 </ul>
-<p><strong>mdl的作用</strong>：保证读写的正确性</p>
-<h1 id="行级锁">行级锁</h1>
-<p>mysql的行锁是引擎层各自实现的，但并不是所有的引擎都支持行锁，MyIsam不支持行锁。</p>
-<blockquote>
-<p>事务a更新1行数据，事务b也更新同一行数据，那么B要等A执行完之后，才能进行更新</p>
-</blockquote>
-<h2 id="两阶段锁">两阶段锁</h2>
-<p>在innodb中，行锁是在需要的时候才加上的，但并不是不用了就立刻释放，而是等待事务结束了才释放（commit提交后事务结束）。</p>
-<p>如果事务中需要锁多行，要把可能造成锁冲突，最可能影响并发度的锁尽量往后放</p>
-<h2 id="死锁">死锁</h2>
+<p><strong>JUC包下所有的锁都是基于它来实现的</strong></p>
+<h1 id="aqs提供的方法">AQS提供的方法</h1>
+<p>抽象类，就会有方法需要子类去重写，有以下几个需要子类重写</p>
+<p>这几个方法<code>获取、释放锁</code>时都会<code>尝试</code>去修改同步状态state的值，因为<code>尝试</code>所以不一定成功。</p>
 <table>
 <thead>
 <tr>
-<th>时间点</th>
-<th>事务a</th>
-<th>事务b</th>
+<th>方法</th>
+<th>作用</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>t1</td>
-<td>begin; set k=xx where id =1</td>
-<td>begin;</td>
+<td>protected boolean tryAcquire(int arg)</td>
+<td>独占式<code>尝试</code>获取锁</td>
 </tr>
 <tr>
-<td>t2</td>
-<td></td>
-<td>set k =yy where id=2</td>
+<td>protected boolean tryRelease(int arg)</td>
+<td>独占式<code>尝试</code>释放锁</td>
 </tr>
 <tr>
-<td>t3</td>
-<td>set k =yy where id=2</td>
-<td></td>
+<td>protected int tryAcquireShared(int arg)</td>
+<td>共享式<code>尝试</code>获取锁</td>
 </tr>
 <tr>
-<td>t4</td>
-<td></td>
-<td>set k=xx where id =1</td>
+<td>protected boolean tryReleaseShared(int arg)</td>
+<td>共享式<code>尝试</code>释放锁</td>
+</tr>
+<tr>
+<td>protected boolean isHeldExclusively()</td>
+<td>当前线程是否独占式的占用锁</td>
 </tr>
 </tbody>
 </table>
-<p>这个时候，事务A在等待事务B释放 id =2的行锁，而事务B在等待事务A释放id =1 的行锁，互相等待对方释放锁资源，即进入<strong>死锁</strong>状态</p>
-<h2 id="mvcc">MVCC</h2>
-<p>mysql中，实际上每条记录在更新的时候都会同步记录一条回滚操作，通过回滚操作都可以得到前一个状态的值。</p>
-<p>假如一个值1被按顺序修改为2、3、4，在回滚日志里就会有类似下面的记录</p>
-<figure data-type="image" tabindex="1"><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200422100302.png" alt="image-20200422100302567" loading="lazy"></figure>
-<p>当前值是4，但是在查询这条记录的时候，不同时刻启动的事务会有不同的 <strong>read-view</strong>，在视图A、B、C里面记录的分别是1、2、4</p>
-<p>同一条记录在系统中可以存在多个版本，这就是数据库的<strong>多版本并发控制</strong>——MVCC</p>
+<p>实际上只需要弄明白<code>acquire（）</code>和<code>release（）</code>方法即可，其他的方法与这两个方法的实现几乎一模一样。</p>
+<h1 id="数据模型">数据模型</h1>
+<figure data-type="image" tabindex="1"><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200424102713.png" alt="image-20200424102713581" loading="lazy"></figure>
+<p>在AQS中定义了一个int类型的变量：<code>state</code>用它来表示<code>同步状态</code>：哪个线程成功对state变量进行了<code>加1</code>的操作，那么这个线程就持有了锁</p>
+<p>AQS还定了一个<code>FIFO（先进先出）队列</code>，用来表示等待获取锁的线程</p>
+<p>使用<code>state</code>来表示同步状态，使用内置的<code>同步队列</code>来完成获取资源线程的排队工作</p>
+<blockquote>
+<p><code>同步对列</code>是一个<code>FIFO队列</code>，它是一个由<code>Node</code>（AQS里面的静态内部类）节点组成的双向链表，每一个线程在获取同步状态时，如果获取同步状态失败，就会将当前线程封装成一个Node，然后将其加入到同步队列中</p>
+</blockquote>
+<h2 id="aqs的三个核心成员变量">AQS的三个核心成员变量</h2>
+<pre><code class="language-java">// 队头结点
+private transient volatile Node Head;
+// 队尾结点
+private transient volatile Node tail;
+// 代表共享资源
+private volatile ins state;
+</code></pre>
+<ul>
+<li>共享资源：volatile int state(代表共享状态）</li>
+<li>队头节点：head头节点</li>
+<li>队尾节点：tail尾节点</li>
+</ul>
+<p>head、tail、state三个变量都是volatile的，通过volatile来保证共享变量的可见性。</p>
+<h2 id="state状态的变更是基于cas实现的">State状态的变更是基于CAS实现的</h2>
+<p>主要有三个方法</p>
+<ul>
+<li>getState()</li>
+<li>setState()</li>
+<li>compareAndSetState()</li>
+</ul>
+<p>state状态通过volatile保证共享变量的可见性，再由CAS 对该同步状态进行原子操作，从而保证原子性和可见性。</p>
+<pre><code class="language-java">    protected final int getState() {
+        return state;
+    }
+
+    protected final void setState(int newState) {
+        state = newState;
+    }
+ 
+    protected final boolean compareAndSetState(int expect, int update) {
+        return unsafe.compareAndSwapInt(this, stateOffset, expect, update);
+    }
+</code></pre>
+<h2 id="aqs资源共享方式">AQS资源共享方式</h2>
+<p>两种：独占模式、共享模式</p>
+<p><code>独占锁</code>：独占模式下，其他线程试图获取该锁将无法取得成功，只有一个线程能执行，如ReentrantLock采用独占模式</p>
+<blockquote>
+<p>ReentrantLock还可以分为公平锁和非公平锁：</p>
+<ul>
+<li>公平锁：按照线程在队列中的排队顺序，先到者先拿到锁</li>
+<li>非公平锁：当线程要获取锁时，无视队列顺序直接去抢锁，谁抢到就是谁的</li>
+</ul>
+</blockquote>
+<p><code>共享锁</code>多个线程获取某个锁可能会获得成功，多个线程可同时执行，如：Semaphore、CountDownLatch。</p>
+<h1 id="aqs的锁释放与获取原理">AQS的锁释放与获取原理</h1>
+<figure data-type="image" tabindex="2"><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200424103517.png" alt="image-20200424103517468" loading="lazy"></figure>
+<h2 id="线程获取流程">线程获取流程</h2>
+<ol>
+<li>
+<p>线程A获取锁，state将0置为1，线程A占用</p>
+</li>
+<li>
+<p>在A没有释放锁期间，线程B也来获取锁，线程B获取state为1，表示线程被占用，线程B创建Node节点放入队尾(tail)，并且阻塞线B</p>
+</li>
+<li>
+<p>同理线程C获取state为1，表示线程被占用，线程C创建Node节点，放入队尾，且阻塞线程</p>
+</li>
+</ol>
+<h2 id="线程释放锁流程">线程释放锁流程：</h2>
+<ol>
+<li>
+<p>线程A执行完，将state从1置为0</p>
+</li>
+<li>
+<p>唤醒下一个Node B线程节点，然后再删除线程A节点</p>
+</li>
+<li>
+<p>线程B占用，获取state状态位，执行完后唤醒下一个节点 Node C,再删除线程B节点</p>
+</li>
+</ol>
 
                                 </div>
                     </article>
@@ -203,9 +267,9 @@
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://xzh20121116.github.io/post/hello-gridea/">
+                            <a href="https://xzh20121116.github.io/post/synchronized-de-shi-xian-yuan-li-suo-de-cun-chu-yi-ji-suo-shi-ru-he-sheng-ji-de/">
                                 <h3 class="post-title">
-                                    Hello Gridea
+                                    Synchronized的实现原理、锁的存储、以及锁是如何升级的
                                 </h3>
                             </a>
                         </div>
@@ -224,17 +288,19 @@
         <div class="toc-title i-card-title">目录</div>
         <div class="toc-content">
             <ul class="markdownIt-TOC">
-<li><a href="#%E8%A1%A8%E7%BA%A7%E9%94%81">表级锁</a>
+<li><a href="#%E4%BB%80%E4%B9%88%E6%98%AFaqs">什么是AQS</a></li>
+<li><a href="#aqs%E6%8F%90%E4%BE%9B%E7%9A%84%E6%96%B9%E6%B3%95">AQS提供的方法</a></li>
+<li><a href="#%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B">数据模型</a>
 <ul>
-<li><a href="#%E8%A1%A8%E9%94%81"><strong>表锁</strong></a></li>
-<li><a href="#mdl">MDL</a></li>
+<li><a href="#aqs%E7%9A%84%E4%B8%89%E4%B8%AA%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F">AQS的三个核心成员变量</a></li>
+<li><a href="#state%E7%8A%B6%E6%80%81%E7%9A%84%E5%8F%98%E6%9B%B4%E6%98%AF%E5%9F%BA%E4%BA%8Ecas%E5%AE%9E%E7%8E%B0%E7%9A%84">State状态的变更是基于CAS实现的</a></li>
+<li><a href="#aqs%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB%E6%96%B9%E5%BC%8F">AQS资源共享方式</a></li>
 </ul>
 </li>
-<li><a href="#%E8%A1%8C%E7%BA%A7%E9%94%81">行级锁</a>
+<li><a href="#aqs%E7%9A%84%E9%94%81%E9%87%8A%E6%94%BE%E4%B8%8E%E8%8E%B7%E5%8F%96%E5%8E%9F%E7%90%86">AQS的锁释放与获取原理</a>
 <ul>
-<li><a href="#%E4%B8%A4%E9%98%B6%E6%AE%B5%E9%94%81">两阶段锁</a></li>
-<li><a href="#%E6%AD%BB%E9%94%81">死锁</a></li>
-<li><a href="#mvcc">MVCC</a></li>
+<li><a href="#%E7%BA%BF%E7%A8%8B%E8%8E%B7%E5%8F%96%E6%B5%81%E7%A8%8B">线程获取流程</a></li>
+<li><a href="#%E7%BA%BF%E7%A8%8B%E9%87%8A%E6%94%BE%E9%94%81%E6%B5%81%E7%A8%8B">线程释放锁流程：</a></li>
 </ul>
 </li>
 </ul>
