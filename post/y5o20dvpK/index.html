@@ -7,7 +7,7 @@
 <title>
     Reentrantlock的实现原理、以及公平锁和非公平锁的区别 | 温故知新
 </title>
-<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587702608107">
+<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587718816116">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -47,7 +47,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://xzh20121116.github.io">
-                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587702608107" alt="">
+                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587718816116" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -124,12 +124,12 @@
                             <time class="post-time">2020-04-24</time>
                             
                                 <a href="https://xzh20121116.github.io/tag/VadQwd1qw/" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-other_1">
                             #java
                         </a>
                                 
                                 <a href="https://xzh20121116.github.io/tag/9tvO-JXYPa/" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-banana">
                             #线程
                         </a>
                                 
@@ -202,7 +202,13 @@
 <h1 id="公平锁和非公平锁的区别">公平锁和非公平锁的区别</h1>
 <h2 id="获取锁">获取锁</h2>
 <p><strong>公平锁</strong>：相当于排队买票，后来大人需要到队尾排队，不能插队</p>
+<blockquote>
+<p>线程来了，先检查state是否被持有，如果被持有，当前线程就去同步队列排队</p>
+</blockquote>
 <p><strong>非公平锁</strong>：就是抢占模式，每来一个人不回去管队列如何，直接尝试获取锁</p>
+<blockquote>
+<p>线程来了，先用cas的方式修改state，修改成功就获得锁，修改失败就去同步队列排队</p>
+</blockquote>
 <h2 id="释放锁">释放锁</h2>
 <p>两者的流程是一样的：</p>
 <p>判断当前线程是否是获得锁的线程，由于是重入锁，需要将<code>state</code>减到0才认为完全释放</p>
