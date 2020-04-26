@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xzh20121116.github.io</id>
     <title>温故知新</title>
-    <updated>2020-04-24T09:00:18.393Z</updated>
+    <updated>2020-04-26T08:48:44.376Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xzh20121116.github.io"/>
     <link rel="self" href="https://xzh20121116.github.io/atom.xml"/>
@@ -10,6 +10,17 @@
     <logo>https://xzh20121116.github.io/images/avatar.png</logo>
     <icon>https://xzh20121116.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 温故知新</rights>
+    <entry>
+        <title type="html"><![CDATA[大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景]]></title>
+        <id>https://xzh20121116.github.io/post/darYNwFgM/</id>
+        <link href="https://xzh20121116.github.io/post/darYNwFgM/">
+        </link>
+        <updated>2020-04-26T08:48:21.000Z</updated>
+        <summary type="html"><![CDATA[<p>大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[大厂面试必考：聊聊java内存模型、volatile的实现原理]]></title>
         <id>https://xzh20121116.github.io/post/VPO1pZnCC/</id>
@@ -107,17 +118,6 @@
         <summary type="html"><![CDATA[<p>count(*)、count(主键 id)、count(字段) 和 count(1) 等不同用法的性能，有哪些差别。</p>
 ]]></summary>
         <content type="html"><![CDATA[<p>count(*)、count(主键 id)、count(字段) 和 count(1) 等不同用法的性能，有哪些差别。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[mysql的几个日志]]></title>
-        <id>https://xzh20121116.github.io/post/mysql-de-ji-ge-ri-zhi/</id>
-        <link href="https://xzh20121116.github.io/post/mysql-de-ji-ge-ri-zhi/">
-        </link>
-        <updated>2020-04-22T06:13:41.000Z</updated>
-        <summary type="html"><![CDATA[<p>mysql的几个日志，有innodb的 redolog，有server层的binlog，还有用于回滚的 undolog</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>mysql的几个日志，有innodb的 redolog，有server层的binlog，还有用于回滚的 undolog</p>
 ]]></content>
     </entry>
 </feed>

@@ -5,7 +5,7 @@
 <meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>
-    线程的生命周期、6种状态的流转 | 温故知新
+    大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景 | 温故知新
 </title>
 <link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587890922895">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
@@ -118,10 +118,10 @@
                 <div id="content" class="main-container-left">
                     <article class="post i-card">
                         <h2 class="post-title">
-                            线程的生命周期、6种状态的流转
+                            大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景
                         </h2>
                         <div class="post-info">
-                            <time class="post-time">2020-04-23</time>
+                            <time class="post-time">2020-04-26</time>
                             
                                 <a href="https://xzh20121116.github.io/tag/VadQwd1qw/" class="post-tag i-tag
                             i-tag-other_2">
@@ -129,76 +129,88 @@
                         </a>
                                 
                                 <a href="https://xzh20121116.github.io/tag/9tvO-JXYPa/" class="post-tag i-tag
-                            i-tag-error">
+                            i-tag-warning">
                             #线程
                         </a>
                                 
                         </div>
                         
                                 <div class="post-content">
-                                    <p>线程的生命周期、6种状态的流转</p>
+                                    <p>大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景</p>
 <!-- more -->
-<h1 id="到底有几种状态">到底有几种状态</h1>
-<p>java/lang/Thread.java中 State是个枚举，里面定义了6种状态</p>
-<h1 id="线程的6种状态">线程的6种状态</h1>
+<h1 id="线程池的创建">线程池的创建</h1>
+<p>juc包下的ThreadPoolExecutor，有序多重载的构造方法，指定不同的构造参数，创建不同类型的线程池。</p>
+<pre><code class="language-java">ThreadPoolExecutor(int corePoolSize,
+                              int maximumPoolSize,
+                              long keepAliveTime,
+                              TimeUnit unit,
+                              BlockingQueue&lt;Runnable&gt; workQueue,
+                              ThreadFactory threadFactory,
+                              RejectedExecutionHandler handler)
+
+</code></pre>
+<h1 id="核心参数">核心参数</h1>
+<h2 id="corepoolsize">corePoolSize</h2>
+<p>核心线程数线程池的大小</p>
+<h2 id="maximumpoolsize"><strong>maximumPoolSize</strong></h2>
+<p>线程池允许创建的最大线程数</p>
+<h2 id="keepalivetime"><strong>keepAliveTime</strong></h2>
+<p>非核心线程的空闲存活时间，一个线程的空闲时间达到这个值，则会终止</p>
+<h2 id="timeunit">TimeUnit</h2>
+<p><strong>keepAliveTime</strong>的时间单位</p>
+<blockquote>
+<p>有7种取值：天、小时、分钟、秒、毫秒、微妙、纳秒</p>
+</blockquote>
+<h2 id="workqueue">workQueue</h2>
+<p>阻塞队列，当核心线程都被占用时，新来的线程会进入阻塞队列等待执行，如果阻塞队列满了， 会创建工作线程(不超过最大线程数)</p>
+<h2 id="threadfactory">threadFactory</h2>
+<p>表示线程工厂。用来生产一组相同任务的线程，线程池的命名是通过这个factory增加组名前缀来实现的。在虚拟机栈分析时，就可以知道线程任务是由哪个线程工厂生产的</p>
+<h2 id="handler">handler</h2>
+<p>拒绝策略：当提交任务超过最大线程数时，执行拒绝策略</p>
+<ol>
+<li><code>AbortPolicy</code>（默认）：丢弃任务并抛出异常</li>
+<li><code>DiscardPolicy</code>：丢弃任务，不抛出异常</li>
+<li><code>DiscardOldestPolicy</code>：抛弃队列中等待最久的任务，然后把当前任务加入队列</li>
+<li><code>callerRunsPolicy</code>：调用人的run方法，绕过线程池直接执行</li>
+</ol>
+<h1 id="核心流程">核心流程</h1>
+<figure data-type="image" tabindex="1"><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200426160957.png" alt="image-20200426160957865" loading="lazy"></figure>
+<h1 id="关闭">关闭</h1>
+<p>关闭线程池，有两种方法，可以通过<code>shutdown</code>和<code>shutdownNow</code>这两个方法，原理都是遍历线程池中的所有线程，依次中断。</p>
+<p>不同点：</p>
+<p><code>shutdown</code></p>
+<blockquote>
+<p>只是将线程池的状态设置为<code>SHUTDOWN</code>状态，然后中断所有没有正在执行任务的线程</p>
+</blockquote>
+<p><code>shutdownNow</code></p>
+<blockquote>
+<p>首先将线程池的状态设置为<code>STOP</code>，然后尝试停止所有正在执行和未执行任务的线程，并返回等待执行任务的列表</p>
+</blockquote>
+<h1 id="五种类型-区别-适用场景">五种类型、区别、适用场景</h1>
+<h2 id="newcachedthreadpool">newCachedThreadPool：</h2>
 <ul>
-<li>New（新建）</li>
-<li>Runnable（运行）</li>
-<li>Blocked（阻塞）</li>
-<li>Waitting（无限期等待）</li>
-<li>Timed Watting（限期等待）</li>
-<li>Terminated（终止）</li>
+<li>底层：返回ThreadPoolExecutor实例，corePoolSize为0；maximumPoolSize为Integer.MAX_VALUE；keepAliveTime为60L；unit为TimeUnit.SECONDS；workQueue为SynchronousQueue(<code>同步队列</code>)</li>
+<li>通俗：当有新任务到来，则插入到SynchronousQueue中，由于SynchronousQueue是同步队列，因此会在池中寻找可用线程来执行，若有可以线程则执行，若没有可用线程则创建一个线程来执行该任务；若池中线程空闲时间超过指定大小，则该线程会被销毁。</li>
+<li>适用：执行很多短期异步的小程序或者负载较轻的服务器</li>
 </ul>
-<h4 id="new新建">New（新建）</h4>
-<p>新创建了一个线程对象，但是还没有调用start（）方法</p>
-<h4 id="runnable运行">Runnable（运行）</h4>
-<p>包含了操作系统线程中的<strong>Ready</strong>（就绪）和<strong>Running</strong>（运行中）</p>
+<h2 id="newfixedthreadpool">newFixedThreadPool：</h2>
 <ul>
-<li>
-<p><strong>Ready</strong></p>
-<p>线程对象创建后，其他线程（比如main线程）调用了该对象的start（）方法</p>
-<p>该状态的线程位于可运行线程池中，等待被线程调度选中，获取cpu的使用权，也就是说有了被cpu运行的资格</p>
-</li>
-<li>
-<p><strong>Running</strong></p>
-<p>就ready绪状态的线程在获得cpu时间片后转换为运行中Running</p>
-</li>
+<li>底层：返回ThreadPoolExecutor实例，接收参数为所设定线程数量nThread，corePoolSize为nThread，maximumPoolSize为nThread；keepAliveTime为0L(不限时)；unit为：TimeUnit.MILLISECONDS；WorkQueue为：new LinkedBlockingQueue<Runnable>() <code>无阻塞队列</code></li>
+<li>通俗：创建可容纳固定数量线程的池子，每隔线程的存活时间是无限的，当池子满了就不在添加线程了；如果池中的所有线程均在繁忙状态，对于新任务会进入阻塞队列中(无界的阻塞队列·)</li>
+<li>适用：执行长期的任务，性能好很多</li>
 </ul>
-<h4 id="blocked阻塞">Blocked（阻塞）</h4>
-<p>在等待着获取一个排它锁（例如：synchronized），这个时间将在另外一个线程放弃这个锁的时候发生</p>
-<h4 id="waitting无限期等待">waitting（无限期等待）</h4>
-<p>进入该状态的线程需要等待其他线程做出一些特定动作（通知或中断），需要被显示的唤醒，否则就会处于无线等待的状态</p>
-<h4 id="timed-waitting限期等待">Timed Waitting（限期等待）</h4>
-<p>在达到一定时间之后他们会自动唤醒</p>
-<h4 id="终止状态">终止状态</h4>
-<p>当线程的run（）方法完成时，或者主线程的main（）方法完成时，我们就认为它终止了。这个线程对象也许是活的，但是他已经不是一个单独执行的线程，线程一旦终止，就不能复生</p>
-<h1 id="线程状态的流转">线程状态的流转</h1>
-<figure data-type="image" tabindex="1"><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200423125835.png" alt="image-20200423125835603" loading="lazy"></figure>
-<p>重点掌握运行、阻塞、就绪之间的通信机制</p>
-<h4 id="sleep-yield-join-wait">sleep（）、yield（）、join（）、wait（）</h4>
-<p><strong>sleep</strong></p>
-<blockquote>
-<p><strong>Thread</strong>的方法</p>
-<p>让出cpu资源，不让锁</p>
-<p>当前线程进入阻塞，并释放cpu资源，无优先级、无法被<strong>notify</strong>唤醒</p>
-</blockquote>
-<p><strong>yield</strong></p>
-<blockquote>
-<p><strong>Thread</strong>的方法</p>
-<p>让出cpu时间，类似sleep，但是无法指定时长，让同优先级的线程有优先执行的机会，调用<strong>yield</strong>只是一个建议：告诉线程调度器，我好了，让相同优先级的线程使用用cpu吧。如果所有正在等待的线程都是低优先级的，则高线程继续执行</p>
-</blockquote>
-<p><strong>join</strong></p>
-<blockquote>
-<p><strong>Thread</strong>的方法</p>
-<p>不让锁</p>
-<p>当前运行的线程调用另一个线程的join方法，等对方执行完之后再执行自己</p>
-</blockquote>
-<p>wait、notify、notifyall都是obj的方法，必须用在synchronized中</p>
-<p><strong>wait</strong></p>
-<blockquote>
-<p>让出cpu和锁，等待notify唤醒</p>
-</blockquote>
-<p>wait()，notify()及notifyAll()只能在synchronized语句中使用，但是如果使用的是ReenTrantLock实现同步，该如何达到这三个方法的效果呢？解决方法是使用ReenTrantLock.newCondition()获取一个Condition类对象，然后Condition的await()，signal()以及signalAll()分别对应上面的三个方法。</p>
+<h2 id="newsinglethreadexecutor">newSingleThreadExecutor:</h2>
+<ul>
+<li>底层：FinalizableDelegatedExecutorService包装的ThreadPoolExecutor实例，corePoolSize为1；maximumPoolSize为1；keepAliveTime为0L；unit为：TimeUnit.MILLISECONDS；workQueue为：new LinkedBlockingQueue<Runnable>() <code>无界阻塞队列</code></li>
+<li>通俗：创建只有一个线程的线程池，且线程的存活时间是无限的；当该线程正繁忙时，对于新任务会进入阻塞队列中(无界的阻塞队列)</li>
+<li>适用：一个任务一个任务执行的场景，<strong>同步执行任务的场景</strong></li>
+</ul>
+<h2 id="newscheduledthreadpool">NewScheduledThreadPool:</h2>
+<ul>
+<li>底层：创建ScheduledThreadPoolExecutor实例，corePoolSize为传递来的参数，maximumPoolSize为Integer.MAX_VALUE；keepAliveTime为0；unit为：TimeUnit.NANOSECONDS；workQueue为：new DelayedWorkQueue() 一个按超时时间升序排序的队列</li>
+<li>通俗：创建一个固定大小的线程池，线程池内线程存活时间无限制，线程池可以支持定时及周期性任务执行，如果所有线程均处于繁忙状态，对于新任务会进入DelayedWorkQueue队列中，这是一种按照超时时间排序的队列结构</li>
+<li>适用：<strong>周期性执行任务的场景</strong></li>
+</ul>
 
                                 </div>
                     </article>
@@ -206,9 +218,9 @@
                     
                         <div class="next-post">
                             <div class="next">下一篇</div>
-                            <a href="https://xzh20121116.github.io/post/wei-shi-me-shan-liao-shu-ju-biao-de-da-xiao-bu-bian/">
+                            <a href="https://xzh20121116.github.io/post/VPO1pZnCC/">
                                 <h3 class="post-title">
-                                    为什么删了数据，表的大小不变？
+                                    大厂面试必考：聊聊java内存模型、volatile的实现原理
                                 </h3>
                             </a>
                         </div>
@@ -227,20 +239,28 @@
         <div class="toc-title i-card-title">目录</div>
         <div class="toc-content">
             <ul class="markdownIt-TOC">
-<li><a href="#%E5%88%B0%E5%BA%95%E6%9C%89%E5%87%A0%E7%A7%8D%E7%8A%B6%E6%80%81">到底有几种状态</a></li>
-<li><a href="#%E7%BA%BF%E7%A8%8B%E7%9A%846%E7%A7%8D%E7%8A%B6%E6%80%81">线程的6种状态</a><br>
-*<br>
-*<br>
-* <a href="#new%E6%96%B0%E5%BB%BA">New（新建）</a><br>
-* <a href="#runnable%E8%BF%90%E8%A1%8C">Runnable（运行）</a><br>
-* <a href="#blocked%E9%98%BB%E5%A1%9E">Blocked（阻塞）</a><br>
-* <a href="#waitting%E6%97%A0%E9%99%90%E6%9C%9F%E7%AD%89%E5%BE%85">waitting（无限期等待）</a><br>
-* <a href="#timed-waitting%E9%99%90%E6%9C%9F%E7%AD%89%E5%BE%85">Timed Waitting（限期等待）</a><br>
-* <a href="#%E7%BB%88%E6%AD%A2%E7%8A%B6%E6%80%81">终止状态</a></li>
-<li><a href="#%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81%E7%9A%84%E6%B5%81%E8%BD%AC">线程状态的流转</a><br>
-*<br>
-*<br>
-* <a href="#sleep-yield-join-wait">sleep（）、yield（）、join（）、wait（）</a></li>
+<li><a href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%88%9B%E5%BB%BA">线程池的创建</a></li>
+<li><a href="#%E6%A0%B8%E5%BF%83%E5%8F%82%E6%95%B0">核心参数</a>
+<ul>
+<li><a href="#corepoolsize">corePoolSize</a></li>
+<li><a href="#maximumpoolsize"><strong>maximumPoolSize</strong></a></li>
+<li><a href="#keepalivetime"><strong>keepAliveTime</strong></a></li>
+<li><a href="#timeunit">TimeUnit</a></li>
+<li><a href="#workqueue">workQueue</a></li>
+<li><a href="#threadfactory">threadFactory</a></li>
+<li><a href="#handler">handler</a></li>
+</ul>
+</li>
+<li><a href="#%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B">核心流程</a></li>
+<li><a href="#%E5%85%B3%E9%97%AD">关闭</a></li>
+<li><a href="#%E4%BA%94%E7%A7%8D%E7%B1%BB%E5%9E%8B-%E5%8C%BA%E5%88%AB-%E9%80%82%E7%94%A8%E5%9C%BA%E6%99%AF">五种类型、区别、适用场景</a>
+<ul>
+<li><a href="#newcachedthreadpool">newCachedThreadPool：</a></li>
+<li><a href="#newfixedthreadpool">newFixedThreadPool：</a></li>
+<li><a href="#newsinglethreadexecutor">newSingleThreadExecutor:</a></li>
+<li><a href="#newscheduledthreadpool">NewScheduledThreadPool:</a></li>
+</ul>
+</li>
 </ul>
 
         </div>
