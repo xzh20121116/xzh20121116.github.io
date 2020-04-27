@@ -7,7 +7,7 @@
 <title>
     大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景 | 温故知新
 </title>
-<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587953560274">
+<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587953727914">
 <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
@@ -47,7 +47,7 @@
     <div class="nav">
         <div class="logo">
             <a href="https://xzh20121116.github.io">
-                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587953560274" alt="">
+                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587953727914" alt="">
             </a>
             <div class="site-title">
                 <h1>
@@ -124,12 +124,12 @@
                             <time class="post-time">2020-04-26</time>
                             
                                 <a href="https://xzh20121116.github.io/tag/VadQwd1qw/" class="post-tag i-tag
-                            i-tag-other_4">
+                            i-tag-info">
                             #java
                         </a>
                                 
                                 <a href="https://xzh20121116.github.io/tag/9tvO-JXYPa/" class="post-tag i-tag
-                            i-tag-">
+                            i-tag-other_3">
                             #线程
                         </a>
                                 
@@ -183,18 +183,21 @@
 <blockquote>
 <p>非核心线程的空闲存活时间，一个线程的空闲时间达到这个值，则会终止</p>
 </blockquote>
-<p>TimeUnit</p>
+<p><strong>TimeUnit</strong></p>
 <blockquote>
 <p><strong>keepAliveTime</strong>的时间单位</p>
-</blockquote>
-<blockquote>
 <p>有7种取值：天、小时、分钟、秒、毫秒、微妙、纳秒</p>
 </blockquote>
-<h2 id="workqueue">workQueue</h2>
+<p><strong>workQueue</strong></p>
+<blockquote>
 <p>阻塞队列，当核心线程都被占用时，新来的线程会进入阻塞队列等待执行，如果阻塞队列满了， 会创建工作线程(不超过最大线程数)</p>
-<h2 id="threadfactory">threadFactory</h2>
+</blockquote>
+<p><strong>threadFactory</strong></p>
+<blockquote>
 <p>表示线程工厂。用来生产一组相同任务的线程，线程池的命名是通过这个factory增加组名前缀来实现的。在虚拟机栈分析时，就可以知道线程任务是由哪个线程工厂生产的</p>
-<h2 id="handler">handler</h2>
+</blockquote>
+<p><strong>handler</strong></p>
+<blockquote>
 <p>拒绝策略：当提交任务超过最大线程数时，执行拒绝策略</p>
 <ol>
 <li><code>AbortPolicy</code>（默认）：丢弃任务并抛出异常</li>
@@ -202,6 +205,7 @@
 <li><code>DiscardOldestPolicy</code>：抛弃队列中等待最久的任务，然后把当前任务加入队列</li>
 <li><code>callerRunsPolicy</code>：调用人的run方法，绕过线程池直接执行</li>
 </ol>
+</blockquote>
 <h1 id="核心流程">核心流程</h1>
 <p>对应<code>execute（）</code>方法</p>
 <figure data-type="image" tabindex="1"><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200426160957.png" alt="image-20200426160957865" loading="lazy"></figure>
@@ -489,13 +493,7 @@
             <ul class="markdownIt-TOC">
 <li><a href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%A5%BD%E5%A4%84">线程池的好处</a></li>
 <li><a href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%88%9B%E5%BB%BA">线程池的创建</a></li>
-<li><a href="#%E6%A0%B8%E5%BF%83%E5%8F%82%E6%95%B0">核心参数</a>
-<ul>
-<li><a href="#workqueue">workQueue</a></li>
-<li><a href="#threadfactory">threadFactory</a></li>
-<li><a href="#handler">handler</a></li>
-</ul>
-</li>
+<li><a href="#%E6%A0%B8%E5%BF%83%E5%8F%82%E6%95%B0">核心参数</a></li>
 <li><a href="#%E6%A0%B8%E5%BF%83%E6%B5%81%E7%A8%8B">核心流程</a></li>
 <li><a href="#%E5%85%B3%E9%97%AD%E6%96%B9%E6%B3%95">关闭方法</a></li>
 <li><a href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86">线程池异常处理</a></li>
