@@ -2,11 +2,11 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xzh20121116.github.io</id>
     <title>温故知新</title>
-    <updated>2020-04-27T02:15:29.337Z</updated>
+    <updated>2020-04-27T02:35:11.982Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xzh20121116.github.io"/>
     <link rel="self" href="https://xzh20121116.github.io/atom.xml"/>
-    <subtitle>温故而知新</subtitle>
+    <subtitle>分享也是一种学习</subtitle>
     <logo>https://xzh20121116.github.io/images/avatar.png</logo>
     <icon>https://xzh20121116.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 温故知新</rights>
