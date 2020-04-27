@@ -3,7 +3,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>HashMap底层、1.7与1.8区别、常见面试题 | 温故知新</title>
-<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587972824541">
+<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587973817791">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://xzh20121116.github.io/styles/main.css">
 <link rel="alternate" type="application/atom+xml" title="HashMap底层、1.7与1.8区别、常见面试题 | 温故知新 - Atom Feed" href="https://xzh20121116.github.io/atom.xml">
@@ -38,7 +38,7 @@ Entry节点是他的内部类，实现了Map.ENTRY()
       <div class="main-content">
         <div class="site-header">
   <a href="https://xzh20121116.github.io">
-  <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587972824541" alt="">
+  <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587973817791" alt="">
   </a>
   <h1 class="site-title">
     温故知新
@@ -398,7 +398,7 @@ void createEntry(int hash, K key, V value, int bucketIndex) {
 Map&lt;String, Integer&gt; map = Collections.synchronizedMap(testMap);
 </code></pre>
 <p>内部实现很简单，等同于Hashtable，只是对当前传入的map对象，新增对象锁（synchronized）</p>
-<h3 id="52使用concurrenthashmap">5.2	使用ConcurrentHashMap</h3>
+<h2 id="52使用concurrenthashmap">5.2	使用ConcurrentHashMap</h2>
 <h1 id="六-链表转红黑树的阈值是8而不是7或者20">六、链表转红黑树的阈值是8，而不是7或者20？</h1>
 <p>由于treenode（红黑树节点）的大小约是常规节点(HashMap的node节点？)的两倍，</p>
 <p>因此我们仅在容器包含足够的节点以保证使用时，才才使用他们</p>
@@ -468,11 +468,8 @@ Map&lt;String, Integer&gt; map = Collections.synchronizedMap(testMap);
 </li>
 <li><a href="#%E4%BA%94-%E5%A6%82%E4%BD%95%E8%A7%84%E9%81%BFhashmap%E7%9A%84%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8">五、如何规避HashMap的线程不安全</a>
 <ul>
-<li><a href="#51%E5%B0%86map%E8%BD%AC%E4%B8%BA%E5%8C%85%E8%A3%85%E7%B1%BB">5.1	将Map转为包装类</a>
-<ul>
+<li><a href="#51%E5%B0%86map%E8%BD%AC%E4%B8%BA%E5%8C%85%E8%A3%85%E7%B1%BB">5.1	将Map转为包装类</a></li>
 <li><a href="#52%E4%BD%BF%E7%94%A8concurrenthashmap">5.2	使用ConcurrentHashMap</a></li>
-</ul>
-</li>
 </ul>
 </li>
 <li><a href="#%E5%85%AD-%E9%93%BE%E8%A1%A8%E8%BD%AC%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E9%98%88%E5%80%BC%E6%98%AF8%E8%80%8C%E4%B8%8D%E6%98%AF7%E6%88%96%E8%80%8520">六、链表转红黑树的阈值是8，而不是7或者20？</a></li>
