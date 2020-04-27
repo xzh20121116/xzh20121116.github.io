@@ -1,0 +1,579 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>HashMap底层、1.7与1.8区别、常见面试题 | 温故知新</title>
+<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587972824541">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://xzh20121116.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="HashMap底层、1.7与1.8区别、常见面试题 | 温故知新 - Atom Feed" href="https://xzh20121116.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="谈谈hashMap的底层数据结构实现，以及JDK1.8后做了哪些改进、以及常见的面试题
+
+一、数据结构
+1.7
+
+
+
+数组+链表
+
+
+Entry节点是他的内部类，实现了Map.ENTRY()
+
+
+插入过程使用头插法：扩容时死循环
+
+
+
+1...." />
+    <meta name="keywords" content="HashMap,java" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://xzh20121116.github.io">
+  <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587972824541" alt="">
+  </a>
+  <h1 class="site-title">
+    温故知新
+  </h1>
+  <p class="site-description">
+    分享也是一种学习
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              HashMap底层、1.7与1.8区别、常见面试题
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-04-27
+              </span>
+              <span>
+                9 min read
+              </span>
+              
+                <a href="https://xzh20121116.github.io/tag/atkLi2WJL/" class="post-tag">
+                  # HashMap
+                </a>
+              
+                <a href="https://xzh20121116.github.io/tag/VadQwd1qw/" class="post-tag">
+                  # java
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>谈谈hashMap的底层数据结构实现，以及JDK1.8后做了哪些改进、以及常见的面试题</p>
+<!--more-->
+<h1 id="一-数据结构">一、数据结构</h1>
+<p><strong>1.7</strong></p>
+<blockquote>
+<ul>
+<li>
+<p>数组+链表</p>
+</li>
+<li>
+<p><code>Entry</code>节点是他的内部类，实现了<code>Map.ENTRY()</code></p>
+</li>
+<li>
+<p>插入过程使用<code>头插法</code>：扩容时死循环</p>
+</li>
+</ul>
+</blockquote>
+<p>1.8</p>
+<blockquote>
+<ul>
+<li>数组+链表+红黑树</li>
+<li><code>Node</code>节点是他的内部类，实现了<code>Map.ENTRY()</code></li>
+<li>使用<code>尾插法</code>：避免扩容时死循环</li>
+</ul>
+</blockquote>
+<h1 id="二-底层实现">二、底层实现</h1>
+<p>从三个方面说：<code>put()</code>、 <code>get()</code>、 <code>resize()</code>，对比1.7版本与1.8版本。</p>
+<h2 id="21jdk7-版本">2.1	jdk7 版本</h2>
+<h3 id="211put">2.1.1	put()</h3>
+<blockquote>
+<p>是有返回值的，</p>
+<p>如果是key已存在，覆盖旧值，则返回旧值</p>
+<p>如果新key不存在，则返回null</p>
+</blockquote>
+<p><strong>源码</strong></p>
+<blockquote>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427113334.png" alt="image-20200427113334153" style="zoom:50%;" />
+</blockquote>
+<p>如图所示，整个<code>**流程**</code>可以大致分为四步处理</p>
+<blockquote>
+<ol>
+<li>key为null的处理</li>
+<li>计算目标bucket的下标：即数组中的位置</li>
+<li>找到指定bucket，遍历Entry节点链表，若找到相同key相同的Entry节点，则做替换</li>
+<li>未没有找到目标Entry节点时，则新增一个Entry节点</li>
+</ol>
+</blockquote>
+<p><code>putForNllKey（value）</code>：key为null的处理说明</p>
+<blockquote>
+<p>说明1：HashMap中，可以存在null的kv</p>
+<p>说明2：key为null的，固定是放在table[0]的位置：即下标为0的bucket</p>
+<ul>
+<li>首先选择**table[0]**位置的链表</li>
+<li>对链表做遍历操作</li>
+<li>如果有节点的key为null，则将新value替换掉旧value</li>
+<li>如果没有key为null的节点，则新增一个key为null的Entry节点</li>
+</ul>
+</blockquote>
+<p><code>void addEntry(int hash, K key, V value, int bucketIndex)</code></p>
+<blockquote>
+<p>这是一个通用方法</p>
+<p>给定四个参数，新增一个Entry节点，另外还担负了扩容职责。</p>
+<p>如果哈希表中存放的<strong>kv数量</strong>超过了当前<strong>阈值threshold</strong>，且当前的bucket下标有链表存在，那么就进行<strong>扩容resize</strong>处理</p>
+<p>扩容后，<strong>重新计算hash</strong>，得到新的bucket下标，然后使用<strong>头插法</strong>新增节点</p>
+</blockquote>
+<h3 id="212resize">2.1.2	resize()</h3>
+<p><strong>流程</strong></p>
+<blockquote>
+<ol>
+<li>
+<p>插入kv时，发现容量不足</p>
+</li>
+<li>
+<p>保存旧的数组（old table）</p>
+</li>
+<li>
+<p>根据新容量（2倍）新建数组（new table）</p>
+</li>
+<li>
+<p>将old table上的kv 转移到 new table 中</p>
+<blockquote>
+<ol>
+<li>遍历旧数组的每个数据</li>
+<li>重新计算每个<code>旧kv</code>在新数组的位置（<code>不含新kv</code>）</li>
+<li>将旧数组上的每个<code>旧kv</code>,逐个转移到新数组中（头插法，<code>不含新kv</code>）</li>
+</ol>
+</blockquote>
+</li>
+<li>
+<p>新数组引用到HashMap的table属性上</p>
+</li>
+<li>
+<p>重新设置扩容阈值（threshold）</p>
+</li>
+<li>
+<p>扩容结束</p>
+<blockquote>
+<p>此时table = 扩容后（2倍）+ 旧数据</p>
+</blockquote>
+</li>
+<li>
+<p>处理第一步要插入的kv</p>
+<blockquote>
+<ol>
+<li>计算新kv的hash值</li>
+<li>计算出新kv在table中的位置</li>
+<li>将数据插入到对应的位置</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+<p><strong>源码</strong></p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427115545.png" alt="image-20200427115545105" style="zoom:50%;" />
+<p><strong>核心点1</strong>：扩容后大小是扩容前的<strong>2倍</strong></p>
+<blockquote>
+<pre><code class="language-java">oldCapacity = table.length;
+newCapacity = 2 * oldCapacity;
+</code></pre>
+</blockquote>
+<p><strong>核心点2</strong>：<strong>数据搬迁</strong>：从旧table（即数组）迁到扩容后的新table</p>
+<blockquote>
+<ol>
+<li>
+<p>先决策是否需要对每个Entry链表节点重新hash</p>
+</li>
+<li>
+<p>然后根据hash值计算得到bucket下标</p>
+</li>
+<li>
+<p>使用头插法做接点迁移</p>
+</li>
+</ol>
+</blockquote>
+<p><strong>核心点3</strong></p>
+<blockquote></blockquote>
+<h3 id="213get">2.1.3	get()</h3>
+<p>相对于put（）方法，get（）方法的实现就简单多了，主要分为两步</p>
+<ol>
+<li>通过key的hash值计算出在table中的下标</li>
+<li>遍历对应table的链表，逐个对比，得到结果。</li>
+</ol>
+<h3 id="214fail-fast策略">2.1.4	fail-fast策略</h3>
+<p>hashmap中有一个变量<code>modcount</code>，用于实现Hashmap中的快速失败</p>
+<p>在对Map的做迭代(Iterator)操作时，会将**<code>modCount</code><strong>域变量赋值给</strong><code>expectedModCount</code>**局部变量。</p>
+<p>在迭代过程中，用于做内容修改次数的一致性校验。</p>
+<p>如果两个对比不一致，则会抛出异常**<code>ConcurrentModificationException</code>**</p>
+<h2 id="22jdk8-版本">2.2	jdk8 版本</h2>
+<h3 id="220与jdk17的核心差异">2.2.0	与jdk1.7的核心差异</h3>
+<ol>
+<li>
+<p>数据结构不同，1.8为数组+链表+红黑树</p>
+</li>
+<li>
+<p>resize时数据迁移的方式不同，1.8为尾插法</p>
+</li>
+<li>
+<p>链表节点的定义不同（内核没有变，不影响理解）：Entry--&gt;Node类，都实现了Map.Entry()</p>
+</li>
+</ol>
+<h3 id="221put">2.2.1	put()</h3>
+<p>与1.7类似，多了转换红黑树的步骤，头插法变尾插法，其他与1.7类似</p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427105750.png" alt="image-20200427105750336" style="zoom:50%;" />
+<p><strong>源码</strong></p>
+<blockquote>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427132313.png" alt="image-20200427132313825" style="zoom:50%;" />
+</blockquote>
+<h3 id="222resize">2.2.2	resize()</h3>
+<p><strong>流程</strong></p>
+<blockquote>
+<ol>
+<li>
+<p>插入新kv，发现容量不足</p>
+</li>
+<li>
+<p>异常情况判断</p>
+<blockquote>
+<ol>
+<li>是否需要初始化</li>
+<li>若当前容量  &gt; 最大值，则不扩容</li>
+</ol>
+</blockquote>
+</li>
+<li>
+<p>根据新容量（2倍）新建数组（new table）</p>
+</li>
+<li>
+<p>保存旧数组(old table)</p>
+</li>
+<li>
+<p>将旧数组上的数据转移到新数组中（old table -&gt; new table）</p>
+<blockquote>
+<ol>
+<li>
+<p>遍历数组的每个数据</p>
+</li>
+<li>
+<p>重新计算每个数据在新数组中的存储位置（<code>含新数据</code>）</p>
+<blockquote>
+<ul>
+<li>原位置  or  原位置+旧容量</li>
+</ul>
+</blockquote>
+</li>
+<li>
+<p>将旧数组上的每个主句逐个转移到新数组中（<code>含新数据</code>）</p>
+<blockquote>
+<p>尾插法</p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+</li>
+<li>
+<p>将新数组table引用到HashMap的table属性上</p>
+</li>
+<li>
+<p>重新设置扩容阈值（threshold）</p>
+</li>
+<li>
+<p>扩容结束</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="223get">2.2.3	get()</h3>
+<p>比较简单</p>
+<ol>
+<li>根据key计算出hash值，进一步计算得到table的下标，若bucket上为红黑树，则再进行红黑树查找，若不是红黑树，遍历链表</li>
+</ol>
+<p>map家族的关系</p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427105258.png" alt="image-20200427105258224" style="zoom:50%;" />
+<h1 id="三-hashmap-hashtable对比">三、HashMap、HashTable对比</h1>
+<h2 id="31共同点">3.1	共同点</h2>
+<p>底层都是使用哈希表+链表的实现方式</p>
+<h2 id="31不同点">3.1	不同点</h2>
+<ul>
+<li>
+<p>Hashtable线程安全，所有的操作都添加了Synchronized关键字修饰，效率低下</p>
+</li>
+<li>
+<p>很少使用hashtable了，太旧了</p>
+</li>
+<li>
+<p>HashTable  的 kv 都不能为null，否则直接npe</p>
+</li>
+</ul>
+<h1 id="四-hashmap线程不安全的原因">四、HashMap线程不安全的原因</h1>
+<h2 id="41数据覆盖问题">4.1	数据覆盖问题</h2>
+<p>情景描述：</p>
+<blockquote>
+<p>两个线程执行<code>put（）</code>操作时，可能导致数据覆盖，1.7、1.8都存在此问题</p>
+<p>a、b两个线程同时执行put操作，且两个key都指向同一个bucket，那么此时两个结点都会做头插法</p>
+<pre><code class="language-java">public V put(K key, V value) {
+    ...
+    addEntry(hash, key, value, i);
+}
+
+void addEntry(int hash, K key, V value, int bucketIndex) {
+    ...
+    createEntry(hash, key, value, bucketIndex);
+}
+
+void createEntry(int hash, K key, V value, int bucketIndex) {
+    Entry&lt;K,V&gt; e = table[bucketIndex];
+    table[bucketIndex] = new Entry&lt;&gt;(hash, key, value, e);
+    size++;
+}
+
+</code></pre>
+<p>看下最后的<code>createEntry()</code>方法，首先获取到了bucket上的头结点，然后再将新结点作为bucket的头部，并指向旧的头结点，完成一次头插法的操作。<br>
+当线程A和线程B都获取到了bucket的头结点后，若此时线程A的时间片用完，线程B将其新数据完成了头插法操作，此时轮到线程A操作，但这时线程A所据有的旧头结点已经过时了（并未包含线程B刚插入的新结点），线程A再做头插法操作，就会抹掉B刚刚新增的结点，导致数据丢失。</p>
+<p>其实不光是<code>put()</code>操作，删除操作、修改操作，同样都会有覆盖问题。</p>
+</blockquote>
+<h2 id="42扩容时导致死循环">4.2	扩容时导致死循环</h2>
+<p>1.7多线程会出现，因为扩容使用头插法，将原本的顺序做了翻转</p>
+<p>1.8就没有了，因为用了尾插法。</p>
+<h1 id="五-如何规避hashmap的线程不安全">五、如何规避HashMap的线程不安全</h1>
+<h2 id="51将map转为包装类">5.1	将Map转为包装类</h2>
+<p>**<code>Collections.SynchronizedMap()</code>**方法，实例代码：</p>
+<pre><code class="language-java">Map&lt;String, Integer&gt; testMap = new HashMap&lt;&gt;();
+...
+ // 转为线程安全的map
+Map&lt;String, Integer&gt; map = Collections.synchronizedMap(testMap);
+</code></pre>
+<p>内部实现很简单，等同于Hashtable，只是对当前传入的map对象，新增对象锁（synchronized）</p>
+<h3 id="52使用concurrenthashmap">5.2	使用ConcurrentHashMap</h3>
+<h1 id="六-链表转红黑树的阈值是8而不是7或者20">六、链表转红黑树的阈值是8，而不是7或者20？</h1>
+<p>由于treenode（红黑树节点）的大小约是常规节点(HashMap的node节点？)的两倍，</p>
+<p>因此我们仅在容器包含足够的节点以保证使用时，才才使用他们</p>
+<blockquote>
+<p>这句话是什么意思呢？就是因为红黑树节点占用空间，不到万不得已不用他</p>
+</blockquote>
+<p>当他们（红黑树）变得太小（由于移除或调整大小）时，会转换成普通节点</p>
+<blockquote>
+<p>如果红黑树&lt;=6退化成链表</p>
+<p>如果链表长度&gt;=8转变为红黑树</p>
+<p>中间有个<code>差值7</code>可以有效防止链表和树的频繁转换</p>
+<p>如果没有这个<code>差值7</code>的话，一个HashMap不听的插入删除，长度一会7一会8，就会发生频发的转变</p>
+</blockquote>
+<p>容器中节点分布在hash桶中的频率符合泊松分布，桶的长度超过8的概率非常小，约百万分之1？</p>
+<h1 id="七-哈希表如何解决hash冲突">七、哈希表如何解决Hash冲突？</h1>
+<figure data-type="image" tabindex="1"><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427152811.png" alt="image-20200427152811036" loading="lazy"></figure>
+<h1 id="八-为什么hashmap使用string-integer这样的包装类做为key">八、为什么HashMap使用String、Integer这样的包装类做为key</h1>
+<figure data-type="image" tabindex="2"><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427152956.png" alt="image-20200427152956728" loading="lazy"></figure>
+<h1 id="九-如果key为object类型需要如何处理">九、如果key为Object类型，需要如何处理?</h1>
+<p>重写<code>HashCode（）</code>、<code>equals()</code></p>
+<p><code>HashCode（）</code></p>
+<blockquote>
+<p>计算数据的存储位置</p>
+<p>实现不恰当，可能会导致严重的hash碰撞</p>
+</blockquote>
+<p><code>equals()</code></p>
+<blockquote>
+<p>用于比较是否存在相同key，用于新增或更新</p>
+<p>保证键key在哈希表中的唯一性</p>
+</blockquote>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#%E4%B8%80-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">一、数据结构</a></li>
+<li><a href="#%E4%BA%8C-%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0">二、底层实现</a>
+<ul>
+<li><a href="#21jdk7-%E7%89%88%E6%9C%AC">2.1	jdk7 版本</a>
+<ul>
+<li><a href="#211put">2.1.1	put()</a></li>
+<li><a href="#212resize">2.1.2	resize()</a></li>
+<li><a href="#213get">2.1.3	get()</a></li>
+<li><a href="#214fail-fast%E7%AD%96%E7%95%A5">2.1.4	fail-fast策略</a></li>
+</ul>
+</li>
+<li><a href="#22jdk8-%E7%89%88%E6%9C%AC">2.2	jdk8 版本</a>
+<ul>
+<li><a href="#220%E4%B8%8Ejdk17%E7%9A%84%E6%A0%B8%E5%BF%83%E5%B7%AE%E5%BC%82">2.2.0	与jdk1.7的核心差异</a></li>
+<li><a href="#221put">2.2.1	put()</a></li>
+<li><a href="#222resize">2.2.2	resize()</a></li>
+<li><a href="#223get">2.2.3	get()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E4%B8%89-hashmap-hashtable%E5%AF%B9%E6%AF%94">三、HashMap、HashTable对比</a>
+<ul>
+<li><a href="#31%E5%85%B1%E5%90%8C%E7%82%B9">3.1	共同点</a></li>
+<li><a href="#31%E4%B8%8D%E5%90%8C%E7%82%B9">3.1	不同点</a></li>
+</ul>
+</li>
+<li><a href="#%E5%9B%9B-hashmap%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8%E7%9A%84%E5%8E%9F%E5%9B%A0">四、HashMap线程不安全的原因</a>
+<ul>
+<li><a href="#41%E6%95%B0%E6%8D%AE%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98">4.1	数据覆盖问题</a></li>
+<li><a href="#42%E6%89%A9%E5%AE%B9%E6%97%B6%E5%AF%BC%E8%87%B4%E6%AD%BB%E5%BE%AA%E7%8E%AF">4.2	扩容时导致死循环</a></li>
+</ul>
+</li>
+<li><a href="#%E4%BA%94-%E5%A6%82%E4%BD%95%E8%A7%84%E9%81%BFhashmap%E7%9A%84%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8">五、如何规避HashMap的线程不安全</a>
+<ul>
+<li><a href="#51%E5%B0%86map%E8%BD%AC%E4%B8%BA%E5%8C%85%E8%A3%85%E7%B1%BB">5.1	将Map转为包装类</a>
+<ul>
+<li><a href="#52%E4%BD%BF%E7%94%A8concurrenthashmap">5.2	使用ConcurrentHashMap</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#%E5%85%AD-%E9%93%BE%E8%A1%A8%E8%BD%AC%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E9%98%88%E5%80%BC%E6%98%AF8%E8%80%8C%E4%B8%8D%E6%98%AF7%E6%88%96%E8%80%8520">六、链表转红黑树的阈值是8，而不是7或者20？</a></li>
+<li><a href="#%E4%B8%83-%E5%93%88%E5%B8%8C%E8%A1%A8%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3hash%E5%86%B2%E7%AA%81">七、哈希表如何解决Hash冲突？</a></li>
+<li><a href="#%E5%85%AB-%E4%B8%BA%E4%BB%80%E4%B9%88hashmap%E4%BD%BF%E7%94%A8string-integer%E8%BF%99%E6%A0%B7%E7%9A%84%E5%8C%85%E8%A3%85%E7%B1%BB%E5%81%9A%E4%B8%BAkey">八、为什么HashMap使用String、Integer这样的包装类做为key</a></li>
+<li><a href="#%E4%B9%9D-%E5%A6%82%E6%9E%9Ckey%E4%B8%BAobject%E7%B1%BB%E5%9E%8B%E9%9C%80%E8%A6%81%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86">九、如果key为Object类型，需要如何处理?</a></li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://xzh20121116.github.io/post/darYNwFgM/">
+              <h3 class="post-title">
+                大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '950ea46256189ac92219',
+    clientSecret: '25c6a59041c1d4cd9ac1bd52c32a6b360b070699',
+    repo: 'xzh20121116.github.io',
+    owner: 'xzh20121116',
+    admin: ['xzh20121116'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/xzh20121116">xzh20121116</a>
+  <a class="rss" href="https://xzh20121116.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
