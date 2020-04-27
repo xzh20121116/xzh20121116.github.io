@@ -1,293 +1,244 @@
 <html>
-
-<head>
+  <head>
     <meta charset="utf-8" />
-<meta name="description" content="" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>
-    温故知新
-</title>
-<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587953854377">
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
-<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+<title>温故知新</title>
+<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1587955061996">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://xzh20121116.github.io/styles/main.css">
-<!-- js -->
-<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://xzh20121116.github.io/media/js/jquery.sticky-sidebar.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/moment.js/2.23.0/moment.min.js"></script>
+<link rel="alternate" type="application/atom+xml" title="温故知新 - Atom Feed" href="https://xzh20121116.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
 
 
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-164265712-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
 
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-164265712-1');
-    </script>
-    
-</head>
-
-<body>
+    <meta name="description" content="分享也是一种学习" />
+  </head>
+  <body>
     <div class="main">
-        <div class="header">
-    <div class="nav">
-        <div class="logo">
-            <a href="https://xzh20121116.github.io">
-                <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587953854377" alt="">
-            </a>
-            <div class="site-title">
-                <h1>
-                    温故知新
-                </h1>
-            </div>
-        </div>
-        <span class="menu-btn fa fa-align-justify"></span>
-        <div class="menu-container">
-            <ul>
-                
-                    
-                            <li>
-                                <a href="/" class="menu">
-                                    首页
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/archives" class="menu">
-                                    归档
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/tags" class="menu">
-                                    标签
-                                </a>
-                            </li>
-                            
-                                
-                    
-                            <li>
-                                <a href="/post/about" class="menu">
-                                    关于
-                                </a>
-                            </li>
-                            
-                                
-            </ul>
-        </div>
-    </div>
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://xzh20121116.github.io">
+  <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1587955061996" alt="">
+  </a>
+  <h1 class="site-title">
+    温故知新
+  </h1>
+  <p class="site-description">
+    分享也是一种学习
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
 </div>
 
-<script>
-    $(document).ready(function() {
-        $(".menu-btn").click(function() {
-            $(".menu-container").slideToggle();
-        });
-        $(window).resize(function() {
+    
+        
 
-            if (window.matchMedia('(min-width: 960px)').matches) {
-                $(".menu-container").css('display', 'block')
-            } else {
-                $(".menu-container").css('display', 'none')
-            }
-
-        });
-    });
-</script>
-
-            
-
-    <div class="archives-container main-container">
-        <ul class="timeline">
-            
-                <li>
-                    <h3 class="year">
-                        2020
-                    </h3>
-                    <ul class="year-wrapper">
-                        
-                            
-                                <li>
-                                    <span class="date">2020-04-26</span>
-                                    <a class="title" href="https://xzh20121116.github.io/post/darYNwFgM/">
-                                        <span>大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景</span>
-                                    </a>
-                                </li>
-                                
-                                    
-                            
-                                <li>
-                                    <span class="date">2020-04-24</span>
-                                    <a class="title" href="https://xzh20121116.github.io/post/VPO1pZnCC/">
-                                        <span>大厂面试必考：聊聊java内存模型、volatile的实现原理</span>
-                                    </a>
-                                </li>
-                                
-                                    
-                            
-                                <li>
-                                    <span class="date">2020-04-24</span>
-                                    <a class="title" href="https://xzh20121116.github.io/post/y5o20dvpK/">
-                                        <span>Reentrantlock的实现原理、以及公平锁和非公平锁的区别</span>
-                                    </a>
-                                </li>
-                                
-                                    
-                            
-                                <li>
-                                    <span class="date">2020-04-24</span>
-                                    <a class="title" href="https://xzh20121116.github.io/post/aqs-de-he-xin-cheng-yuan-shu-ju-mo-xing-suo-de-shi-xian-yuan-li/">
-                                        <span>AQS的核心成员、数据模型、锁的实现原理</span>
-                                    </a>
-                                </li>
-                                
-                                    
-                            
-                                <li>
-                                    <span class="date">2020-04-23</span>
-                                    <a class="title" href="https://xzh20121116.github.io/post/synchronized-de-shi-xian-yuan-li-suo-de-cun-chu-yi-ji-suo-shi-ru-he-sheng-ji-de/">
-                                        <span>Synchronized的实现原理、锁的存储、以及锁是如何升级的</span>
-                                    </a>
-                                </li>
-                                
-                                    
-                            
-                                <li>
-                                    <span class="date">2020-04-23</span>
-                                    <a class="title" href="https://xzh20121116.github.io/post/tan-tan-xian-cheng-de-tong-xin-yu-xie-zuo-sleepwaitnotifyyieldjoin-de-qu-bie/">
-                                        <span>谈谈线程的通信与协作：sleep、wait、notify、yield、join的区别</span>
-                                    </a>
-                                </li>
-                                
-                                    
-                            
-                                <li>
-                                    <span class="date">2020-04-23</span>
-                                    <a class="title" href="https://xzh20121116.github.io/post/xian-cheng-de-sheng-ming-zhou-qi-6-chong-zhuang-tai-de-liu-zhuan/">
-                                        <span>线程的生命周期、6种状态的流转</span>
-                                    </a>
-                                </li>
-                                
-                                    
-                            
-                                <li>
-                                    <span class="date">2020-04-23</span>
-                                    <a class="title" href="https://xzh20121116.github.io/post/wei-shi-me-shan-liao-shu-ju-biao-de-da-xiao-bu-bian/">
-                                        <span>为什么删了数据，表的大小不变？</span>
-                                    </a>
-                                </li>
-                                
-                                    
-                            
-                                <li>
-                                    <span class="date">2020-04-22</span>
-                                    <a class="title" href="https://xzh20121116.github.io/post/mysql-ru-he-zhu-bei-yi-zhi-shuang-m-xun-huan-fu-zhi-jie-jue-fang-an/">
-                                        <span>mysql如何主备一致+双m循环复制解决方案</span>
-                                    </a>
-                                </li>
-                                
-                                    
-                            
-                                <li>
-                                    <span class="date">2020-04-22</span>
-                                    <a class="title" href="https://xzh20121116.github.io/post/countcountzi-duan-countzhu-jian-countxx/">
-                                        <span>count(*)、count(主键 id)、count(字段) 和 count(1) 等不同用法的性能差别</span>
-                                    </a>
-                                </li>
-                                
-                                    
-                            
-                                <li>
-                                    <span class="date">2020-04-22</span>
-                                    <a class="title" href="https://xzh20121116.github.io/post/mysql-de-ji-ge-ri-zhi/">
-                                        <span>mysql的几个日志</span>
-                                    </a>
-                                </li>
-                                
-                                    
-                            
-                                <li>
-                                    <span class="date">2020-04-21</span>
-                                    <a class="title" href="https://xzh20121116.github.io/post/mysql-zhi-suo/">
-                                        <span>mysql之锁</span>
-                                    </a>
-                                </li>
-                                
-                                    
-                            
-                                    
-                    </ul>
-
-                </li>
-                
-                <li>
-                    <h3 class="year">
-                        2018
-                    </h3>
-                    <ul class="year-wrapper">
-                        
-                            
-                                    
-                            
-                                    
-                            
-                                    
-                            
-                                    
-                            
-                                    
-                            
-                                    
-                            
-                                    
-                            
-                                    
-                            
-                                    
-                            
-                                    
-                            
-                                    
-                            
-                                    
-                            
-                                <li>
-                                    <span class="date">2018-12-12</span>
-                                    <a class="title" href="https://xzh20121116.github.io/post/hello-gridea/">
-                                        <span>Hello Gridea</span>
-                                    </a>
-                                </li>
-                                
-                                    
-                    </ul>
-
-                </li>
-                
-        </ul>
-    </div>
-
-                
-
-                    <div class="site-footer">
-  Powered by <a href="https://github.com/xzh20121116">xzh20121116</a> | 
-  <a class="rss" href="https://xzh20121116.github.io/atom.xml" target="_blank">RSS</a>
+<div class="archives-container">
+  
+    <h2 class="year">2020</h2>
+    
+      
+        <a href="https://xzh20121116.github.io/post/darYNwFgM/" class="post">
+          <h2 class="post-title">
+            大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景
+          </h2>
+          <div class="time">2020-04-26</div>
+        </a>
+      
+    
+      
+        <a href="https://xzh20121116.github.io/post/VPO1pZnCC/" class="post">
+          <h2 class="post-title">
+            大厂面试必考：聊聊java内存模型、volatile的实现原理
+          </h2>
+          <div class="time">2020-04-24</div>
+        </a>
+      
+    
+      
+        <a href="https://xzh20121116.github.io/post/y5o20dvpK/" class="post">
+          <h2 class="post-title">
+            Reentrantlock的实现原理、以及公平锁和非公平锁的区别
+          </h2>
+          <div class="time">2020-04-24</div>
+        </a>
+      
+    
+      
+        <a href="https://xzh20121116.github.io/post/aqs-de-he-xin-cheng-yuan-shu-ju-mo-xing-suo-de-shi-xian-yuan-li/" class="post">
+          <h2 class="post-title">
+            AQS的核心成员、数据模型、锁的实现原理
+          </h2>
+          <div class="time">2020-04-24</div>
+        </a>
+      
+    
+      
+        <a href="https://xzh20121116.github.io/post/synchronized-de-shi-xian-yuan-li-suo-de-cun-chu-yi-ji-suo-shi-ru-he-sheng-ji-de/" class="post">
+          <h2 class="post-title">
+            Synchronized的实现原理、锁的存储、以及锁是如何升级的
+          </h2>
+          <div class="time">2020-04-23</div>
+        </a>
+      
+    
+      
+        <a href="https://xzh20121116.github.io/post/tan-tan-xian-cheng-de-tong-xin-yu-xie-zuo-sleepwaitnotifyyieldjoin-de-qu-bie/" class="post">
+          <h2 class="post-title">
+            谈谈线程的通信与协作：sleep、wait、notify、yield、join的区别
+          </h2>
+          <div class="time">2020-04-23</div>
+        </a>
+      
+    
+      
+        <a href="https://xzh20121116.github.io/post/xian-cheng-de-sheng-ming-zhou-qi-6-chong-zhuang-tai-de-liu-zhuan/" class="post">
+          <h2 class="post-title">
+            线程的生命周期、6种状态的流转
+          </h2>
+          <div class="time">2020-04-23</div>
+        </a>
+      
+    
+      
+        <a href="https://xzh20121116.github.io/post/wei-shi-me-shan-liao-shu-ju-biao-de-da-xiao-bu-bian/" class="post">
+          <h2 class="post-title">
+            为什么删了数据，表的大小不变？
+          </h2>
+          <div class="time">2020-04-23</div>
+        </a>
+      
+    
+      
+        <a href="https://xzh20121116.github.io/post/mysql-ru-he-zhu-bei-yi-zhi-shuang-m-xun-huan-fu-zhi-jie-jue-fang-an/" class="post">
+          <h2 class="post-title">
+            mysql如何主备一致+双m循环复制解决方案
+          </h2>
+          <div class="time">2020-04-22</div>
+        </a>
+      
+    
+      
+        <a href="https://xzh20121116.github.io/post/countcountzi-duan-countzhu-jian-countxx/" class="post">
+          <h2 class="post-title">
+            count(*)、count(主键 id)、count(字段) 和 count(1) 等不同用法的性能差别
+          </h2>
+          <div class="time">2020-04-22</div>
+        </a>
+      
+    
+      
+        <a href="https://xzh20121116.github.io/post/mysql-de-ji-ge-ri-zhi/" class="post">
+          <h2 class="post-title">
+            mysql的几个日志
+          </h2>
+          <div class="time">2020-04-22</div>
+        </a>
+      
+    
+      
+        <a href="https://xzh20121116.github.io/post/mysql-zhi-suo/" class="post">
+          <h2 class="post-title">
+            mysql之锁
+          </h2>
+          <div class="time">2020-04-21</div>
+        </a>
+      
+    
+      
+    
+  
+    <h2 class="year">2018</h2>
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+        <a href="https://xzh20121116.github.io/post/hello-gridea/" class="post">
+          <h2 class="post-title">
+            Hello Gridea
+          </h2>
+          <div class="time">2018-12-12</div>
+        </a>
+      
+    
+  
 </div>
 
-<script>
-  hljs.initHighlightingOnLoad()
-</script>
+    
+        <div class="pagination-container">
+  
+  
+</div>
 
+    
+        <div class="site-footer">
+  Powered by <a href="https://github.com/xzh20121116">xzh20121116</a>
+  <a class="rss" href="https://xzh20121116.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
     </div>
-</body>
-
+  </body>
 </html>
