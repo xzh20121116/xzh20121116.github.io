@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://xzh20121116.github.io</id>
     <title>温故知新</title>
-    <updated>2020-04-28T02:09:13.607Z</updated>
+    <updated>2020-04-28T03:25:34.494Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://xzh20121116.github.io"/>
     <link rel="self" href="https://xzh20121116.github.io/atom.xml"/>
@@ -10,6 +10,19 @@
     <logo>https://xzh20121116.github.io/images/avatar.png</logo>
     <icon>https://xzh20121116.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, 温故知新</rights>
+    <entry>
+        <title type="html"><![CDATA[ThreadLocal内存泄漏是怎么回事]]></title>
+        <id>https://xzh20121116.github.io/post/iX4dA8db2/</id>
+        <link href="https://xzh20121116.github.io/post/iX4dA8db2/">
+        </link>
+        <updated>2020-04-28T03:24:53.000Z</updated>
+        <summary type="html"><![CDATA[<p>ThreadLocal</p>
+<p>初衷是线程并发时，解决变量共享问题，但由于过度设计，比如弱引用和哈希碰撞，导致理解难度大，使用成本高，反而成为故障高发点。容易出现内存泄漏、脏数据、共享对象更新等问题</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>ThreadLocal</p>
+<p>初衷是线程并发时，解决变量共享问题，但由于过度设计，比如弱引用和哈希碰撞，导致理解难度大，使用成本高，反而成为故障高发点。容易出现内存泄漏、脏数据、共享对象更新等问题</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[谈谈ConcurrentHashMap的底层实现，1.7与1.8的详细区别]]></title>
         <id>https://xzh20121116.github.io/post/S7UNORYO1/</id>
@@ -107,17 +120,6 @@
         <summary type="html"><![CDATA[<p>线程的生命周期、6种状态的流转</p>
 ]]></summary>
         <content type="html"><![CDATA[<p>线程的生命周期、6种状态的流转</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[为什么删了数据，表的大小不变？]]></title>
-        <id>https://xzh20121116.github.io/post/wei-shi-me-shan-liao-shu-ju-biao-de-da-xiao-bu-bian/</id>
-        <link href="https://xzh20121116.github.io/post/wei-shi-me-shan-liao-shu-ju-biao-de-da-xiao-bu-bian/">
-        </link>
-        <updated>2020-04-23T02:43:35.000Z</updated>
-        <summary type="html"><![CDATA[<p>为什么删了数据，表的大小不变？</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>为什么删了数据，表的大小不变？</p>
 ]]></content>
     </entry>
 </feed>
