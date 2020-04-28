@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Reentrantlock的实现原理、以及公平锁和非公平锁的区别 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Reentrantlock的实现原理、以及公平锁和非公平锁的区别">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Reentrantlock的实现原理、以及公平锁和非公平锁的区别">
+<meta property="og:url" content="http://yoursite.com/2020/04/24/y5o20dvpK/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Reentrantlock的实现原理、以及公平锁和非公平锁的区别">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200424105918.png">
+<meta property="article:published_time" content="2020-04-24T03:56:55.000Z">
+<meta property="article:modified_time" content="2020-04-28T08:37:21.320Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="线程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200424105918.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-y5o20dvpK" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/24/y5o20dvpK/" class="article-date">
+  <time datetime="2020-04-24T03:56:55.000Z" itemprop="datePublished">2020-04-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Reentrantlock的实现原理、以及公平锁和非公平锁的区别
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Reentrantlock的实现原理、以及公平锁和非公平锁的区别</p>
+<a id="more"></a>
+
+<h1 id="Reentrantlock-结构"><a href="#Reentrantlock-结构" class="headerlink" title="Reentrantlock 结构"></a>Reentrantlock 结构</h1><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200424105918.png" alt="image-20200424105918105" style="zoom:50%;" />
+
+
+
+<p>首先<code>ReentrantLock</code>继承自父类<code>Lock</code>，然后有<code>3</code>个内部类，其中<code>Sync</code>内部类继承自<code>AQS</code>，另外的两个内部类继承自<code>Sync</code>，这两个类分别是用来<strong>公平锁和非公平锁</strong>的。</p>
+<p>通过<code>Sync</code>重写的方法<code>tryAcquire</code>、<code>tryRelease</code>可以知道，<strong><code>ReentrantLock</code>实现的是<code>AQS</code>的独占模式，也就是独占锁，这个锁是悲观锁</strong>。</p>
+<h1 id="锁类型"><a href="#锁类型" class="headerlink" title="锁类型"></a>锁类型</h1><p>ReentrantLock分为公平锁、非公平锁。</p>
+<p>可以通过构造方法指定具体类型，<code>默认非公</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//默认非公平锁</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ReentrantLock</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    sync = <span class="keyword">new</span> NonfairSync();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//公平锁</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">ReentrantLock</span><span class="params">(<span class="keyword">boolean</span> fair)</span> </span>&#123;</span><br><span class="line">    sync = fair ? <span class="keyword">new</span> FairSync() : <span class="keyword">new</span> NonfairSync();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h1><p>与Synchronized的比较</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>ReentrantLock</th>
+<th align="left">Synchronized</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>锁实现机制</td>
+<td>依赖AQS</td>
+<td align="left">监视器模式</td>
+</tr>
+<tr>
+<td>灵活性</td>
+<td>支持响应中断、超时、尝试获取锁</td>
+<td align="left">不灵活</td>
+</tr>
+<tr>
+<td>释放形式</td>
+<td>必须显示调用unlock()进行解锁</td>
+<td align="left">自动释放监视器</td>
+</tr>
+<tr>
+<td>锁类型</td>
+<td>必须显示调用unlock()进行解锁</td>
+<td align="left">自动释放监视器</td>
+</tr>
+<tr>
+<td>条件队列</td>
+<td>可关联多个条件队列</td>
+<td align="left">关联一个条件队列</td>
+</tr>
+<tr>
+<td>可重入性</td>
+<td>可重入</td>
+<td align="left">可重入</td>
+</tr>
+</tbody></table>
+<h1 id="公平锁和非公平锁的区别"><a href="#公平锁和非公平锁的区别" class="headerlink" title="公平锁和非公平锁的区别"></a>公平锁和非公平锁的区别</h1><h2 id="获取锁"><a href="#获取锁" class="headerlink" title="获取锁"></a>获取锁</h2><p><strong>公平锁</strong>：相当于排队买票，后来大人需要到队尾排队，不能插队</p>
+<blockquote>
+<p>线程来了，先检查state是否被持有，如果被持有，当前线程就去同步队列排队</p>
+</blockquote>
+<p><strong>非公平锁</strong>：就是抢占模式，每来一个人不回去管队列如何，直接尝试获取锁</p>
+<blockquote>
+<p>线程来了，先用cas的方式修改state，修改成功就获得锁，修改失败就去同步队列排队</p>
+</blockquote>
+<h2 id="释放锁"><a href="#释放锁" class="headerlink" title="释放锁"></a>释放锁</h2><p>两者的流程是一样的：</p>
+<p>判断当前线程是否是获得锁的线程，由于是重入锁，需要将<code>state</code>减到0才认为完全释放</p>
+<p>释放之后需要调用 <code>unparkSuccessor(h)</code> 来唤醒被挂起的线程。</p>
+<h2 id="非公平锁的实现原理"><a href="#非公平锁的实现原理" class="headerlink" title="非公平锁的实现原理"></a>非公平锁的实现原理</h2><h3 id="lock方法获取锁"><a href="#lock方法获取锁" class="headerlink" title="lock方法获取锁"></a>lock方法获取锁</h3><ol>
+<li><code>lock</code>方法调用<code>cas</code>方法设置<code>state</code>的值，如果<code>state</code>等于期望值<code>0</code>(代表锁没有被占用)，那么就将<code>state更新为1</code>（代表该线程获取锁成功），然后执行<code>setExclusiveOwnerThread</code>方法直接将该线程设置成锁的持有者。</li>
+<li>如果<code>cas</code>设置<code>state</code>失败，即state不等于0，代表锁被占用了</li>
+<li>检查state的值，如果是0，说明刚好释放资源了，则继续尝试cas设置state的值</li>
+<li>设置成功获得了锁</li>
+<li>设置失败state失败，则检查占用锁的线程是不是自己<ol>
+<li>如果是，就将<code>state+1</code>(可重入)</li>
+<li>如果不是，就进入到同步队列中</li>
+</ol>
+</li>
+</ol>
+<h3 id="tryRelease-锁的释放"><a href="#tryRelease-锁的释放" class="headerlink" title="tryRelease 锁的释放"></a>tryRelease 锁的释放</h3><ol>
+<li>判断当前线程是不是锁的所有者，如果不是，抛出异常</li>
+<li>如果是：判断此次释放后<code>state</code>的值是否为<code>0</code>，如果是则代表锁没有重入，然后将锁的持有者设置为null，唤醒同步队列的后继节点，进行锁的获取</li>
+<li>如果第二步中的释放后<code>state</code>的值<code>不为0</code>，即重入了：锁还没有释放完，不唤醒同步队列</li>
+</ol>
+<h2 id="公平锁的实现原理"><a href="#公平锁的实现原理" class="headerlink" title="公平锁的实现原理"></a>公平锁的实现原理</h2><h3 id="lock-方法获取锁"><a href="#lock-方法获取锁" class="headerlink" title="lock 方法获取锁"></a>lock 方法获取锁</h3><ol>
+<li>获取<code>state</code>的值，如果<code>为0</code>，表示没有被占用（但不代表同步队列没有线程在等待）执行<code>步骤2</code>；如果<code>state！=0</code>执行<code>步骤3</code></li>
+<li>判断同步队列是否存在线程（节点），如果不存在则直接将锁的所有者设置成当前线程，更新state状态</li>
+<li>判断锁的所有者是不是当前线程，如果是则更新state的值；如果不是自己，则加入同步队列中</li>
+</ol>
+<h3 id="tryRelease锁释放"><a href="#tryRelease锁释放" class="headerlink" title="tryRelease锁释放"></a>tryRelease锁释放</h3><p>与非公平锁的释放过程是一样的</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/24/y5o20dvpK/" data-id="ck9jo09w0000ribfydlnwf5wx" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/24/VPO1pZnCC/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          大厂面试必考：聊聊java内存模型、volatile的实现原理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/24/aqs-de-he-xin-cheng-yuan-shu-ju-mo-xing-suo-de-shi-xian-yuan-li/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">AQS的核心成员、数据模型、锁的实现原理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E5%91%98/">程序员</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ThreadLocal/" rel="tag">ThreadLocal</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jmm/" rel="tag">jmm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/ThreadLocal/" style="font-size: 10px;">ThreadLocal</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/jmm/" style="font-size: 10px;">jmm</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 16.67px;">线程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/28/TEST/">TEST</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/28/iX4dA8db2/">ThreadLocal内存泄漏是怎么回事</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/28/S7UNORYO1/">谈谈ConcurrentHashMap的底层实现，1.7与1.8的详细区别</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/27/kYX3Ac2mc/">HashMap底层、1.7与1.8区别、常见面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/darYNwFgM/">大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Synchronized的实现原理、锁的存储、以及锁是如何升级的 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Synchronized的实现原理、锁的存储、以及锁是如何升级的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Synchronized的实现原理、锁的存储、以及锁是如何升级的">
+<meta property="og:url" content="http://yoursite.com/2020/04/23/synchronized-de-shi-xian-yuan-li-suo-de-cun-chu-yi-ji-suo-shi-ru-he-sheng-ji-de/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Synchronized的实现原理、锁的存储、以及锁是如何升级的">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200423155922.png">
+<meta property="article:published_time" content="2020-04-23T08:13:30.000Z">
+<meta property="article:modified_time" content="2020-04-28T08:37:21.320Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="线程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200423155922.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-synchronized-de-shi-xian-yuan-li-suo-de-cun-chu-yi-ji-suo-shi-ru-he-sheng-ji-de" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/23/synchronized-de-shi-xian-yuan-li-suo-de-cun-chu-yi-ji-suo-shi-ru-he-sheng-ji-de/" class="article-date">
+  <time datetime="2020-04-23T08:13:30.000Z" itemprop="datePublished">2020-04-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Synchronized的实现原理、锁的存储、以及锁是如何升级的
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Synchronized的实现原理、锁的存储、以及锁是如何升级的</p>
+<a id="more"></a>
+
+<h1 id="实现原理"><a href="#实现原理" class="headerlink" title="实现原理"></a>实现原理</h1><p><strong>结论：</strong>无论是代码块，还是方法，都是通过持有对象的锁来实现同步的</p>
+<h1 id="什么是对象的锁？"><a href="#什么是对象的锁？" class="headerlink" title="什么是对象的锁？"></a>什么是对象的锁？</h1><p>对象在内存中存储的布局分为三个区域：</p>
+<ol>
+<li><p><strong>对象头</strong>（header）</p>
+<ol>
+<li><p><strong>mark word</strong></p>
+<blockquote>
+<p>存储对象自身的运行时数据，比如hashcod，gc分代年龄、<strong><em>锁的相关信息</em></strong></p>
+</blockquote>
+</li>
+<li><p>klass point（类型指针）</p>
+<blockquote>
+<p>指针指向对象的类元数据，vm通过这个指针来确定该对象是哪个类的实例</p>
+</blockquote>
+</li>
+<li><p>数组长度（如果对象是数组的话，则有这个，否则没有）</p>
+</li>
+</ol>
+</li>
+<li><p>实例数据（instance data）</p>
+<blockquote>
+<p>对象属性信息，包括父类的属性信息</p>
+</blockquote>
+</li>
+<li><p>对其填充（padding）</p>
+<blockquote>
+<p>vm要求对象字节必须是8的倍数，凑数用的</p>
+</blockquote>
+</li>
+</ol>
+<p><strong>markword中，存储的内容如下</strong></p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200423155922.png" alt="image-20200423155921960"></p>
+<h1 id="锁升级流程"><a href="#锁升级流程" class="headerlink" title="锁升级流程"></a>锁升级流程</h1><p>无状态–&gt;偏向锁–&gt;轻量级锁–&gt;重量级锁</p>
+<p>每个线程在准备获取共享资源时：</p>
+<ol>
+<li><p>检查<strong>markword</strong>里是不是存放自己的threadID，如果是，当前为<strong>偏向锁</strong></p>
+</li>
+<li><p>如果不是，锁升级为<strong>轻量级锁</strong>，这时，用<strong>CAS</strong>来执行切换，新的线程根据<strong>markword</strong>里现有的<strong>threadId</strong>，通知之前的线程暂停，之前线程将<strong>markWord</strong>置为空</p>
+</li>
+<li><p>两个线程都把锁对象的<strong>hashcode</strong>复制一份到各自新建的用于存储锁的记录空间；</p>
+<p>接着开始cas操作：把锁对象的<strong>markword</strong>的内容修改为各自新建的记录空间的地址</p>
+</li>
+<li><p>在上一步中修改成功获得资源，失败的开始自旋</p>
+</li>
+<li><p>自旋的过程中，成功获得资源则整个状态依然是轻量级锁</p>
+<blockquote>
+<p>自旋中获得资源，说明之前获得资源的线程执行完了，并释放了资源</p>
+</blockquote>
+</li>
+<li><p>自旋一致失败，进入重量级锁，此时，自旋的线程阻塞，等待之前线程执行完并唤醒自己</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/23/synchronized-de-shi-xian-yuan-li-suo-de-cun-chu-yi-ji-suo-shi-ru-he-sheng-ji-de/" data-id="ck9jo09vu000hibfybp0f7jnu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/24/aqs-de-he-xin-cheng-yuan-shu-ju-mo-xing-suo-de-shi-xian-yuan-li/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          AQS的核心成员、数据模型、锁的实现原理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/23/tan-tan-xian-cheng-de-tong-xin-yu-xie-zuo-sleepwaitnotifyyieldjoin-de-qu-bie/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">谈谈线程的通信与协作：sleep、wait、notify、yield、join的区别</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E5%91%98/">程序员</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ThreadLocal/" rel="tag">ThreadLocal</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jmm/" rel="tag">jmm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/ThreadLocal/" style="font-size: 10px;">ThreadLocal</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/jmm/" style="font-size: 10px;">jmm</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 16.67px;">线程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/28/TEST/">TEST</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/28/iX4dA8db2/">ThreadLocal内存泄漏是怎么回事</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/28/S7UNORYO1/">谈谈ConcurrentHashMap的底层实现，1.7与1.8的详细区别</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/27/kYX3Ac2mc/">HashMap底层、1.7与1.8区别、常见面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/darYNwFgM/">大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

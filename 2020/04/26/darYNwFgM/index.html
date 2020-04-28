@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景">
+<meta property="og:url" content="http://yoursite.com/2020/04/26/darYNwFgM/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200426160957.png">
+<meta property="og:image" content="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427094652.png">
+<meta property="og:image" content="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427093211.png">
+<meta property="og:image" content="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427095010.png">
+<meta property="og:image" content="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427100536.png">
+<meta property="article:published_time" content="2020-04-26T08:48:21.000Z">
+<meta property="article:modified_time" content="2020-04-28T08:37:21.318Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="线程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200426160957.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-darYNwFgM" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/26/darYNwFgM/" class="article-date">
+  <time datetime="2020-04-26T08:48:21.000Z" itemprop="datePublished">2020-04-26</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景</p>
+<a id="more"></a>
+
+<h1 id="线程池的好处"><a href="#线程池的好处" class="headerlink" title="线程池的好处"></a>线程池的好处</h1><ol>
+<li><p>帮助我们管理线程，避免增加创建线程和销毁线程的资源损耗。</p>
+<blockquote>
+<p>因为线程其实也是一个对象，创建一个对象，需要经过类加载过程，销毁一个对象，需要走GC垃圾回收流程，都是需要资源开销的</p>
+</blockquote>
+</li>
+<li><p>提高响应速度</p>
+<blockquote>
+<p>如果任务达到了，直接从线程池拿线程  比 重新创建一个线程，速度快很多</p>
+</blockquote>
+</li>
+<li><p>重复利用</p>
+<blockquote>
+<p>线程用完，再放回池子，可以达到重复利用的效果，节省资源</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="线程池的创建"><a href="#线程池的创建" class="headerlink" title="线程池的创建"></a>线程池的创建</h1><p>juc包下的ThreadPoolExecutor，有序多重载的构造方法，指定不同的构造参数，创建不同类型的线程池。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">ThreadPoolExecutor(<span class="keyword">int</span> corePoolSize,</span><br><span class="line">                              <span class="keyword">int</span> maximumPoolSize,</span><br><span class="line">                              <span class="keyword">long</span> keepAliveTime,</span><br><span class="line">                              TimeUnit unit,</span><br><span class="line">                              BlockingQueue&lt;Runnable&gt; workQueue,</span><br><span class="line">                              ThreadFactory threadFactory,</span><br><span class="line">                              RejectedExecutionHandler handler)</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="核心参数"><a href="#核心参数" class="headerlink" title="核心参数"></a>核心参数</h1><p><strong>corePoolSize</strong></p>
+<blockquote>
+<p>核心线程数线程池的大小</p>
+</blockquote>
+<p><strong>maximumPoolSize</strong></p>
+<blockquote>
+<p>线程池允许创建的最大线程数</p>
+</blockquote>
+<p><strong>keepAliveTime</strong></p>
+<blockquote>
+<p>非核心线程的空闲存活时间，一个线程的空闲时间达到这个值，则会终止</p>
+</blockquote>
+<p><strong>TimeUnit</strong></p>
+<blockquote>
+<p><strong>keepAliveTime</strong>的时间单位</p>
+<p>有7种取值：天、小时、分钟、秒、毫秒、微妙、纳秒</p>
+</blockquote>
+<p><strong>workQueue</strong></p>
+<blockquote>
+<p>阻塞队列，当核心线程都被占用时，新来的线程会进入阻塞队列等待执行，如果阻塞队列满了， 会创建工作线程(不超过最大线程数)</p>
+</blockquote>
+<p><strong>threadFactory</strong></p>
+<blockquote>
+<p>表示线程工厂。用来生产一组相同任务的线程，线程池的命名是通过这个factory增加组名前缀来实现的。在虚拟机栈分析时，就可以知道线程任务是由哪个线程工厂生产的</p>
+</blockquote>
+<p><strong>handler</strong></p>
+<blockquote>
+<p>拒绝策略：当提交任务超过最大线程数时，执行拒绝策略</p>
+<ol>
+<li><code>AbortPolicy</code>（默认）：丢弃任务并抛出异常</li>
+<li><code>DiscardPolicy</code>：丢弃任务，不抛出异常</li>
+<li><code>DiscardOldestPolicy</code>：抛弃队列中等待最久的任务，然后把当前任务加入队列</li>
+<li><code>callerRunsPolicy</code>：调用人的run方法，绕过线程池直接执行</li>
+</ol>
+</blockquote>
+<h1 id="核心流程"><a href="#核心流程" class="headerlink" title="核心流程"></a>核心流程</h1><p>对应<code>execute（）</code>方法</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200426160957.png" alt="image-20200426160957865"></p>
+<h1 id="关闭方法"><a href="#关闭方法" class="headerlink" title="关闭方法"></a>关闭方法</h1><p>关闭线程池，有两种方法，可以通过<code>shutdown</code>和<code>shutdownNow</code>这两个方法，原理都是遍历线程池中的所有线程，依次中断。</p>
+<p>不同点：</p>
+<p><code>shutdown</code></p>
+<blockquote>
+<p>只是将线程池的状态设置为<code>SHUTDOWN</code>状态，然后中断所有没有正在执行任务的线程</p>
+</blockquote>
+<p><code>shutdownNow</code></p>
+<blockquote>
+<p>首先将线程池的状态设置为<code>STOP</code>，然后尝试停止所有正在执行和未执行任务的线程，并返回等待执行任务的列表</p>
+</blockquote>
+<h1 id="线程池异常处理"><a href="#线程池异常处理" class="headerlink" title="线程池异常处理"></a>线程池异常处理</h1><p>使用线程池处理任务的时候，任务代码可能排除RuntimeException，抛出异常后，线程池可能捕获他，也可能创建一个新的线程来替代异常的线程，我们可能无法感知任务出了异常，因此需要考虑线程池异常情况</p>
+<ol>
+<li><p>try-catch 捕获异常</p>
+</li>
+<li><p>submit执行，Future.get()接收异常</p>
+</li>
+<li><p>重写ThreadPoolExecutor.afterExecute方法，处理传递的异常引用</p>
+</li>
+<li><p>实例化时，传入自己的ThreadFactory，设置Thread.UncaughtExceptionHandler处理未检测的异常</p>
+<blockquote>
+<p>为工作者线程设置UncaughtExceptionHandler，在uncaughtException方法中处理异常</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="五种类型、区别、适用场景"><a href="#五种类型、区别、适用场景" class="headerlink" title="五种类型、区别、适用场景"></a>五种类型、区别、适用场景</h1><p>newFixedThreadPool (固定数目线程的线程池)</p>
+<p>newCachedThreadPool(可缓存线程的线程池)</p>
+<p>newSingleThreadExecutor(单线程的线程池)</p>
+<p>newScheduledThreadPool(定时及周期执行的线程池)</p>
+<p>newWorkStealingPool（创建一个拥有多个任务队列（以便减少连接数）的线程池。1.8新加的）</p>
+<h2 id="newWorkStealingPool"><a href="#newWorkStealingPool" class="headerlink" title="newWorkStealingPool"></a>newWorkStealingPool</h2><p>newWorkStealingPool适合使用在很耗时的操作，但是newWorkStealingPool不是ThreadPoolExecutor的扩展，它是新的线程池类ForkJoinPool的扩展，但是都是在统一的一个Executors类中实现，由于能够合理的使用CPU进行对任务操作（并行操作），所以适合使用在很耗时的任务中：</p>
+<h2 id="newCachedThreadPool："><a href="#newCachedThreadPool：" class="headerlink" title="newCachedThreadPool："></a>newCachedThreadPool：</h2><ul>
+<li><p>底层：返回ThreadPoolExecutor实例，corePoolSize为0；maximumPoolSize为Integer.MAX_VALUE；keepAliveTime为60L；unit为TimeUnit.SECONDS；workQueue为SynchronousQueue(<code>同步队列</code>)</p>
+</li>
+<li><p>通俗：当有新任务到来，则插入到SynchronousQueue中，由于SynchronousQueue是同步队列，因此会在池中寻找可用线程来执行，若有可以线程则执行，若没有可用线程则创建一个线程来执行该任务；若池中线程空闲时间超过指定大小，则该线程会被销毁。</p>
+</li>
+<li><p>线程池特点</p>
+<blockquote>
+<ul>
+<li>核心线程数为0</li>
+<li>最大线程数为Integer.Max_Value</li>
+<li>阻塞队列是SynchronousQueue</li>
+<li>非核心线程空闲存活时间为60秒</li>
+</ul>
+<p>如果提交任务的速度大于处理任务的速度，每次提交一个任务，就必然会创建一个新的线程，极端情况下会创建过多的线程，耗尽cpu和内存资源</p>
+</blockquote>
+</li>
+<li><p>工作机制</p>
+<blockquote>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427094652.png" alt="image-20200427094652291"></p>
+<ol>
+<li>提交任务</li>
+<li>因为没有核心线程，所以任务直接加到阻塞队列</li>
+<li>判断线程是否有空县线程，如果有，就去取出任务执行</li>
+<li>如果没有空闲线程，就新建一个线程执行</li>
+<li>执行完任务的线程，还可以存活60秒，如果存活期间接到新任务就继续活下去，否则就被销毁</li>
+</ol>
+</blockquote>
+</li>
+<li><p>使用场景：</p>
+<blockquote>
+<p>用于并发执行大亮短期的小任务</p>
+<p>执行很多短期异步的小程序或者负载较轻的服务器</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="newFixedThreadPool："><a href="#newFixedThreadPool：" class="headerlink" title="newFixedThreadPool："></a>newFixedThreadPool：</h2><ul>
+<li><p>底层：返回ThreadPoolExecutor实例，接收参数为所设定线程数量nThread，corePoolSize为nThread，maximumPoolSize为nThread；keepAliveTime为0L(不限时)；unit为：TimeUnit.MILLISECONDS；WorkQueue为：new LinkedBlockingQueue<Runnable>() <code>无阻塞队列</code></p>
+</li>
+<li><p>通俗：创建可容纳固定数量线程的池子，每隔线程的存活时间是无限的，当池子满了就不在添加线程了；如果池中的所有线程均在繁忙状态，对于新任务会进入阻塞队列中(无界的阻塞队列·)</p>
+</li>
+<li><p>线程池特点：</p>
+<blockquote>
+<ul>
+<li>核心线程数和最大线程数大小一样</li>
+<li>没有所谓的非空闲时间，即keepAliveTime为0</li>
+<li>阻塞队列为<code>无界队列LinkedBlockingQueue</code></li>
+</ul>
+</blockquote>
+</li>
+<li><p>工作机制：</p>
+<blockquote>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427093211.png" alt="image-20200427093211140"></p>
+<ol>
+<li>提交任务</li>
+<li>如果线程数少于核心线程数，创建核心线程执行任务</li>
+<li>如果线程数等于核心线程，把任务添加到LinkedBlockingQueue阻塞队列</li>
+<li>如果线程执行完任务，去阻塞队列去任务，继续执行。</li>
+</ol>
+</blockquote>
+</li>
+<li><p>面试题</p>
+<blockquote>
+<p>使用无界队列的线程池会导致cpu内存飙升吗</p>
+<p>会的，如果线程执行任务时间较长，会导致队列的任务越积越多，导致机器内存使用不听飙升，导致oom</p>
+</blockquote>
+</li>
+<li><p>使用场景</p>
+<blockquote>
+<p>适合于cpu密集型的任务，确保cpu在长期被工作线程使用的情况下，尽可能少的分配线程，即适合执行长期的任务</p>
+<p>执行长期的任务，性能好很多</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="newSingleThreadExecutor"><a href="#newSingleThreadExecutor" class="headerlink" title="newSingleThreadExecutor:"></a>newSingleThreadExecutor:</h2><ul>
+<li><p>底层：FinalizableDelegatedExecutorService包装的ThreadPoolExecutor实例，corePoolSize为1；maximumPoolSize为1；keepAliveTime为0L；unit为：TimeUnit.MILLISECONDS；workQueue为：new LinkedBlockingQueue<Runnable>() <code>无界阻塞队列</code></p>
+</li>
+<li><p>通俗：创建只有一个线程的线程池，且线程的存活时间是无限的；当该线程正繁忙时，对于新任务会进入阻塞队列中(无界的阻塞队列)</p>
+</li>
+<li><p>适用：一个任务一个任务执行的场景，<strong>同步执行任务的场景</strong></p>
+</li>
+<li><p>线程池特点：</p>
+<blockquote>
+<ol>
+<li>核心线程数为1</li>
+<li>最大线程数为1</li>
+<li>阻塞队列是LinkedBlockingQueue</li>
+<li>keepalivetime为0</li>
+</ol>
+</blockquote>
+</li>
+<li><p>工作机制</p>
+<blockquote>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427095010.png" alt="image-20200427095010650" style="zoom:50%;" />
+
+<ol>
+<li>提交任务</li>
+<li>线程池是否有一条线程在，如果没有，新建线程执行任务</li>
+<li>如果有，将任务加入到阻塞队列</li>
+<li>当前的唯一线程，从队列取任务，执行完一个，再继续取，一个人（一条线程）夜以继日的干活</li>
+</ol>
+</blockquote>
+</li>
+<li><p>使用场景</p>
+<blockquote>
+<p>串行执行任务的场景，一个任务一个任务的执行</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="NewScheduledThreadPool"><a href="#NewScheduledThreadPool" class="headerlink" title="NewScheduledThreadPool:"></a>NewScheduledThreadPool:</h2><ul>
+<li><p>底层：创建ScheduledThreadPoolExecutor实例，corePoolSize为传递来的参数，maximumPoolSize为Integer.MAX_VALUE；keepAliveTime为0；unit为：TimeUnit.NANOSECONDS；workQueue为：new DelayedWorkQueue() 一个按超时时间升序排序的队列</p>
+</li>
+<li><p>通俗：创建一个固定大小的线程池，线程池内线程存活时间无限制，线程池可以支持定时及周期性任务执行，如果所有线程均处于繁忙状态，对于新任务会进入DelayedWorkQueue队列中，这是一种按照超时时间排序的队列结构</p>
+</li>
+<li><p>适用：<strong><code>周期性执行任务的场景</code></strong></p>
+</li>
+<li><p>线程池特点</p>
+<blockquote>
+<ul>
+<li><p>最大线程数为Integer.MAX_VALUE</p>
+</li>
+<li><p>阻塞队列是DelayedWorkQueue</p>
+</li>
+<li><p>keepAliveTime为0</p>
+</li>
+<li><p>scheduleAtFixedRate() ：按某种速率周期执行</p>
+</li>
+<li><p>scheduleWithFixedDelay()：在某个延迟后执行</p>
+</li>
+</ul>
+</blockquote>
+</li>
+<li><p>工作机制</p>
+<blockquote>
+<ol>
+<li>添加一个任务</li>
+<li>线程池中的线程中DelayQueue中取任务</li>
+<li>线程从DelayQueue中获取time大于等于当前时间是task</li>
+<li>执行完后修改这个task的time为下次被执行的时间</li>
+<li>把这个task放回DelayQueue队列中</li>
+</ol>
+</blockquote>
+</li>
+<li><p>使用场景：周期性执行任务的场景，需要限制线程数量的场景</p>
+</li>
+</ul>
+<h1 id="线程池五大状态"><a href="#线程池五大状态" class="headerlink" title="线程池五大状态"></a>线程池五大状态</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//线程池状态</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> RUNNING    = -<span class="number">1</span> &lt;&lt; COUNT_BITS;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SHUTDOWN   =  <span class="number">0</span> &lt;&lt; COUNT_BITS;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> STOP       =  <span class="number">1</span> &lt;&lt; COUNT_BITS;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TIDYING    =  <span class="number">2</span> &lt;&lt; COUNT_BITS;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> TERMINATED =  <span class="number">3</span> &lt;&lt; COUNT_BITS;</span><br></pre></td></tr></table></figure>
+
+<p>状态切换图：</p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427100536.png" alt="image-20200427100536715" style="zoom:50%;" />
+
+<h2 id="Running"><a href="#Running" class="headerlink" title="Running"></a>Running</h2><ul>
+<li>接收新任务</li>
+<li>处理阻塞队列中的任务</li>
+<li>调用线程池的<code>shutdown()</code>方法，可以切换到<strong>SHUTDOWN</strong>状态</li>
+<li>调用线程池的<code>shutdownNow()</code>方法，可以切换到<strong>STOP</strong>状态</li>
+</ul>
+<h2 id="SHUTDOWN"><a href="#SHUTDOWN" class="headerlink" title="SHUTDOWN"></a>SHUTDOWN</h2><ul>
+<li>不接收新任务，</li>
+<li>处理阻塞队列中的任务</li>
+<li>队列为空，并且线程池中执行的任务也为空时，进入<strong>TIDYING</strong>状态</li>
+</ul>
+<h2 id="STOP"><a href="#STOP" class="headerlink" title="STOP"></a>STOP</h2><ul>
+<li>不接受新任务</li>
+<li>不处理阻塞队列</li>
+<li>中断正在运行的任务</li>
+<li>线程池中执行的任务为空是，进入此状态</li>
+</ul>
+<h2 id="TIDYING"><a href="#TIDYING" class="headerlink" title="TIDYING"></a>TIDYING</h2><ul>
+<li>此时所有的任务都已经运行终止，记录的任务数量为0</li>
+<li><code>terminated()</code>执行完毕，进入<strong>TERMINATED</strong>状态</li>
+</ul>
+<h2 id="TERMINATED"><a href="#TERMINATED" class="headerlink" title="TERMINATED"></a>TERMINATED</h2><ul>
+<li>此时线程池彻底终止</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/26/darYNwFgM/" data-id="ck9jo09vm0008ibfy7i5o6fof" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/27/kYX3Ac2mc/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          HashMap底层、1.7与1.8区别、常见面试题
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/24/VPO1pZnCC/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">大厂面试必考：聊聊java内存模型、volatile的实现原理</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E5%91%98/">程序员</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ThreadLocal/" rel="tag">ThreadLocal</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jmm/" rel="tag">jmm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/ThreadLocal/" style="font-size: 10px;">ThreadLocal</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/jmm/" style="font-size: 10px;">jmm</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 16.67px;">线程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/28/TEST/">TEST</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/28/iX4dA8db2/">ThreadLocal内存泄漏是怎么回事</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/28/S7UNORYO1/">谈谈ConcurrentHashMap的底层实现，1.7与1.8的详细区别</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/27/kYX3Ac2mc/">HashMap底层、1.7与1.8区别、常见面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/darYNwFgM/">大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>

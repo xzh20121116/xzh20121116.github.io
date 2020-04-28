@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>mysql之锁 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="表级锁mysql 里面表级别的锁有两种：表锁、元数据锁（meta data lock ，MDL）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql之锁">
+<meta property="og:url" content="http://yoursite.com/2020/04/21/mysql-zhi-suo/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="表级锁mysql 里面表级别的锁有两种：表锁、元数据锁（meta data lock ，MDL）">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200422100302.png">
+<meta property="article:published_time" content="2020-04-21T13:53:28.000Z">
+<meta property="article:modified_time" content="2020-04-28T08:37:21.319Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="mysql">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200422100302.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-mysql-zhi-suo" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/04/21/mysql-zhi-suo/" class="article-date">
+  <time datetime="2020-04-21T13:53:28.000Z" itemprop="datePublished">2020-04-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      mysql之锁
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="表级锁"><a href="#表级锁" class="headerlink" title="表级锁"></a>表级锁</h1><p>mysql 里面<strong>表级别</strong>的锁有两种：表锁、元数据锁（meta data lock ，MDL）</p>
+<a id="more"></a>
+<h2 id="表锁"><a href="#表锁" class="headerlink" title="表锁"></a><strong>表锁</strong></h2><p>表锁的语法是 lock tables … read/write。与 FTWRL类似，可以用 <strong>unlock tables</strong>主动释放锁，也可以在客户端断开连接的时候自动释放。需要注意：lock tables 语法除了会限制其他的线程的读写之外，也限定了本线程接下来的操作对象</p>
+<p><strong>举个例子</strong>：</p>
+<p>线程A中执行 lock tables  t1 read，t2 write  这个语句，则其他线程写 t1 ，读t2 的语句都会被阻塞。线程A 在释放锁之前，也只能 执行读 t1、写t2的操作。连写t1都不允许，自然也不能访问其他表</p>
+<p>对于innodb来说，一般不使用lock tables命令，影响太大</p>
+<h2 id="MDL"><a href="#MDL" class="headerlink" title="MDL"></a>MDL</h2><p>mdl不需要显式使用，在访问一个表的时候会自动加上。你可以想象一下，如果一个查询正在遍历一个表中的数据，而执行期间另一个线程对这个表结构做变更，删了一列，那么查询线程拿到的结果跟表结构对不上，肯定是不行的。</p>
+<p>因此，在 MySQL 5.5 版本中引入了 MDL，</p>
+<p><strong>MDL 读锁：对一个表做增删改查操作，自动加</strong></p>
+<p><strong>MDL 写锁：对表做结构变更操作的时候，自动加</strong></p>
+<ul>
+<li>读锁之间不互斥，即：多个线程可以同时对一张表增删改查</li>
+<li>读写之间互斥、写锁之间互斥：保证变更表结构操作的安全性。因此如果有两个线程要同事给一个表加字段，需要一个等待另一个执行完才能开始</li>
+</ul>
+<p><strong>mdl的作用</strong>：保证读写的正确性</p>
+<h1 id="行级锁"><a href="#行级锁" class="headerlink" title="行级锁"></a>行级锁</h1><p>mysql的行锁是引擎层各自实现的，但并不是所有的引擎都支持行锁，MyIsam不支持行锁。</p>
+<blockquote>
+<p>事务a更新1行数据，事务b也更新同一行数据，那么B要等A执行完之后，才能进行更新</p>
+</blockquote>
+<h2 id="两阶段锁"><a href="#两阶段锁" class="headerlink" title="两阶段锁"></a>两阶段锁</h2><p>在innodb中，行锁是在需要的时候才加上的，但并不是不用了就立刻释放，而是等待事务结束了才释放（commit提交后事务结束）。</p>
+<p>如果事务中需要锁多行，要把可能造成锁冲突，最可能影响并发度的锁尽量往后放</p>
+<h2 id="死锁"><a href="#死锁" class="headerlink" title="死锁"></a>死锁</h2><table>
+<thead>
+<tr>
+<th>时间点</th>
+<th>事务a</th>
+<th>事务b</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>t1</td>
+<td>begin; set k=xx where id =1</td>
+<td>begin;</td>
+</tr>
+<tr>
+<td>t2</td>
+<td></td>
+<td>set k =yy where id=2</td>
+</tr>
+<tr>
+<td>t3</td>
+<td>set k =yy where id=2</td>
+<td></td>
+</tr>
+<tr>
+<td>t4</td>
+<td></td>
+<td>set k=xx where id =1</td>
+</tr>
+</tbody></table>
+<p>这个时候，事务A在等待事务B释放 id =2的行锁，而事务B在等待事务A释放id =1 的行锁，互相等待对方释放锁资源，即进入<strong>死锁</strong>状态</p>
+<h2 id="MVCC"><a href="#MVCC" class="headerlink" title="MVCC"></a>MVCC</h2><p>mysql中，实际上每条记录在更新的时候都会同步记录一条回滚操作，通过回滚操作都可以得到前一个状态的值。</p>
+<p>假如一个值1被按顺序修改为2、3、4，在回滚日志里就会有类似下面的记录</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200422100302.png" alt="image-20200422100302567"></p>
+<p>当前值是4，但是在查询这条记录的时候，不同时刻启动的事务会有不同的 <strong>read-view</strong>，在视图A、B、C里面记录的分别是1、2、4</p>
+<p>同一条记录在系统中可以存在多个版本，这就是数据库的<strong>多版本并发控制</strong>——MVCC</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/04/21/mysql-zhi-suo/" data-id="ck9jo09vs000dibfy9sco1p5u" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/04/22/mysql-de-ji-ge-ri-zhi/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          mysql的几个日志
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A8%8B%E5%BA%8F%E5%91%98/">程序员</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/HashMap/" rel="tag">HashMap</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ThreadLocal/" rel="tag">ThreadLocal</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jmm/" rel="tag">jmm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BA%BF%E7%A8%8B/" rel="tag">线程</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/HashMap/" style="font-size: 10px;">HashMap</a> <a href="/tags/ThreadLocal/" style="font-size: 10px;">ThreadLocal</a> <a href="/tags/java/" style="font-size: 20px;">java</a> <a href="/tags/jmm/" style="font-size: 10px;">jmm</a> <a href="/tags/mysql/" style="font-size: 13.33px;">mysql</a> <a href="/tags/%E7%BA%BF%E7%A8%8B/" style="font-size: 16.67px;">线程</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">April 2020</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/04/28/TEST/">TEST</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/28/iX4dA8db2/">ThreadLocal内存泄漏是怎么回事</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/28/S7UNORYO1/">谈谈ConcurrentHashMap的底层实现，1.7与1.8的详细区别</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/27/kYX3Ac2mc/">HashMap底层、1.7与1.8区别、常见面试题</a>
+          </li>
+        
+          <li>
+            <a href="/2020/04/26/darYNwFgM/">大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
