@@ -1,0 +1,392 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>谈谈ConcurrentHashMap的底层实现，1.7与1.8的详细区别 | 温故知新</title>
+<link rel="shortcut icon" href="https://xzh20121116.github.io/favicon.ico?v=1588039751262">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://xzh20121116.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="谈谈ConcurrentHashMap的底层实现，1.7与1.8的详细区别 | 温故知新 - Atom Feed" href="https://xzh20121116.github.io/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="谈谈ConcurrentHashMap的底层实现，1.7与1.8的详细区别
+
+1.	jdk 1.7 版本的实现原理
+1.1	数据结构
+
+数组+链表
+segment数组  + HashEntry链表
+
+
+
+
+segment
+
+是Concurr..." />
+    <meta name="keywords" content="java" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://xzh20121116.github.io">
+  <img class="avatar" src="https://xzh20121116.github.io/images/avatar.png?v=1588039751262" alt="">
+  </a>
+  <h1 class="site-title">
+    温故知新
+  </h1>
+  <p class="site-description">
+    分享也是一种学习
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              谈谈ConcurrentHashMap的底层实现，1.7与1.8的详细区别
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-04-28
+              </span>
+              <span>
+                5 min read
+              </span>
+              
+                <a href="https://xzh20121116.github.io/tag/VadQwd1qw/" class="post-tag">
+                  # java
+                </a>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>谈谈ConcurrentHashMap的底层实现，1.7与1.8的详细区别</p>
+<!--more-->
+<h1 id="1jdk-17-版本的实现原理">1.	jdk 1.7 版本的实现原理</h1>
+<h2 id="11数据结构">1.1	数据结构</h2>
+<blockquote>
+<p>数组+链表</p>
+<p>segment数组  + HashEntry链表</p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427162505.png" alt="image-20200427162505718" style="zoom:50%;" />
+</blockquote>
+<ul>
+<li>
+<p><code>segment</code></p>
+<blockquote>
+<p>是ConcurrentHashMap的一个内部类，主要的组成如下：</p>
+<pre><code class="language-java">static final class Segment&lt;K,V&gt; extends ReentrantLock implements Serializable {
+   private static final long serialVersionUID = 2249069246763182397L;
+   // 和 HashMap 中的 HashEntry 作用一样，真正存放数据的桶 
+   transient volatile HashEntry&lt;K,V&gt;[] table;
+   transient int count;
+   // 记得快速失败（fail—fast）么？
+   transient int modCount; 
+   // 大小    
+   transient int threshold;
+   // 负载因子    
+   final float loadFactor;
+}
+</code></pre>
+</blockquote>
+</li>
+<li>
+<p>HashEntry</p>
+<blockquote>
+<p>跟HashMap差不多，不同的是：使用了<code>volatile</code>去修饰他的数据<code>value</code>还有下一个节点<code>next</code></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="12高并发的原因">1.2	高并发的原因</h2>
+<p>采用了分段锁技术，其中<code>segment</code>继承自<code>ReentrantLock</code>。</p>
+<p>不像Hashtable一样，无论put还是get都需要做同步处理。</p>
+<p>理论上<strong>支持Segment数组数量的线程并发</strong></p>
+<p>每一个线程占用锁访问一个Segment时，不会影响到其他Segment</p>
+<p>如果说容量大小是16，那么他的并发度就是16：允许16个线程同时操作16个Segment而且线程安全。</p>
+<h2 id="13put过程">1.3	put过程</h2>
+<ol>
+<li>
+<p>先定位到Segment，然后再进行<code>put（）</code>操作</p>
+<blockquote>
+<p>如果value 为空，则npe</p>
+</blockquote>
+</li>
+<li>
+<p>尝试获取锁</p>
+<blockquote>
+<ol>
+<li>如果获取失败，说明有其他线程存在竞争，则利用<code>scanAndLockForPut()</code> 自旋获取锁。</li>
+<li>如果重试的次数达到了<code>MAX_SCAN_RETRIES</code>，则改为阻塞锁，保证能获取成功</li>
+</ol>
+</blockquote>
+</li>
+<li>
+<p>将当前<code>Segmen数组</code>中的table通过key的hashcode定位到<code>HashEntry链表</code></p>
+</li>
+</ol>
+<h2 id="14get-过程">1.4	get 过程</h2>
+<p>由于HashEntry中的value是Volatile修饰的，保证了每次获取时都是最新值</p>
+<ol>
+<li>将key通过hash定位到具体的Segment</li>
+<li>再通过一次Hash定位到具体的元素上</li>
+</ol>
+<h2 id="15存在的问题">1.5	存在的问题</h2>
+<p>因为基本还是数组 +链表的形式，我们去查询的时候，还得遍历链表，会导致效率很低</p>
+<p>这个跟jdk1.7中HashMap中存在的问题是一样的。</p>
+<h1 id="jdk-18-版本的实现原理">jdk 1.8 版本的实现原理</h1>
+<p>抛弃了原有的Segment分段锁，采用 <code>CAS</code> + <code>synchronized</code>来保证并发安全性</p>
+<p>跟HashMap类似，也把之前的HashEntry 改成Node，但是作用不变。</p>
+<p><code>value</code> 和<code>next</code>采用<code>volatile</code>修饰，保证可见性。</p>
+<p>引入了红黑树，链表大于一定值时会转换（默认是8）</p>
+<h2 id="put">put</h2>
+<p>大致分为以下几步</p>
+<ol>
+<li>
+<p>根据key计算出hashcode</p>
+</li>
+<li>
+<p>判断是否需要进行初始化</p>
+</li>
+<li>
+<p>当前key定位出的node；如果为空：利用 CAS 写入数据；失败则自旋保证成功</p>
+</li>
+<li>
+<p>如果当前位置的 hashcode == moved ==-1 ，则需要进行扩容</p>
+</li>
+<li>
+<p>如果都不满足，则利用synchronized锁写入数据</p>
+</li>
+<li>
+<p>如果数量大于TREEIFY_THRESHOLD，则转换为红黑树</p>
+</li>
+</ol>
+<pre><code class="language-java">    /** Implementation for put and putIfAbsent */
+    final V putVal(K key, V value, boolean onlyIfAbsent) {
+        if (key == null || value == null) throw new NullPointerException();
+     【1】//根据key计算出hashcode
+        int hash = spread(key.hashCode());
+        int binCount = 0;
+        for (Node&lt;K,V&gt;[] tab = table;;) {
+            Node&lt;K,V&gt; f; int n, i, fh;
+          【2】//判断是否需要进行初始化
+            if (tab == null || (n = tab.length) == 0)
+                tab = initTable();
+            else if ((f = tabAt(tab, i = (n - 1) &amp; hash)) == null) {
+              【3】//当前key定位出的node；如果为空：利用 CAS 写入数据；失败则自旋保证成功
+                if (casTabAt(tab, i, null,
+                             new Node&lt;K,V&gt;(hash, key, value, null)))
+                    break;                   // no lock when adding to empty bin
+            }
+          【4】//如果当前位置的 hashcode == moved ==-1 ，则需要进行扩容
+            else if ((fh = f.hash) == MOVED)
+                tab = helpTransfer(tab, f);
+            else {
+              【5】//如果都不满足，则利用synchronized锁写入数据
+                V oldVal = null;
+                synchronized (f) {
+                    ....
+                }
+                if (binCount != 0) {
+                  【6】//如果数量大于TREEIFY_THRESHOLD，则转换为红黑树
+                    if (binCount &gt;= TREEIFY_THRESHOLD)
+                        treeifyBin(tab, i);
+                    if (oldVal != null)
+                        return oldVal;
+                    break;
+                }
+            }
+        }
+        addCount(1L, binCount);
+        return null;
+    }
+</code></pre>
+<h2 id="get">get</h2>
+<ol>
+<li>根据计算出的hashcode寻址，如果就在桶上那么直接返回</li>
+<li>如果是红黑树，就按照红黑树的方式获取值</li>
+<li>如果是链表，就遍历链表获取值</li>
+</ol>
+<pre><code class="language-java">public V get(Object key) {
+        Node&lt;K,V&gt;[] tab; Node&lt;K,V&gt; e, p; int n, eh; K ek;
+        int h = spread(key.hashCode());
+        【1】//根据计算出的hashcode寻址，如果就在桶上那么直接返回
+        if ((tab = table) != null &amp;&amp; (n = tab.length) &gt; 0 &amp;&amp;
+            (e = tabAt(tab, (n - 1) &amp; h)) != null) {
+          【2】//如果是红黑树，就按照红黑树的方式获取值
+            if ((eh = e.hash) == h) {
+                if ((ek = e.key) == key || (ek != null &amp;&amp; key.equals(ek)))
+                    return e.val;
+            }
+          【3】//如果是链表，就遍历链表获取值
+            else if (eh &lt; 0)
+                return (p = e.find(h, key)) != null ? p.val : null;
+            while ((e = e.next) != null) {
+                if (e.hash == h &amp;&amp;
+                    ((ek = e.key) == key || (ek != null &amp;&amp; key.equals(ek))))
+                    return e.val;
+            }
+        }
+        return null;
+    }
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                <ul class="markdownIt-TOC">
+<li><a href="#1jdk-17-%E7%89%88%E6%9C%AC%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86">1.	jdk 1.7 版本的实现原理</a>
+<ul>
+<li><a href="#11%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">1.1	数据结构</a></li>
+<li><a href="#12%E9%AB%98%E5%B9%B6%E5%8F%91%E7%9A%84%E5%8E%9F%E5%9B%A0">1.2	高并发的原因</a></li>
+<li><a href="#13put%E8%BF%87%E7%A8%8B">1.3	put过程</a></li>
+<li><a href="#14get-%E8%BF%87%E7%A8%8B">1.4	get 过程</a></li>
+<li><a href="#15%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98">1.5	存在的问题</a></li>
+</ul>
+</li>
+<li><a href="#jdk-18-%E7%89%88%E6%9C%AC%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86">jdk 1.8 版本的实现原理</a>
+<ul>
+<li><a href="#put">put</a></li>
+<li><a href="#get">get</a></li>
+</ul>
+</li>
+</ul>
+
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://xzh20121116.github.io/post/kYX3Ac2mc/">
+              <h3 class="post-title">
+                HashMap底层、1.7与1.8区别、常见面试题
+              </h3>
+            </a>
+          </div>
+        
+
+        
+          
+            <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+<script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+<div id="gitalk-container"></div>
+
+<script>
+
+  var gitalk = new Gitalk({
+    clientID: '950ea46256189ac92219',
+    clientSecret: '25c6a59041c1d4cd9ac1bd52c32a6b360b070699',
+    repo: 'xzh20121116.github.io',
+    owner: 'xzh20121116',
+    admin: ['xzh20121116'],
+    id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
+    distractionFreeMode: false  // Facebook-like distraction free mode
+  })
+
+  gitalk.render('gitalk-container')
+
+</script>
+
+          
+
+          
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/xzh20121116">xzh20121116</a>
+  <a class="rss" href="https://xzh20121116.github.io/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
