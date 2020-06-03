@@ -939,6 +939,48 @@
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/05/31/java/spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
+				<h2 class="index-title">
+					依赖注入
+				</h2>
+				<div class="index-brief">
+					di 是相较于 ioc 的一种更具体的实现，ioc 可以理解为一个接口，di 就是他的实现
+装配方式优先级：自动装配 &gt;  java 配置文件 &gt; xml 配置文件
+自动装配
+spring 容器可以自动配置相互协作 bean 之间的关系。
+spring 从两个角度实现自动装配
+组件扫描
+
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/spring/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+				<h2 class="index-title">
+					设计模式
+				</h2>
+				<div class="index-brief">
+					
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/05/31/java/%E4%BD%8D%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93/">
 				<h2 class="index-title">
 					位操作总结
@@ -976,12 +1018,13 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+			<a href="/2020/05/31/java/spring/spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
 				<h2 class="index-title">
-					设计模式
+					spring 循环依赖
 				</h2>
 				<div class="index-brief">
-					
+					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
+如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
 					...
 				</div>
 			</a>
@@ -994,18 +1037,34 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
+			<a href="/2020/05/31/java/spring/ioc/">
 				<h2 class="index-title">
-					依赖注入
+					ioc
 				</h2>
 				<div class="index-brief">
-					di 是相较于 ioc 的一种更具体的实现，ioc 可以理解为一个接口，di 就是他的实现
-装配方式优先级：自动装配 &gt;  java 配置文件 &gt; xml 配置文件
-自动装配
-spring 容器可以自动配置相互协作 bean 之间的关系。
-spring 从两个角度实现自动装配
-组件扫描
-
+					ioc 既是一种思想，又是一种容器
+Ioc 思想
+Inversion of controlle 控制反转
+比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
+而 ioc 是，
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/spring/aop/">
+				<h2 class="index-title">
+					aop
+				</h2>
+				<div class="index-brief">
+					
 					...
 				</div>
 			</a>
@@ -1049,53 +1108,12 @@ requi
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+			<a href="/2020/05/31/java/spring/Bean/">
 				<h2 class="index-title">
-					spring 循环依赖
-				</h2>
-				<div class="index-brief">
-					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
-如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/spring/aop/">
-				<h2 class="index-title">
-					aop
+					Bean
 				</h2>
 				<div class="index-brief">
 					
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/spring/ioc/">
-				<h2 class="index-title">
-					ioc
-				</h2>
-				<div class="index-brief">
-					ioc 既是一种思想，又是一种容器
-Ioc 思想
-Inversion of controlle 控制反转
-比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
-而 ioc 是，
 					...
 				</div>
 			</a>
@@ -1123,38 +1141,6 @@ import java.util.List;
 public class Oom {
     public static void main(String[] args) {
   
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/jvm/%E5%B8%B8%E8%A7%81%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">
-				<h2 class="index-title">
-					常见垃圾回收器
-				</h2>
-				<div class="index-brief">
-					常见的垃圾回收器
-
-
-
-垃圾回收器的发展路线，是随着内存越来越大的过程而演进
-从分代算法演化到不分代算法
-Serial 算法 几十兆
-Parallel 算法 几个 G
-CMS 算法 几十个 G
-G1 算法 上百 G
-ZGC 4T
-Shenandoah 上千 g，也是上 T 了
-
-
-serial–ps
 					...
 				</div>
 			</a>

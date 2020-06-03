@@ -918,63 +918,26 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/Bean/">
+			<a href="/2020/05/31/java/jvm/%E5%B8%B8%E8%A7%81%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">
 				<h2 class="index-title">
-					Bean
+					常见垃圾回收器
 				</h2>
 				<div class="index-brief">
-					
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
-				<h2 class="index-title">
-					客户端ZooInspector
-				</h2>
-				<div class="index-brief">
-					下载
-https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip；
-使用
-下载后，解压，如下图
-
-启动
-java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
-				<h2 class="index-title">
-					分布式锁
-				</h2>
-				<div class="index-brief">
-					zk是啥？
-
-数据库、文件存储系统，并且有监听通知机制（观察者模式）
-
-特性
+					常见的垃圾回收器
 
 
-有序节点
 
-假如 当前有一个父节点为 /lock，我们可以在这个父节点下面创建子节点，使用有序节点，我创建子节点 /lock/node- ，并且指明有序，那么 zookeeper 在生成子节点的时候会自动的添加整数序号
+垃圾回收器的发展路线，是随着内存越来越大的过程而演进
+从分代算法演化到不分代算法
+Serial 算法 几十兆
+Parallel 算法 几个 G
+CMS 算法 几十个 G
+G1 算法 上百 G
+ZGC 4T
+Shenandoah 上千 g，也是上 T 了
+
+
+serial–ps
 					...
 				</div>
 			</a>
@@ -1014,6 +977,57 @@ HotSpot 参数分类
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/05/31/java/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+				<h2 class="index-title">
+					分布式锁
+				</h2>
+				<div class="index-brief">
+					zk是啥？
+
+数据库、文件存储系统，并且有监听通知机制（观察者模式）
+
+特性
+
+
+有序节点
+
+假如 当前有一个父节点为 /lock，我们可以在这个父节点下面创建子节点，使用有序节点，我创建子节点 /lock/node- ，并且指明有序，那么 zookeeper 在生成子节点的时候会自动的添加整数序号
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
+				<h2 class="index-title">
+					客户端ZooInspector
+				</h2>
+				<div class="index-brief">
+					下载
+https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip；
+使用
+下载后，解压，如下图
+
+启动
+java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/05/31/java/Redis/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
 				<h2 class="index-title">
 					分布式锁
@@ -1036,6 +1050,31 @@ for(；；)
 
 
 s
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
+				<h2 class="index-title">
+					mac 安装启动
+				</h2>
+				<div class="index-brief">
+					下载
+启动
+~/zookeeper-3.4.14/bin 
+./zkServer.sh start
+
+zookeeper 客户端
+./zkCli.sh -timeout 0 -r -server ip:port
+./zkCli.sh -timeout 5000 -server 192.9.200.2
 					...
 				</div>
 			</a>
@@ -1083,19 +1122,26 @@ s
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
+			<a href="/2020/05/31/java/Redis/redis%E4%B9%8B%E7%BA%A2%E9%94%81(Redlock)/">
 				<h2 class="index-title">
-					mac 安装启动
+					redis之红锁(Redlock)
 				</h2>
 				<div class="index-brief">
-					下载
-启动
-~/zookeeper-3.4.14/bin 
-./zkServer.sh start
+					背景
+redis 常用的方式有
 
-zookeeper 客户端
-./zkCli.sh -timeout 0 -r -server ip:port
-./zkCli.sh -timeout 5000 -server 192.9.200.2
+单节点
+主从
+哨兵
+集群
+
+单节点不会在生产环境使用，因为达不到高可用，且连 RDB 和 AOF 都只能放在 master 上，所以基本不会使用
+剩下的几种模式都无法避免两个问题
+
+异步数据丢失
+脑裂问题
+
+针对这两个问题，redis 官方提出了红锁(RedLock
 					...
 				</div>
 			</a>
@@ -1118,38 +1164,6 @@ zookeeper 客户端
         &lt;dependency&gt;
             &lt;groupId&gt;org.redisson&lt;/groupId&gt;
             &lt;artifactId&gt;re
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/Redis/redis%E4%B9%8B%E7%BA%A2%E9%94%81(Redlock)/">
-				<h2 class="index-title">
-					redis之红锁(Redlock)
-				</h2>
-				<div class="index-brief">
-					背景
-redis 常用的方式有
-
-单节点
-主从
-哨兵
-集群
-
-单节点不会在生产环境使用，因为达不到高可用，且连 RDB 和 AOF 都只能放在 master 上，所以基本不会使用
-剩下的几种模式都无法避免两个问题
-
-异步数据丢失
-脑裂问题
-
-针对这两个问题，redis 官方提出了红锁(RedLock
 					...
 				</div>
 			</a>
