@@ -1012,7 +1012,7 @@
 <p>这两个问题通常是在线程池的线程中使用ThreadLocal引发的，因为线程池由<strong>线程复用</strong>和<strong>内存常驻</strong>两个特点</p>
 <h2 id="脏数据">5.1. ¶脏数据</h2>
 <p>线程复用会产生仓数据，由于线程池会重用Thread对象，那么与Thread绑定的类的静态属性ThreadLocal变量也会被重用。</p>
-<p>如果实现的线程<code>run()</code>方法体重不显式的调用<code>remove()</code>清理与线程相关的ThreadLocal信息，下一个线程也不调用<code>set()</code>社会初始值，就可能<code>get()</code>到重用的信诚信息，包括ThreadLocal所关联的线程对象的value值。</p>
+<p>如果实现的线程<code>run()</code>方法但不显式的调用<code>remove()</code>清理与线程相关的ThreadLocal信息，下一个线程也不调用<code>set()</code>社会初始值，就可能<code>get()</code>到重用的线程信息，包括ThreadLocal所关联的线程对象的value值。</p>
 <p><strong>举个例子</strong></p>
 <blockquote>
 <p>高并发场景下，线程池中的线程可能会读取到上一个线程缓存的用户信息</p>
