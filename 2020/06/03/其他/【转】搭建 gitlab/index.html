@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		【转】搭建 gitlab | 
+		其他/【转】搭建 gitlab | 
 	 
 	温故知新
 	</title>
@@ -543,12 +543,23 @@
 							</ul>
 			
 							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										其他
+									</a>
+									
+							<ul>
 								<li class="file active">
-									<a href="/2020/06/03/%E3%80%90%E8%BD%AC%E3%80%91%E6%90%AD%E5%BB%BA%20gitlab/">
+									<a href="/2020/06/03/%E5%85%B6%E4%BB%96/%E3%80%90%E8%BD%AC%E3%80%91%E6%90%AD%E5%BB%BA%20gitlab/">
 										【转】搭建 gitlab
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
 							</ul>
 			
 							<ul>
@@ -913,7 +924,7 @@
 <div class="article-meta">
 	
 		<span>
-			阅读量:<span id="/2020/06/03/%E3%80%90%E8%BD%AC%E3%80%91%E6%90%AD%E5%BB%BA%20gitlab/" class="leancloud_visitors" data-flag-title="【转】搭建 gitlab"></span>
+			阅读量:<span id="/2020/06/03/%E5%85%B6%E4%BB%96/%E3%80%90%E8%BD%AC%E3%80%91%E6%90%AD%E5%BB%BA%20gitlab/" class="leancloud_visitors" data-flag-title="其他/【转】搭建 gitlab"></span>
 		</span>
 	
 	<span>今晚打老虎</span>
@@ -926,7 +937,7 @@
 </div>
 
 <div id="article-content">
-	<h3 id="前言">0.0.1. 前言</h3>
+	<h1>1. 前言</h1>
 <p>公司前端大佬因为某些原因离职了，走的比较匆忙，自己之前一直很少接触这方面的东西，一直都是一知半解。这两天我一边学，一边动手搭建，同时记录整个搭建过程。</p>
 <p>这是一系列文章，从搭建 Gitlab 到 安装、注册Gitlab-runner 再到二者结合去部署一个简单的项目，通过这几篇文章，你将学会如何在 Gitlab 上自动化打包部署自己的项目。</p>
 <p>系列文章一共有四篇，包括：</p>
@@ -938,18 +949,18 @@
 </ol>
 <p>由于自己一直做的是前端，对于Linux我不算熟练，如有错误的地方，请大家指出。</p>
 <p>原文地址：<a href="https://hbxywdk.github.io/2019/04/16/%E9%98%BF%E9%87%8C%E4%BA%91%E5%AE%89%E8%A3%85Gitlab%E7%AC%94%E8%AE%B0/" target="_blank" rel="noopener">阿里云安装Gitlab笔记</a></p>
-<h3 id="前置工作">0.0.2. 前置工作</h3>
+<h1>2. 前置工作</h1>
 <ol>
 <li>一台阿里云服务器（2核4G以上）</li>
 <li>配置服务器入方向安全组规则，我这里配置了8888端口（阿里云安全组出方向默认允许所有访问，所以不用配置）</li>
 </ol>
-<h3 id="Step1：安装和配置必要依赖项">0.0.3. Step1：安装和配置必要依赖项</h3>
+<h1>3. Step1：安装和配置必要依赖项</h1>
 <p>访问 <a href="https://about.gitlab.com/install/" target="_blank" rel="noopener">Gitlab安装地址</a>，选择对应系统的安装方式，我的是 CentOS 7.6 故选择 CentOS 7.X 的安装方式。</p>
-<h4 id="如何查看自己是什么系统：">0.0.3.1. 如何查看自己是什么系统：</h4>
+<h2 id="如何查看自己是什么系统：">3.1. 如何查看自己是什么系统：</h2>
 <pre><code>lsb_release -a
 复制代码
 </code></pre>
-<h4 id="在CentOS-7-以及RedHat-Oracle-Science-Linux-7-上，使用下面的命令打开系统防火墙中的HTTP和SSH访问。">0.0.3.2. 在CentOS 7(以及RedHat/Oracle/Science Linux 7)上，使用下面的命令打开系统防火墙中的HTTP和SSH访问。</h4>
+<h2 id="在CentOS-7-以及RedHat-Oracle-Science-Linux-7-上，使用下面的命令打开系统防火墙中的HTTP和SSH访问。">3.2. 在CentOS 7(以及RedHat/Oracle/Science Linux 7)上，使用下面的命令打开系统防火墙中的HTTP和SSH访问。</h2>
 <pre><code>sudo yum install -y curl policycoreutils-python openssh-server
 sudo systemctl enable sshd
 sudo systemctl start sshd
@@ -961,7 +972,7 @@ sudo systemctl reload firewalld
 <pre><code>systemctl start firewalld.service
 复制代码
 </code></pre>
-<h4 id="接下来，安装-Postfix-邮件通知服务。如果要使用其他解决方案，可跳过此步，并在安装GitLab之后配置外部SMTP服务器。">0.0.3.3. 接下来，安装 Postfix 邮件通知服务。如果要使用其他解决方案，可跳过此步，并在安装GitLab之后配置外部SMTP服务器。</h4>
+<h2 id="接下来，安装-Postfix-邮件通知服务。如果要使用其他解决方案，可跳过此步，并在安装GitLab之后配置外部SMTP服务器。">3.3. 接下来，安装 Postfix 邮件通知服务。如果要使用其他解决方案，可跳过此步，并在安装GitLab之后配置外部SMTP服务器。</h2>
 <pre><code>sudo yum install postfix
 sudo systemctl enable postfix
 sudo systemctl start postfix
@@ -980,19 +991,19 @@ inet_protocols = ipv4 // 或 all
 <pre><code>sudo systemctl restart postfix
 复制代码
 </code></pre>
-<h3 id="Step2：添加GitLab包存储库并安装该包">0.0.4. Step2：添加GitLab包存储库并安装该包</h3>
-<h4 id="设置防火墙：">0.0.4.1. 设置防火墙：</h4>
+<h1>4. Step2：添加GitLab包存储库并安装该包</h1>
+<h2 id="设置防火墙：">4.1. 设置防火墙：</h2>
 <pre><code># 开启 8888 端口
 firewall-cmd --zone=public --add-port=8888/tcp --permanent
 # 重启防火墙
 systemctl restart firewalld
 复制代码
 </code></pre>
-<h4 id="添加GitLab包的仓库">0.0.4.2. 添加GitLab包的仓库</h4>
+<h2 id="添加GitLab包的仓库">4.2. 添加GitLab包的仓库</h2>
 <pre><code>curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
 复制代码
 </code></pre>
-<h4 id="接下来，安装Gitlab包：">0.0.4.3. 接下来，安装Gitlab包：</h4>
+<h2 id="接下来，安装Gitlab包：">4.3. 接下来，安装Gitlab包：</h2>
 <pre><code>sudo EXTERNAL_URL=&quot;https://gitlab.example.com&quot; yum install -y gitlab-ee
 复制代码
 </code></pre>
@@ -1007,12 +1018,12 @@ systemctl restart firewalld
 <pre><code>gitlab-ctl reconfigure
 复制代码
 </code></pre>
-<h3 id="Step3：登录">0.0.5. Step3：登录</h3>
+<h1>5. Step3：登录</h1>
 <p>经过上面，的安装与设置，就可以访问域名或者IP了。</p>
 <p>打开xx.xx.xxx.xx:8888，需要设置<code>root帐号</code>的密码，之后即可使用root帐号登录。</p>
 <p>这里忘记截图了，就附上用户设置的一张截图吧</p>
 <p><img src="https://user-gold-cdn.xitu.io/2019/4/19/16a3330ae22e069d?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="设置"></p>
-<h3 id="附">0.0.6. 附:</h3>
+<h1>6. 附:</h1>
 <p>Gitlab常用命令：</p>
 <pre><code>//启动
 sudo gitlab-ctl start
@@ -1027,7 +1038,7 @@ sudo gitlab-ctl reconfigure
 
 复制代码
 </code></pre>
-<h3 id="参考">0.0.7. 参考:</h3>
+<h1>7. 参考:</h1>
 <p>作者：是康康啊<br>
 链接：<a href="https://juejin.im/post/5cb9204be51d456e541b4ccd" target="_blank" rel="noopener">https://juejin.im/post/5cb9204be51d456e541b4ccd</a><br>
 来源：掘金<br>
@@ -1042,8 +1053,8 @@ sudo gitlab-ctl reconfigure
         </div>
         <div class="item right">
             
-              <a href="/2020/05/31/%E9%BB%91%E8%8B%B9%E6%9E%9C/%E3%80%90%E8%BD%AC%E3%80%91NUC8%E4%BD%BF%E7%94%A8%E8%8B%B9%E6%9E%9C%E5%8E%9F%E8%A3%85%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1%E5%85%8D%E9%A9%B1%E5%8A%A8WiFi%E8%93%9D%E7%89%99AirDorpHandoff/">
-                黑苹果
+              <a href="/2020/05/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E5%AE%B9%E9%87%8F/">
+                存储单位容量
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
