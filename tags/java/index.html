@@ -339,7 +339,7 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 										Aqs的核心成员、数据模型、锁的实现原理
 									</a>
 								</li>
@@ -458,6 +458,26 @@
 			
 								</li>
 								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										linux
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+										【转】Linux查看内存使用情况方法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
 								</li>
@@ -948,15 +968,15 @@ ApplicationContext是 BeanFactory 的子类，以一种更面向框架的工作�
 				</h2>
 				<div class="index-brief">
 					ArrayList
-底层存储
+¶底层存储
 数组列表
 如果存储的是基本类型，只能存包装类
-特点：
+¶特点：
 查询快，增删慢，线程不安全
-为什么不安全还用他呢？
+¶为什么不安全还用他呢？
 因为，正常的场景，一般都是用来查询的，不会太频繁的增删（增删可以使用 LinkedList），线程安全使用 Vector
 不存在查询快，增删快，安全的结构
-数组是定
+¶
 					...
 				</div>
 			</a>
@@ -983,7 +1003,7 @@ ApplicationContext是 BeanFactory 的子类，以一种更面向框架的工作�
 				</h2>
 				<div class="index-brief">
 					jdk 1.7 版本的实现原理
-数据结构
+¶数据结构
 
 数组+链表
 segment数组  + HashEntry链表
@@ -994,7 +1014,7 @@ segment数组  + HashEntry链表
 segment
 
 是ConcurrentHashMap的一个内部类，主要的组成如下：
-static final class Segment&lt;K,V&gt; extends Reen
+static final class Segment&lt;K,V&gt; extends Ree
 					...
 				</div>
 			</a>
@@ -1129,31 +1149,6 @@ jvm运行程序的实体是线程，每个线程创建的时候，jvm都会给�
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
-				<h2 class="index-title">
-					Aqs的核心成员、数据模型、锁的实现原理
-				</h2>
-				<div class="index-brief">
-					什么是AQS
-AQS（AbstractQueuedSynchronizer）就是一个抽象的队列同步器，AQS定义了一套多线程访问共享资源的同步器框架，许多同步类的实现都依赖于他，比如下面四个
-
-ReentrantLock
-Semaphore
-CountDownLatch
-CyclicBarrier
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-04-24</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/04/23/java/%E7%BA%BF%E7%A8%8B/synchronized/">
 				<h2 class="index-title">
 					synchronized
@@ -1196,9 +1191,38 @@ klass point（类型
 线程间通过共享数据来实现通信，即:多个线程主动读取一个共享数据。
 举例：共享资源 int a；A、B两个线程轮序a的值，来确定自己做什么，浪费了cpu资源
 靠共享变量来做控制
-wait/notify机制（配合Synchronized）
-适用范围
-Synchronized代码中才能使用，因为这几个都
+¶wait/notify机制（配合Synchronized）
+¶适用范围
+Synchronized代码中才能使用，因为这几
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-04-23</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/04/23/java/%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E3%80%816%E7%A7%8D%E7%8A%B6%E6%80%81%E7%9A%84%E6%B5%81%E8%BD%AC/">
+				<h2 class="index-title">
+					线程的生命周期、6种状态的流转
+				</h2>
+				<div class="index-brief">
+					到底有几种状态
+java/lang/Thread.java中 State是个枚举，里面定义了6种状态
+线程的6种状态
+
+New（新建）
+Runnable（运行）
+Blocked（阻塞）
+Waitting（无限期等待）
+Timed Watting（限期等待）
+Terminated（终止）
+
+¶New（
 					...
 				</div>
 			</a>
@@ -1212,8 +1236,6 @@ Synchronized代码中才能使用，因为这几个都
 	
 	
 	<div id="index-paginator">
-		
-			<span class="page-number current">1</span><a class="page-number" href="/tags/java/page/2/">2</a><a class="extend next" rel="next" href="/tags/java/page/2/">&gt;</a>
 		
 	</div>
 </div>

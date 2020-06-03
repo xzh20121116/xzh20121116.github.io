@@ -339,7 +339,7 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 										Aqs的核心成员、数据模型、锁的实现原理
 									</a>
 								</li>
@@ -458,6 +458,26 @@
 			
 								</li>
 								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										linux
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+										【转】Linux查看内存使用情况方法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
 								</li>
@@ -918,16 +938,19 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%89%8B%E5%86%99Lru/">
+			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
 				<h2 class="index-title">
-					手写Lru
+					插入排序
 				</h2>
 				<div class="index-brief">
-					public class Lru {
-   public static void main(String[] args) {
-      Lru l = new Lru(5);
-      l.put(&quot;1&quot;,&quot;1&quot;);
-      l.put(&quot;2
+					对于基本有序的数组最好用
+一个乱序数组
+int[] arr = {5, 2, 4, 3, 1, 7, 9, 8, 6};
+
+从 index 1 开始，往前插入：
+
+index i 的数与 index i-1的数 比较大小，如果 index i 更小 ，两者交换位置
+交换位置之后，继续与前面的数比较，
 					...
 				</div>
 			</a>
@@ -940,20 +963,16 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
+			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%89%8B%E5%86%99Lru/">
 				<h2 class="index-title">
-					归并排序
+					手写Lru
 				</h2>
 				<div class="index-brief">
-					merge sort
-java 对象排序算法-timsort
-思想
-该算法是采用分治法的一个典型的应用，将有序的子集合并，得到完全有序的序列
-工作原理
-
-申请空间，大小为两个已经排序序列之和，该空间用来存放合并后的序列
-设定两个指针，最初的位置分别为两个有序序列的起始位置
-比较两个指针所指向的元素，
+					public class Lru {
+   public static void main(String[] args) {
+      Lru l = new Lru(5);
+      l.put(&quot;1&quot;,&quot;1&quot;);
+      l.put(&quot;2
 					...
 				</div>
 			</a>
@@ -1012,6 +1031,32 @@ B 负责出队操作
 
 可是两个栈是独立的，如何关联起来呢
 入队时，每个新元素都被压
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
+				<h2 class="index-title">
+					归并排序
+				</h2>
+				<div class="index-brief">
+					merge sort
+java 对象排序算法-timsort
+思想
+该算法是采用分治法的一个典型的应用，将有序的子集合并，得到完全有序的序列
+工作原理
+
+申请空间，大小为两个已经排序序列之和，该空间用来存放合并后的序列
+设定两个指针，最初的位置分别为两个有序序列的起始位置
+比较两个指针所指向的元素，
 					...
 				</div>
 			</a>
@@ -1087,13 +1132,13 @@ B 负责出队操作
 					
 暴力破解
 使用任意一种 nlogn 的排序算法（例如快排）给原数组排序，然后遍历排好的数组，并对每两个相邻元素求差，最终得到最大值
-有问题？
+¶有问题？
 很有问题！
 显然这个题目不是让来排序的
 正确思路
-技术排序思想
+¶技术排序思想
 
-求出原数组最大值、最小值的区间长度 k（k=max=min+1），以及偏移量 d -min
+求出原数组最大值、最小值的区间长度 k（k=max=min+1），以及偏移量 d -m
 					...
 				</div>
 			</a>
@@ -1106,21 +1151,21 @@ B 负责出队操作
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E6%B1%82%E5%87%BA%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/">
+			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%AF%BB%E6%89%BE%E7%BC%BA%E5%A4%B1%E7%9A%84%E6%95%B4%E6%95%B0/">
 				<h2 class="index-title">
-					如何求出最大公约数
+					寻找缺失的整数
 				</h2>
 				<div class="index-brief">
-					欧几里得算法
-原理
-该算法的目的：求出两个正整数的最大公约数
-这条算法基于一个定理：
-
-两个正整数 a 和 b（a&gt;b）,他们的最大公约数等于 a 除以 b 的余数 c 和 b 之间的最大公约数
-
-举例子：
-
-10 和 25 ，25 除以 10 商 2 余 5，那么 10 和 25 的最大公约
+					题目
+数组
+无序
+99 个不重复的正整数
+范围是 1-100
+找出这个缺失的整数
+解决办法
+¶解决办法 1-哈希表（空间复杂度高）
+创建一个哈希表，以 1-100 这100 个整数位 key，然后遍历数组，读到一个整数，就删除一个 key，最后表中剩下一个 key
+时间复杂度 On，空间复杂度 On
 					...
 				</div>
 			</a>
@@ -1147,34 +1192,6 @@ B 负责出队操作
 给出 12354，应该返回 12435
 思路
 先思考一个问题：给出几个数字，怎样排列最大，怎样排列最小？
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%AF%BB%E6%89%BE%E7%BC%BA%E5%A4%B1%E7%9A%84%E6%95%B4%E6%95%B0/">
-				<h2 class="index-title">
-					寻找缺失的整数
-				</h2>
-				<div class="index-brief">
-					题目
-数组
-无序
-99 个不重复的正整数
-范围是 1-100
-找出这个缺失的整数
-解决办法
-解决办法 1-哈希表（空间复杂度高）
-创建一个哈希表，以 1-100 这100 个整数位 key，然后遍历数组，读到一个整数，就删除一个 key，最后表中剩下一个 key
-时间复杂度 On，空间复杂度 On
 
 					...
 				</div>

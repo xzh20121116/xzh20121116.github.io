@@ -341,7 +341,7 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 										Aqs的核心成员、数据模型、锁的实现原理
 									</a>
 								</li>
@@ -460,6 +460,26 @@
 			
 								</li>
 								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										linux
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+										【转】Linux查看内存使用情况方法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
 								</li>
@@ -1001,7 +1021,7 @@
 </tbody>
 </table>
 <h1>4. 公平锁和非公平锁的区别</h1>
-<h2 id="获取锁">4.1. 获取锁</h2>
+<h2 id="获取锁">4.1. ¶获取锁</h2>
 <p><strong>公平锁</strong>：相当于排队买票，后来大人需要到队尾排队，不能插队</p>
 <blockquote>
 <p>线程来了，先检查state是否被持有，如果被持有，当前线程就去同步队列排队</p>
@@ -1010,12 +1030,12 @@
 <blockquote>
 <p>线程来了，先用cas的方式修改state，修改成功就获得锁，修改失败就去同步队列排队</p>
 </blockquote>
-<h2 id="释放锁">4.2. 释放锁</h2>
+<h2 id="释放锁">4.2. ¶释放锁</h2>
 <p>两者的流程是一样的：</p>
 <p>判断当前线程是否是获得锁的线程，由于是重入锁，需要将<code>state</code>减到0才认为完全释放</p>
 <p>释放之后需要调用 <code>unparkSuccessor(h)</code> 来唤醒被挂起的线程。</p>
-<h2 id="非公平锁的实现原理">4.3. 非公平锁的实现原理</h2>
-<h3 id="lock方法获取锁">4.3.1. lock方法获取锁</h3>
+<h2 id="非公平锁的实现原理">4.3. ¶非公平锁的实现原理</h2>
+<h3 id="lock方法获取锁">4.3.1. ¶lock方法获取锁</h3>
 <ol>
 <li><code>lock</code>方法调用<code>cas</code>方法设置<code>state</code>的值，如果<code>state</code>等于期望值<code>0</code>(代表锁没有被占用)，那么就将<code>state更新为1</code>（代表该线程获取锁成功），然后执行<code>setExclusiveOwnerThread</code>方法直接将该线程设置成锁的持有者。</li>
 <li>如果<code>cas</code>设置<code>state</code>失败，即state不等于0，代表锁被占用了</li>
@@ -1028,20 +1048,20 @@
 </ol>
 </li>
 </ol>
-<h3 id="tryRelease-锁的释放">4.3.2. tryRelease 锁的释放</h3>
+<h3 id="tryRelease-锁的释放">4.3.2. ¶tryRelease 锁的释放</h3>
 <ol>
 <li>判断当前线程是不是锁的所有者，如果不是，抛出异常</li>
 <li>如果是：判断此次释放后<code>state</code>的值是否为<code>0</code>，如果是则代表锁没有重入，然后将锁的持有者设置为null，唤醒同步队列的后继节点，进行锁的获取</li>
 <li>如果第二步中的释放后<code>state</code>的值<code>不为0</code>，即重入了：锁还没有释放完，不唤醒同步队列</li>
 </ol>
-<h2 id="公平锁的实现原理">4.4. 公平锁的实现原理</h2>
-<h3 id="lock-方法获取锁">4.4.1. lock 方法获取锁</h3>
+<h2 id="公平锁的实现原理">4.4. ¶公平锁的实现原理</h2>
+<h3 id="lock-方法获取锁">4.4.1. ¶lock 方法获取锁</h3>
 <ol>
 <li>获取<code>state</code>的值，如果<code>为0</code>，表示没有被占用（但不代表同步队列没有线程在等待）执行<code>步骤2</code>；如果<code>state！=0</code>执行<code>步骤3</code></li>
 <li>判断同步队列是否存在线程（节点），如果不存在则直接将锁的所有者设置成当前线程，更新state状态</li>
 <li>判断锁的所有者是不是当前线程，如果是则更新state的值；如果不是自己，则加入同步队列中</li>
 </ol>
-<h3 id="tryRelease锁释放">4.4.2. tryRelease锁释放</h3>
+<h3 id="tryRelease锁释放">4.4.2. ¶tryRelease锁释放</h3>
 <p>与非公平锁的释放过程是一样的</p>
 
 </div>
@@ -1058,8 +1078,8 @@
         </div>
         <div class="item right">
             
-              <a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
-                Aqs的核心成员、数据模型、锁的实现原理
+              <a href="/2020/04/23/java/%E7%BA%BF%E7%A8%8B/synchronized/">
+                synchronized
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             

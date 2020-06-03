@@ -341,7 +341,7 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 										Aqs的核心成员、数据模型、锁的实现原理
 									</a>
 								</li>
@@ -460,6 +460,26 @@
 			
 								</li>
 								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										linux
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+										【转】Linux查看内存使用情况方法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
 								</li>
@@ -945,21 +965,21 @@
 </blockquote>
 <h1>2. 思路</h1>
 <p>贪心算法相关</p>
-<h2 id="你的第一感觉是优先删除最大的数字？">2.1. 你的第一感觉是优先删除最大的数字？</h2>
+<h2 id="你的第一感觉是优先删除最大的数字？">2.1. ¶你的第一感觉是优先删除最大的数字？</h2>
 <blockquote>
 <p>不对，数字的大小固然重要，但是数字的位置更重要，哪怕高位只减少 1，对数值的影响也是非常大的</p>
 </blockquote>
-<h2 id="举个例子">2.2. 举个例子</h2>
+<h2 id="举个例子">2.2. ¶举个例子</h2>
 <blockquote>
 <p>一个9 位整数 541270936，要求删除 1 个数字，让剩下的整数尽可能小</p>
 <p>此时无论删除什么数，都会从 9 位变成 8 位</p>
 <p>既然随便删都是 8 位，那么显然应该应该把高位的数字降低。这样对新整数的影响最大</p>
 </blockquote>
-<h2 id="如何把高位的数字降低呢？">2.3. 如何把高位的数字降低呢？</h2>
+<h2 id="如何把高位的数字降低呢？">2.3. ¶如何把高位的数字降低呢？</h2>
 <p>很简单，把原证书的所有数字从左到右依次进行比较</p>
 <p>如果发现index 的值大于 index+1 的值，那么删除 index 的值后，必然会是这个数的值降低</p>
 <p>因为右边比他小的数顶替了他的位置</p>
-<h2 id="总结">2.4. 总结</h2>
+<h2 id="总结">2.4. ¶总结</h2>
 <ol>
 <li>
 <p>从左往右遍历，找到第一个 index 大于 index+1 ，把 index 删掉</p>
@@ -1008,7 +1028,7 @@
 	}
 }
 </code></pre>
-<h2 id="代码说明">3.1. 代码说明</h2>
+<h2 id="代码说明">3.1. ¶代码说明</h2>
 <p>上面代码非常巧妙的运用了栈的特性，在遍历原整数的数字时，让所有数字一个一个入栈，当某个数字需要删除时，让该数字出栈</p>
 <p>下面以整数 541270936  ，k=3 为例</p>
 <p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200521170212.png" alt="image-20200521170212326"></p>
@@ -1020,15 +1040,15 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E9%93%BE%E8%A1%A8%E6%9C%89%E7%8E%AF/">
+              <a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/Topk%E9%97%AE%E9%A2%98/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  如何判断链表有环
+                  Topk问题
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
+              <a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">
                 
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>

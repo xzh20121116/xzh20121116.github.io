@@ -341,7 +341,7 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 										Aqs的核心成员、数据模型、锁的实现原理
 									</a>
 								</li>
@@ -460,6 +460,26 @@
 			
 								</li>
 								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										linux
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+										【转】Linux查看内存使用情况方法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
 								</li>
@@ -943,43 +963,43 @@
 <p>线程间通过共享数据来实现通信，即:多个线程主动读取一个共享数据。</p>
 <p>举例：共享资源 int a；A、B两个线程轮序a的值，来确定自己做什么，浪费了cpu资源</p>
 <h1>2. 靠共享变量来做控制</h1>
-<h2 id="wait-notify机制（配合Synchronized）">2.1. wait/notify机制（配合Synchronized）</h2>
-<h3 id="适用范围">2.1.1. 适用范围</h3>
+<h2 id="wait-notify机制（配合Synchronized）">2.1. ¶wait/notify机制（配合Synchronized）</h2>
+<h3 id="适用范围">2.1.1. ¶适用范围</h3>
 <p>Synchronized代码中才能使用，因为这几个都是obj的方法</p>
 <p>即<strong>等待通知机制</strong>，主要由<strong>object</strong>类中的以下三个方法保证：wait、notify、notifyAll</p>
 <p>这三个方法<strong>不是Thread</strong>中的方法，而<strong>是Object</strong>中的方法。原因是：每个对象都有monitor（锁），所以让当前某个线程等待某个对象锁，应该通过这个对象来操作，而不是让当前的线程来操作，因为当前线程可能会等待多个线程的锁。</p>
-<h3 id="sleep">2.1.2. sleep</h3>
+<h3 id="sleep">2.1.2. ¶sleep</h3>
 <blockquote>
 <p><strong>Thread</strong>的方法</p>
 <p>让出cpu资源，不让锁</p>
 <p>当前线程进入阻塞，并释放cpu资源，无优先级、无法被<strong>notify</strong>唤醒</p>
 </blockquote>
-<h3 id="yield">2.1.3. yield</h3>
+<h3 id="yield">2.1.3. ¶yield</h3>
 <blockquote>
 <p><strong>Thread</strong>的方法</p>
 <p>让出cpu时间，类似sleep，但是无法指定时长，让同优先级的线程有优先执行的机会，调用<strong>yield</strong>只是一个建议：告诉线程调度器，我好了，让相同优先级的线程使用用cpu吧。如果所有正在等待的线程都是低优先级的，则高线程继续执行</p>
 </blockquote>
-<h3 id="join">2.1.4. join</h3>
+<h3 id="join">2.1.4. ¶join</h3>
 <blockquote>
 <p><strong>Thread</strong>的方法</p>
 <p>不让锁</p>
 <p>当前运行的线程调用另一个线程的join方法，等对方执行完之后再执行自己</p>
 </blockquote>
 <p>wait、notify、notifyall都是obj的方法，必须用在synchronized中</p>
-<h3 id="wait">2.1.5. wait</h3>
+<h3 id="wait">2.1.5. ¶wait</h3>
 <blockquote>
 <p>让出cpu和锁，等待notify唤醒</p>
 </blockquote>
-<h3 id="notify">2.1.6. notify</h3>
+<h3 id="notify">2.1.6. ¶notify</h3>
 <blockquote>
 <p><strong>随机唤醒</strong>一个正在等待这个对象锁的线程</p>
 </blockquote>
-<h3 id="notifyall">2.1.7. notifyall</h3>
+<h3 id="notifyall">2.1.7. ¶notifyall</h3>
 <blockquote>
 <p><strong>唤醒全部</strong>正在等待这个对象锁的线程</p>
 </blockquote>
 <p>wait()，notify()及notifyAll()只能在synchronized语句中使用，但是如果使用的是ReenTrantLock实现同步，该如何达到这三个方法的效果呢？解决方法是使用ReenTrantLock.newCondition()获取一个Condition类对象，然后Condition的await()，signal()以及signalAll()分别对应上面的三个方法。</p>
-<h2 id="2、Condition（配合Lock）">2.2. 2、Condition（配合Lock）</h2>
+<h2 id="2、Condition（配合Lock）">2.2. ¶2、Condition（配合Lock）</h2>
 <p>在jdk1.5中出现的，用于<strong>替代</strong>obj的wait、notify。实现线程间的协作，依赖于Lock，能够更安全高效的实现线程间协作。</p>
 <p>Condition是个<strong>接口</strong>，基本方法就是**await（）、signal()**方法。</p>
 <p><strong>使用范围：</strong></p>
@@ -1002,7 +1022,7 @@
 <blockquote>
 <p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200423141733.png" alt="image-20200423141733716"></p>
 </blockquote>
-<h2 id="3、volatile">2.3. 3、volatile</h2>
+<h2 id="3、volatile">2.3. ¶3、volatile</h2>
 <p>被volatile修饰的共享变量，具有以下两种特性</p>
 <ol>
 <li>禁止指令重排</li>
@@ -1013,7 +1033,7 @@
 <p>对于自增操作不是原子性的，多个线程对一个volatile的变量进行++操作，结果不准。</p>
 <p>想要原子自增需要用到下面的操作</p>
 </blockquote>
-<h2 id="4、利用AtomicInteger">2.4. 4、利用AtomicInteger</h2>
+<h2 id="4、利用AtomicInteger">2.4. ¶4、利用AtomicInteger</h2>
 <p>底层实现是<strong>Unsafe类</strong>的<strong>CAS操作</strong></p>
 <blockquote>
 <p><strong>在高并发情况下，LongAdder(累加器)比AtomicLong原子操作效率更高</strong></p>
@@ -1021,7 +1041,7 @@
 </blockquote>
 <h1>3. 信号量同步</h1>
 <p>信号量同步是指在不同的线程之间，通过传递同步信号量来协调线程执行的先后次序。这里重点分析其中2个</p>
-<h2 id="CountDownLatch">3.1. CountDownLatch</h2>
+<h2 id="CountDownLatch">3.1. ¶CountDownLatch</h2>
 <p>允许一个或多个线程等待其他线程完成操作,本质上是一个<strong>AQS计数器</strong>，通过AQS来实现线程的等待与唤醒</p>
 <blockquote>
 <p>**需求：**解析一个文件下多个txt文件数据，可以用多线程解析，等到所有数据解析完毕后再进行其他操作</p>
@@ -1049,12 +1069,12 @@
 
 }
 </code></pre>
-<h2 id="Semaphore">3.2. Semaphore</h2>
+<h2 id="Semaphore">3.2. ¶Semaphore</h2>
 <blockquote>
 <p>场景：</p>
 <p>车站案件：三个窗口在安检，哪个空闲了，就安排非空闲窗口的人去空闲的</p>
 </blockquote>
-<h2 id="CyclicBarrier">3.3. CyclicBarrier</h2>
+<h2 id="CyclicBarrier">3.3. ¶CyclicBarrier</h2>
 <p>循环栅栏</p>
 <blockquote>
 <p>场景：</p>

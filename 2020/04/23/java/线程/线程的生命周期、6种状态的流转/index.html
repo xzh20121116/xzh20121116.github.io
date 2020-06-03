@@ -341,7 +341,7 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 										Aqs的核心成员、数据模型、锁的实现原理
 									</a>
 								</li>
@@ -460,6 +460,26 @@
 			
 								</li>
 								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										linux
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+										【转】Linux查看内存使用情况方法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
 								</li>
@@ -950,9 +970,9 @@
 <li>Timed Watting（限期等待）</li>
 <li>Terminated（终止）</li>
 </ul>
-<h4 id="New（新建）">2.0.0.1. New（新建）</h4>
+<h4 id="New（新建）">2.0.0.1. ¶New（新建）</h4>
 <p>新创建了一个线程对象，但是还没有调用start（）方法</p>
-<h4 id="Runnable（运行）">2.0.0.2. Runnable（运行）</h4>
+<h4 id="Runnable（运行）">2.0.0.2. ¶Runnable（运行）</h4>
 <p>包含了操作系统线程中的<strong>Ready</strong>（就绪）和<strong>Running</strong>（运行中）</p>
 <ul>
 <li>
@@ -965,18 +985,18 @@
 <p>就ready绪状态的线程在获得cpu时间片后转换为运行中Running</p>
 </li>
 </ul>
-<h4 id="Blocked（阻塞）">2.0.0.3. Blocked（阻塞）</h4>
+<h4 id="Blocked（阻塞）">2.0.0.3. ¶Blocked（阻塞）</h4>
 <p>在等待着获取一个排它锁（例如：synchronized），这个时间将在另外一个线程放弃这个锁的时候发生</p>
-<h4 id="waitting（无限期等待）">2.0.0.4. waitting（无限期等待）</h4>
+<h4 id="waitting（无限期等待）">2.0.0.4. ¶waitting（无限期等待）</h4>
 <p>进入该状态的线程需要等待其他线程做出一些特定动作（通知或中断），需要被显示的唤醒，否则就会处于无线等待的状态</p>
-<h4 id="Timed-Waitting（限期等待）">2.0.0.5. Timed Waitting（限期等待）</h4>
+<h4 id="Timed-Waitting（限期等待）">2.0.0.5. ¶Timed Waitting（限期等待）</h4>
 <p>在达到一定时间之后他们会自动唤醒</p>
-<h4 id="终止状态">2.0.0.6. 终止状态</h4>
+<h4 id="终止状态">2.0.0.6. ¶终止状态</h4>
 <p>当线程的run（）方法完成时，或者主线程的main（）方法完成时，我们就认为它终止了。这个线程对象也许是活的，但是他已经不是一个单独执行的线程，线程一旦终止，就不能复生</p>
 <h1>3. 线程状态的流转</h1>
 <p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200423125835.png" alt="image-20200423125835603"></p>
 <p>重点掌握运行、阻塞、就绪之间的通信机制</p>
-<h4 id="sleep（）、yield（）、join（）、wait（）">3.0.0.1. sleep（）、yield（）、join（）、wait（）</h4>
+<h4 id="sleep（）、yield（）、join（）、wait（）">3.0.0.1. ¶sleep（）、yield（）、join（）、wait（）</h4>
 <p><strong>sleep</strong></p>
 <blockquote>
 <p><strong>Thread</strong>的方法</p>

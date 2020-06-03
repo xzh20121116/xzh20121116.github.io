@@ -339,7 +339,7 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 										Aqs的核心成员、数据模型、锁的实现原理
 									</a>
 								</li>
@@ -458,6 +458,26 @@
 			
 								</li>
 								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										linux
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+										【转】Linux查看内存使用情况方法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
 								</li>
@@ -942,38 +962,6 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%88%A0%E5%8E%BBk%E4%B8%AA%E6%95%B0%E5%AD%97%E5%90%8E%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC/">
-				<h2 class="index-title">
-					删去k个数字后的最小值
-				</h2>
-				<div class="index-brief">
-					题目
-给出一个整数，删除指定个数字后，剩下的数最小
-翻译成人话
-
-
-
-思路
-贪心算法相关
-你的第一感觉是优先删除最大的数字？
-
-不对，数字的大小固然重要，但是数字的位置更重要，哪怕高位只减少 1，对数值的影响也是非常大的
-
-举个例子
-
-一个9 位整数 541270936，要求删除 1 个数字，让剩下
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
 				<h2 class="index-title">
 					常见排序算法
@@ -1033,7 +1021,7 @@ $ n
 				</h2>
 				<div class="index-brief">
 					logn 版本
-原理
+¶原理
 创建一个中间变量，初始值是 1，开始循环，每次循环都让 temp 和目标数对比
 如果相等，说明目标数是 2 的整数次幂
 如果不相等，则让 temp增大 1 倍，继续循环进行比较
@@ -1041,7 +1029,7 @@ $ n
 举个例子
 
 目标数 19：
-1x2 =
+1x2 
 					...
 				</div>
 			</a>
@@ -1060,11 +1048,43 @@ $ n
 				</h2>
 				<div class="index-brief">
 					找出不重复的
-思路一：分治法+HashMap
+¶思路一：分治法+HashMap
 将 2.5 亿个整数，分批操作，例如分成 250w 一批，共 100w 批次，放到 HashMap&lt;数，出现的次数&gt;里
 没操作完一次，就把 HashMap 出现次数小于 1 的删掉
 重复，直到把 100 批都处理完
-HashMap 中的就是不
+HashMap 中的就是
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%88%A0%E5%8E%BBk%E4%B8%AA%E6%95%B0%E5%AD%97%E5%90%8E%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC/">
+				<h2 class="index-title">
+					删去k个数字后的最小值
+				</h2>
+				<div class="index-brief">
+					题目
+给出一个整数，删除指定个数字后，剩下的数最小
+翻译成人话
+
+
+
+思路
+贪心算法相关
+¶你的第一感觉是优先删除最大的数字？
+
+不对，数字的大小固然重要，但是数字的位置更重要，哪怕高位只减少 1，对数值的影响也是非常大的
+
+¶举个例子
+
+一个9 位整数 541270936，要求删除 1 个数字，让
 					...
 				</div>
 			</a>
@@ -1129,6 +1149,31 @@ public class 冒泡排序 {
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/05/31/%E6%A2%AF%E5%AD%90/iphone%20%E4%BD%BF%E7%94%A8shadownrocket/">
+				<h2 class="index-title">
+					iphone 使用shadownrocket
+				</h2>
+				<div class="index-brief">
+					下载 shadownrocket
+国区 appstore 是没有的，需要找一个美区的 账号下载
+添加订阅信息
+¶点击图中的【+】
+
+出现如下图，类型选择[Subscribe]订阅模式
+填写 url，填写备注，点击完成
+
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/05/31/%E6%A2%AF%E5%AD%90/mac%E4%BD%BF%E7%94%A8%20v2ray/">
 				<h2 class="index-title">
 					mac使用 v2ray
@@ -1169,40 +1214,15 @@ public class 冒泡排序 {
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/%E6%A2%AF%E5%AD%90/iphone%20%E4%BD%BF%E7%94%A8shadownrocket/">
-				<h2 class="index-title">
-					iphone 使用shadownrocket
-				</h2>
-				<div class="index-brief">
-					下载 shadownrocket
-国区 appstore 是没有的，需要找一个美区的 账号下载
-添加订阅信息
-点击图中的【+】
-
-出现如下图，类型选择[Subscribe]订阅模式
-填写 url，填写备注，点击完成
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/05/31/markdown/%E3%80%90%E8%BD%AC%E3%80%91Markdown%20%E6%8F%92%E5%85%A5%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">
 				<h2 class="index-title">
 					【转】Markdown 插入数学公式
 				</h2>
 				<div class="index-brief">
 					MarkDown 插入数学公式实验大集合
-前言
+¶前言
 
-最近在学习一些机器学习相关的知识，想把自己学习的东西通过 MD 的形式在线记录下来，但是之前一直没有开始行动，因为里面的公式什么的感觉实在是麻烦。于是今天打算花点时间了解一下如何在 markdown 中插入数学公式，发现其实很简单，大概花一个小时左右
+最近在学习一些机器学习相关的知识，想把自己学习的东西通过 MD 的形式在线记录下来，但是之前一直没有开始行动，因为里面的公式什么的感觉实在是麻烦。于是今天打算花点时间了解一下如何在 markdown 中插入数学公式，发现其实很简单，大概花一个小时左
 					...
 				</div>
 			</a>

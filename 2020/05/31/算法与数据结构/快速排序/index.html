@@ -341,7 +341,7 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 										Aqs的核心成员、数据模型、锁的实现原理
 									</a>
 								</li>
@@ -460,6 +460,26 @@
 			
 								</li>
 								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										linux
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+										【转】Linux查看内存使用情况方法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
 								</li>
@@ -957,7 +977,7 @@
 <li>单边循环法</li>
 </ol>
 <h1>4. 双边循环法</h1>
-<h2 id="流程">4.1. 流程</h2>
+<h2 id="流程">4.1. ¶流程</h2>
 <p>原始数组</p>
 <img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200518160348.png" alt="image-20200518160348258" style="zoom:50%;">
 <p>选定轴，设置两个指针 left 和 right，指向最左和最右两个元素</p>
@@ -979,7 +999,7 @@
 <li>第二次循环。。。</li>
 <li>第三次循环。。。</li>
 </ol>
-<h2 id="示例代码">4.2. 示例代码</h2>
+<h2 id="示例代码">4.2. ¶示例代码</h2>
 <p><code>quickSort</code>通过递归的方式，实现了分而治之的思想</p>
 <p><code>partition</code>则实现了元素的交换，让数列中的元素依据自身大小，分别交换到基准元素的左右两边</p>
 <pre><code class="language-java">package com.d1mq.algo;
@@ -1056,7 +1076,7 @@ public class 快速排序 {
 <h1>5. 单边循环法</h1>
 <p>双边循环法从数组的两边交替遍历元素，虽然更直观，但是代码实现相对繁琐。</p>
 <p>单边循环则简单的多，只从数组的一边对元素进行遍历和交换。</p>
-<h2 id="流程-2">5.1. 流程</h2>
+<h2 id="流程-v2">5.1. ¶流程</h2>
 <p>原始数组如下</p>
 <img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200518173139.png" alt="image-20200518173139812" style="zoom:50%;">
 <p>开始和双边循环法类似，首先选定基准元素 pivot。同时，设置一个 mark 指针指向数列起始位置，这个 mark 指针代表小于轴的区域边界。</p>
@@ -1074,7 +1094,7 @@ public class 快速排序 {
 <p>随后，让元素 3 和 mark 指针所在位置的元素交换，因为元素 3 属于小于轴的区域</p>
 <p>按照这个思路，继续遍历，后续步骤如图所示</p>
 <img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200518174212.png" alt="image-20200518174212798" style="zoom:50%;">
-<h2 id="实例代码-1">5.2. 实例代码-1</h2>
+<h2 id="实例代码-1">5.2. ¶实例代码-1</h2>
 <pre><code class="language-java">	/**
 	 * 单边循环法
 	 * @param arr 带交换的数组
@@ -1097,7 +1117,7 @@ public class 快速排序 {
 		return mark;
 	}
 </code></pre>
-<h2 id="实例代码-2">5.3. 实例代码 -2</h2>
+<h2 id="实例代码-2">5.3. ¶实例代码 -2</h2>
 <pre><code class="language-java">	static void itheimaquickSort(int[] arr, int left, int right) {
 		//判断,如果左边索引比右边索引大,是不合法的,直接 return结束这个方法
 		if (left &gt; right) {
@@ -1144,9 +1164,9 @@ public class 快速排序 {
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
+              <a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%89%8B%E5%86%99Lru/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  归并排序
+                  手写Lru
               </a>
             
         </div>

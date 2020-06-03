@@ -341,7 +341,7 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 										Aqs的核心成员、数据模型、锁的实现原理
 									</a>
 								</li>
@@ -460,6 +460,26 @@
 			
 								</li>
 								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										linux
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+										【转】Linux查看内存使用情况方法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
 								</li>
@@ -956,11 +976,11 @@
 </ol>
 <h1>3. Step1：安装和配置必要依赖项</h1>
 <p>访问 <a href="https://about.gitlab.com/install/" target="_blank" rel="noopener">Gitlab安装地址</a>，选择对应系统的安装方式，我的是 CentOS 7.6 故选择 CentOS 7.X 的安装方式。</p>
-<h2 id="如何查看自己是什么系统：">3.1. 如何查看自己是什么系统：</h2>
+<h2 id="如何查看自己是什么系统：">3.1. ¶如何查看自己是什么系统：</h2>
 <pre><code>lsb_release -a
 复制代码
 </code></pre>
-<h2 id="在CentOS-7-以及RedHat-Oracle-Science-Linux-7-上，使用下面的命令打开系统防火墙中的HTTP和SSH访问。">3.2. 在CentOS 7(以及RedHat/Oracle/Science Linux 7)上，使用下面的命令打开系统防火墙中的HTTP和SSH访问。</h2>
+<h2 id="在CentOS-7-以及RedHat-Oracle-Science-Linux-7-上，使用下面的命令打开系统防火墙中的HTTP和SSH访问。">3.2. ¶在CentOS 7(以及RedHat/Oracle/Science Linux 7)上，使用下面的命令打开系统防火墙中的HTTP和SSH访问。</h2>
 <pre><code>sudo yum install -y curl policycoreutils-python openssh-server
 sudo systemctl enable sshd
 sudo systemctl start sshd
@@ -972,7 +992,7 @@ sudo systemctl reload firewalld
 <pre><code>systemctl start firewalld.service
 复制代码
 </code></pre>
-<h2 id="接下来，安装-Postfix-邮件通知服务。如果要使用其他解决方案，可跳过此步，并在安装GitLab之后配置外部SMTP服务器。">3.3. 接下来，安装 Postfix 邮件通知服务。如果要使用其他解决方案，可跳过此步，并在安装GitLab之后配置外部SMTP服务器。</h2>
+<h2 id="接下来，安装-Postfix-邮件通知服务。如果要使用其他解决方案，可跳过此步，并在安装GitLab之后配置外部SMTP服务器。">3.3. ¶接下来，安装 Postfix 邮件通知服务。如果要使用其他解决方案，可跳过此步，并在安装GitLab之后配置外部SMTP服务器。</h2>
 <pre><code>sudo yum install postfix
 sudo systemctl enable postfix
 sudo systemctl start postfix
@@ -992,18 +1012,18 @@ inet_protocols = ipv4 // 或 all
 复制代码
 </code></pre>
 <h1>4. Step2：添加GitLab包存储库并安装该包</h1>
-<h2 id="设置防火墙：">4.1. 设置防火墙：</h2>
+<h2 id="设置防火墙：">4.1. ¶设置防火墙：</h2>
 <pre><code># 开启 8888 端口
 firewall-cmd --zone=public --add-port=8888/tcp --permanent
 # 重启防火墙
 systemctl restart firewalld
 复制代码
 </code></pre>
-<h2 id="添加GitLab包的仓库">4.2. 添加GitLab包的仓库</h2>
+<h2 id="添加GitLab包的仓库">4.2. ¶添加GitLab包的仓库</h2>
 <pre><code>curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.rpm.sh | sudo bash
 复制代码
 </code></pre>
-<h2 id="接下来，安装Gitlab包：">4.3. 接下来，安装Gitlab包：</h2>
+<h2 id="接下来，安装Gitlab包：">4.3. ¶接下来，安装Gitlab包：</h2>
 <pre><code>sudo EXTERNAL_URL=&quot;https://gitlab.example.com&quot; yum install -y gitlab-ee
 复制代码
 </code></pre>
@@ -1050,11 +1070,16 @@ sudo gitlab-ctl reconfigure
     <div class="post-guide">
         <div class="item left">
             
+              <a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                  【转】Linux查看内存使用情况方法
+              </a>
+            
         </div>
         <div class="item right">
             
-              <a href="/2020/05/31/%E7%BB%B4%E6%9D%83/xx/">
-                xx
+              <a href="/2020/05/31/%E9%BB%91%E8%8B%B9%E6%9E%9C/%E3%80%90%E8%BD%AC%E3%80%91NUC8%E4%BD%BF%E7%94%A8%E8%8B%B9%E6%9E%9C%E5%8E%9F%E8%A3%85%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1%E5%85%8D%E9%A9%B1%E5%8A%A8WiFi%E8%93%9D%E7%89%99AirDorpHandoff/">
+                【转】NUC8使用苹果原装无线网卡免驱动WiFi蓝牙AirDorpHandoff
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             

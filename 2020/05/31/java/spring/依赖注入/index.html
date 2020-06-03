@@ -341,7 +341,7 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 										Aqs的核心成员、数据模型、锁的实现原理
 									</a>
 								</li>
@@ -460,6 +460,26 @@
 			
 								</li>
 								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										linux
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+										【转】Linux查看内存使用情况方法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
 								</li>
@@ -942,37 +962,37 @@
 <h1>1. 自动装配</h1>
 <p>spring 容器可以自动配置相互协作 bean 之间的关系。</p>
 <p>spring 从两个角度实现自动装配</p>
-<h2 id="组件扫描">1.1. 组件扫描</h2>
+<h2 id="组件扫描">1.1. ¶组件扫描</h2>
 <p>spring 自动发现 ApplicationContext 中所创建的 bean</p>
-<h3 id="Component">1.1.1. @Component</h3>
+<h3 id="Component">1.1.1. ¶@Component</h3>
 <p>让 spring 为类自动创建 bean，默认 id 是类名称首字母小写，也可以给注解传入指定的参数指定名字</p>
 <pre><code class="language-java">@Component  
 @Component(&quot;lonelyHeartsClub&quot;)
 </code></pre>
 <p>还有 @Repository、@Service、@Controller 等</p>
-<h3 id="ComponentScan">1.1.2. @ComponentScan</h3>
+<h3 id="ComponentScan">1.1.2. ¶@ComponentScan</h3>
 <p>开启 ComponentScan 扫描，默认是该设置目录以及子目录下所有被 @ComponentScan 注解修饰的类，也可以指定扫描的包</p>
 <pre><code class="language-java">@ComponentScan(&quot;soundsystem&quot;)//扫描指定包  
 @ComponentScan(basePackages = &quot;soundsystem&quot;)
 @ComponentScan(basePackages = {&quot;soundsystem&quot;, &quot;video&quot;})
 @ComponentScan(basePackageClasses = {CDPlayer.class, DVDPlayer.class})//扫描指定类所属的包
 </code></pre>
-<h2 id="自动装配">1.2. 自动装配</h2>
+<h2 id="自动装配">1.2. ¶自动装配</h2>
 <p>spring 自动满足 bean 之间的依赖</p>
 <p>@Autowired：声明自动装配，可以用在构造器、方法、成员变量上</p>
 <p>只要对应类型的 bean 有且只有一个，则会自动装配，此时推荐使用构造器注入以避免 npe 问题（考虑到循环依赖的话还是推荐 setter 注入）</p>
 <h1>2. java 配置文件</h1>
 <p>想要装配第三方库中的组件时，因为没有办法在他们的类上添加 @Component 和@Autowired 注解，不能自动化配置，必须要采用显式装配</p>
-<h2 id="创建配置类">2.1. 创建配置类</h2>
+<h2 id="创建配置类">2.1. ¶创建配置类</h2>
 <p>@Configuration：表明是配置类</p>
-<h2 id="声明-bean">2.2. 声明 bean</h2>
+<h2 id="声明-bean">2.2. ¶声明 bean</h2>
 <p><strong>@Bean</strong>：声明 bean，需编写方法创建所需类型实例， 注解 @Bean。默认 ID 是方法名，也可通过 name 属性指定名字。</p>
 <pre><code class="language-java">@Bean(name = &quot;lonelyHeartsClub&quot;)
 public CompactDisc sgtPeppers() {
     return new SgtPeppers();
 }
 </code></pre>
-<h2 id="装配-bean">2.3. 装配 bean</h2>
+<h2 id="装配-bean">2.3. ¶装配 bean</h2>
 <p>在 JavaConfig 中装配 bean 的最简单方式就是引用创建 bean 的方法。</p>
 <p>默认情况下，Spring 中所有的 bean 都是<strong>单例模式</strong>，Spring 会拦截 @Bean 注解的函数调用，并返回之前创建好的 bean。</p>
 <pre><code class="language-java">@Bean
@@ -985,7 +1005,7 @@ public CDPlayer cdPlayer() {
 <p>维护已有的 XML 配置， 在完成新的 Spring 工作时， 使用自动化配置和 JavaConfig。</p>
 <p>创建一个 XML 文件， 并且以 元素为根。使用 元素声明 bean 并指定 class 属性。 元素注入构造器</p>
 <p>可以同时使用两种方式的依赖注入，最好的选择是使用构造器参数实现强制依赖注入，使用 setter 方法实现可选的依赖关系。</p>
-<h2 id="set-注入">3.1. set 注入</h2>
+<h2 id="set-注入">3.1. ¶set 注入</h2>
 <p>首先容器会触发一个无参构造函数或无参静态工厂方法实例化对象，之后容器调用 bean 中的setter 方法完成 Setter 方法依赖注入。</p>
 <pre><code>private OrderServiceImp orderService;
 public void setOrderService(OrderServiceImp orderService) {
@@ -998,7 +1018,7 @@ public void setOrderService(OrderServiceImp orderService) {
 &lt;/bean&gt;
 &lt;bean name=&quot;orderService&quot; class=&quot;com.pec.service.imp.OrderServiceImp&quot;&gt;&lt;/bean&gt;
 </code></pre>
-<h2 id="构造器注入">3.2. 构造器注入</h2>
+<h2 id="构造器注入">3.2. ¶构造器注入</h2>
 <p>构造器依赖注入在容器触发构造器的时候完成，该构造器有一系列的参数，每个参数代表注入的对象。</p>
 <pre><code class="language-java">private OrderServiceImp orderService;
 public OrderAction(OrderServiceImp orderService) {
@@ -1013,7 +1033,7 @@ public OrderAction(OrderServiceImp orderService) {
 </code></pre>
 <h1>4. 多种配置方法混用</h1>
 <p>通常的做法是：无论使用 JavaConfig 或者 XML 装配，都要创建一个 root configuration；并且在这个配置文件中开启自动扫描机制</p>
-<h2 id="JavaConfig-中引用">4.1. JavaConfig 中引用</h2>
+<h2 id="JavaConfig-中引用">4.1. ¶JavaConfig 中引用</h2>
 <ul>
 <li>@Import：导入其他的 JavaConfig</li>
 <li>@ImportResource：导入 XML 配置文件</li>
@@ -1021,7 +1041,7 @@ public OrderAction(OrderServiceImp orderService) {
 <pre><code class="language-java">@Import({CDPlayerConfig.class, CDConfig.class})
 @ImportResource(&quot;classpath: cd-config.xml&quot;)
 </code></pre>
-<h2 id="XML-配置中引用">4.2. XML 配置中引用</h2>
+<h2 id="XML-配置中引用">4.2. ¶XML 配置中引用</h2>
 <p>标签引入其他的 XML 配置文件</p>
 <pre><code class="language-xml">&lt;import resource=&quot;classpath:/spring/calculate-web.xml&quot;/&gt;
 </code></pre>
@@ -1035,16 +1055,16 @@ public OrderAction(OrderServiceImp orderService) {
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/MDC/">
+              <a href="/2020/05/31/java/spring/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  MDC
+                  设计模式
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2020/05/31/java/spring/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-                设计模式
+              <a href="/2020/05/31/java/spring/ioc/">
+                ioc
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             

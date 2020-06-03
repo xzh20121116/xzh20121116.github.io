@@ -341,7 +341,7 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 										Aqs的核心成员、数据模型、锁的实现原理
 									</a>
 								</li>
@@ -460,6 +460,26 @@
 			
 								</li>
 								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										linux
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+										【转】Linux查看内存使用情况方法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
 								</li>
@@ -941,7 +961,7 @@
 <a id="more"></a>
 <p><strong>count() 是一个聚合函数</strong>，对于返回的结果集，一行行地判断，如果 count 函数的参数不是 NULL，累计值就加 1，否则不加。最后返回累计值。</p>
 <p>所以，count(*)、count(主键 id) 和 count(1) 都表示返回满足条件的结果集的总行数；而 count(字段），则表示返回满足条件的数据行里面，参数“字段”不为 NULL 的总个数。</p>
-<h2 id="count（-）">0.1. count（*）</h2>
+<h2 id="count（-）">0.1. ¶count（*）</h2>
 <p><strong>count（*）的实现方式</strong></p>
 <blockquote>
 <p><strong>无条件筛选</strong>的情况下是这样实现的：</p>
@@ -970,19 +990,19 @@
 <li>InnoDB 表直接 count(*) 会遍历全表，虽然结果准确，但会导致性能问题</li>
 </ul>
 </blockquote>
-<h2 id="分析性能差别的原则">0.2. 分析性能差别的原则</h2>
+<h2 id="分析性能差别的原则">0.2. ¶分析性能差别的原则</h2>
 <ol>
 <li>server层要什么就给什么</li>
 <li>InnoDB只给必要的值</li>
 <li>现在的优化器只优化了 count(*) 的语义为“取行数”，其他“显而易见”的优化并没有做。</li>
 </ol>
 <p>这是什么意思呢？下面一个个分析</p>
-<h2 id="count-主键-id">0.3. count(主键 id)</h2>
+<h2 id="count-主键-id">0.3. ¶count(主键 id)</h2>
 <p>InnoDB <strong>遍历整个表</strong> ，把每一行的id<strong>值都取出来</strong>，返回给server层。server层拿到id后，判断是不可能为空的，就按行累加</p>
-<h2 id="count-1">0.4. count(1)</h2>
+<h2 id="count-1">0.4. ¶count(1)</h2>
 <p>InnoDB 引擎<strong>遍历整张表</strong>，但<strong>不取值</strong>。server 层对于返回的每一行，放一个数字“1”进去，判断是不可能为空的，按行累加。</p>
 <p>比**count（主键id）**快，因为这里不涉及解析数据行、拷贝字段值的操作</p>
-<h2 id="count-字段">0.5. count(字段)</h2>
+<h2 id="count-字段">0.5. ¶count(字段)</h2>
 <p>需要区分<strong>字段是否not null</strong></p>
 <ul>
 <li>
@@ -999,7 +1019,7 @@
 </li>
 </ul>
 <p><strong>以上都对应第一条原则：server要什么字段，innoDB就给什么字段</strong>，但是count（*）是个例外</p>
-<h2 id="效率排行">0.6. 效率排行</h2>
+<h2 id="效率排行">0.6. ¶效率排行</h2>
 <p>count(字段) &lt; count(主键 id) &lt;  count(1) ≈ count(*)</p>
 <p>推荐使用 count（*），因为有专门的优化</p>
 

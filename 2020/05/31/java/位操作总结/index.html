@@ -341,7 +341,7 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 										Aqs的核心成员、数据模型、锁的实现原理
 									</a>
 								</li>
@@ -460,6 +460,26 @@
 			
 								</li>
 								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										linux
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+										【转】Linux查看内存使用情况方法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
 								</li>
@@ -1004,8 +1024,8 @@ System.out.println(&quot;b = &quot; + b);
 b = 1
 </code></pre>
 <p>第一步：a^=b，即 a=（a^b）;</p>
-<p>第二步：b^=a ，即 b=^（a^b）,由于异或运算满足交换律，b ^ ( a ^ b) = b ^ b ^ a，由于一个数和自己异或的结果为 0，并且任何数与子0 异或都不会变的，所以此时，b 被赋上了 a 的值</p>
-<p>第三步：a^=b 就是 a=a^b，由于前面二步可知 a=（a^b），b=a，所以 a=a^b 即 a=（a^b）^a，因此，a 会被赋上 b 的值</p>
+<p>第二步：b^=a ，即 b=<sup>（a</sup>b）,由于异或运算满足交换律，b ^ ( a ^ b) = b ^ b ^ a，由于一个数和自己异或的结果为 0，并且任何数与子0 异或都不会变的，所以此时，b 被赋上了 a 的值</p>
+<p>第三步：a^=b 就是 a=a^b，由于前面二步可知 a=（a^b），b=a，所以 a=a^b 即 a=（a<sup>b）</sup>a，因此，a 会被赋上 b 的值</p>
 <h1>3. 变换符号（~）</h1>
 <p>变换符号就是正数变负数，负数变正数，对于-11 和 11，可以通过下面的方法将 -11 变成 11</p>
 <pre><code class="language-java">// 11
@@ -1113,15 +1133,15 @@ n再和这个数做与运算*/
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2020/05/31/java/spring/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+              <a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  spring
+                  线程
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2020/05/31/java/spring/spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+              <a href="/2020/05/31/java/spring/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
                 spring
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>

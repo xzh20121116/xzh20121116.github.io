@@ -341,7 +341,7 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 										Aqs的核心成员、数据模型、锁的实现原理
 									</a>
 								</li>
@@ -460,6 +460,26 @@
 			
 								</li>
 								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										linux
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+										【转】Linux查看内存使用情况方法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
 								</li>
@@ -940,7 +960,7 @@
 	<p>谈谈ConcurrentHashMap的底层实现，1.7与1.8的详细区别</p>
 <a id="more"></a>
 <h1>1. jdk 1.7 版本的实现原理</h1>
-<h2 id="数据结构">1.1. 数据结构</h2>
+<h2 id="数据结构">1.1. ¶数据结构</h2>
 <blockquote>
 <p>数组+链表</p>
 <p>segment数组  + HashEntry链表</p>
@@ -973,13 +993,13 @@
 </blockquote>
 </li>
 </ul>
-<h2 id="高并发的原因">1.2. 高并发的原因</h2>
+<h2 id="高并发的原因">1.2. ¶高并发的原因</h2>
 <p>采用了分段锁技术，其中<code>segment</code>继承自<code>ReentrantLock</code>。</p>
 <p>不像Hashtable一样：无论put还是get都需要做同步处理。</p>
 <p>理论上<strong>支持Segment数组数量的线程并发</strong></p>
 <p>每一个线程占用锁访问一个Segment时，不会影响到其他Segment</p>
 <p>如果说容量大小是16，那么他的并发度就是16：允许16个线程同时操作16个Segment而且线程安全。</p>
-<h2 id="put过程">1.3. put过程</h2>
+<h2 id="put过程">1.3. ¶put过程</h2>
 <ol>
 <li>
 <p>先定位到Segment，然后再进行<code>put（）</code>操作</p>
@@ -1000,13 +1020,13 @@
 <p>将当前<code>Segmen数组</code>中的table通过key的hashcode定位到<code>HashEntry链表</code></p>
 </li>
 </ol>
-<h2 id="get-过程">1.4. get 过程</h2>
+<h2 id="get-过程">1.4. ¶get 过程</h2>
 <p>由于HashEntry中的value是Volatile修饰的，保证了每次获取时都是最新值</p>
 <ol>
 <li>将key通过hash定位到具体的Segment</li>
 <li>再通过一次Hash定位到具体的元素上</li>
 </ol>
-<h2 id="这个版本存在的问题">1.5. 这个版本存在的问题</h2>
+<h2 id="这个版本存在的问题">1.5. ¶这个版本存在的问题</h2>
 <p>因为基本还是数组 +链表的形式，我们去查询的时候，还得遍历链表，会导致效率很低</p>
 <p>这个跟jdk1.7中HashMap中存在的问题是一样的。</p>
 <h1>2. jdk 1.8 版本的实现原理</h1>
@@ -1014,7 +1034,7 @@
 <p>跟HashMap类似，也把之前的HashEntry 改成Node，但是作用不变。</p>
 <p><code>value</code> 和<code>next</code>采用<code>volatile</code>修饰，保证可见性。</p>
 <p>引入了红黑树，链表大于一定值时会转换（默认是8）</p>
-<h2 id="put">2.1. put</h2>
+<h2 id="put">2.1. ¶put</h2>
 <p>大致分为以下几步</p>
 <ol>
 <li>
@@ -1076,7 +1096,7 @@
         return null;
     }
 </code></pre>
-<h2 id="get">2.2. get</h2>
+<h2 id="get">2.2. ¶get</h2>
 <ol>
 <li>根据计算出的hashcode寻址，如果就在桶上那么直接返回</li>
 <li>如果是红黑树，就按照红黑树的方式获取值</li>

@@ -339,7 +339,7 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 										Aqs的核心成员、数据模型、锁的实现原理
 									</a>
 								</li>
@@ -458,6 +458,26 @@
 			
 								</li>
 								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										linux
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+										【转】Linux查看内存使用情况方法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
 								</li>
@@ -918,6 +938,60 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/05/31/java/Redis/Redisson%E4%BD%BF%E7%94%A8/">
+				<h2 class="index-title">
+					Redisson使用
+				</h2>
+				<div class="index-brief">
+					添加 pom 依赖
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
+            &lt;artifactId&gt;re
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/Redis/redis%E4%B9%8B%E7%BA%A2%E9%94%81(Redlock)/">
+				<h2 class="index-title">
+					redis之红锁(Redlock)
+				</h2>
+				<div class="index-brief">
+					背景
+redis 常用的方式有
+
+单节点
+主从
+哨兵
+集群
+
+单节点不会在生产环境使用，因为达不到高可用，且连 RDB 和 AOF 都只能放在 master 上，所以基本不会使用
+剩下的几种模式都无法避免两个问题
+
+异步数据丢失
+脑裂问题
+
+针对这两个问题，redis 官方提出了红锁(RedLock
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/05/31/hexo/Hexo%20%E6%A0%87%E9%A2%98%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7/">
 				<h2 class="index-title">
 					Hexo 标题自动编号
@@ -977,15 +1051,15 @@ ApplicationContext是 BeanFactory 的子类，以一种更面向框架的工作�
 				</h2>
 				<div class="index-brief">
 					ArrayList
-底层存储
+¶底层存储
 数组列表
 如果存储的是基本类型，只能存包装类
-特点：
+¶特点：
 查询快，增删慢，线程不安全
-为什么不安全还用他呢？
+¶为什么不安全还用他呢？
 因为，正常的场景，一般都是用来查询的，不会太频繁的增删（增删可以使用 LinkedList），线程安全使用 Vector
 不存在查询快，增删快，安全的结构
-数组是定
+¶
 					...
 				</div>
 			</a>
@@ -1041,7 +1115,7 @@ ThreadLocal 是一个本地线程副本变量工具类。主要用于将私有�
 				</h2>
 				<div class="index-brief">
 					jdk 1.7 版本的实现原理
-数据结构
+¶数据结构
 
 数组+链表
 segment数组  + HashEntry链表
@@ -1052,7 +1126,7 @@ segment数组  + HashEntry链表
 segment
 
 是ConcurrentHashMap的一个内部类，主要的组成如下：
-static final class Segment&lt;K,V&gt; extends Reen
+static final class Segment&lt;K,V&gt; extends Ree
 					...
 				</div>
 			</a>
@@ -1154,52 +1228,6 @@ JMM同步规定
 加锁、解锁是同一把锁
 
 jvm运行程序的实体是线程，每个线程创建的时候，jvm都会给他创建一
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-04-24</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/Reentrantlock%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E3%80%81%E4%BB%A5%E5%8F%8A%E5%85%AC%E5%B9%B3%E9%94%81%E5%92%8C%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81%E7%9A%84%E5%8C%BA%E5%88%AB/">
-				<h2 class="index-title">
-					Reentrantlock的实现原理、以及公平锁和非公平锁的区别
-				</h2>
-				<div class="index-brief">
-					Reentrantlock 结构
-
-首先ReentrantLock继承自父类Lock，然后有3个内部类，其中Sync内部类继承自AQS，另外的两个内部类继承自Sync，这两个类分别是用来公平锁和非公平锁的。
-通过Sync重写的方法tryAcquire、tryRelease可以知道，Reentrant
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-04-24</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
-				<h2 class="index-title">
-					Aqs的核心成员、数据模型、锁的实现原理
-				</h2>
-				<div class="index-brief">
-					什么是AQS
-AQS（AbstractQueuedSynchronizer）就是一个抽象的队列同步器，AQS定义了一套多线程访问共享资源的同步器框架，许多同步类的实现都依赖于他，比如下面四个
-
-ReentrantLock
-Semaphore
-CountDownLatch
-CyclicBarrier
-
 					...
 				</div>
 			</a>

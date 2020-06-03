@@ -341,7 +341,7 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 										Aqs的核心成员、数据模型、锁的实现原理
 									</a>
 								</li>
@@ -460,6 +460,26 @@
 			
 								</li>
 								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										linux
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+										【转】Linux查看内存使用情况方法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
 								</li>
@@ -940,12 +960,12 @@
 	<h1>1. 表级锁</h1>
 <p>mysql 里面<strong>表级别</strong>的锁有两种：表锁、元数据锁（meta data lock ，MDL）</p>
 <a id="more"></a>
-<h2 id="表锁">1.1. 表锁</h2>
+<h2 id="表锁">1.1. ¶表锁</h2>
 <p>表锁的语法是 lock tables … read/write。与 FTWRL类似，可以用 <strong>unlock tables</strong>主动释放锁，也可以在客户端断开连接的时候自动释放。需要注意：lock tables 语法除了会限制其他的线程的读写之外，也限定了本线程接下来的操作对象</p>
 <p><strong>举个例子</strong>：</p>
 <p>线程A中执行 lock tables  t1 read，t2 write  这个语句，则其他线程写 t1 ，读t2 的语句都会被阻塞。线程A 在释放锁之前，也只能 执行读 t1、写t2的操作。连写t1都不允许，自然也不能访问其他表</p>
 <p>对于innodb来说，一般不使用lock tables命令，影响太大</p>
-<h2 id="MDL">1.2. MDL</h2>
+<h2 id="MDL">1.2. ¶MDL</h2>
 <p>mdl不需要显式使用，在访问一个表的时候会自动加上。你可以想象一下，如果一个查询正在遍历一个表中的数据，而执行期间另一个线程对这个表结构做变更，删了一列，那么查询线程拿到的结果跟表结构对不上，肯定是不行的。</p>
 <p>因此，在 MySQL 5.5 版本中引入了 MDL，</p>
 <p><strong>MDL 读锁：对一个表做增删改查操作，自动加</strong></p>
@@ -960,10 +980,10 @@
 <blockquote>
 <p>事务a更新1行数据，事务b也更新同一行数据，那么B要等A执行完之后，才能进行更新</p>
 </blockquote>
-<h2 id="两阶段锁">2.1. 两阶段锁</h2>
+<h2 id="两阶段锁">2.1. ¶两阶段锁</h2>
 <p>在innodb中，行锁是在需要的时候才加上的，但并不是不用了就立刻释放，而是等待事务结束了才释放（commit提交后事务结束）。</p>
 <p>如果事务中需要锁多行，要把可能造成锁冲突，最可能影响并发度的锁尽量往后放</p>
-<h2 id="死锁">2.2. 死锁</h2>
+<h2 id="死锁">2.2. ¶死锁</h2>
 <table>
 <thead>
 <tr>
@@ -996,7 +1016,7 @@
 </tbody>
 </table>
 <p>这个时候，事务A在等待事务B释放 id =2的行锁，而事务B在等待事务A释放id =1 的行锁，互相等待对方释放锁资源，即进入<strong>死锁</strong>状态</p>
-<h2 id="MVCC">2.3. MVCC</h2>
+<h2 id="MVCC">2.3. ¶MVCC</h2>
 <p>mysql中，实际上每条记录在更新的时候都会同步记录一条回滚操作，通过回滚操作都可以得到前一个状态的值。</p>
 <p>假如一个值1被按顺序修改为2、3、4，在回滚日志里就会有类似下面的记录</p>
 <p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200422100302.png" alt="image-20200422100302567"></p>
