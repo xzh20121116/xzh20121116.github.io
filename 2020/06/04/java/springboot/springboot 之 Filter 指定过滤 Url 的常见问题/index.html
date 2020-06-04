@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		mysql之锁 | 
+		java/springboot/springboot 之 Filter 指定过滤 Url 的常见问题 | 
 	 
 	温故知新
 	</title>
@@ -248,7 +248,7 @@
 									</a>
 									
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/2020/06/04/java/springboot/springboot%20%E4%B9%8B%20Filter%20%E6%8C%87%E5%AE%9A%E8%BF%87%E6%BB%A4%20Url%20%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
 										springboot 之 Filter 指定过滤 Url 的常见问题
 									</a>
@@ -561,7 +561,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file active">
+								<li class="file">
 									<a href="/2020/04/21/mysql/mysql%E4%B9%8B%E9%94%81/">
 										mysql之锁
 									</a>
@@ -959,16 +959,16 @@
 	<div id="content">
 		<h1 id="article-title">
 
-	mysql之锁
+	springboot 之 Filter 指定过滤 Url 的常见问题
 </h1>
 <div class="article-meta">
 	
 		<span>
-			阅读量:<span id="/2020/04/21/mysql/mysql%E4%B9%8B%E9%94%81/" class="leancloud_visitors" data-flag-title="mysql之锁"></span>
+			阅读量:<span id="/2020/06/04/java/springboot/springboot%20%E4%B9%8B%20Filter%20%E6%8C%87%E5%AE%9A%E8%BF%87%E6%BB%A4%20Url%20%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/" class="leancloud_visitors" data-flag-title="java/springboot/springboot 之 Filter 指定过滤 Url 的常见问题"></span>
 		</span>
 	
 	<span>今晚打老虎</span>
-	<span>2020-04-21 21:53:28</span>
+	<span>2020-06-04 17:09:39</span>
     
 		<div id="article-categories">
             
@@ -977,71 +977,41 @@
 </div>
 
 <div id="article-content">
-	<h1>1. 表级锁</h1>
-<p>mysql 里面<strong>表级别</strong>的锁有两种：表锁、元数据锁（meta data lock ，MDL）</p>
-<a id="more"></a>
-<h2 id="表锁">1.1. ¶表锁</h2>
-<p>表锁的语法是 lock tables … read/write。与 FTWRL类似，可以用 <strong>unlock tables</strong>主动释放锁，也可以在客户端断开连接的时候自动释放。需要注意：lock tables 语法除了会限制其他的线程的读写之外，也限定了本线程接下来的操作对象</p>
-<p><strong>举个例子</strong>：</p>
-<p>线程A中执行 lock tables  t1 read，t2 write  这个语句，则其他线程写 t1 ，读t2 的语句都会被阻塞。线程A 在释放锁之前，也只能 执行读 t1、写t2的操作。连写t1都不允许，自然也不能访问其他表</p>
-<p>对于innodb来说，一般不使用lock tables命令，影响太大</p>
-<h2 id="MDL">1.2. ¶MDL</h2>
-<p>mdl不需要显式使用，在访问一个表的时候会自动加上。你可以想象一下，如果一个查询正在遍历一个表中的数据，而执行期间另一个线程对这个表结构做变更，删了一列，那么查询线程拿到的结果跟表结构对不上，肯定是不行的。</p>
-<p>因此，在 MySQL 5.5 版本中引入了 MDL，</p>
-<p><strong>MDL 读锁：对一个表做增删改查操作，自动加</strong></p>
-<p><strong>MDL 写锁：对表做结构变更操作的时候，自动加</strong></p>
-<ul>
-<li>读锁之间不互斥，即：多个线程可以同时对一张表增删改查</li>
-<li>读写之间互斥、写锁之间互斥：保证变更表结构操作的安全性。因此如果有两个线程要同事给一个表加字段，需要一个等待另一个执行完才能开始</li>
-</ul>
-<p><strong>mdl的作用</strong>：保证读写的正确性</p>
-<h1>2. 行级锁</h1>
-<p>mysql的行锁是引擎层各自实现的，但并不是所有的引擎都支持行锁，MyIsam不支持行锁。</p>
-<blockquote>
-<p>事务a更新1行数据，事务b也更新同一行数据，那么B要等A执行完之后，才能进行更新</p>
-</blockquote>
-<h2 id="两阶段锁">2.1. ¶两阶段锁</h2>
-<p>在innodb中，行锁是在需要的时候才加上的，但并不是不用了就立刻释放，而是等待事务结束了才释放（commit提交后事务结束）。</p>
-<p>如果事务中需要锁多行，要把可能造成锁冲突，最可能影响并发度的锁尽量往后放</p>
-<h2 id="死锁">2.2. ¶死锁</h2>
-<table>
-<thead>
-<tr>
-<th>时间点</th>
-<th>事务a</th>
-<th>事务b</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>t1</td>
-<td>begin; set k=xx where id =1</td>
-<td>begin;</td>
-</tr>
-<tr>
-<td>t2</td>
-<td></td>
-<td>set k =yy where id=2</td>
-</tr>
-<tr>
-<td>t3</td>
-<td>set k =yy where id=2</td>
-<td></td>
-</tr>
-<tr>
-<td>t4</td>
-<td></td>
-<td>set k=xx where id =1</td>
-</tr>
-</tbody>
-</table>
-<p>这个时候，事务A在等待事务B释放 id =2的行锁，而事务B在等待事务A释放id =1 的行锁，互相等待对方释放锁资源，即进入<strong>死锁</strong>状态</p>
-<h2 id="MVCC">2.3. ¶MVCC</h2>
-<p>mysql中，实际上每条记录在更新的时候都会同步记录一条回滚操作，通过回滚操作都可以得到前一个状态的值。</p>
-<p>假如一个值1被按顺序修改为2、3、4，在回滚日志里就会有类似下面的记录</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200422100302.png" alt="image-20200422100302567"></p>
-<p>当前值是4，但是在查询这条记录的时候，不同时刻启动的事务会有不同的 <strong>read-view</strong>，在视图A、B、C里面记录的分别是1、2、4</p>
-<p>同一条记录在系统中可以存在多个版本，这就是数据库的<strong>多版本并发控制</strong>——MVCC</p>
+	<p>在使用Filter对一些自己指定的URL进行过滤拦截时，经常会出现如下错误：</p>
+<p>1、 明明在@WebFilter(urlPatterns={&quot;/app/online&quot;})中过滤的是/app/online 路径，但是运行之后发现，这个WebFilter过滤器对所有的URL都进行了过滤。</p>
+<p>2、 运行之后发现过滤器没有初始化，没有被加载</p>
+<p>下面总结一下使用正确的，合适的注解配置filter的方法：</p>
+<p>1、 指定路径</p>
+<p>在class 上添加注解@WebFilter(urlPatterns={&quot;/app/online&quot;})</p>
+<p>然后在启动类（**Application.java ）上添加注解@ServletComponentScan</p>
+<p>即可。</p>
+<p>代码如下：</p>
+<p>2、 过滤所有路径</p>
+<p>在class上添加@Component或@Configuration 即可</p>
+<p>如果添加了@Component或@Configuration，又添加了@WebFilter（），那么会初始化两次Filter，并且会过滤所有路径+自己指定的路径 ，便会出现对没有指定的URL也会进行过滤</p>
+<pre><code class="language-java">//过滤所有路径
+
+@Component
+
+public class WebFilter implements Filter(){
+
+//override三个方法
+
+。。。
+
+。。。
+
+@Override
+
+ public void init (FilterConfig filterConfig) throws ServletException{
+
+ System.out.println(&quot;初始化filter&quot;);
+
+ }
+
+}
+
+</code></pre>
 
 </div>
 
@@ -1049,13 +1019,13 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2020/04/22/mysql/mysql%20%E7%9A%84%E5%87%A0%E4%B8%AA%E6%97%A5%E5%BF%97/">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  mysql 的几个日志
-              </a>
-            
         </div>
         <div class="item right">
+            
+              <a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+                
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
             
         </div>
     </div>

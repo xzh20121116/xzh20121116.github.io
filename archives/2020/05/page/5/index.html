@@ -242,6 +242,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										springboot
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/04/java/springboot/springboot%20%E4%B9%8B%20Filter%20%E6%8C%87%E5%AE%9A%E8%BF%87%E6%BB%A4%20Url%20%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+										springboot 之 Filter 指定过滤 Url 的常见问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										spring
 									</a>
 									
@@ -938,12 +958,21 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/Bean/">
+			<a href="/2020/05/31/java/jvm/%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
 				<h2 class="index-title">
-					Bean
+					排查堆内存溢出
 				</h2>
 				<div class="index-brief">
-					
+					模拟堆内存溢出
+
+
+新建一个 Oom.java 文件，内容如下
+import java.util.ArrayList;
+import java.util.List;
+
+public class Oom {
+    public static void main(String[] args) {
+  
 					...
 				</div>
 			</a>
@@ -988,18 +1017,21 @@ serial–ps
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
+			<a href="/2020/05/31/java/jvm/jvm%20%E8%B0%83%E4%BC%98/">
 				<h2 class="index-title">
-					客户端ZooInspector
+					jvm 调优
 				</h2>
 				<div class="index-brief">
-					下载
-https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip；
-使用
-下载后，解压，如下图
+					了解 jvm 常用命令行参数
 
-启动
-java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
+
+JVM的命令行参数参考：https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html
+
+
+HotSpot 参数分类
+
+标准： - 开头，所有的 hotspot 都支持
+非标准： -X 开头，
 					...
 				</div>
 			</a>
@@ -1039,56 +1071,18 @@ java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/jvm/jvm%20%E8%B0%83%E4%BC%98/">
+			<a href="/2020/05/31/java/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
 				<h2 class="index-title">
-					jvm 调优
+					客户端ZooInspector
 				</h2>
 				<div class="index-brief">
-					了解 jvm 常用命令行参数
+					下载
+https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip；
+使用
+下载后，解压，如下图
 
-
-JVM的命令行参数参考：https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html
-
-
-HotSpot 参数分类
-
-标准： - 开头，所有的 hotspot 都支持
-非标准： -X 开头，
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/Redis/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
-				<h2 class="index-title">
-					常见问题
-				</h2>
-				<div class="index-brief">
-					雪崩
-¶是什么？
-多个热点 key 同时过期，导致大量访问直接落在 db
-¶解决方案
-
-
-设置热点 key 永不过期，有更新的时候就更新缓存
-
-
-考虑对数据库的访问加上锁或者阻塞队列的方式，保证不会有大量的线程对 db 访问
-
-
-将缓存失效的时间分散开
-
-
-穿透
-¶是什么
-查询一个一定不存在的 ke
+启动
+java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
 					...
 				</div>
 			</a>
@@ -1160,16 +1154,29 @@ zookeeper 客户端
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/Redis/Redisson%E4%BD%BF%E7%94%A8/">
+			<a href="/2020/05/31/java/Redis/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
 				<h2 class="index-title">
-					Redisson使用
+					常见问题
 				</h2>
 				<div class="index-brief">
-					添加 pom 依赖
-    &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
-            &lt;artifactId&gt;re
+					雪崩
+¶是什么？
+多个热点 key 同时过期，导致大量访问直接落在 db
+¶解决方案
+
+
+设置热点 key 永不过期，有更新的时候就更新缓存
+
+
+考虑对数据库的访问加上锁或者阻塞队列的方式，保证不会有大量的线程对 db 访问
+
+
+将缓存失效的时间分散开
+
+
+穿透
+¶是什么
+查询一个一定不存在的 ke
 					...
 				</div>
 			</a>
@@ -1202,6 +1209,28 @@ redis 常用的方式有
 脑裂问题
 
 针对这两个问题，redis 官方提出了红锁(RedLock
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/Redis/Redisson%E4%BD%BF%E7%94%A8/">
+				<h2 class="index-title">
+					Redisson使用
+				</h2>
+				<div class="index-brief">
+					添加 pom 依赖
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
+            &lt;artifactId&gt;re
 					...
 				</div>
 			</a>

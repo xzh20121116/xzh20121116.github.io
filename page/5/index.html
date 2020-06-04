@@ -242,6 +242,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										springboot
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/04/java/springboot/springboot%20%E4%B9%8B%20Filter%20%E6%8C%87%E5%AE%9A%E8%BF%87%E6%BB%A4%20Url%20%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+										springboot 之 Filter 指定过滤 Url 的常见问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										spring
 									</a>
 									
@@ -938,25 +958,52 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+			<a href="/2020/05/31/java/spring/aop/">
 				<h2 class="index-title">
-					事务实现原理
+					aop
 				</h2>
 				<div class="index-brief">
-					spring 的五种事务隔离级别
-
-默认使用数据库的事务
-读未提交
-读已提交
-可重复读
-串行化
-
-spring 的七种传播属性
-
-required：最常用，支持当前事务，如果没有，就新建
-supports：支持当前事务，如果没有，就没有
-mandatory：支持当前事务，如果没有，抛异常
-requi
+					
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/spring/ioc/">
+				<h2 class="index-title">
+					ioc
+				</h2>
+				<div class="index-brief">
+					ioc 既是一种思想，又是一种容器
+Ioc 思想
+Inversion of controlle 控制反转
+比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
+而 ioc 是，
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/spring/Bean/">
+				<h2 class="index-title">
+					Bean
+				</h2>
+				<div class="index-brief">
+					
 					...
 				</div>
 			</a>
@@ -984,24 +1031,6 @@ import java.util.List;
 public class Oom {
     public static void main(String[] args) {
   
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/spring/Bean/">
-				<h2 class="index-title">
-					Bean
-				</h2>
-				<div class="index-brief">
-					
 					...
 				</div>
 			</a>
@@ -1046,18 +1075,21 @@ serial–ps
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
+			<a href="/2020/05/31/java/jvm/jvm%20%E8%B0%83%E4%BC%98/">
 				<h2 class="index-title">
-					客户端ZooInspector
+					jvm 调优
 				</h2>
 				<div class="index-brief">
-					下载
-https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip；
-使用
-下载后，解压，如下图
+					了解 jvm 常用命令行参数
 
-启动
-java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
+
+JVM的命令行参数参考：https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html
+
+
+HotSpot 参数分类
+
+标准： - 开头，所有的 hotspot 都支持
+非标准： -X 开头，
 					...
 				</div>
 			</a>
@@ -1097,56 +1129,18 @@ java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/jvm/jvm%20%E8%B0%83%E4%BC%98/">
+			<a href="/2020/05/31/java/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
 				<h2 class="index-title">
-					jvm 调优
+					客户端ZooInspector
 				</h2>
 				<div class="index-brief">
-					了解 jvm 常用命令行参数
+					下载
+https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip；
+使用
+下载后，解压，如下图
 
-
-JVM的命令行参数参考：https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html
-
-
-HotSpot 参数分类
-
-标准： - 开头，所有的 hotspot 都支持
-非标准： -X 开头，
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/Redis/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
-				<h2 class="index-title">
-					常见问题
-				</h2>
-				<div class="index-brief">
-					雪崩
-¶是什么？
-多个热点 key 同时过期，导致大量访问直接落在 db
-¶解决方案
-
-
-设置热点 key 永不过期，有更新的时候就更新缓存
-
-
-考虑对数据库的访问加上锁或者阻塞队列的方式，保证不会有大量的线程对 db 访问
-
-
-将缓存失效的时间分散开
-
-
-穿透
-¶是什么
-查询一个一定不存在的 ke
+启动
+java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
 					...
 				</div>
 			</a>
