@@ -242,6 +242,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										mybatis
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/05/java/mybatis/xx/">
+										xx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										springboot
 									</a>
 									
@@ -422,7 +442,7 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/04/26/java/%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%A5%BD%E5%A4%84/">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%A5%BD%E5%A4%84/">
 										线程池的好处
 									</a>
 								</li>
@@ -589,8 +609,46 @@
 									
 							<ul>
 								<li class="file">
+									<a href="/2020/06/16/%E5%85%B6%E4%BB%96/%E3%80%90%E8%BD%AC%E3%80%91%E3%80%90%E9%98%BF%E9%87%8C%E4%BA%91%E5%AE%98%E7%BD%91%E3%80%91oss%20%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%20Content-Type/">
+										【转】【阿里云官网】oss 如何设置 Content-Type
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/06/03/%E5%85%B6%E4%BB%96/%E3%80%90%E8%BD%AC%E3%80%91%E6%90%AD%E5%BB%BA%20gitlab/">
 										【转】搭建 gitlab
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/06/15/%E5%85%B6%E4%BB%96/%E6%94%B6%E8%97%8F/">
+										收藏
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										分布式相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+										分布式事务
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -958,6 +1016,142 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/04/28/java/%E9%9B%86%E5%90%88/ArrayList/">
+				<h2 class="index-title">
+					ArrayList
+				</h2>
+				<div class="index-brief">
+					ArrayList
+¶底层存储
+数组列表
+如果存储的是基本类型，只能存包装类
+¶特点：
+查询快，增删慢，线程不安全
+¶为什么不安全还用他呢？
+因为，正常的场景，一般都是用来查询的，不会太频繁的增删（增删可以使用 LinkedList），线程安全使用 Vector
+不存在查询快，增删快，安全的结构
+¶
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-04-28</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/程序员/">程序员</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/04/28/java/%E7%BA%BF%E7%A8%8B/ThreadLocal/">
+				<h2 class="index-title">
+					ThreadLocal
+				</h2>
+				<div class="index-brief">
+					不能称之为本地线程，而应该是CopyValueIntoEveryThread
+是什么？
+ThreadLocal 是一个本地线程副本变量工具类。主要用于将私有线程和该线程存放的副本对象做一个映射，各个线程之间的变量互不干扰，在高并发场景下，可以实现无状态的调用，适用于各个线程不共享变量值的操作。
+工作
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-04-28</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/程序员/">程序员</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/04/28/java/%E9%9B%86%E5%90%88/ConcurrentHashMap/">
+				<h2 class="index-title">
+					ConcurrentHashMap
+				</h2>
+				<div class="index-brief">
+					jdk 1.7 版本的实现原理
+¶数据结构
+
+数组+链表
+segment数组  + HashEntry链表
+
+
+
+
+segment
+
+是ConcurrentHashMap的一个内部类，主要的组成如下：
+static final class Segment&lt;K,V&gt; extends Ree
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-04-28</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/04/27/java/%E9%9B%86%E5%90%88/HashMap/">
+				<h2 class="index-title">
+					HashMap
+				</h2>
+				<div class="index-brief">
+					数据结构
+1.7
+
+
+
+数组+链表
+
+
+Entry节点是他的内部类，实现了Map.ENTRY()
+
+
+插入过程使用头插法：扩容时死循环
+
+
+
+1.8
+
+
+数组+链表+红黑树
+Node节点是他的内部类，实现了Map.ENTRY()
+使用尾插法：避免扩容时死循环
+
+
+底层实现
+从三个方面说：put()、
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-04-27</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E3%80%81volatile%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 				<h2 class="index-title">
 					java内存模型、volatile的实现原理
@@ -1112,97 +1306,10 @@ InnoDB的数据是按页存储的，删除数据的时候，该数据的位置�
                 </div>
 		</div>	
 	
-		<div class="index-li">
-			<a href="/2020/04/22/mysql/mysql%20%E5%A6%82%E4%BD%95%E4%B8%BB%E5%A4%87%E4%B8%80%E8%87%B4+%E5%8F%8Cm%E5%BE%AA%E7%8E%AF%E5%A4%8D%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
-				<h2 class="index-title">
-					mysql 如何主备一致+双m循环复制解决方案
-				</h2>
-				<div class="index-brief">
-					事务日志的同步过程
-备库和主库之间维持了一个长连接，主库内部有一个线程专门服务于备库的这个长连接
-一个事务日志的完整同步过程如下：
-
-在备库上通过 change master命令，设置主库的ip、端口、用户名、密码，以及从哪个位置开始请求binlog
-在备库上执行 start slave  命令，这
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-04-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/04/22/mysql/count(*)%E3%80%81count(%E4%B8%BB%E9%94%AE%20id)%E3%80%81count(%E5%AD%97%E6%AE%B5)%E5%92%8Ccount(1)%E7%AD%89%E4%B8%8D%E5%90%8C%E7%94%A8%E6%B3%95%E7%9A%84%E6%80%A7%E8%83%BD/">
-				<h2 class="index-title">
-					count(*)、count(主键 id)、count(字段)和count(1)等不同用法的性能
-				</h2>
-				<div class="index-brief">
-					count() 是一个聚合函数，对于返回的结果集，一行行地判断，如果 count 函数的参数不是 NULL，累计值就加 1，否则不加。最后返回累计值。
-所以，count(*)、count(主键 id) 和 count(1) 都表示返回满足条件的结果集的总行数；而 count(字段），则表示返回满足条
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-04-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/04/22/mysql/mysql%20%E7%9A%84%E5%87%A0%E4%B8%AA%E6%97%A5%E5%BF%97/">
-				<h2 class="index-title">
-					mysql 的几个日志
-				</h2>
-				<div class="index-brief">
-					redo log
-redolog的背景：
-
-update user_table set name='王大锤' where id = '3'
-
-针对这条sql，它的执行过程是这样的：先把id=3的行查出来，然后将name 字段改成 java 3y，看起来没问题。
-实际上 mysql 基本存储结构是 页
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-04-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/04/21/mysql/mysql%E4%B9%8B%E9%94%81/">
-				<h2 class="index-title">
-					mysql之锁
-				</h2>
-				<div class="index-brief">
-					¶表锁
-表锁的语法是 lock tables … read/write。与 FTWRL类似，可以用 unlock tables主动释放锁，也可以在客户端断开连接的时候自动释放。需要注意：lock tables 语法除了会限制其他的线程的读写之外，也限定了本线程接下来的操作对象
-举个例子：
-线程A中执
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-04-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
 	
 	<div id="index-paginator">
 		
-			<a class="extend prev" rel="prev" href="/page/6/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span>
+			<a class="extend prev" rel="prev" href="/page/6/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/8/">&gt;</a>
 		
 	</div>
 </div>

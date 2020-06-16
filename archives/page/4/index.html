@@ -242,6 +242,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										mybatis
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/05/java/mybatis/xx/">
+										xx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										springboot
 									</a>
 									
@@ -422,7 +442,7 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/04/26/java/%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%A5%BD%E5%A4%84/">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%A5%BD%E5%A4%84/">
 										线程池的好处
 									</a>
 								</li>
@@ -589,8 +609,46 @@
 									
 							<ul>
 								<li class="file">
+									<a href="/2020/06/16/%E5%85%B6%E4%BB%96/%E3%80%90%E8%BD%AC%E3%80%91%E3%80%90%E9%98%BF%E9%87%8C%E4%BA%91%E5%AE%98%E7%BD%91%E3%80%91oss%20%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%20Content-Type/">
+										【转】【阿里云官网】oss 如何设置 Content-Type
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/06/03/%E5%85%B6%E4%BB%96/%E3%80%90%E8%BD%AC%E3%80%91%E6%90%AD%E5%BB%BA%20gitlab/">
 										【转】搭建 gitlab
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/06/15/%E5%85%B6%E4%BB%96/%E6%94%B6%E8%97%8F/">
+										收藏
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										分布式相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+										分布式事务
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -958,6 +1016,117 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E5%90%A6%E4%B8%BA2%E6%95%B4%E6%95%B0%E6%AC%A1%E5%B9%82/">
+				<h2 class="index-title">
+					如何判断一个数否为2整数次幂
+				</h2>
+				<div class="index-brief">
+					logn 版本
+¶原理
+创建一个中间变量，初始值是 1，开始循环，每次循环都让 temp 和目标数对比
+如果相等，说明目标数是 2 的整数次幂
+如果不相等，则让 temp增大 1 倍，继续循环进行比较
+当 temp 大于目标整数时，说明目标数不是 2 的整数次幂
+举个例子
+
+目标数 19：
+1x2 
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%88%A0%E5%8E%BBk%E4%B8%AA%E6%95%B0%E5%AD%97%E5%90%8E%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC/">
+				<h2 class="index-title">
+					删去k个数字后的最小值
+				</h2>
+				<div class="index-brief">
+					题目
+给出一个整数，删除指定个数字后，剩下的数最小
+翻译成人话
+
+
+
+思路
+贪心算法相关
+¶你的第一感觉是优先删除最大的数字？
+
+不对，数字的大小固然重要，但是数字的位置更重要，哪怕高位只减少 1，对数值的影响也是非常大的
+
+¶举个例子
+
+一个9 位整数 541270936，要求删除 1 个数字，让
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">
+				<h2 class="index-title">
+					冒泡排序
+				</h2>
+				<div class="index-brief">
+					实例代码
+public class 冒泡排序 {
+	public static void main(String[] args) {
+		int[] arr = {5, 2, 4, 3, 1, 7, 9, 8, 6};
+		sort(arr);
+		print(arr);
+
+	}
+
+	static 
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%A0%86%E6%8E%92%E5%BA%8F/">
+				<h2 class="index-title">
+					堆排序
+				</h2>
+				<div class="index-brief">
+					什么是堆排序
+二叉堆的构建、删除、自我调整等基本操作正是实现堆排序的基础
+二叉堆的特性
+
+最大堆的堆顶是整个堆中最大的元素
+最小堆的堆顶是整个堆中最小的元素
+
+以最大堆为力，如果删除一个最大堆的堆顶（并不是完全删除，而是跟末尾的节点交换位置），经过自我调整，第 2 大的元素就会被交换上来，成为最大堆
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/05/31/%E6%A2%AF%E5%AD%90/mac%E4%BD%BF%E7%94%A8%20v2ray/">
 				<h2 class="index-title">
 					mac使用 v2ray
@@ -1044,15 +1213,27 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/MDC/">
+			<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%A5%BD%E5%A4%84/">
 				<h2 class="index-title">
-					MDC
+					线程池的好处
 				</h2>
 				<div class="index-brief">
-					MDC：Mapped Diagnostic Context，映射调试上下文
-是 log4j 和 logback 提供一种方便在多线程下记录日志的功能
-可以将 MDC 看成是一个与当前线程绑定的哈希表，MDC 中的内容可以被同一线程中执行的代码所访问，当前线程的子线程会继承父线程中的 MDCD 内容
+					线程池的好处
 
+
+帮助我们管理线程，避免增加创建线程和销毁线程的资源损耗。
+
+因为线程其实也是一个对象，创建一个对象，需要经过类加载过程，销毁一个对象，需要走GC垃圾回收流程，都是需要资源开销的
+
+
+
+提高响应速度
+
+如果任务达到了，直接从线程池拿线程  比 重新创建一个线程，速度快很多
+
+
+
+重复
 					...
 				</div>
 			</a>
@@ -1090,122 +1271,15 @@ CyclicBarrier
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+			<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/MDC/">
 				<h2 class="index-title">
-					设计模式
+					MDC
 				</h2>
 				<div class="index-brief">
-					
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/%E4%BD%8D%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93/">
-				<h2 class="index-title">
-					位操作总结
-				</h2>
-				<div class="index-brief">
-					计算机中所有数据都是以二进制存储的，位运算其实就是直接对内存中的二进制数据进行操作，因此处理数据的素的非常快
-基本的位操作有  与、或、异或、取反、左移、右移这 6 种，规则如下表
+					MDC：Mapped Diagnostic Context，映射调试上下文
+是 log4j 和 logback 提供一种方便在多线程下记录日志的功能
+可以将 MDC 看成是一个与当前线程绑定的哈希表，MDC 中的内容可以被同一线程中执行的代码所访问，当前线程的子线程会继承父线程中的 MDCD 内容
 
-
-
-符号
-描述
-运算规则
-
-
-
-
-&amp;
-与
-两个位都为 1 时，结果才为 1
-
-
-|
-或
-两个位都为 0 时，
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
-				<h2 class="index-title">
-					依赖注入
-				</h2>
-				<div class="index-brief">
-					di 是相较于 ioc 的一种更具体的实现，ioc 可以理解为一个接口，di 就是他的实现
-装配方式优先级：自动装配 &gt;  java 配置文件 &gt; xml 配置文件
-自动装配
-spring 容器可以自动配置相互协作 bean 之间的关系。
-spring 从两个角度实现自动装配
-¶组件扫描
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/spring/%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
-				<h2 class="index-title">
-					事务实现原理
-				</h2>
-				<div class="index-brief">
-					spring 的五种事务隔离级别
-
-默认使用数据库的事务
-读未提交
-读已提交
-可重复读
-串行化
-
-spring 的七种传播属性
-
-required：最常用，支持当前事务，如果没有，就新建
-supports：支持当前事务，如果没有，就没有
-mandatory：支持当前事务，如果没有，抛异常
-requi
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/spring/spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
-				<h2 class="index-title">
-					spring 循环依赖
-				</h2>
-				<div class="index-brief">
-					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
-如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
 					...
 				</div>
 			</a>
@@ -1220,7 +1294,7 @@ requi
 	
 	<div id="index-paginator">
 		
-			<a class="extend prev" rel="prev" href="/archives/page/3/">&lt;</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="page-number" href="/archives/page/6/">6</a><a class="page-number" href="/archives/page/7/">7</a><a class="extend next" rel="next" href="/archives/page/5/">&gt;</a>
+			<a class="extend prev" rel="prev" href="/archives/page/3/">&lt;</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/page/5/">5</a><a class="page-number" href="/archives/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/8/">8</a><a class="extend next" rel="next" href="/archives/page/5/">&gt;</a>
 		
 	</div>
 </div>

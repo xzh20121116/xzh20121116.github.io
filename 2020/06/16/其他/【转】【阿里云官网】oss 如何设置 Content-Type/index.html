@@ -1,0 +1,2192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	
+	<!-- title -->
+	
+	<title>
+	
+		其他/【转】【阿里云官网】oss 如何设置 Content-Type | 
+	 
+	温故知新
+	</title>
+	
+	<!-- keywords,description -->
+	 
+
+	<!-- favicon -->
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+	
+  
+
+	
+<link rel="stylesheet" href="/css/main.css">
+
+	
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/darcula.min.css">
+
+
+	
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js"></script>
+
+	
+<script src="/js/main.js"></script>
+
+	
+		
+<script src="https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
+
+		
+<script src="https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
+
+	
+	
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+	<header id="header">
+    <a id="title" href="/" class="logo">温故知新</a>
+
+	<ul id="menu">
+		<!-- <li class="menu-item">
+			<a href="/about" class="menu-item-link">ABOUT</a>
+		</li> -->
+		
+		<!-- <li class="menu-item">
+			<a href="https://github.com/wujun234/uid-generator-spring-boot-starter" class="menu-item-link" target="_blank">
+				UidGenerator
+			</a>
+		</li> -->
+		<!-- <li class="menu-item">
+			<a href="https://github.com/wujun234" class="menu-item-link" target="_blank">
+				<i class="fa fa-github fa-2x"></i>
+			</a>
+		</li> -->
+	</ul>
+</header>
+
+	
+<div id="sidebar">
+	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
+	
+	<div id="site-toc">
+		<input id="search-input" class="search-input" type="text" placeholder="search...">
+		<div id="tree">
+			
+
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										hexo
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/hexo/Hexo%20%E6%A0%87%E9%A2%98%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7/">
+										Hexo 标题自动编号
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										java
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Redis
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/java/Redis/Redisson%E4%BD%BF%E7%94%A8/">
+										Redisson使用
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/java/Redis/redis%E4%B9%8B%E7%BA%A2%E9%94%81(Redlock)/">
+										redis之红锁(Redlock)
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/java/Redis/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+										分布式锁
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/java/Redis/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+										常见问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Zookeeper
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/java/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
+										mac 安装启动
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/java/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+										分布式锁
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/java/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
+										客户端ZooInspector
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										jvm
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/java/jvm/jvm%20%E8%B0%83%E4%BC%98/">
+										jvm 调优
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/java/jvm/%E5%B8%B8%E8%A7%81%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">
+										常见垃圾回收器
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/java/jvm/%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
+										排查堆内存溢出
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										mybatis
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/05/java/mybatis/xx/">
+										xx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										springboot
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/04/java/springboot/springboot%20%E4%B9%8B%20Filter%20%E6%8C%87%E5%AE%9A%E8%BF%87%E6%BB%A4%20Url%20%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+										springboot 之 Filter 指定过滤 Url 的常见问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										spring
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/05/07/java/spring/BeanFactory-%E5%92%8C-ApplicationContext-%E5%8C%BA%E5%88%AB/">
+										BeanFactory-和-ApplicationContext-区别
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/java/spring/Bean/">
+										Bean
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/java/spring/aop/">
+										aop
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/java/spring/ioc/">
+										ioc
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/java/spring/spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+										spring 循环依赖
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/java/spring/%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+										事务实现原理
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/java/spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
+										依赖注入
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/java/spring/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+										设计模式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/java/%E4%BD%8D%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93/">
+										位操作总结
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										线程
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+										Aqs的核心成员、数据模型、锁的实现原理
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/MDC/">
+										MDC
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/Reentrantlock%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E3%80%81%E4%BB%A5%E5%8F%8A%E5%85%AC%E5%B9%B3%E9%94%81%E5%92%8C%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81%E7%9A%84%E5%8C%BA%E5%88%AB/">
+										Reentrantlock的实现原理、以及公平锁和非公平锁的区别
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/28/java/%E7%BA%BF%E7%A8%8B/ThreadLocal/">
+										ThreadLocal
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E3%80%81volatile%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+										java内存模型、volatile的实现原理
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/23/java/%E7%BA%BF%E7%A8%8B/sleep%E3%80%81wait%E3%80%81notify%E3%80%81yield%E3%80%81join%E7%9A%84%E5%8C%BA%E5%88%AB/">
+										sleep、wait、notify、yield、join的区别
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/23/java/%E7%BA%BF%E7%A8%8B/synchronized/">
+										synchronized
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%A5%BD%E5%A4%84/">
+										线程池的好处
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/23/java/%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E3%80%816%E7%A7%8D%E7%8A%B6%E6%80%81%E7%9A%84%E6%B5%81%E8%BD%AC/">
+										线程的生命周期、6种状态的流转
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										集合
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/04/28/java/%E9%9B%86%E5%90%88/ArrayList/">
+										ArrayList
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/28/java/%E9%9B%86%E5%90%88/ConcurrentHashMap/">
+										ConcurrentHashMap
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/27/java/%E9%9B%86%E5%90%88/HashMap/">
+										HashMap
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										linux
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+										【转】Linux查看内存使用情况方法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										markdown
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/markdown/%E3%80%90%E8%BD%AC%E3%80%91Markdown%20%E6%8F%92%E5%85%A5%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">
+										【转】Markdown 插入数学公式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										mysql
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/04/22/mysql/count(*)%E3%80%81count(%E4%B8%BB%E9%94%AE%20id)%E3%80%81count(%E5%AD%97%E6%AE%B5)%E5%92%8Ccount(1)%E7%AD%89%E4%B8%8D%E5%90%8C%E7%94%A8%E6%B3%95%E7%9A%84%E6%80%A7%E8%83%BD/">
+										count(*)、count(主键 id)、count(字段)和count(1)等不同用法的性能
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/22/mysql/mysql%20%E5%A6%82%E4%BD%95%E4%B8%BB%E5%A4%87%E4%B8%80%E8%87%B4+%E5%8F%8Cm%E5%BE%AA%E7%8E%AF%E5%A4%8D%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+										mysql 如何主备一致+双m循环复制解决方案
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/22/mysql/mysql%20%E7%9A%84%E5%87%A0%E4%B8%AA%E6%97%A5%E5%BF%97/">
+										mysql 的几个日志
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/21/mysql/mysql%E4%B9%8B%E9%94%81/">
+										mysql之锁
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/23/mysql/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%A0%E4%BA%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%A1%A8%E7%9A%84%E5%A4%A7%E5%B0%8F%E4%B8%8D%E5%8F%98%EF%BC%9F/">
+										为什么删了数据，表的大小不变？
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										其他
+									</a>
+									
+							<ul>
+								<li class="file active">
+									<a href="/2020/06/16/%E5%85%B6%E4%BB%96/%E3%80%90%E8%BD%AC%E3%80%91%E3%80%90%E9%98%BF%E9%87%8C%E4%BA%91%E5%AE%98%E7%BD%91%E3%80%91oss%20%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%20Content-Type/">
+										【转】【阿里云官网】oss 如何设置 Content-Type
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/06/03/%E5%85%B6%E4%BB%96/%E3%80%90%E8%BD%AC%E3%80%91%E6%90%AD%E5%BB%BA%20gitlab/">
+										【转】搭建 gitlab
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/06/15/%E5%85%B6%E4%BB%96/%E6%94%B6%E8%97%8F/">
+										收藏
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										分布式相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+										分布式事务
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										梯子
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E6%A2%AF%E5%AD%90/iphone%20%E4%BD%BF%E7%94%A8shadownrocket/">
+										iphone 使用shadownrocket
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E6%A2%AF%E5%AD%90/mac%E4%BD%BF%E7%94%A8%20v2ray/">
+										mac使用 v2ray
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										算法与数据结构
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">
+										冒泡排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%A0%86%E6%8E%92%E5%BA%8F/">
+										堆排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
+										常见排序算法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										常见面试题
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/Topk%E9%97%AE%E9%A2%98/">
+										Topk问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%88%A0%E5%8E%BBk%E4%B8%AA%E6%95%B0%E5%AD%97%E5%90%8E%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC/">
+										删去k个数字后的最小值
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E5%90%A6%E4%B8%BA2%E6%95%B4%E6%95%B0%E6%AC%A1%E5%B9%82/">
+										如何判断一个数否为2整数次幂
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E9%93%BE%E8%A1%A8%E6%9C%89%E7%8E%AF/">
+										如何判断链表有环
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%A7%E6%95%B4%E6%95%B0%E7%9B%B8%E5%8A%A0/">
+										如何实现大整数相加
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E6%B1%82%E5%87%BA%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/">
+										如何求出最大公约数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%AF%BB%E6%89%BE%E5%85%A8%E6%8E%92%E5%88%97%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%95%B0/">
+										寻找全排列的下一个数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%AF%BB%E6%89%BE%E7%BC%BA%E5%A4%B1%E7%9A%84%E6%95%B4%E6%95%B0/">
+										寻找缺失的整数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%97%A0%E5%BA%8F%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E5%90%8E%E6%9C%80%E5%A4%A7%E7%9B%B8%E9%82%BB%E5%B7%AE/">
+										无序数组排序后最大相邻差
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9C%80%E5%B0%8F%E6%A0%88%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+										最小栈的实现
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9C%AA%E5%AE%8C%E6%88%90--%E5%A6%82%E4%BD%95%E6%B1%82%E8%A7%A3%E9%87%91%E7%9F%BF%E9%97%AE%E9%A2%98%EF%BC%88%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%89/">
+										未完成--如何求解金矿问题（背包问题）
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/">
+										用栈实现队列
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
+										归并排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
+										快速排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%89%8B%E5%86%99Lru/">
+										手写Lru
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
+										插入排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										数据结构
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+										基础数据结构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%95%B0/">
+										数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										线性排序
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/">
+										基数排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F%E5%92%8C%E6%A1%B6%E6%8E%92%E5%BA%8F/">
+										计数排序和桶排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/">
+										选择排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										维权
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E7%BB%B4%E6%9D%83/xx/">
+										xx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										计算机基础
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E5%AE%B9%E9%87%8F/">
+										存储单位容量
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										黑苹果
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/%E9%BB%91%E8%8B%B9%E6%9E%9C/%E3%80%90%E8%BD%AC%E3%80%91NUC8%E4%BD%BF%E7%94%A8%E8%8B%B9%E6%9E%9C%E5%8E%9F%E8%A3%85%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1%E5%85%8D%E9%A9%B1%E5%8A%A8WiFi%E8%93%9D%E7%89%99AirDorpHandoff/">
+										【转】NUC8使用苹果原装无线网卡免驱动WiFi蓝牙AirDorpHandoff
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+		</div>
+	</div>
+</div>
+
+	<!-- 引入正文 -->
+	<div id="content">
+		<h1 id="article-title">
+
+	【转】【阿里云官网】oss 如何设置 Content-Type
+</h1>
+<div class="article-meta">
+	
+		<span>
+			阅读量:<span id="/2020/06/16/%E5%85%B6%E4%BB%96/%E3%80%90%E8%BD%AC%E3%80%91%E3%80%90%E9%98%BF%E9%87%8C%E4%BA%91%E5%AE%98%E7%BD%91%E3%80%91oss%20%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%20Content-Type/" class="leancloud_visitors" data-flag-title="其他/【转】【阿里云官网】oss 如何设置 Content-Type"></span>
+		</span>
+	
+	<span>今晚打老虎</span>
+	<span>2020-06-16 11:34:45</span>
+    
+		<div id="article-categories">
+            
+		</div>
+    
+</div>
+
+<div id="article-content">
+	<p>多用途互联网邮件扩展类型（Multipurpose Internet Mail Extensions，简称 MIME），是设定某种扩展名的文件用一种应用程序来打开的方式类型，当该扩展名文件被访问的时候，浏览器会自动使用指定应用程序来打开。多用于指定一些客户端自定义的文件名，以及一些媒体文件打开方式。</p>
+<p>OSS中默认是会匹配您上传的文件类型，根据您上传的文件类型，比如jpg，会自动识别为图片文件。OSS中设置和更改MIME类型的步骤如下：</p>
+<ol>
+<li>登录 <a href="https://oss.console.aliyun.com/" target="_blank" rel="noopener">OSS 管理控制台</a>。</li>
+<li>找到您要设置的目标文件，单击对应的<strong>设置 HTTP 头</strong>链接。</li>
+<li>在<strong>设置 HTTP 头</strong>对话框中，设置<strong>Content-Type</strong>参数的值。</li>
+</ol>
+<p><strong>常见Content-Type列表：</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">文件扩展名</th>
+<th style="text-align:left">Content-Type(Mime-Type)</th>
+<th style="text-align:left">文件扩展名</th>
+<th style="text-align:left">Content-Type(Mime-Type)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">.<em>（ 二进制流，未知的文件类型）</em></td>
+<td style="text-align:left">application/octet-stream</td>
+<td style="text-align:left">.tif</td>
+<td style="text-align:left">image/tiff</td>
+</tr>
+<tr>
+<td style="text-align:left">0.001</td>
+<td style="text-align:left">application/x-001</td>
+<td style="text-align:left">0.301</td>
+<td style="text-align:left">application/x-301</td>
+</tr>
+<tr>
+<td style="text-align:left">0.323</td>
+<td style="text-align:left">text/h323</td>
+<td style="text-align:left">0.906</td>
+<td style="text-align:left">application/x-906</td>
+</tr>
+<tr>
+<td style="text-align:left">0.907</td>
+<td style="text-align:left">drawing/907</td>
+<td style="text-align:left">.a11</td>
+<td style="text-align:left">application/x-a11</td>
+</tr>
+<tr>
+<td style="text-align:left">.acp</td>
+<td style="text-align:left">audio/x-mei-aac</td>
+<td style="text-align:left">.ai</td>
+<td style="text-align:left">application/postscript</td>
+</tr>
+<tr>
+<td style="text-align:left">.aif</td>
+<td style="text-align:left">audio/aiff</td>
+<td style="text-align:left">.aifc</td>
+<td style="text-align:left">audio/aiff</td>
+</tr>
+<tr>
+<td style="text-align:left">.aiff</td>
+<td style="text-align:left">audio/aiff</td>
+<td style="text-align:left">.anv</td>
+<td style="text-align:left">application/x-anv</td>
+</tr>
+<tr>
+<td style="text-align:left">.asa</td>
+<td style="text-align:left">text/asa</td>
+<td style="text-align:left">.asf</td>
+<td style="text-align:left">video/x-ms-asf</td>
+</tr>
+<tr>
+<td style="text-align:left">.asp</td>
+<td style="text-align:left">text/asp</td>
+<td style="text-align:left">.asx</td>
+<td style="text-align:left">video/x-ms-asf</td>
+</tr>
+<tr>
+<td style="text-align:left">.au</td>
+<td style="text-align:left">audio/basic</td>
+<td style="text-align:left">.avi</td>
+<td style="text-align:left">video/avi</td>
+</tr>
+<tr>
+<td style="text-align:left">.awf</td>
+<td style="text-align:left">application/vnd.adobe.workflow</td>
+<td style="text-align:left">.biz</td>
+<td style="text-align:left">text/xml</td>
+</tr>
+<tr>
+<td style="text-align:left">.bmp</td>
+<td style="text-align:left">application/x-bmp</td>
+<td style="text-align:left">.bot</td>
+<td style="text-align:left">application/x-bot</td>
+</tr>
+<tr>
+<td style="text-align:left">.c4t</td>
+<td style="text-align:left">application/x-c4t</td>
+<td style="text-align:left">.c90</td>
+<td style="text-align:left">application/x-c90</td>
+</tr>
+<tr>
+<td style="text-align:left">.cal</td>
+<td style="text-align:left">application/x-cals</td>
+<td style="text-align:left">.cat</td>
+<td style="text-align:left">application/vnd.ms-pki.seccat</td>
+</tr>
+<tr>
+<td style="text-align:left">.cdf</td>
+<td style="text-align:left">application/x-netcdf</td>
+<td style="text-align:left">.cdr</td>
+<td style="text-align:left">application/x-cdr</td>
+</tr>
+<tr>
+<td style="text-align:left">.cel</td>
+<td style="text-align:left">application/x-cel</td>
+<td style="text-align:left">.cer</td>
+<td style="text-align:left">application/x-x509-ca-cert</td>
+</tr>
+<tr>
+<td style="text-align:left">.cg4</td>
+<td style="text-align:left">application/x-g4</td>
+<td style="text-align:left">.cgm</td>
+<td style="text-align:left">application/x-cgm</td>
+</tr>
+<tr>
+<td style="text-align:left">.cit</td>
+<td style="text-align:left">application/x-cit</td>
+<td style="text-align:left">.class</td>
+<td style="text-align:left">java/</td>
+</tr>
+<tr>
+<td style="text-align:left">.cml</td>
+<td style="text-align:left">text/xml</td>
+<td style="text-align:left">.cmp</td>
+<td style="text-align:left">application/x-cmp</td>
+</tr>
+<tr>
+<td style="text-align:left">.cmx</td>
+<td style="text-align:left">application/x-cmx</td>
+<td style="text-align:left">.cot</td>
+<td style="text-align:left">application/x-cot</td>
+</tr>
+<tr>
+<td style="text-align:left">.crl</td>
+<td style="text-align:left">application/pkix-crl</td>
+<td style="text-align:left">.crt</td>
+<td style="text-align:left">application/x-x509-ca-cert</td>
+</tr>
+<tr>
+<td style="text-align:left">.csi</td>
+<td style="text-align:left">application/x-csi</td>
+<td style="text-align:left">.css</td>
+<td style="text-align:left">text/css</td>
+</tr>
+<tr>
+<td style="text-align:left">.cut</td>
+<td style="text-align:left">application/x-cut</td>
+<td style="text-align:left">.dbf</td>
+<td style="text-align:left">application/x-dbf</td>
+</tr>
+<tr>
+<td style="text-align:left">.dbm</td>
+<td style="text-align:left">application/x-dbm</td>
+<td style="text-align:left">.dbx</td>
+<td style="text-align:left">application/x-dbx</td>
+</tr>
+<tr>
+<td style="text-align:left">.dcd</td>
+<td style="text-align:left">text/xml</td>
+<td style="text-align:left">.dcx</td>
+<td style="text-align:left">application/x-dcx</td>
+</tr>
+<tr>
+<td style="text-align:left">.der</td>
+<td style="text-align:left">application/x-x509-ca-cert</td>
+<td style="text-align:left">.dgn</td>
+<td style="text-align:left">application/x-dgn</td>
+</tr>
+<tr>
+<td style="text-align:left">.dib</td>
+<td style="text-align:left">application/x-dib</td>
+<td style="text-align:left">.dll</td>
+<td style="text-align:left">application/x-msdownload</td>
+</tr>
+<tr>
+<td style="text-align:left">.doc</td>
+<td style="text-align:left">application/msword</td>
+<td style="text-align:left">.dot</td>
+<td style="text-align:left">application/msword</td>
+</tr>
+<tr>
+<td style="text-align:left">.drw</td>
+<td style="text-align:left">application/x-drw</td>
+<td style="text-align:left">.dtd</td>
+<td style="text-align:left">text/xml</td>
+</tr>
+<tr>
+<td style="text-align:left">.dwf</td>
+<td style="text-align:left">Model/vnd.dwf</td>
+<td style="text-align:left">.dwf</td>
+<td style="text-align:left">application/x-dwf</td>
+</tr>
+<tr>
+<td style="text-align:left">.dwg</td>
+<td style="text-align:left">application/x-dwg</td>
+<td style="text-align:left">.dxb</td>
+<td style="text-align:left">application/x-dxb</td>
+</tr>
+<tr>
+<td style="text-align:left">.dxf</td>
+<td style="text-align:left">application/x-dxf</td>
+<td style="text-align:left">.edn</td>
+<td style="text-align:left">application/vnd.adobe.edn</td>
+</tr>
+<tr>
+<td style="text-align:left">.emf</td>
+<td style="text-align:left">application/x-emf</td>
+<td style="text-align:left">.eml</td>
+<td style="text-align:left">message/rfc822</td>
+</tr>
+<tr>
+<td style="text-align:left">.ent</td>
+<td style="text-align:left">text/xml</td>
+<td style="text-align:left">.epi</td>
+<td style="text-align:left">application/x-epi</td>
+</tr>
+<tr>
+<td style="text-align:left">.eps</td>
+<td style="text-align:left">application/x-ps</td>
+<td style="text-align:left">.eps</td>
+<td style="text-align:left">application/postscript</td>
+</tr>
+<tr>
+<td style="text-align:left">.etd</td>
+<td style="text-align:left">application/x-ebx</td>
+<td style="text-align:left">.exe</td>
+<td style="text-align:left">application/x-msdownload</td>
+</tr>
+<tr>
+<td style="text-align:left">.fax</td>
+<td style="text-align:left">image/fax</td>
+<td style="text-align:left">.fdf</td>
+<td style="text-align:left">application/vnd.fdf</td>
+</tr>
+<tr>
+<td style="text-align:left">.fif</td>
+<td style="text-align:left">application/fractals</td>
+<td style="text-align:left">.fo</td>
+<td style="text-align:left">text/xml</td>
+</tr>
+<tr>
+<td style="text-align:left">.frm</td>
+<td style="text-align:left">application/x-frm</td>
+<td style="text-align:left">.g4</td>
+<td style="text-align:left">application/x-g4</td>
+</tr>
+<tr>
+<td style="text-align:left">.gbr</td>
+<td style="text-align:left">application/x-gbr</td>
+<td style="text-align:left">.</td>
+<td style="text-align:left">application/x-</td>
+</tr>
+<tr>
+<td style="text-align:left">.gif</td>
+<td style="text-align:left">image/gif</td>
+<td style="text-align:left">.gl2</td>
+<td style="text-align:left">application/x-gl2</td>
+</tr>
+<tr>
+<td style="text-align:left">.gp4</td>
+<td style="text-align:left">application/x-gp4</td>
+<td style="text-align:left">.hgl</td>
+<td style="text-align:left">application/x-hgl</td>
+</tr>
+<tr>
+<td style="text-align:left">.hmr</td>
+<td style="text-align:left">application/x-hmr</td>
+<td style="text-align:left">.hpg</td>
+<td style="text-align:left">application/x-hpgl</td>
+</tr>
+<tr>
+<td style="text-align:left">.hpl</td>
+<td style="text-align:left">application/x-hpl</td>
+<td style="text-align:left">.hqx</td>
+<td style="text-align:left">application/mac-binhex40</td>
+</tr>
+<tr>
+<td style="text-align:left">.hrf</td>
+<td style="text-align:left">application/x-hrf</td>
+<td style="text-align:left">.hta</td>
+<td style="text-align:left">application/hta</td>
+</tr>
+<tr>
+<td style="text-align:left">.htc</td>
+<td style="text-align:left">text/x-component</td>
+<td style="text-align:left">.htm</td>
+<td style="text-align:left">text/html</td>
+</tr>
+<tr>
+<td style="text-align:left">.html</td>
+<td style="text-align:left">text/html</td>
+<td style="text-align:left">.htt</td>
+<td style="text-align:left">text/webviewhtml</td>
+</tr>
+<tr>
+<td style="text-align:left">.htx</td>
+<td style="text-align:left">text/html</td>
+<td style="text-align:left">.icb</td>
+<td style="text-align:left">application/x-icb</td>
+</tr>
+<tr>
+<td style="text-align:left">.ico</td>
+<td style="text-align:left">image/x-icon</td>
+<td style="text-align:left">.ico</td>
+<td style="text-align:left">application/x-ico</td>
+</tr>
+<tr>
+<td style="text-align:left">.iff</td>
+<td style="text-align:left">application/x-iff</td>
+<td style="text-align:left">.ig4</td>
+<td style="text-align:left">application/x-g4</td>
+</tr>
+<tr>
+<td style="text-align:left">.igs</td>
+<td style="text-align:left">application/x-igs</td>
+<td style="text-align:left">.iii</td>
+<td style="text-align:left">application/x-iphone</td>
+</tr>
+<tr>
+<td style="text-align:left">.img</td>
+<td style="text-align:left">application/x-img</td>
+<td style="text-align:left">.ins</td>
+<td style="text-align:left">application/x-internet-signup</td>
+</tr>
+<tr>
+<td style="text-align:left">.isp</td>
+<td style="text-align:left">application/x-internet-signup</td>
+<td style="text-align:left">.IVF</td>
+<td style="text-align:left">video/x-ivf</td>
+</tr>
+<tr>
+<td style="text-align:left">.java</td>
+<td style="text-align:left">java/*</td>
+<td style="text-align:left">.jfif</td>
+<td style="text-align:left">image/jpeg</td>
+</tr>
+<tr>
+<td style="text-align:left">.jpe</td>
+<td style="text-align:left">image/jpeg</td>
+<td style="text-align:left">.jpe</td>
+<td style="text-align:left">application/x-jpe</td>
+</tr>
+<tr>
+<td style="text-align:left">.jpeg</td>
+<td style="text-align:left">image/jpeg</td>
+<td style="text-align:left">.jpg</td>
+<td style="text-align:left">image/jpeg</td>
+</tr>
+<tr>
+<td style="text-align:left">.jpg</td>
+<td style="text-align:left">application/x-jpg</td>
+<td style="text-align:left">.js</td>
+<td style="text-align:left">application/x-javascript</td>
+</tr>
+<tr>
+<td style="text-align:left">.jsp</td>
+<td style="text-align:left">text/html</td>
+<td style="text-align:left">.la1</td>
+<td style="text-align:left">audio/x-liquid-file</td>
+</tr>
+<tr>
+<td style="text-align:left">.lar</td>
+<td style="text-align:left">application/x-laplayer-reg</td>
+<td style="text-align:left">.latex</td>
+<td style="text-align:left">application/x-latex</td>
+</tr>
+<tr>
+<td style="text-align:left">.lavs</td>
+<td style="text-align:left">audio/x-liquid-secure</td>
+<td style="text-align:left">.lbm</td>
+<td style="text-align:left">application/x-lbm</td>
+</tr>
+<tr>
+<td style="text-align:left">.lmsff</td>
+<td style="text-align:left">audio/x-la-lms</td>
+<td style="text-align:left">.ls</td>
+<td style="text-align:left">application/x-javascript</td>
+</tr>
+<tr>
+<td style="text-align:left">.ltr</td>
+<td style="text-align:left">application/x-ltr</td>
+<td style="text-align:left">.m1v</td>
+<td style="text-align:left">video/x-mpeg</td>
+</tr>
+<tr>
+<td style="text-align:left">.m2v</td>
+<td style="text-align:left">video/x-mpeg</td>
+<td style="text-align:left">.m3u</td>
+<td style="text-align:left">audio/mpegurl</td>
+</tr>
+<tr>
+<td style="text-align:left">.m4e</td>
+<td style="text-align:left">video/mpeg4</td>
+<td style="text-align:left">.mac</td>
+<td style="text-align:left">application/x-mac</td>
+</tr>
+<tr>
+<td style="text-align:left">.man</td>
+<td style="text-align:left">application/x-troff-man</td>
+<td style="text-align:left">.math</td>
+<td style="text-align:left">text/xml</td>
+</tr>
+<tr>
+<td style="text-align:left">.mdb</td>
+<td style="text-align:left">application/msaccess</td>
+<td style="text-align:left">.mdb</td>
+<td style="text-align:left">application/x-mdb</td>
+</tr>
+<tr>
+<td style="text-align:left">.mfp</td>
+<td style="text-align:left">application/x-shockwave-flash</td>
+<td style="text-align:left">.mht</td>
+<td style="text-align:left">message/rfc822</td>
+</tr>
+<tr>
+<td style="text-align:left">.mhtml</td>
+<td style="text-align:left">message/rfc822</td>
+<td style="text-align:left">.mi</td>
+<td style="text-align:left">application/x-mi</td>
+</tr>
+<tr>
+<td style="text-align:left">.mid</td>
+<td style="text-align:left">audio/mid</td>
+<td style="text-align:left">.midi</td>
+<td style="text-align:left">audio/mid</td>
+</tr>
+<tr>
+<td style="text-align:left">.mil</td>
+<td style="text-align:left">application/x-mil</td>
+<td style="text-align:left">.mml</td>
+<td style="text-align:left">text/xml</td>
+</tr>
+<tr>
+<td style="text-align:left">.mnd</td>
+<td style="text-align:left">audio/x-musicnet-download</td>
+<td style="text-align:left">.mns</td>
+<td style="text-align:left">audio/x-musicnet-stream</td>
+</tr>
+<tr>
+<td style="text-align:left">.mocha</td>
+<td style="text-align:left">application/x-javascript</td>
+<td style="text-align:left">.movie</td>
+<td style="text-align:left">video/x-sgi-movie</td>
+</tr>
+<tr>
+<td style="text-align:left">.mp1</td>
+<td style="text-align:left">audio/mp1</td>
+<td style="text-align:left">.mp2</td>
+<td style="text-align:left">audio/mp2</td>
+</tr>
+<tr>
+<td style="text-align:left">.mp2v</td>
+<td style="text-align:left">video/mpeg</td>
+<td style="text-align:left">.mp3</td>
+<td style="text-align:left">audio/mp3</td>
+</tr>
+<tr>
+<td style="text-align:left">.mp4</td>
+<td style="text-align:left">video/mpeg4</td>
+<td style="text-align:left">.mpa</td>
+<td style="text-align:left">video/x-mpg</td>
+</tr>
+<tr>
+<td style="text-align:left">.mpd</td>
+<td style="text-align:left">application/vnd.ms-project</td>
+<td style="text-align:left">.mpe</td>
+<td style="text-align:left">video/x-mpeg</td>
+</tr>
+<tr>
+<td style="text-align:left">.mpeg</td>
+<td style="text-align:left">video/mpg</td>
+<td style="text-align:left">.mpg</td>
+<td style="text-align:left">video/mpg</td>
+</tr>
+<tr>
+<td style="text-align:left">.mpga</td>
+<td style="text-align:left">audio/rn-mpeg</td>
+<td style="text-align:left">.mpp</td>
+<td style="text-align:left">application/vnd.ms-project</td>
+</tr>
+<tr>
+<td style="text-align:left">.mps</td>
+<td style="text-align:left">video/x-mpeg</td>
+<td style="text-align:left">.mpt</td>
+<td style="text-align:left">application/vnd.ms-project</td>
+</tr>
+<tr>
+<td style="text-align:left">.mpv</td>
+<td style="text-align:left">video/mpg</td>
+<td style="text-align:left">.mpv2</td>
+<td style="text-align:left">video/mpeg</td>
+</tr>
+<tr>
+<td style="text-align:left">.mpw</td>
+<td style="text-align:left">application/vnd.ms-project</td>
+<td style="text-align:left">.mpx</td>
+<td style="text-align:left">application/vnd.ms-project</td>
+</tr>
+<tr>
+<td style="text-align:left">.mtx</td>
+<td style="text-align:left">text/xml</td>
+<td style="text-align:left">.mxp</td>
+<td style="text-align:left">application/x-mmxp</td>
+</tr>
+<tr>
+<td style="text-align:left">.net</td>
+<td style="text-align:left">image/pnetvue</td>
+<td style="text-align:left">.nrf</td>
+<td style="text-align:left">application/x-nrf</td>
+</tr>
+<tr>
+<td style="text-align:left">.nws</td>
+<td style="text-align:left">message/rfc822</td>
+<td style="text-align:left">.odc</td>
+<td style="text-align:left">text/x-ms-odc</td>
+</tr>
+<tr>
+<td style="text-align:left">.out</td>
+<td style="text-align:left">application/x-out</td>
+<td style="text-align:left">.p10</td>
+<td style="text-align:left">application/pkcs10</td>
+</tr>
+<tr>
+<td style="text-align:left">.p12</td>
+<td style="text-align:left">application/x-pkcs12</td>
+<td style="text-align:left">.p7b</td>
+<td style="text-align:left">application/x-pkcs7-certificates</td>
+</tr>
+<tr>
+<td style="text-align:left">.p7c</td>
+<td style="text-align:left">application/pkcs7-mime</td>
+<td style="text-align:left">.p7m</td>
+<td style="text-align:left">application/pkcs7-mime</td>
+</tr>
+<tr>
+<td style="text-align:left">.p7r</td>
+<td style="text-align:left">application/x-pkcs7-certreqresp</td>
+<td style="text-align:left">.p7s</td>
+<td style="text-align:left">application/pkcs7-signature</td>
+</tr>
+<tr>
+<td style="text-align:left">.pc5</td>
+<td style="text-align:left">application/x-pc5</td>
+<td style="text-align:left">.pci</td>
+<td style="text-align:left">application/x-pci</td>
+</tr>
+<tr>
+<td style="text-align:left">.pcl</td>
+<td style="text-align:left">application/x-pcl</td>
+<td style="text-align:left">.pcx</td>
+<td style="text-align:left">application/x-pcx</td>
+</tr>
+<tr>
+<td style="text-align:left">.pdf</td>
+<td style="text-align:left">application/pdf</td>
+<td style="text-align:left">.pdf</td>
+<td style="text-align:left">application/pdf</td>
+</tr>
+<tr>
+<td style="text-align:left">.pdx</td>
+<td style="text-align:left">application/vnd.adobe.pdx</td>
+<td style="text-align:left">.pfx</td>
+<td style="text-align:left">application/x-pkcs12</td>
+</tr>
+<tr>
+<td style="text-align:left">.pgl</td>
+<td style="text-align:left">application/x-pgl</td>
+<td style="text-align:left">.pic</td>
+<td style="text-align:left">application/x-pic</td>
+</tr>
+<tr>
+<td style="text-align:left">.pko</td>
+<td style="text-align:left">application/vnd.ms-pki.pko</td>
+<td style="text-align:left">.pl</td>
+<td style="text-align:left">application/x-perl</td>
+</tr>
+<tr>
+<td style="text-align:left">.plg</td>
+<td style="text-align:left">text/html</td>
+<td style="text-align:left">.pls</td>
+<td style="text-align:left">audio/scpls</td>
+</tr>
+<tr>
+<td style="text-align:left">.plt</td>
+<td style="text-align:left">application/x-plt</td>
+<td style="text-align:left">.png</td>
+<td style="text-align:left">image/png</td>
+</tr>
+<tr>
+<td style="text-align:left">.png</td>
+<td style="text-align:left">application/x-png</td>
+<td style="text-align:left">.pot</td>
+<td style="text-align:left">application/vnd.ms-powerpoint</td>
+</tr>
+<tr>
+<td style="text-align:left">.ppa</td>
+<td style="text-align:left">application/vnd.ms-powerpoint</td>
+<td style="text-align:left">.ppm</td>
+<td style="text-align:left">application/x-ppm</td>
+</tr>
+<tr>
+<td style="text-align:left">.pps</td>
+<td style="text-align:left">application/vnd.ms-powerpoint</td>
+<td style="text-align:left">.ppt</td>
+<td style="text-align:left">application/vnd.ms-powerpoint</td>
+</tr>
+<tr>
+<td style="text-align:left">.ppt</td>
+<td style="text-align:left">application/x-ppt</td>
+<td style="text-align:left">.pr</td>
+<td style="text-align:left">application/x-pr</td>
+</tr>
+<tr>
+<td style="text-align:left">.prf</td>
+<td style="text-align:left">application/pics-rules</td>
+<td style="text-align:left">.prn</td>
+<td style="text-align:left">application/x-prn</td>
+</tr>
+<tr>
+<td style="text-align:left">.prt</td>
+<td style="text-align:left">application/x-prt</td>
+<td style="text-align:left">.ps</td>
+<td style="text-align:left">application/x-ps</td>
+</tr>
+<tr>
+<td style="text-align:left">.ps</td>
+<td style="text-align:left">application/postscript</td>
+<td style="text-align:left">.ptn</td>
+<td style="text-align:left">application/x-ptn</td>
+</tr>
+<tr>
+<td style="text-align:left">.pwz</td>
+<td style="text-align:left">application/vnd.ms-powerpoint</td>
+<td style="text-align:left">.r3t</td>
+<td style="text-align:left">text/vnd.rn-realtext3d</td>
+</tr>
+<tr>
+<td style="text-align:left">.ra</td>
+<td style="text-align:left">audio/vnd.rn-realaudio</td>
+<td style="text-align:left">.ram</td>
+<td style="text-align:left">audio/x-pn-realaudio</td>
+</tr>
+<tr>
+<td style="text-align:left">.ras</td>
+<td style="text-align:left">application/x-ras</td>
+<td style="text-align:left">.rat</td>
+<td style="text-align:left">application/rat-file</td>
+</tr>
+<tr>
+<td style="text-align:left">.rdf</td>
+<td style="text-align:left">text/xml</td>
+<td style="text-align:left">.rec</td>
+<td style="text-align:left">application/vnd.rn-recording</td>
+</tr>
+<tr>
+<td style="text-align:left">.red</td>
+<td style="text-align:left">application/x-red</td>
+<td style="text-align:left">.rgb</td>
+<td style="text-align:left">application/x-rgb</td>
+</tr>
+<tr>
+<td style="text-align:left">.rjs</td>
+<td style="text-align:left">application/vnd.rn-realsystem-rjs</td>
+<td style="text-align:left">.rjt</td>
+<td style="text-align:left">application/vnd.rn-realsystem-rjt</td>
+</tr>
+<tr>
+<td style="text-align:left">.rlc</td>
+<td style="text-align:left">application/x-rlc</td>
+<td style="text-align:left">.rle</td>
+<td style="text-align:left">application/x-rle</td>
+</tr>
+<tr>
+<td style="text-align:left">.rm</td>
+<td style="text-align:left">application/vnd.rn-realmedia</td>
+<td style="text-align:left">.rmf</td>
+<td style="text-align:left">application/vnd.adobe.rmf</td>
+</tr>
+<tr>
+<td style="text-align:left">.rmi</td>
+<td style="text-align:left">audio/mid</td>
+<td style="text-align:left">.rmj</td>
+<td style="text-align:left">application/vnd.rn-realsystem-rmj</td>
+</tr>
+<tr>
+<td style="text-align:left">.rmm</td>
+<td style="text-align:left">audio/x-pn-realaudio</td>
+<td style="text-align:left">.rmp</td>
+<td style="text-align:left">application/vnd.rn-rn_music_package</td>
+</tr>
+<tr>
+<td style="text-align:left">.rms</td>
+<td style="text-align:left">application/vnd.rn-realmedia-secure</td>
+<td style="text-align:left">.rmvb</td>
+<td style="text-align:left">application/vnd.rn-realmedia-vbr</td>
+</tr>
+<tr>
+<td style="text-align:left">.rmx</td>
+<td style="text-align:left">application/vnd.rn-realsystem-rmx</td>
+<td style="text-align:left">.rnx</td>
+<td style="text-align:left">application/vnd.rn-realplayer</td>
+</tr>
+<tr>
+<td style="text-align:left">.rp</td>
+<td style="text-align:left">image/vnd.rn-realpix</td>
+<td style="text-align:left">.rpm</td>
+<td style="text-align:left">audio/x-pn-realaudio-plugin</td>
+</tr>
+<tr>
+<td style="text-align:left">.rsml</td>
+<td style="text-align:left">application/vnd.rn-rsml</td>
+<td style="text-align:left">.rt</td>
+<td style="text-align:left">text/vnd.rn-realtext</td>
+</tr>
+<tr>
+<td style="text-align:left">.rtf</td>
+<td style="text-align:left">application/msword</td>
+<td style="text-align:left">.rtf</td>
+<td style="text-align:left">application/x-rtf</td>
+</tr>
+<tr>
+<td style="text-align:left">.rv</td>
+<td style="text-align:left">video/vnd.rn-realvideo</td>
+<td style="text-align:left">.sam</td>
+<td style="text-align:left">application/x-sam</td>
+</tr>
+<tr>
+<td style="text-align:left">.sat</td>
+<td style="text-align:left">application/x-sat</td>
+<td style="text-align:left">.sdp</td>
+<td style="text-align:left">application/sdp</td>
+</tr>
+<tr>
+<td style="text-align:left">.sdw</td>
+<td style="text-align:left">application/x-sdw</td>
+<td style="text-align:left">.sit</td>
+<td style="text-align:left">application/x-stuffit</td>
+</tr>
+<tr>
+<td style="text-align:left">.slb</td>
+<td style="text-align:left">application/x-slb</td>
+<td style="text-align:left">.sld</td>
+<td style="text-align:left">application/x-sld</td>
+</tr>
+<tr>
+<td style="text-align:left">.slk</td>
+<td style="text-align:left">drawing/x-slk</td>
+<td style="text-align:left">.smi</td>
+<td style="text-align:left">application/smil</td>
+</tr>
+<tr>
+<td style="text-align:left">.smil</td>
+<td style="text-align:left">application/smil</td>
+<td style="text-align:left">.smk</td>
+<td style="text-align:left">application/x-smk</td>
+</tr>
+<tr>
+<td style="text-align:left">.snd</td>
+<td style="text-align:left">audio/basic</td>
+<td style="text-align:left">.sol</td>
+<td style="text-align:left">text/plain</td>
+</tr>
+<tr>
+<td style="text-align:left">.sor</td>
+<td style="text-align:left">text/plain</td>
+<td style="text-align:left">.spc</td>
+<td style="text-align:left">application/x-pkcs7-certificates</td>
+</tr>
+<tr>
+<td style="text-align:left">.spl</td>
+<td style="text-align:left">application/futuresplash</td>
+<td style="text-align:left">.spp</td>
+<td style="text-align:left">text/xml</td>
+</tr>
+<tr>
+<td style="text-align:left">.ssm</td>
+<td style="text-align:left">application/streamingmedia</td>
+<td style="text-align:left">.sst</td>
+<td style="text-align:left">application/vnd.ms-pki.certstore</td>
+</tr>
+<tr>
+<td style="text-align:left">.stl</td>
+<td style="text-align:left">application/vnd.ms-pki.stl</td>
+<td style="text-align:left">.stm</td>
+<td style="text-align:left">text/html</td>
+</tr>
+<tr>
+<td style="text-align:left">.sty</td>
+<td style="text-align:left">application/x-sty</td>
+<td style="text-align:left">.svg</td>
+<td style="text-align:left">image/svg+xml</td>
+</tr>
+<tr>
+<td style="text-align:left">.swf</td>
+<td style="text-align:left">application/x-shockwave-flash</td>
+<td style="text-align:left">.tdf</td>
+<td style="text-align:left">application/x-tdf</td>
+</tr>
+<tr>
+<td style="text-align:left">.tg4</td>
+<td style="text-align:left">application/x-tg4</td>
+<td style="text-align:left">.tga</td>
+<td style="text-align:left">application/x-tga</td>
+</tr>
+<tr>
+<td style="text-align:left">.tif</td>
+<td style="text-align:left">image/tiff</td>
+<td style="text-align:left">.tif</td>
+<td style="text-align:left">application/x-tif</td>
+</tr>
+<tr>
+<td style="text-align:left">.tiff</td>
+<td style="text-align:left">image/tiff</td>
+<td style="text-align:left">.tld</td>
+<td style="text-align:left">text/xml</td>
+</tr>
+<tr>
+<td style="text-align:left">.top</td>
+<td style="text-align:left">drawing/x-top</td>
+<td style="text-align:left">.torrent</td>
+<td style="text-align:left">application/x-bittorrent</td>
+</tr>
+<tr>
+<td style="text-align:left">.tsd</td>
+<td style="text-align:left">text/xml</td>
+<td style="text-align:left">.txt</td>
+<td style="text-align:left">text/plain</td>
+</tr>
+<tr>
+<td style="text-align:left">.uin</td>
+<td style="text-align:left">application/x-icq</td>
+<td style="text-align:left">.uls</td>
+<td style="text-align:left">text/iuls</td>
+</tr>
+<tr>
+<td style="text-align:left">.vcf</td>
+<td style="text-align:left">text/x-vcard</td>
+<td style="text-align:left">.vda</td>
+<td style="text-align:left">application/x-vda</td>
+</tr>
+<tr>
+<td style="text-align:left">.vdx</td>
+<td style="text-align:left">application/vnd.visio</td>
+<td style="text-align:left">.vml</td>
+<td style="text-align:left">text/xml</td>
+</tr>
+<tr>
+<td style="text-align:left">.vpg</td>
+<td style="text-align:left">application/x-vpeg005</td>
+<td style="text-align:left">.vsd</td>
+<td style="text-align:left">application/vnd.visio</td>
+</tr>
+<tr>
+<td style="text-align:left">.vsd</td>
+<td style="text-align:left">application/x-vsd</td>
+<td style="text-align:left">.vss</td>
+<td style="text-align:left">application/vnd.visio</td>
+</tr>
+<tr>
+<td style="text-align:left">.vst</td>
+<td style="text-align:left">application/vnd.visio</td>
+<td style="text-align:left">.vst</td>
+<td style="text-align:left">application/x-vst</td>
+</tr>
+<tr>
+<td style="text-align:left">.vsw</td>
+<td style="text-align:left">application/vnd.visio</td>
+<td style="text-align:left">.vsx</td>
+<td style="text-align:left">application/vnd.visio</td>
+</tr>
+<tr>
+<td style="text-align:left">.vtx</td>
+<td style="text-align:left">application/vnd.visio</td>
+<td style="text-align:left">.vxml</td>
+<td style="text-align:left">text/xml</td>
+</tr>
+<tr>
+<td style="text-align:left">.wav</td>
+<td style="text-align:left">audio/wav</td>
+<td style="text-align:left">.wax</td>
+<td style="text-align:left">audio/x-ms-wax</td>
+</tr>
+<tr>
+<td style="text-align:left">.wb1</td>
+<td style="text-align:left">application/x-wb1</td>
+<td style="text-align:left">.wb2</td>
+<td style="text-align:left">application/x-wb2</td>
+</tr>
+<tr>
+<td style="text-align:left">.wb3</td>
+<td style="text-align:left">application/x-wb3</td>
+<td style="text-align:left">.wbmp</td>
+<td style="text-align:left">image/vnd.wap.wbmp</td>
+</tr>
+<tr>
+<td style="text-align:left">.wiz</td>
+<td style="text-align:left">application/msword</td>
+<td style="text-align:left">.wk3</td>
+<td style="text-align:left">application/x-wk3</td>
+</tr>
+<tr>
+<td style="text-align:left">.wk4</td>
+<td style="text-align:left">application/x-wk4</td>
+<td style="text-align:left">.wkq</td>
+<td style="text-align:left">application/x-wkq</td>
+</tr>
+<tr>
+<td style="text-align:left">.wks</td>
+<td style="text-align:left">application/x-wks</td>
+<td style="text-align:left">.wm</td>
+<td style="text-align:left">video/x-ms-wm</td>
+</tr>
+<tr>
+<td style="text-align:left">.wma</td>
+<td style="text-align:left">audio/x-ms-wma</td>
+<td style="text-align:left">.wmd</td>
+<td style="text-align:left">application/x-ms-wmd</td>
+</tr>
+<tr>
+<td style="text-align:left">.wmf</td>
+<td style="text-align:left">application/x-wmf</td>
+<td style="text-align:left">.wml</td>
+<td style="text-align:left">text/vnd.wap.wml</td>
+</tr>
+<tr>
+<td style="text-align:left">.wmv</td>
+<td style="text-align:left">video/x-ms-wmv</td>
+<td style="text-align:left">.wmx</td>
+<td style="text-align:left">video/x-ms-wmx</td>
+</tr>
+<tr>
+<td style="text-align:left">.wmz</td>
+<td style="text-align:left">application/x-ms-wmz</td>
+<td style="text-align:left">.wp6</td>
+<td style="text-align:left">application/x-wp6</td>
+</tr>
+<tr>
+<td style="text-align:left">.wpd</td>
+<td style="text-align:left">application/x-wpd</td>
+<td style="text-align:left">.wpg</td>
+<td style="text-align:left">application/x-wpg</td>
+</tr>
+<tr>
+<td style="text-align:left">.wpl</td>
+<td style="text-align:left">application/vnd.ms-wpl</td>
+<td style="text-align:left">.wq1</td>
+<td style="text-align:left">application/x-wq1</td>
+</tr>
+<tr>
+<td style="text-align:left">.wr1</td>
+<td style="text-align:left">application/x-wr1</td>
+<td style="text-align:left">.wri</td>
+<td style="text-align:left">application/x-wri</td>
+</tr>
+<tr>
+<td style="text-align:left">.wrk</td>
+<td style="text-align:left">application/x-wrk</td>
+<td style="text-align:left">.ws</td>
+<td style="text-align:left">application/x-ws</td>
+</tr>
+<tr>
+<td style="text-align:left">.ws2</td>
+<td style="text-align:left">application/x-ws</td>
+<td style="text-align:left">.wsc</td>
+<td style="text-align:left">text/scriptlet</td>
+</tr>
+<tr>
+<td style="text-align:left">.wsdl</td>
+<td style="text-align:left">text/xml</td>
+<td style="text-align:left">.wvx</td>
+<td style="text-align:left">video/x-ms-wvx</td>
+</tr>
+<tr>
+<td style="text-align:left">.xdp</td>
+<td style="text-align:left">application/vnd.adobe.xdp</td>
+<td style="text-align:left">.xdr</td>
+<td style="text-align:left">text/xml</td>
+</tr>
+<tr>
+<td style="text-align:left">.xfd</td>
+<td style="text-align:left">application/vnd.adobe.xfd</td>
+<td style="text-align:left">.xfdf</td>
+<td style="text-align:left">application/vnd.adobe.xfdf</td>
+</tr>
+<tr>
+<td style="text-align:left">.xhtml</td>
+<td style="text-align:left">text/html</td>
+<td style="text-align:left">.xls</td>
+<td style="text-align:left">application/vnd.ms-excel</td>
+</tr>
+<tr>
+<td style="text-align:left">.xls</td>
+<td style="text-align:left">application/x-xls</td>
+<td style="text-align:left">.xlw</td>
+<td style="text-align:left">application/x-xlw</td>
+</tr>
+<tr>
+<td style="text-align:left">.xml</td>
+<td style="text-align:left">text/xml</td>
+<td style="text-align:left">.xpl</td>
+<td style="text-align:left">audio/scpls</td>
+</tr>
+<tr>
+<td style="text-align:left">.xq</td>
+<td style="text-align:left">text/xml</td>
+<td style="text-align:left">.xql</td>
+<td style="text-align:left">text/xml</td>
+</tr>
+<tr>
+<td style="text-align:left">.xquery</td>
+<td style="text-align:left">text/xml</td>
+<td style="text-align:left">.xsd</td>
+<td style="text-align:left">text/xml</td>
+</tr>
+<tr>
+<td style="text-align:left">.xsl</td>
+<td style="text-align:left">text/xml</td>
+<td style="text-align:left">.xslt</td>
+<td style="text-align:left">text/xml</td>
+</tr>
+<tr>
+<td style="text-align:left">.xwd</td>
+<td style="text-align:left">application/x-xwd</td>
+<td style="text-align:left">.x_b</td>
+<td style="text-align:left">application/x-x_b</td>
+</tr>
+<tr>
+<td style="text-align:left">.sis</td>
+<td style="text-align:left">application/vnd.symbian.install</td>
+<td style="text-align:left">.sisx</td>
+<td style="text-align:left">application/vnd.symbian.install</td>
+</tr>
+<tr>
+<td style="text-align:left">.x_t</td>
+<td style="text-align:left">application/x-x_t</td>
+<td style="text-align:left">.ipa</td>
+<td style="text-align:left">application/vnd.iphone</td>
+</tr>
+<tr>
+<td style="text-align:left">.apk</td>
+<td style="text-align:left">application/vnd.android.package-archive</td>
+<td style="text-align:left">.xap</td>
+<td style="text-align:left">application/x-silverlight-app</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+
+    <div class="post-guide">
+        <div class="item left">
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2020/06/15/%E5%85%B6%E4%BB%96/%E6%94%B6%E8%97%8F/">
+                收藏
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+	<div id="vcomments"></div>
+
+
+<script>
+	
+		// 评论
+		new Valine({
+			av: AV,
+			el: '#vcomments',
+			notify: false,
+			verify: false,
+			path: window.location.pathname,
+			appId: 'lsX646kI8Pj43gH38o38IHEl-gzGzoHsz',
+			appKey: 'SI9zpOfgyOmEDPGK8KI8niYh',
+			placeholder: '请输入评论',
+			avatar: 'retro',
+			recordIP: false
+		})
+	
+	
+    // 显示次数
+		function showTime(Counter) {
+			var query = new AV.Query("Counter");
+			if($(".leancloud_visitors").length > 0){
+				var url = $(".leancloud_visitors").attr('id').trim();
+				// where field
+				query.equalTo("words", url);
+				// count
+				query.count().then(function (number) {
+					// There are number instances of MyClass where words equals url.
+					$(document.getElementById(url)).text(number?  number : '--');
+				}, function (error) {
+					// error is an instance of AVError.
+				});
+			}
+		}
+		// 追加pv
+		function addCount(Counter) {
+			var url = $(".leancloud_visitors").length > 0 ? $(".leancloud_visitors").attr('id').trim() : 'xzh20121116.github.io';
+			var Counter = AV.Object.extend("Counter");
+			var query = new Counter;
+			query.save({
+				words: url
+			}).then(function (object) {
+			})
+		}
+		$(function () {
+			var Counter = AV.Object.extend("Counter");
+			addCount(Counter);
+			showTime(Counter);
+		});
+	
+</script>
+	</div>
+	<div id="footer">
+	<p>
+	©2019-<span id="footerYear"></span> 
+	<a href="/">今晚打老虎</a> 
+	
+	
+		|
+		<span id="busuanzi_container_site_pv">
+			pv
+			<span id="busuanzi_value_site_pv"></span>
+		</span>
+		|
+		<span id="busuanzi_container_site_uv"> 
+			uv
+			<span id="busuanzi_value_site_uv"></span>
+		</span>
+	
+	<br>
+	Theme <a href="//github.com/wujun234/hexo-theme-tree" target="_blank">Tree</a>
+	by <a href="//github.com/wujun234" target="_blank">WuJun</a>
+	Powered by <a href="//hexo.io" target="_blank">Hexo</a>
+	</p>
+</div>
+<script type="text/javascript"> 
+	document.getElementById('footerYear').innerHTML = new Date().getFullYear() + '';
+</script>
+	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</body>
+</html>

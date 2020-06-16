@@ -8,8 +8,6 @@
 	<!-- title -->
 	
 	<title>
-	
-		大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景 | 
 	 
 	温故知新
 	</title>
@@ -244,6 +242,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										mybatis
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/05/java/mybatis/xx/">
+										xx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										springboot
 									</a>
 									
@@ -423,8 +441,8 @@
 							</ul>
 			
 							<ul>
-								<li class="file active">
-									<a href="/2020/04/26/java/%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%A5%BD%E5%A4%84/">
+								<li class="file">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%A5%BD%E5%A4%84/">
 										线程池的好处
 									</a>
 								</li>
@@ -591,8 +609,46 @@
 									
 							<ul>
 								<li class="file">
+									<a href="/2020/06/16/%E5%85%B6%E4%BB%96/%E3%80%90%E8%BD%AC%E3%80%91%E3%80%90%E9%98%BF%E9%87%8C%E4%BA%91%E5%AE%98%E7%BD%91%E3%80%91oss%20%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%20Content-Type/">
+										【转】【阿里云官网】oss 如何设置 Content-Type
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/06/03/%E5%85%B6%E4%BB%96/%E3%80%90%E8%BD%AC%E3%80%91%E6%90%AD%E5%BB%BA%20gitlab/">
 										【转】搭建 gitlab
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/06/15/%E5%85%B6%E4%BB%96/%E6%94%B6%E8%97%8F/">
+										收藏
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										分布式相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+										分布式事务
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -957,431 +1013,103 @@
 
 	<!-- 引入正文 -->
 	<div id="content">
-		<h1 id="article-title">
+		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2020/04/22/mysql/mysql%20%E5%A6%82%E4%BD%95%E4%B8%BB%E5%A4%87%E4%B8%80%E8%87%B4+%E5%8F%8Cm%E5%BE%AA%E7%8E%AF%E5%A4%8D%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+				<h2 class="index-title">
+					mysql 如何主备一致+双m循环复制解决方案
+				</h2>
+				<div class="index-brief">
+					事务日志的同步过程
+备库和主库之间维持了一个长连接，主库内部有一个线程专门服务于备库的这个长连接
+一个事务日志的完整同步过程如下：
 
-	线程池的好处
-</h1>
-<div class="article-meta">
+在备库上通过 change master命令，设置主库的ip、端口、用户名、密码，以及从哪个位置开始请求binlog
+在备库上执行 start slave  命令，这
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-04-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
-		<span>
-			阅读量:<span id="/2020/04/26/java/%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%A5%BD%E5%A4%84/" class="leancloud_visitors" data-flag-title="大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景"></span>
-		</span>
+		<div class="index-li">
+			<a href="/2020/04/22/mysql/count(*)%E3%80%81count(%E4%B8%BB%E9%94%AE%20id)%E3%80%81count(%E5%AD%97%E6%AE%B5)%E5%92%8Ccount(1)%E7%AD%89%E4%B8%8D%E5%90%8C%E7%94%A8%E6%B3%95%E7%9A%84%E6%80%A7%E8%83%BD/">
+				<h2 class="index-title">
+					count(*)、count(主键 id)、count(字段)和count(1)等不同用法的性能
+				</h2>
+				<div class="index-brief">
+					count() 是一个聚合函数，对于返回的结果集，一行行地判断，如果 count 函数的参数不是 NULL，累计值就加 1，否则不加。最后返回累计值。
+所以，count(*)、count(主键 id) 和 count(1) 都表示返回满足条件的结果集的总行数；而 count(字段），则表示返回满足条
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-04-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
-	<span>今晚打老虎</span>
-	<span>2020-04-26 16:48:21</span>
-    
-		<div id="article-categories">
-            
-		</div>
-    
+		<div class="index-li">
+			<a href="/2020/04/22/mysql/mysql%20%E7%9A%84%E5%87%A0%E4%B8%AA%E6%97%A5%E5%BF%97/">
+				<h2 class="index-title">
+					mysql 的几个日志
+				</h2>
+				<div class="index-brief">
+					redo log
+redolog的背景：
+
+update user_table set name='王大锤' where id = '3'
+
+针对这条sql，它的执行过程是这样的：先把id=3的行查出来，然后将name 字段改成 java 3y，看起来没问题。
+实际上 mysql 基本存储结构是 页
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-04-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/04/21/mysql/mysql%E4%B9%8B%E9%94%81/">
+				<h2 class="index-title">
+					mysql之锁
+				</h2>
+				<div class="index-brief">
+					¶表锁
+表锁的语法是 lock tables … read/write。与 FTWRL类似，可以用 unlock tables主动释放锁，也可以在客户端断开连接的时候自动释放。需要注意：lock tables 语法除了会限制其他的线程的读写之外，也限定了本线程接下来的操作对象
+举个例子：
+线程A中执
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-04-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+	
+	<div id="index-paginator">
+		
+			<a class="extend prev" rel="prev" href="/archives/page/7/">&lt;</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/6/">6</a><a class="page-number" href="/archives/page/7/">7</a><span class="page-number current">8</span>
+		
+	</div>
 </div>
 
-<div id="article-content">
-	<p>大厂面试必考：线程池的核心参数、核心流程、5大种类与应用场景</p>
-<a id="more"></a>
-<h1>1. 线程池的好处</h1>
-<ol>
-<li>
-<p>帮助我们管理线程，避免增加创建线程和销毁线程的资源损耗。</p>
-<blockquote>
-<p>因为线程其实也是一个对象，创建一个对象，需要经过类加载过程，销毁一个对象，需要走GC垃圾回收流程，都是需要资源开销的</p>
-</blockquote>
-</li>
-<li>
-<p>提高响应速度</p>
-<blockquote>
-<p>如果任务达到了，直接从线程池拿线程  比 重新创建一个线程，速度快很多</p>
-</blockquote>
-</li>
-<li>
-<p>重复利用</p>
-<blockquote>
-<p>线程用完，再放回池子，可以达到重复利用的效果，节省资源</p>
-</blockquote>
-</li>
-</ol>
-<h1>2. 线程池的创建</h1>
-<p>juc包下的ThreadPoolExecutor，有序多重载的构造方法，指定不同的构造参数，创建不同类型的线程池。</p>
-<pre><code class="language-java">ThreadPoolExecutor(int corePoolSize,
-                              int maximumPoolSize,
-                              long keepAliveTime,
-                              TimeUnit unit,
-                              BlockingQueue&lt;Runnable&gt; workQueue,
-                              ThreadFactory threadFactory,
-                              RejectedExecutionHandler handler)
-
-</code></pre>
-<h1>3. 核心参数</h1>
-<p><strong>corePoolSize</strong></p>
-<blockquote>
-<p>核心线程数线程池的大小</p>
-</blockquote>
-<p><strong>maximumPoolSize</strong></p>
-<blockquote>
-<p>线程池允许创建的最大线程数</p>
-</blockquote>
-<p><strong>keepAliveTime</strong></p>
-<blockquote>
-<p>非核心线程的空闲存活时间，一个线程的空闲时间达到这个值，则会终止</p>
-</blockquote>
-<p><strong>TimeUnit</strong></p>
-<blockquote>
-<p><strong>keepAliveTime</strong>的时间单位</p>
-<p>有7种取值：天、小时、分钟、秒、毫秒、微妙、纳秒</p>
-</blockquote>
-<p><strong>workQueue</strong></p>
-<blockquote>
-<p>阻塞队列，当核心线程都被占用时，新来的线程会进入阻塞队列等待执行，如果阻塞队列满了， 会创建工作线程(不超过最大线程数)</p>
-</blockquote>
-<p><strong>threadFactory</strong></p>
-<blockquote>
-<p>表示线程工厂。用来生产一组相同任务的线程，线程池的命名是通过这个factory增加组名前缀来实现的。在虚拟机栈分析时，就可以知道线程任务是由哪个线程工厂生产的</p>
-</blockquote>
-<p><strong>handler</strong></p>
-<blockquote>
-<p>拒绝策略：当提交任务超过最大线程数时，执行拒绝策略</p>
-<ol>
-<li><code>AbortPolicy</code>（默认）：丢弃任务并抛出异常</li>
-<li><code>DiscardPolicy</code>：丢弃任务，不抛出异常</li>
-<li><code>DiscardOldestPolicy</code>：抛弃队列中等待最久的任务，然后把当前任务加入队列</li>
-<li><code>callerRunsPolicy</code>：调用人的run方法，绕过线程池直接执行</li>
-</ol>
-</blockquote>
-<h1>4. 核心流程</h1>
-<p>对应<code>execute（）</code>方法</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200426160957.png" alt="image-20200426160957865"></p>
-<h1>5. 关闭方法</h1>
-<p>关闭线程池，有两种方法，可以通过<code>shutdown</code>和<code>shutdownNow</code>这两个方法，原理都是遍历线程池中的所有线程，依次中断。</p>
-<p>不同点：</p>
-<p><code>shutdown</code></p>
-<blockquote>
-<p>只是将线程池的状态设置为<code>SHUTDOWN</code>状态，然后中断所有没有正在执行任务的线程</p>
-</blockquote>
-<p><code>shutdownNow</code></p>
-<blockquote>
-<p>首先将线程池的状态设置为<code>STOP</code>，然后尝试停止所有正在执行和未执行任务的线程，并返回等待执行任务的列表</p>
-</blockquote>
-<h1>6. 线程池异常处理</h1>
-<p>使用线程池处理任务的时候，任务代码可能排除RuntimeException，抛出异常后，线程池可能捕获他，也可能创建一个新的线程来替代异常的线程，我们可能无法感知任务出了异常，因此需要考虑线程池异常情况</p>
-<ol>
-<li>
-<p>try-catch 捕获异常</p>
-</li>
-<li>
-<p>submit执行，Future.get()接收异常</p>
-</li>
-<li>
-<p>重写ThreadPoolExecutor.afterExecute方法，处理传递的异常引用</p>
-</li>
-<li>
-<p>实例化时，传入自己的ThreadFactory，设置Thread.UncaughtExceptionHandler处理未检测的异常</p>
-<blockquote>
-<p>为工作者线程设置UncaughtExceptionHandler，在uncaughtException方法中处理异常</p>
-</blockquote>
-</li>
-</ol>
-<h1>7. 五种类型、区别、适用场景</h1>
-<p>newFixedThreadPool (固定数目线程的线程池)</p>
-<p>newCachedThreadPool(可缓存线程的线程池)</p>
-<p>newSingleThreadExecutor(单线程的线程池)</p>
-<p>newScheduledThreadPool(定时及周期执行的线程池)</p>
-<p>newWorkStealingPool（创建一个拥有多个任务队列（以便减少连接数）的线程池。1.8新加的）</p>
-<h2 id="newWorkStealingPool">7.1. ¶newWorkStealingPool</h2>
-<p>newWorkStealingPool适合使用在很耗时的操作，但是newWorkStealingPool不是ThreadPoolExecutor的扩展，它是新的线程池类ForkJoinPool的扩展，但是都是在统一的一个Executors类中实现，由于能够合理的使用CPU进行对任务操作（并行操作），所以适合使用在很耗时的任务中：</p>
-<h2 id="newCachedThreadPool：">7.2. ¶newCachedThreadPool：</h2>
-<ul>
-<li>
-<p>底层：返回ThreadPoolExecutor实例，corePoolSize为0；maximumPoolSize为Integer.MAX_VALUE；keepAliveTime为60L；unit为TimeUnit.SECONDS；workQueue为SynchronousQueue(<code>同步队列</code>)</p>
-</li>
-<li>
-<p>通俗：当有新任务到来，则插入到SynchronousQueue中，由于SynchronousQueue是同步队列，因此会在池中寻找可用线程来执行，若有可以线程则执行，若没有可用线程则创建一个线程来执行该任务；若池中线程空闲时间超过指定大小，则该线程会被销毁。</p>
-</li>
-<li>
-<p>线程池特点</p>
-<blockquote>
-<ul>
-<li>核心线程数为0</li>
-<li>最大线程数为Integer.Max_Value</li>
-<li>阻塞队列是SynchronousQueue</li>
-<li>非核心线程空闲存活时间为60秒</li>
-</ul>
-<p>如果提交任务的速度大于处理任务的速度，每次提交一个任务，就必然会创建一个新的线程，极端情况下会创建过多的线程，耗尽cpu和内存资源</p>
-</blockquote>
-</li>
-<li>
-<p>工作机制</p>
-<blockquote>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427094652.png" alt="image-20200427094652291"></p>
-<ol>
-<li>提交任务</li>
-<li>因为没有核心线程，所以任务直接加到阻塞队列</li>
-<li>判断线程是否有空县线程，如果有，就去取出任务执行</li>
-<li>如果没有空闲线程，就新建一个线程执行</li>
-<li>执行完任务的线程，还可以存活60秒，如果存活期间接到新任务就继续活下去，否则就被销毁</li>
-</ol>
-</blockquote>
-</li>
-<li>
-<p>使用场景：</p>
-<blockquote>
-<p>用于并发执行大亮短期的小任务</p>
-<p>执行很多短期异步的小程序或者负载较轻的服务器</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="newFixedThreadPool：">7.3. ¶newFixedThreadPool：</h2>
-<ul>
-<li>
-<p>底层：返回ThreadPoolExecutor实例，接收参数为所设定线程数量nThread，corePoolSize为nThread，maximumPoolSize为nThread；keepAliveTime为0L(不限时)；unit为：TimeUnit.MILLISECONDS；WorkQueue为：new LinkedBlockingQueue<runnable>() <code>无阻塞队列</code></runnable></p>
-</li>
-<li>
-<p>通俗：创建可容纳固定数量线程的池子，每隔线程的存活时间是无限的，当池子满了就不在添加线程了；如果池中的所有线程均在繁忙状态，对于新任务会进入阻塞队列中(无界的阻塞队列·)</p>
-</li>
-<li>
-<p>线程池特点：</p>
-<blockquote>
-<ul>
-<li>核心线程数和最大线程数大小一样</li>
-<li>没有所谓的非空闲时间，即keepAliveTime为0</li>
-<li>阻塞队列为<code>无界队列LinkedBlockingQueue</code></li>
-</ul>
-</blockquote>
-</li>
-<li>
-<p>工作机制：</p>
-<blockquote>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427093211.png" alt="image-20200427093211140"></p>
-<ol>
-<li>提交任务</li>
-<li>如果线程数少于核心线程数，创建核心线程执行任务</li>
-<li>如果线程数等于核心线程，把任务添加到LinkedBlockingQueue阻塞队列</li>
-<li>如果线程执行完任务，去阻塞队列去任务，继续执行。</li>
-</ol>
-</blockquote>
-</li>
-<li>
-<p>面试题</p>
-<blockquote>
-<p>使用无界队列的线程池会导致cpu内存飙升吗</p>
-<p>会的，如果线程执行任务时间较长，会导致队列的任务越积越多，导致机器内存使用不听飙升，导致oom</p>
-</blockquote>
-</li>
-<li>
-<p>使用场景</p>
-<blockquote>
-<p>适合于cpu密集型的任务，确保cpu在长期被工作线程使用的情况下，尽可能少的分配线程，即适合执行长期的任务</p>
-<p>执行长期的任务，性能好很多</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="newSingleThreadExecutor">7.4. ¶newSingleThreadExecutor:</h2>
-<ul>
-<li>
-<p>底层：FinalizableDelegatedExecutorService包装的ThreadPoolExecutor实例，corePoolSize为1；maximumPoolSize为1；keepAliveTime为0L；unit为：TimeUnit.MILLISECONDS；workQueue为：new LinkedBlockingQueue<runnable>() <code>无界阻塞队列</code></runnable></p>
-</li>
-<li>
-<p>通俗：创建只有一个线程的线程池，且线程的存活时间是无限的；当该线程正繁忙时，对于新任务会进入阻塞队列中(无界的阻塞队列)</p>
-</li>
-<li>
-<p>适用：一个任务一个任务执行的场景，<strong>同步执行任务的场景</strong></p>
-</li>
-<li>
-<p>线程池特点：</p>
-<blockquote>
-<ol>
-<li>核心线程数为1</li>
-<li>最大线程数为1</li>
-<li>阻塞队列是LinkedBlockingQueue</li>
-<li>keepalivetime为0</li>
-</ol>
-</blockquote>
-</li>
-<li>
-<p>工作机制</p>
-<blockquote>
-<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427095010.png" alt="image-20200427095010650" style="zoom:50%;">
-<ol>
-<li>提交任务</li>
-<li>线程池是否有一条线程在，如果没有，新建线程执行任务</li>
-<li>如果有，将任务加入到阻塞队列</li>
-<li>当前的唯一线程，从队列取任务，执行完一个，再继续取，一个人（一条线程）夜以继日的干活</li>
-</ol>
-</blockquote>
-</li>
-<li>
-<p>使用场景</p>
-<blockquote>
-<p>串行执行任务的场景，一个任务一个任务的执行</p>
-</blockquote>
-</li>
-</ul>
-<h2 id="NewScheduledThreadPool">7.5. ¶NewScheduledThreadPool:</h2>
-<ul>
-<li>
-<p>底层：创建ScheduledThreadPoolExecutor实例，corePoolSize为传递来的参数，maximumPoolSize为Integer.MAX_VALUE；keepAliveTime为0；unit为：TimeUnit.NANOSECONDS；workQueue为：new DelayedWorkQueue() 一个按超时时间升序排序的队列</p>
-</li>
-<li>
-<p>通俗：创建一个固定大小的线程池，线程池内线程存活时间无限制，线程池可以支持定时及周期性任务执行，如果所有线程均处于繁忙状态，对于新任务会进入DelayedWorkQueue队列中，这是一种按照超时时间排序的队列结构</p>
-</li>
-<li>
-<p>适用：<strong><code>周期性执行任务的场景</code></strong></p>
-</li>
-<li>
-<p>线程池特点</p>
-<blockquote>
-<ul>
-<li>
-<p>最大线程数为Integer.MAX_VALUE</p>
-</li>
-<li>
-<p>阻塞队列是DelayedWorkQueue</p>
-</li>
-<li>
-<p>keepAliveTime为0</p>
-</li>
-<li>
-<p>scheduleAtFixedRate() ：按某种速率周期执行</p>
-</li>
-<li>
-<p>scheduleWithFixedDelay()：在某个延迟后执行</p>
-</li>
-</ul>
-</blockquote>
-</li>
-<li>
-<p>工作机制</p>
-<blockquote>
-<ol>
-<li>添加一个任务</li>
-<li>线程池中的线程中DelayQueue中取任务</li>
-<li>线程从DelayQueue中获取time大于等于当前时间是task</li>
-<li>执行完后修改这个task的time为下次被执行的时间</li>
-<li>把这个task放回DelayQueue队列中</li>
-</ol>
-</blockquote>
-</li>
-<li>
-<p>使用场景：周期性执行任务的场景，需要限制线程数量的场景</p>
-</li>
-</ul>
-<h1>8. 线程池五大状态</h1>
-<pre><code class="language-java">   //线程池状态
-   private static final int RUNNING    = -1 &lt;&lt; COUNT_BITS;
-   private static final int SHUTDOWN   =  0 &lt;&lt; COUNT_BITS;
-   private static final int STOP       =  1 &lt;&lt; COUNT_BITS;
-   private static final int TIDYING    =  2 &lt;&lt; COUNT_BITS;
-   private static final int TERMINATED =  3 &lt;&lt; COUNT_BITS;
-
-</code></pre>
-<p>状态切换图：</p>
-<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427100536.png" alt="image-20200427100536715" style="zoom:50%;">
-<h2 id="Running">8.1. ¶Running</h2>
-<ul>
-<li>接收新任务</li>
-<li>处理阻塞队列中的任务</li>
-<li>调用线程池的<code>shutdown()</code>方法，可以切换到<strong>SHUTDOWN</strong>状态</li>
-<li>调用线程池的<code>shutdownNow()</code>方法，可以切换到<strong>STOP</strong>状态</li>
-</ul>
-<h2 id="SHUTDOWN">8.2. ¶SHUTDOWN</h2>
-<ul>
-<li>不接收新任务，</li>
-<li>处理阻塞队列中的任务</li>
-<li>队列为空，并且线程池中执行的任务也为空时，进入<strong>TIDYING</strong>状态</li>
-</ul>
-<h2 id="STOP">8.3. ¶STOP</h2>
-<ul>
-<li>不接受新任务</li>
-<li>不处理阻塞队列</li>
-<li>中断正在运行的任务</li>
-<li>线程池中执行的任务为空是，进入此状态</li>
-</ul>
-<h2 id="TIDYING">8.4. ¶TIDYING</h2>
-<ul>
-<li>此时所有的任务都已经运行终止，记录的任务数量为0</li>
-<li><code>terminated()</code>执行完毕，进入<strong>TERMINATED</strong>状态</li>
-</ul>
-<h2 id="TERMINATED">8.5. ¶TERMINATED</h2>
-<ul>
-<li>此时线程池彻底终止</li>
-</ul>
-
-</div>
-
-
-    <div class="post-guide">
-        <div class="item left">
-            
-              <a href="/2020/04/27/java/%E9%9B%86%E5%90%88/HashMap/">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  HashMap
-              </a>
-            
-        </div>
-        <div class="item right">
-            
-              <a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E3%80%81volatile%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
-                java内存模型、volatile的实现原理
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-              </a>
-            
-        </div>
-    </div>
-
-
-
-	<div id="vcomments"></div>
-
-
-<script>
-	
-		// 评论
-		new Valine({
-			av: AV,
-			el: '#vcomments',
-			notify: false,
-			verify: false,
-			path: window.location.pathname,
-			appId: 'lsX646kI8Pj43gH38o38IHEl-gzGzoHsz',
-			appKey: 'SI9zpOfgyOmEDPGK8KI8niYh',
-			placeholder: '请输入评论',
-			avatar: 'retro',
-			recordIP: false
-		})
-	
-	
-    // 显示次数
-		function showTime(Counter) {
-			var query = new AV.Query("Counter");
-			if($(".leancloud_visitors").length > 0){
-				var url = $(".leancloud_visitors").attr('id').trim();
-				// where field
-				query.equalTo("words", url);
-				// count
-				query.count().then(function (number) {
-					// There are number instances of MyClass where words equals url.
-					$(document.getElementById(url)).text(number?  number : '--');
-				}, function (error) {
-					// error is an instance of AVError.
-				});
-			}
-		}
-		// 追加pv
-		function addCount(Counter) {
-			var url = $(".leancloud_visitors").length > 0 ? $(".leancloud_visitors").attr('id').trim() : 'xzh20121116.github.io';
-			var Counter = AV.Object.extend("Counter");
-			var query = new Counter;
-			query.save({
-				words: url
-			}).then(function (object) {
-			})
-		}
-		$(function () {
-			var Counter = AV.Object.extend("Counter");
-			addCount(Counter);
-			showTime(Counter);
-		});
-	
-</script>
 	</div>
 	<div id="footer">
 	<p>

@@ -242,6 +242,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										mybatis
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/05/java/mybatis/xx/">
+										xx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										springboot
 									</a>
 									
@@ -422,7 +442,7 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/04/26/java/%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%A5%BD%E5%A4%84/">
+									<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%A5%BD%E5%A4%84/">
 										线程池的好处
 									</a>
 								</li>
@@ -589,8 +609,46 @@
 									
 							<ul>
 								<li class="file">
+									<a href="/2020/06/16/%E5%85%B6%E4%BB%96/%E3%80%90%E8%BD%AC%E3%80%91%E3%80%90%E9%98%BF%E9%87%8C%E4%BA%91%E5%AE%98%E7%BD%91%E3%80%91oss%20%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%20Content-Type/">
+										【转】【阿里云官网】oss 如何设置 Content-Type
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/06/03/%E5%85%B6%E4%BB%96/%E3%80%90%E8%BD%AC%E3%80%91%E6%90%AD%E5%BB%BA%20gitlab/">
 										【转】搭建 gitlab
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/06/15/%E5%85%B6%E4%BB%96/%E6%94%B6%E8%97%8F/">
+										收藏
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										分布式相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/10/%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+										分布式事务
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -958,15 +1016,27 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/MDC/">
+			<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%A5%BD%E5%A4%84/">
 				<h2 class="index-title">
-					MDC
+					线程池的好处
 				</h2>
 				<div class="index-brief">
-					MDC：Mapped Diagnostic Context，映射调试上下文
-是 log4j 和 logback 提供一种方便在多线程下记录日志的功能
-可以将 MDC 看成是一个与当前线程绑定的哈希表，MDC 中的内容可以被同一线程中执行的代码所访问，当前线程的子线程会继承父线程中的 MDCD 内容
+					线程池的好处
 
+
+帮助我们管理线程，避免增加创建线程和销毁线程的资源损耗。
+
+因为线程其实也是一个对象，创建一个对象，需要经过类加载过程，销毁一个对象，需要走GC垃圾回收流程，都是需要资源开销的
+
+
+
+提高响应速度
+
+如果任务达到了，直接从线程池拿线程  比 重新创建一个线程，速度快很多
+
+
+
+重复
 					...
 				</div>
 			</a>
@@ -1004,12 +1074,15 @@ CyclicBarrier
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+			<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/MDC/">
 				<h2 class="index-title">
-					设计模式
+					MDC
 				</h2>
 				<div class="index-brief">
-					
+					MDC：Mapped Diagnostic Context，映射调试上下文
+是 log4j 和 logback 提供一种方便在多线程下记录日志的功能
+可以将 MDC 看成是一个与当前线程绑定的哈希表，MDC 中的内容可以被同一线程中执行的代码所访问，当前线程的子线程会继承父线程中的 MDCD 内容
+
 					...
 				</div>
 			</a>
@@ -1059,6 +1132,24 @@ CyclicBarrier
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/05/31/java/spring/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+				<h2 class="index-title">
+					设计模式
+				</h2>
+				<div class="index-brief">
+					
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/05/31/java/spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
 				<h2 class="index-title">
 					依赖注入
@@ -1070,6 +1161,25 @@ CyclicBarrier
 spring 容器可以自动配置相互协作 bean 之间的关系。
 spring 从两个角度实现自动装配
 ¶组件扫描
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/spring/spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+				<h2 class="index-title">
+					spring 循环依赖
+				</h2>
+				<div class="index-brief">
+					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
+如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
 					...
 				</div>
 			</a>
@@ -1113,25 +1223,6 @@ requi
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
-				<h2 class="index-title">
-					spring 循环依赖
-				</h2>
-				<div class="index-brief">
-					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
-如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/05/31/java/spring/aop/">
 				<h2 class="index-title">
 					aop
@@ -1160,24 +1251,6 @@ Ioc 思想
 Inversion of controlle 控制反转
 比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
 而 ioc 是，
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/spring/Bean/">
-				<h2 class="index-title">
-					Bean
-				</h2>
-				<div class="index-brief">
-					
 					...
 				</div>
 			</a>
