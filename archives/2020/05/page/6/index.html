@@ -659,15 +659,6 @@
 							</ul>
 			
 							<ul>
-								<li class="file">
-									<a href="/2020/06/19/%E5%A4%84%E7%90%86%20mybatis-plus%20%E4%B8%8E%20pageHelper%20%E5%86%B2%E7%AA%81/">
-										处理 mybatis-plus 与 pageHelper 冲突
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
@@ -1000,6 +991,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										记错
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/19/%E8%AE%B0%E9%94%99/%E5%A4%84%E7%90%86%20mybatis-plus%20%E4%B8%8E%20pageHelper%20%E5%86%B2%E7%AA%81/">
+										处理 mybatis-plus 与 pageHelper 冲突
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										黑苹果
 									</a>
 									
@@ -1025,16 +1036,26 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/Redis/Redisson%E4%BD%BF%E7%94%A8/">
+			<a href="/2020/05/31/java/Redis/redis%E4%B9%8B%E7%BA%A2%E9%94%81(Redlock)/">
 				<h2 class="index-title">
-					Redisson使用
+					redis之红锁(Redlock)
 				</h2>
 				<div class="index-brief">
-					添加 pom 依赖
-    &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
-            &lt;artifactId&gt;re
+					背景
+redis 常用的方式有
+
+单节点
+主从
+哨兵
+集群
+
+单节点不会在生产环境使用，因为达不到高可用，且连 RDB 和 AOF 都只能放在 master 上，所以基本不会使用
+剩下的几种模式都无法避免两个问题
+
+异步数据丢失
+脑裂问题
+
+针对这两个问题，redis 官方提出了红锁(RedLock
 					...
 				</div>
 			</a>

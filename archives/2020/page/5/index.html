@@ -659,15 +659,6 @@
 							</ul>
 			
 							<ul>
-								<li class="file">
-									<a href="/2020/06/19/%E5%A4%84%E7%90%86%20mybatis-plus%20%E4%B8%8E%20pageHelper%20%E5%86%B2%E7%AA%81/">
-										处理 mybatis-plus 与 pageHelper 冲突
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
@@ -1000,6 +991,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										记错
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/19/%E8%AE%B0%E9%94%99/%E5%A4%84%E7%90%86%20mybatis-plus%20%E4%B8%8E%20pageHelper%20%E5%86%B2%E7%AA%81/">
+										处理 mybatis-plus 与 pageHelper 冲突
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										黑苹果
 									</a>
 									
@@ -1038,29 +1049,6 @@ Semaphore
 CountDownLatch
 CyclicBarrier
 
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
-				<h2 class="index-title">
-					依赖注入
-				</h2>
-				<div class="index-brief">
-					di 是相较于 ioc 的一种更具体的实现，ioc 可以理解为一个接口，di 就是他的实现
-装配方式优先级：自动装配 &gt;  java 配置文件 &gt; xml 配置文件
-自动装配
-spring 容器可以自动配置相互协作 bean 之间的关系。
-spring 从两个角度实现自动装配
-¶组件扫描
 					...
 				</div>
 			</a>
@@ -1128,16 +1116,17 @@ spring 从两个角度实现自动装配
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/ioc/">
+			<a href="/2020/05/31/java/spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
 				<h2 class="index-title">
-					ioc
+					依赖注入
 				</h2>
 				<div class="index-brief">
-					ioc 既是一种思想，又是一种容器
-Ioc 思想
-Inversion of controlle 控制反转
-比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
-而 ioc 是，
+					di 是相较于 ioc 的一种更具体的实现，ioc 可以理解为一个接口，di 就是他的实现
+装配方式优先级：自动装配 &gt;  java 配置文件 &gt; xml 配置文件
+自动装配
+spring 容器可以自动配置相互协作 bean 之间的关系。
+spring 从两个角度实现自动装配
+¶组件扫描
 					...
 				</div>
 			</a>
@@ -1150,13 +1139,12 @@ Inversion of controlle 控制反转
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+			<a href="/2020/05/31/java/spring/aop/">
 				<h2 class="index-title">
-					spring 循环依赖
+					aop
 				</h2>
 				<div class="index-brief">
-					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
-如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
+					
 					...
 				</div>
 			</a>
@@ -1200,12 +1188,16 @@ requi
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/aop/">
+			<a href="/2020/05/31/java/spring/ioc/">
 				<h2 class="index-title">
-					aop
+					ioc
 				</h2>
 				<div class="index-brief">
-					
+					ioc 既是一种思想，又是一种容器
+Ioc 思想
+Inversion of controlle 控制反转
+比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
+而 ioc 是，
 					...
 				</div>
 			</a>
@@ -1218,21 +1210,45 @@ requi
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/jvm/%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
+			<a href="/2020/05/31/java/spring/spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
 				<h2 class="index-title">
-					排查堆内存溢出
+					spring 循环依赖
 				</h2>
 				<div class="index-brief">
-					模拟堆内存溢出
+					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
+如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/jvm/%E5%B8%B8%E8%A7%81%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">
+				<h2 class="index-title">
+					常见垃圾回收器
+				</h2>
+				<div class="index-brief">
+					常见的垃圾回收器
 
 
-新建一个 Oom.java 文件，内容如下
-import java.util.ArrayList;
-import java.util.List;
 
-public class Oom {
-    public static void main(String[] args) {
-  
+垃圾回收器的发展路线，是随着内存越来越大的过程而演进
+从分代算法演化到不分代算法
+Serial 算法 几十兆
+Parallel 算法 几个 G
+CMS 算法 几十个 G
+G1 算法 上百 G
+ZGC 4T
+Shenandoah 上千 g，也是上 T 了
+
+
+serial–ps
 					...
 				</div>
 			</a>

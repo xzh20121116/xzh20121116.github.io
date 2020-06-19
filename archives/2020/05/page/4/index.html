@@ -659,15 +659,6 @@
 							</ul>
 			
 							<ul>
-								<li class="file">
-									<a href="/2020/06/19/%E5%A4%84%E7%90%86%20mybatis-plus%20%E4%B8%8E%20pageHelper%20%E5%86%B2%E7%AA%81/">
-										处理 mybatis-plus 与 pageHelper 冲突
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
@@ -1000,6 +991,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										记错
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/19/%E8%AE%B0%E9%94%99/%E5%A4%84%E7%90%86%20mybatis-plus%20%E4%B8%8E%20pageHelper%20%E5%86%B2%E7%AA%81/">
+										处理 mybatis-plus 与 pageHelper 冲突
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										黑苹果
 									</a>
 									
@@ -1104,29 +1115,6 @@ CyclicBarrier
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
-				<h2 class="index-title">
-					依赖注入
-				</h2>
-				<div class="index-brief">
-					di 是相较于 ioc 的一种更具体的实现，ioc 可以理解为一个接口，di 就是他的实现
-装配方式优先级：自动装配 &gt;  java 配置文件 &gt; xml 配置文件
-自动装配
-spring 容器可以自动配置相互协作 bean 之间的关系。
-spring 从两个角度实现自动装配
-¶组件扫描
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/05/31/java/spring/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
 				<h2 class="index-title">
 					设计模式
@@ -1182,16 +1170,17 @@ spring 从两个角度实现自动装配
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/ioc/">
+			<a href="/2020/05/31/java/spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
 				<h2 class="index-title">
-					ioc
+					依赖注入
 				</h2>
 				<div class="index-brief">
-					ioc 既是一种思想，又是一种容器
-Ioc 思想
-Inversion of controlle 控制反转
-比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
-而 ioc 是，
+					di 是相较于 ioc 的一种更具体的实现，ioc 可以理解为一个接口，di 就是他的实现
+装配方式优先级：自动装配 &gt;  java 配置文件 &gt; xml 配置文件
+自动装配
+spring 容器可以自动配置相互协作 bean 之间的关系。
+spring 从两个角度实现自动装配
+¶组件扫描
 					...
 				</div>
 			</a>
@@ -1204,13 +1193,12 @@ Inversion of controlle 控制反转
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+			<a href="/2020/05/31/java/spring/aop/">
 				<h2 class="index-title">
-					spring 循环依赖
+					aop
 				</h2>
 				<div class="index-brief">
-					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
-如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
+					
 					...
 				</div>
 			</a>
@@ -1254,12 +1242,35 @@ requi
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/aop/">
+			<a href="/2020/05/31/java/spring/ioc/">
 				<h2 class="index-title">
-					aop
+					ioc
 				</h2>
 				<div class="index-brief">
-					
+					ioc 既是一种思想，又是一种容器
+Ioc 思想
+Inversion of controlle 控制反转
+比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
+而 ioc 是，
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/spring/spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+				<h2 class="index-title">
+					spring 循环依赖
+				</h2>
+				<div class="index-brief">
+					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
+如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
 					...
 				</div>
 			</a>
