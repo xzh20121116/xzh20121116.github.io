@@ -89,6 +89,15 @@
 
 			
 							<ul>
+								<li class="file">
+									<a href="/2020/06/19/11/">
+										11
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
@@ -1016,6 +1025,33 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/05/31/java/jvm/%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
+				<h2 class="index-title">
+					排查堆内存溢出
+				</h2>
+				<div class="index-brief">
+					模拟堆内存溢出
+
+
+新建一个 Oom.java 文件，内容如下
+import java.util.ArrayList;
+import java.util.List;
+
+public class Oom {
+    public static void main(String[] args) {
+  
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/05/31/java/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
 				<h2 class="index-title">
 					分布式锁
@@ -1264,30 +1300,6 @@ heading_index:
 			</a>
                 <div class="article-meta">
 				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/07/java/spring/BeanFactory-%E5%92%8C-ApplicationContext-%E5%8C%BA%E5%88%AB/">
-				<h2 class="index-title">
-					BeanFactory-和-ApplicationContext-区别
-				</h2>
-				<div class="index-brief">
-					BeanFactory 是比较原始的 Factory，不支持 spring 插件：例如 AOP、web 应用等功能
-ApplicationContext是 BeanFactory 的子类，以一种更面向框架的工作方式以及对上下文进行分层和实现继承
-
-利用 BeanFactory 获取 Bean
-
-
-重
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-07</span>
                     
                             
                     

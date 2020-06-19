@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		java/Zookeeper/分布式锁 | 
+		11 | 
 	 
 	温故知新
 	</title>
@@ -91,7 +91,7 @@
 
 			
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/2020/06/19/11/">
 										11
 									</a>
@@ -190,7 +190,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file active">
+								<li class="file">
 									<a href="/2020/05/31/java/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
 										分布式锁
 									</a>
@@ -1026,16 +1026,16 @@
 	<div id="content">
 		<h1 id="article-title">
 
-	分布式锁
+	11
 </h1>
 <div class="article-meta">
 	
 		<span>
-			阅读量:<span id="/2020/05/31/java/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" class="leancloud_visitors" data-flag-title="java/Zookeeper/分布式锁"></span>
+			阅读量:<span id="/2020/06/19/11/" class="leancloud_visitors" data-flag-title="11"></span>
 		</span>
 	
 	<span>今晚打老虎</span>
-	<span>2020-05-31 20:43:04</span>
+	<span>2020-06-19 10:30:01</span>
     
 		<div id="article-categories">
             
@@ -1044,134 +1044,90 @@
 </div>
 
 <div id="article-content">
-	<h1>1. zk是啥？</h1>
-<blockquote>
-<p>数据库、文件存储系统，并且有监听通知机制（观察者模式）</p>
-</blockquote>
-<h1>2. 特性</h1>
-<ol>
-<li>
-<p>有序节点</p>
-<blockquote>
-<p>假如 当前有一个父节点为 /lock，我们可以在这个父节点下面创建子节点，使用<code>有序节点</code>，我创建子节点 /lock/node- ，并且指明有序，那么 zookeeper 在生成子节点的时候会自动的添加整数序号</p>
-</blockquote>
-</li>
-<li>
-<p>临时节点</p>
-<blockquote>
-<p>客户端可以建立临时节点，回话超时，或者客户端断开连接之后，zk 会自动删除该节点</p>
-</blockquote>
-</li>
-<li>
-<p>时间监听</p>
-<blockquote>
-<p>在读取数据时，可以同时对节点设置事件监听，当节点数据或结构发生变化是，zk 会通知客户端</p>
-<p>四种事件</p>
-<ol>
-<li>节点创建</li>
-<li>节点删除</li>
-<li>节点数据修改</li>
-<li>子节点变更</li>
-</ol>
-</blockquote>
-</li>
-</ol>
-<h1>3. 应用场景</h1>
-<ul>
-<li>服务注册与订阅（共用节点）</li>
-<li>分布式通知(监听 znode)</li>
-<li>服务命名（znode 特性）</li>
-<li>数据订阅、发布（watcher）</li>
-<li>分布式锁（临时节点）</li>
-</ul>
-<h1>4. 文件系统存了什么？</h1>
-<p>节点，节点名称都是唯一的</p>
-<p>zk 的节点有四大类型</p>
-<ul>
-<li>
-<p>持久化节点（zk 断开节点还在）</p>
-</li>
-<li>
-<p>持久化顺序编号目录节点</p>
-</li>
-<li>
-<p>临时目录节点（客户端断开连接后节点就删除了）</p>
-</li>
-<li>
-<p>临时目录编号目录节点</p>
-</li>
-</ul>
-<h1>5. 节点怎么创建？</h1>
-<h2 id="创建永久节点">5.1. ¶创建永久节点</h2>
-<pre><code>create /test node
+	<p>解决mybatiplus 与 pageHelper 冲突</p>
+<h1>1. 问题描述</h1>
+<p>代码中原来使用了 <code>mybatis</code> +<code>pageHelper</code></p>
+<p>后来为了使用 <code>mybatis-plus</code>，将 mybatis 依赖干掉，加入了 plus 的依赖</p>
+<pre><code class="language-xml">        &lt;dependency&gt;
+            &lt;groupId&gt;com.baomidou&lt;/groupId&gt;
+            &lt;artifactId&gt;mybatis-plus-boot-starter&lt;/artifactId&gt;
+            &lt;version&gt;3.3.2&lt;/version&gt;
+        &lt;/dependency&gt;
 </code></pre>
-<h2 id="创建临时节点">5.2. ¶创建临时节点</h2>
-<pre><code>create -e /linshi node
+<p>原来的 pageHelper 依赖如下</p>
+<pre><code class="language-xml">&lt;!-- pagehelper 分页插件 --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.github.pagehelper&lt;/groupId&gt;
+            &lt;artifactId&gt;pagehelper-spring-boot-starter&lt;/artifactId&gt;
+            &lt;version&gt;1.2.5&lt;/version&gt;
+        &lt;/dependency&gt;
 </code></pre>
-<p>如果断开这次连接，这个节点就消失了</p>
-<h2 id="创建顺序节点">5.3. ¶创建顺序节点</h2>
-<pre><code>create -s /shunxu node
+<p>此时启动项目，发现报错了，如下</p>
+<pre><code>
+
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [com/baomidou/mybatisplus/autoconfigure/MybatisPlusAutoConfiguration.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception; nested exception is java.lang.NoClassDefFoundError: org/mybatis/logging/LoggerFactory
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:627)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:607)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1320)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1159)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:555)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:515)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:320)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:222)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:318)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:199)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:277)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1255)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1175)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireByType(AbstractAutowireCapableBeanFactory.java:1493)
+	... 56 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception; nested exception is java.lang.NoClassDefFoundError: org/mybatis/logging/LoggerFactory
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:622)
+	... 69 common frames omitted
+Caused by: java.lang.NoClassDefFoundError: org/mybatis/logging/LoggerFactory
+	at com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean.&lt;clinit&gt;(MybatisSqlSessionFactoryBean.java:97)
+	at com.baomidou.mybatisplus.autoconfigure.MybatisPlusAutoConfiguration.sqlSessionFactory(MybatisPlusAutoConfiguration.java:142)
+	at com.baomidou.mybatisplus.autoconfigure.MybatisPlusAutoConfiguration$$EnhancerBySpringCGLIB$$127daae6.CGLIB$sqlSessionFactory$1(&lt;generated&gt;)
+	at com.baomidou.mybatisplus.autoconfigure.MybatisPlusAutoConfiguration$$EnhancerBySpringCGLIB$$127daae6$$FastClassBySpringCGLIB$$f3f47dc3.invoke(&lt;generated&gt;)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:363)
+	at com.baomidou.mybatisplus.autoconfigure.MybatisPlusAutoConfiguration$$EnhancerBySpringCGLIB$$127daae6.sqlSessionFactory(&lt;generated&gt;)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:498)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 70 common frames omitted
+Caused by: java.lang.ClassNotFoundException: org.mybatis.logging.LoggerFactory
+	at java.net.URLClassLoader.findClass(URLClassLoader.java:381)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:424)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Launcher.java:331)
+	at java.lang.ClassLoader.loadClass(ClassLoader.java:357)
+	... 82 common frames omitted
+
+
 </code></pre>
-<h2 id="临时顺序节点">5.4. ¶临时顺序节点</h2>
-<pre><code>create -e -s /linshishunxu  node
+<h1>2. 解决方案</h1>
+<p>将 pageHelper 中的这来依赖干掉，如下，再次启动成功</p>
+<pre><code class="language-xml">        &lt;!-- pagehelper 分页插件 --&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;com.github.pagehelper&lt;/groupId&gt;
+            &lt;artifactId&gt;pagehelper-spring-boot-starter&lt;/artifactId&gt;
+            &lt;version&gt;1.2.5&lt;/version&gt;
+            &lt;!-- 因为会跟 mybatisplus 冲突,所以干掉这俩包 --&gt;
+            &lt;exclusions&gt;
+                &lt;exclusion&gt;
+                    &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+                    &lt;artifactId&gt;mybatis&lt;/artifactId&gt;
+                &lt;/exclusion&gt;
+                &lt;exclusion&gt;
+                    &lt;groupId&gt;org.mybatis&lt;/groupId&gt;
+                    &lt;artifactId&gt;mybatis-spring&lt;/artifactId&gt;
+                &lt;/exclusion&gt;
+            &lt;/exclusions&gt;
+        &lt;/dependency&gt;
 </code></pre>
-<h1>6. 分布式锁</h1>
-<h2 id="算法流程–未优化版">6.1. ¶算法流程–未优化版</h2>
-<ol>
-<li>
-<p>客户端连接 zk，并在<code>/lock</code> 下创建 <code>临时有序节点</code>，第一个为/lock/lock-0000000000，第二个为/lock/lock-0000000001，以此类推。</p>
-</li>
-<li>
-<p>客户端获取 <code>/lock</code>下的子节点列表，判断自己创建的节点是否为当前子节点列表中序号最小的子节点</p>
-<ul>
-<li>序号最好—则认为获得锁</li>
-<li>非最小—监听<code>/lock</code>的子节点变更消息，获得变更通知后重复此步骤，直到获得锁</li>
-</ul>
-</li>
-<li>
-<p>获得锁的执行业务代码</p>
-</li>
-<li>
-<p>完成业务代码，删除对应的子节点释放锁</p>
-</li>
-</ol>
-<h2 id="为什么用临时节点">6.2. ¶为什么用临时节点</h2>
-<p>临时节点保证客户端获取锁后，宕机了，zk 会自动删除这个临时节点，相当于自动释放锁了</p>
-<h2 id="在【算法流程–未优化版】的第二步获取列表与监听不是原子操作？">6.3. ¶在【算法流程–未优化版】的第二步获取列表与监听不是原子操作？</h2>
-<p>这个问题不会出现，下面的流程是不会发生的</p>
-<blockquote>
-<p>客户端 A 创建序号 1 的节点，客户点 B 创建序号 2 的节点。</p>
-<ol>
-<li>A 获取 列表，发现自己最小，开始执行业务代码</li>
-<li>B 获取列表，发现自己不是最小，准备设置监听（此时b让出了 cpu 时间，并未设置）</li>
-<li>A 执行完毕，删出列表</li>
-<li>B 设置监听（因为 A 在第3 步就删除了 ，此时 B 监听不到变化了，永远等待？）</li>
-</ol>
-</blockquote>
-<p>因为 zk 提供的 API 中设置监听器的操作和读操作是原子操作，为的就是保证不丢失事件</p>
-<h2 id="算法流程–终极">6.4. ¶算法流程–终极</h2>
-<h3 id="为什么需要优化">6.4.1. ¶为什么需要优化</h3>
-<blockquote>
-<p>假如当前有 1000 个节点在等待锁，如果获得锁的客户端释放锁，那么这 1000 个客户端都会被唤醒，</p>
-<p>这被称为羊群效应，在这种羊群效应中，zk 需要通知 1000 个客户端，会阻塞其他操作</p>
-<p>最好的情况是，只唤醒新的最小节点对应的客户端</p>
-</blockquote>
-<h3 id="应该怎么做呢？">6.4.2. ¶应该怎么做呢？</h3>
-<blockquote>
-<p>在设置监听事件时，每个客户端应该监听他前面的一个节点，2 监听 1，1 监听 0</p>
-</blockquote>
-<h3 id="算法流程–终极版">6.4.3. ¶算法流程–终极版</h3>
-<ol>
-<li>客户端连接 zk，并在<code>/lock</code> 下创建 <code>临时有序节点</code>，第一个为/lock/lock-0000000000，第二个为/lock/lock-0000000001，以此类推。</li>
-<li>客户端获取 <code>/lock</code>下的子节点列表，判断自己创建的节点是否为当前子节点列表中序号最小的子节点
-<ul>
-<li>序号最好—则认为获得锁</li>
-<li>非最小—监听<code>自己前面的</code>子节点变更消息，获得变更通知后重复此步骤，直到获得锁</li>
-</ul>
-</li>
-<li>获得锁的执行业务代码</li>
-<li>完成业务代码，删除对应的子节点释放锁</li>
-</ol>
 
 </div>
 
@@ -1179,16 +1135,11 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2020/05/31/java/jvm/%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  排查堆内存溢出
-              </a>
-            
         </div>
         <div class="item right">
             
-              <a href="/2020/05/31/java/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
-                客户端ZooInspector
+              <a href="/2020/06/16/%E5%85%B6%E4%BB%96/%E3%80%90%E8%BD%AC%E3%80%91%E3%80%90%E9%98%BF%E9%87%8C%E4%BA%91%E5%AE%98%E7%BD%91%E3%80%91oss%20%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%20Content-Type/">
+                其他
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
