@@ -1025,24 +1025,6 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/Bean/">
-				<h2 class="index-title">
-					Bean
-				</h2>
-				<div class="index-brief">
-					
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/05/31/java/jvm/%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
 				<h2 class="index-title">
 					排查堆内存溢出
@@ -1058,6 +1040,24 @@ import java.util.List;
 public class Oom {
     public static void main(String[] args) {
   
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/spring/Bean/">
+				<h2 class="index-title">
+					Bean
+				</h2>
+				<div class="index-brief">
+					
 					...
 				</div>
 			</a>
@@ -1102,21 +1102,21 @@ serial–ps
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/jvm/jvm%20%E8%B0%83%E4%BC%98/">
+			<a href="/2020/05/31/java/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
 				<h2 class="index-title">
-					jvm 调优
+					分布式锁
 				</h2>
 				<div class="index-brief">
-					了解 jvm 常用命令行参数
+					zk是啥？
+
+数据库、文件存储系统，并且有监听通知机制（观察者模式）
+
+特性
 
 
-JVM的命令行参数参考：https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html
+有序节点
 
-
-HotSpot 参数分类
-
-标准： - 开头，所有的 hotspot 都支持
-非标准： -X 开头，
+假如 当前有一个父节点为 /lock，我们可以在这个父节点下面创建子节点，使用有序节点，我创建子节点 /lock/node- ，并且指明有序，那么 zookeeper 在生成子节点的时候会自动的添加整数序号
 					...
 				</div>
 			</a>
@@ -1153,46 +1153,21 @@ java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+			<a href="/2020/05/31/java/jvm/jvm%20%E8%B0%83%E4%BC%98/">
 				<h2 class="index-title">
-					分布式锁
+					jvm 调优
 				</h2>
 				<div class="index-brief">
-					zk是啥？
-
-数据库、文件存储系统，并且有监听通知机制（观察者模式）
-
-特性
+					了解 jvm 常用命令行参数
 
 
-有序节点
+JVM的命令行参数参考：https://docs.oracle.com/javase/8/docs/technotes/tools/unix/java.html
 
-假如 当前有一个父节点为 /lock，我们可以在这个父节点下面创建子节点，使用有序节点，我创建子节点 /lock/node- ，并且指明有序，那么 zookeeper 在生成子节点的时候会自动的添加整数序号
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
-				<h2 class="index-title">
-					mac 安装启动
-				</h2>
-				<div class="index-brief">
-					下载
-启动
-~/zookeeper-3.4.14/bin 
-./zkServer.sh start
 
-zookeeper 客户端
-./zkCli.sh -timeout 0 -r -server ip:port
-./zkCli.sh -timeout 5000 -server 192.9.200.2
+HotSpot 参数分类
+
+标准： - 开头，所有的 hotspot 都支持
+非标准： -X 开头，
 					...
 				</div>
 			</a>
@@ -1274,16 +1249,51 @@ for(；；)
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/Redis/Redisson%E4%BD%BF%E7%94%A8/">
+			<a href="/2020/05/31/java/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
 				<h2 class="index-title">
-					Redisson使用
+					mac 安装启动
 				</h2>
 				<div class="index-brief">
-					添加 pom 依赖
-    &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
-            &lt;artifactId&gt;re
+					下载
+启动
+~/zookeeper-3.4.14/bin 
+./zkServer.sh start
+
+zookeeper 客户端
+./zkCli.sh -timeout 0 -r -server ip:port
+./zkCli.sh -timeout 5000 -server 192.9.200.2
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/Redis/redis%E4%B9%8B%E7%BA%A2%E9%94%81(Redlock)/">
+				<h2 class="index-title">
+					redis之红锁(Redlock)
+				</h2>
+				<div class="index-brief">
+					背景
+redis 常用的方式有
+
+单节点
+主从
+哨兵
+集群
+
+单节点不会在生产环境使用，因为达不到高可用，且连 RDB 和 AOF 都只能放在 master 上，所以基本不会使用
+剩下的几种模式都无法避免两个问题
+
+异步数据丢失
+脑裂问题
+
+针对这两个问题，redis 官方提出了红锁(RedLock
 					...
 				</div>
 			</a>

@@ -1058,6 +1058,27 @@
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/MDC/">
+				<h2 class="index-title">
+					MDC
+				</h2>
+				<div class="index-brief">
+					MDC：Mapped Diagnostic Context，映射调试上下文
+是 log4j 和 logback 提供一种方便在多线程下记录日志的功能
+可以将 MDC 看成是一个与当前线程绑定的哈希表，MDC 中的内容可以被同一线程中执行的代码所访问，当前线程的子线程会继承父线程中的 MDCD 内容
+
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 				<h2 class="index-title">
 					Aqs的核心成员、数据模型、锁的实现原理
@@ -1083,15 +1104,17 @@ CyclicBarrier
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/MDC/">
+			<a href="/2020/05/31/java/spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
 				<h2 class="index-title">
-					MDC
+					依赖注入
 				</h2>
 				<div class="index-brief">
-					MDC：Mapped Diagnostic Context，映射调试上下文
-是 log4j 和 logback 提供一种方便在多线程下记录日志的功能
-可以将 MDC 看成是一个与当前线程绑定的哈希表，MDC 中的内容可以被同一线程中执行的代码所访问，当前线程的子线程会继承父线程中的 MDCD 内容
-
+					di 是相较于 ioc 的一种更具体的实现，ioc 可以理解为一个接口，di 就是他的实现
+装配方式优先级：自动装配 &gt;  java 配置文件 &gt; xml 配置文件
+自动装配
+spring 容器可以自动配置相互协作 bean 之间的关系。
+spring 从两个角度实现自动装配
+¶组件扫描
 					...
 				</div>
 			</a>
@@ -1159,17 +1182,16 @@ CyclicBarrier
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
+			<a href="/2020/05/31/java/spring/ioc/">
 				<h2 class="index-title">
-					依赖注入
+					ioc
 				</h2>
 				<div class="index-brief">
-					di 是相较于 ioc 的一种更具体的实现，ioc 可以理解为一个接口，di 就是他的实现
-装配方式优先级：自动装配 &gt;  java 配置文件 &gt; xml 配置文件
-自动装配
-spring 容器可以自动配置相互协作 bean 之间的关系。
-spring 从两个角度实现自动装配
-¶组件扫描
+					ioc 既是一种思想，又是一种容器
+Ioc 思想
+Inversion of controlle 控制反转
+比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
+而 ioc 是，
 					...
 				</div>
 			</a>
@@ -1238,28 +1260,6 @@ requi
 				</h2>
 				<div class="index-brief">
 					
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/spring/ioc/">
-				<h2 class="index-title">
-					ioc
-				</h2>
-				<div class="index-brief">
-					ioc 既是一种思想，又是一种容器
-Ioc 思想
-Inversion of controlle 控制反转
-比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
-而 ioc 是，
 					...
 				</div>
 			</a>
