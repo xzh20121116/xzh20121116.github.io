@@ -754,8 +754,15 @@
 							</ul>
 			
 							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										linux
+									</a>
+									
+							<ul>
 								<li class="file">
-									<a href="/2020/07/01/linux%20%E5%AE%89%E8%A3%85%20jdk/">
+									<a href="/2020/07/01/linux/linux%20%E5%AE%89%E8%A3%85%20jdk/">
 										linux 安装 jdk
 									</a>
 								</li>
@@ -764,7 +771,7 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/07/01/linux%20%E5%AE%89%E8%A3%85%20nginx/">
+									<a href="/2020/07/01/linux/linux%20%E5%AE%89%E8%A3%85%20nginx/">
 										linux 安装 nginx
 									</a>
 								</li>
@@ -773,7 +780,7 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/07/01/linux%E5%AE%89%E8%A3%85yapi/">
+									<a href="/2020/07/01/linux/linux%E5%AE%89%E8%A3%85yapi/">
 										linux安装yapi
 									</a>
 								</li>
@@ -781,12 +788,14 @@
 							</ul>
 			
 							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										linux
+								<li class="file">
+									<a href="/2020/06/29/linux/showdoc%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
+										showdoc 安装教程
 									</a>
-									
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 							<ul>
 								<li class="file">
 									<a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
@@ -912,15 +921,6 @@
 			
 								</li>
 								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2020/06/29/showdoc%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
-										showdoc 安装教程
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
 							<ul>
@@ -1605,6 +1605,27 @@
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/MDC/">
+				<h2 class="index-title">
+					MDC
+				</h2>
+				<div class="index-brief">
+					MDC：Mapped Diagnostic Context，映射调试上下文
+是 log4j 和 logback 提供一种方便在多线程下记录日志的功能
+可以将 MDC 看成是一个与当前线程绑定的哈希表，MDC 中的内容可以被同一线程中执行的代码所访问，当前线程的子线程会继承父线程中的 MDCD 内容
+
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 				<h2 class="index-title">
 					Aqs的核心成员、数据模型、锁的实现原理
@@ -1630,15 +1651,12 @@ CyclicBarrier
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/%E7%BA%BF%E7%A8%8B/MDC/">
+			<a href="/2020/05/31/java/spring/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
 				<h2 class="index-title">
-					MDC
+					设计模式
 				</h2>
 				<div class="index-brief">
-					MDC：Mapped Diagnostic Context，映射调试上下文
-是 log4j 和 logback 提供一种方便在多线程下记录日志的功能
-可以将 MDC 看成是一个与当前线程绑定的哈希表，MDC 中的内容可以被同一线程中执行的代码所访问，当前线程的子线程会继承父线程中的 MDCD 内容
-
+					
 					...
 				</div>
 			</a>
@@ -1712,12 +1730,13 @@ spring 从两个角度实现自动装配
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+			<a href="/2020/05/31/java/spring/spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
 				<h2 class="index-title">
-					设计模式
+					spring 循环依赖
 				</h2>
 				<div class="index-brief">
-					
+					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
+如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
 					...
 				</div>
 			</a>
@@ -1752,13 +1771,12 @@ Inversion of controlle 控制反转
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+			<a href="/2020/05/31/java/spring/aop/">
 				<h2 class="index-title">
-					spring 循环依赖
+					aop
 				</h2>
 				<div class="index-brief">
-					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
-如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
+					
 					...
 				</div>
 			</a>
@@ -1790,24 +1808,6 @@ required：最常用，支持当前事务，如果没有，就新建
 supports：支持当前事务，如果没有，就没有
 mandatory：支持当前事务，如果没有，抛异常
 requi
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/spring/aop/">
-				<h2 class="index-title">
-					aop
-				</h2>
-				<div class="index-brief">
-					
 					...
 				</div>
 			</a>

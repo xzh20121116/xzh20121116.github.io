@@ -754,8 +754,15 @@
 							</ul>
 			
 							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										linux
+									</a>
+									
+							<ul>
 								<li class="file">
-									<a href="/2020/07/01/linux%20%E5%AE%89%E8%A3%85%20jdk/">
+									<a href="/2020/07/01/linux/linux%20%E5%AE%89%E8%A3%85%20jdk/">
 										linux 安装 jdk
 									</a>
 								</li>
@@ -764,7 +771,7 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/07/01/linux%20%E5%AE%89%E8%A3%85%20nginx/">
+									<a href="/2020/07/01/linux/linux%20%E5%AE%89%E8%A3%85%20nginx/">
 										linux 安装 nginx
 									</a>
 								</li>
@@ -773,7 +780,7 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/07/01/linux%E5%AE%89%E8%A3%85yapi/">
+									<a href="/2020/07/01/linux/linux%E5%AE%89%E8%A3%85yapi/">
 										linux安装yapi
 									</a>
 								</li>
@@ -781,12 +788,14 @@
 							</ul>
 			
 							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										linux
+								<li class="file">
+									<a href="/2020/06/29/linux/showdoc%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
+										showdoc 安装教程
 									</a>
-									
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 							<ul>
 								<li class="file">
 									<a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
@@ -912,15 +921,6 @@
 			
 								</li>
 								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2020/06/29/showdoc%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
-										showdoc 安装教程
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
 							<ul>
@@ -1625,38 +1625,6 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%88%A0%E5%8E%BBk%E4%B8%AA%E6%95%B0%E5%AD%97%E5%90%8E%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC/">
-				<h2 class="index-title">
-					删去k个数字后的最小值
-				</h2>
-				<div class="index-brief">
-					题目
-给出一个整数，删除指定个数字后，剩下的数最小
-翻译成人话
-
-
-
-思路
-贪心算法相关
-你的第一感觉是优先删除最大的数字？
-
-不对，数字的大小固然重要，但是数字的位置更重要，哪怕高位只减少 1，对数值的影响也是非常大的
-
-举个例子
-
-一个9 位整数 541270936，要求删除 1 个数字，让剩下
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
 				<h2 class="index-title">
 					常见排序算法
@@ -1710,6 +1678,38 @@ $ n
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%88%A0%E5%8E%BBk%E4%B8%AA%E6%95%B0%E5%AD%97%E5%90%8E%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC/">
+				<h2 class="index-title">
+					删去k个数字后的最小值
+				</h2>
+				<div class="index-brief">
+					题目
+给出一个整数，删除指定个数字后，剩下的数最小
+翻译成人话
+
+
+
+思路
+贪心算法相关
+你的第一感觉是优先删除最大的数字？
+
+不对，数字的大小固然重要，但是数字的位置更重要，哪怕高位只减少 1，对数值的影响也是非常大的
+
+举个例子
+
+一个9 位整数 541270936，要求删除 1 个数字，让剩下
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E5%90%A6%E4%B8%BA2%E6%95%B4%E6%95%B0%E6%AC%A1%E5%B9%82/">
 				<h2 class="index-title">
 					如何判断一个数否为2整数次幂
@@ -1737,31 +1737,6 @@ $ n
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%A0%86%E6%8E%92%E5%BA%8F/">
-				<h2 class="index-title">
-					堆排序
-				</h2>
-				<div class="index-brief">
-					什么是堆排序
-二叉堆的构建、删除、自我调整等基本操作正是实现堆排序的基础
-二叉堆的特性
-
-最大堆的堆顶是整个堆中最大的元素
-最小堆的堆顶是整个堆中最小的元素
-
-以最大堆为力，如果删除一个最大堆的堆顶（并不是完全删除，而是跟末尾的节点交换位置），经过自我调整，第 2 大的元素就会被交换上来，成为最大堆
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">
 				<h2 class="index-title">
 					冒泡排序
@@ -1777,6 +1752,31 @@ public class 冒泡排序 {
 	}
 
 	static 
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%A0%86%E6%8E%92%E5%BA%8F/">
+				<h2 class="index-title">
+					堆排序
+				</h2>
+				<div class="index-brief">
+					什么是堆排序
+二叉堆的构建、删除、自我调整等基本操作正是实现堆排序的基础
+二叉堆的特性
+
+最大堆的堆顶是整个堆中最大的元素
+最小堆的堆顶是整个堆中最小的元素
+
+以最大堆为力，如果删除一个最大堆的堆顶（并不是完全删除，而是跟末尾的节点交换位置），经过自我调整，第 2 大的元素就会被交换上来，成为最大堆
 					...
 				</div>
 			</a>

@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		linux 安装 nginx | 
+		linux/linux 安装 jdk | 
 	 
 	温故知新
 	</title>
@@ -756,8 +756,15 @@
 							</ul>
 			
 							<ul>
-								<li class="file">
-									<a href="/2020/07/01/linux%20%E5%AE%89%E8%A3%85%20jdk/">
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										linux
+									</a>
+									
+							<ul>
+								<li class="file active">
+									<a href="/2020/07/01/linux/linux%20%E5%AE%89%E8%A3%85%20jdk/">
 										linux 安装 jdk
 									</a>
 								</li>
@@ -765,8 +772,8 @@
 							</ul>
 			
 							<ul>
-								<li class="file active">
-									<a href="/2020/07/01/linux%20%E5%AE%89%E8%A3%85%20nginx/">
+								<li class="file">
+									<a href="/2020/07/01/linux/linux%20%E5%AE%89%E8%A3%85%20nginx/">
 										linux 安装 nginx
 									</a>
 								</li>
@@ -775,7 +782,7 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/07/01/linux%E5%AE%89%E8%A3%85yapi/">
+									<a href="/2020/07/01/linux/linux%E5%AE%89%E8%A3%85yapi/">
 										linux安装yapi
 									</a>
 								</li>
@@ -783,12 +790,14 @@
 							</ul>
 			
 							<ul>
-								<li class="directory">
-									<a href="#" class="directory">
-										<i class="fa fa-plus-square-o"></i>
-										linux
+								<li class="file">
+									<a href="/2020/06/29/linux/showdoc%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
+										showdoc 安装教程
 									</a>
-									
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 							<ul>
 								<li class="file">
 									<a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
@@ -914,15 +923,6 @@
 			
 								</li>
 								
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2020/06/29/showdoc%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
-										showdoc 安装教程
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
 							<ul>
@@ -1573,16 +1573,16 @@
 	<div id="content">
 		<h1 id="article-title">
 
-	linux 安装 nginx
+	linux 安装 jdk
 </h1>
 <div class="article-meta">
 	
 		<span>
-			阅读量:<span id="/2020/07/01/linux%20%E5%AE%89%E8%A3%85%20nginx/" class="leancloud_visitors" data-flag-title="linux 安装 nginx"></span>
+			阅读量:<span id="/2020/07/01/linux/linux%20%E5%AE%89%E8%A3%85%20jdk/" class="leancloud_visitors" data-flag-title="linux/linux 安装 jdk"></span>
 		</span>
 	
 	<span>今晚打老虎</span>
-	<span>2020-07-01 11:14:36</span>
+	<span>2020-07-01 11:05:43</span>
     
 		<div id="article-categories">
             
@@ -1591,90 +1591,18 @@
 </div>
 
 <div id="article-content">
-	<h1>1. yum 安装</h1>
-<ol>
-<li>
-<p>添加 yum 源</p>
-<p>Nginx 不在默认的 yum 源中，可以使用 epel 或者官网的 yum 源，本例使用官网的 yum 源。</p>
-<pre><code>  sudo rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+	<h1>1. yum安装</h1>
+<p>yum源<br>
+这里需要注意yum源的配置<br>
+1、查看yum库中都有哪些jdk版本</p>
+<pre><code>yum search java|grep jdk
 </code></pre>
-<p>安装完 yum 源之后，可以看一下</p>
-<pre><code>  sudo yum repolist
+<p>2、选择指定的版本安装，注意最后的 * 以及yum源安装的是openjdk，注意openjdk的区别。</p>
+<pre><code>yum install java-1.8.0-openjdk*
 </code></pre>
-</li>
-<li>
-<p>安装</p>
-<p>一条命令，很简单</p>
-<pre><code>yum install nginx
+<p>3、安装完成后查看版本信息</p>
+<pre><code>java -version
 </code></pre>
-</li>
-<li>
-<p>配置nginx 服务</p>
-<p>设置开机启动</p>
-<pre><code> sudo systemctl enable nginx
-</code></pre>
-<p>启动服务</p>
-<pre><code> sudo systemctl start nginx
-</code></pre>
-<p>停止服务</p>
-<pre><code> sudo systemctl restart nginx
-</code></pre>
-<p>重新加载，因为一般重新配置之后，不希望重启服务，这时可以使用重新加载。</p>
-<pre><code> sudo systemctl reload nginx
-</code></pre>
-</li>
-<li>
-<p>打开防火墙</p>
-<p>默认 CentOS7 使用的防火墙 firewalld 是关闭 http 服务的（打开 80 端口）。</p>
-<pre><code> sudo firewall-cmd --zone=public --permanent --add-service=http
-success
- sudo firewall-cmd --reload
-success
-</code></pre>
-<p>打开之后，可以查看一下防火墙打开的所有的服务</p>
-<pre><code> sudo firewall-cmd --list-service
-ssh dhcpv6-client http
-</code></pre>
-<p>可以看到，系统已经打开了 http 服务。</p>
-</li>
-<li>
-<p>反向代理</p>
-<p>Nginx 是一个很方便的反向代理，配置反向代理可以参考 <a href="http://nginx.org/en/docs/http/ngx_http_proxy_module.html" target="_blank" rel="noopener">Module ngx_http_proxy_module</a> 。本文不做累述。</p>
-<p>需要指出的是 CentOS 7 的 SELinux，使用反向代理需要打开网络访问权限。</p>
-<pre><code> sudo setsebool -P httpd_can_network_connect on 
-</code></pre>
-<p>打开网络权限之后，反向代理可以使用了。</p>
-</li>
-<li>
-<p>绑定其他端口</p>
-<p>Nginx 默认绑定的端口是 http 协议的默认端口，端口号为：<code>80</code>，如果需要绑定其他端口，需要注意 SELinux 的配置</p>
-<p>例如：绑定 8081 端口，但是会发现无法启动，一般的报错如下</p>
-<pre><code>YYYY/MM/DD hh:mm:ss [emerg] 46123#0: bind() to 0.0.0.0:8081 failed (13: Permission denied)
-</code></pre>
-<p>此时需要更改 SELinux 的设置。我们使用 SELinux 的管理工具 <code>semanage</code> 进行操作，比较方便。</p>
-<p>安装 <code>semanage</code> 使用如下命令</p>
-<pre><code> sudo yum install policycoreutils-python
-</code></pre>
-<p>然后查看是否有其他协议类型使用了此端口</p>
-<pre><code> sudo semanage port -l | grep 8081
-transproxy_port_t              tcp      8081
-</code></pre>
-<p>返回了结果，表明已经被其他类型占用了，类型为 <code>transproxy_port_t</code>。</p>
-<p>我们还要查看一下 Nginx 的在 SELinux 中的类型 <code>http_port_t</code> 绑定的端口</p>
-<pre><code> sudo semanage port -l | grep http_port_t
-http_port_t                    tcp      80, 81, 443, 488, 8008, 8009, 8443, 9000
-pegasus_http_port_t            tcp      5988
-</code></pre>
-<p>第一行 <code>http_port_t</code> 中没有包含 <code>8081</code> 这个端口。因此需要修改 <code>8081</code> 端口到 <code>http_port_t</code> 类型中。</p>
-<pre><code> sudo semanage port -m -p tcp -t http_port_t 8081
-</code></pre>
-<p>如果没有其他协议类型使用想要绑定的端口，如 <code>8001</code>，则我们只要新增到 SELinux 中即可。</p>
-<pre><code> sudo semanage port -l | grep 8001
- sudo semanage port -a -p tcp -t http_port_t 8001
-</code></pre>
-<p>此时，重新启动 Nginx 即可。</p>
-</li>
-</ol>
 
 </div>
 
@@ -1682,16 +1610,16 @@ pegasus_http_port_t            tcp      5988
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2020/07/01/%E9%85%8D%E7%BD%AE%20nginx/">
+              <a href="/2020/07/01/linux/linux%20%E5%AE%89%E8%A3%85%20nginx/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  配置 nginx
+                  linux 安装 nginx
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2020/07/01/linux%20%E5%AE%89%E8%A3%85%20jdk/">
-                linux 安装 jdk
+              <a href="/2020/07/01/linux/linux%E5%AE%89%E8%A3%85yapi/">
+                linux安装yapi
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
