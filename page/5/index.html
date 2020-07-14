@@ -924,6 +924,24 @@
 							</ul>
 			
 							<ul>
+								<li class="file">
+									<a href="/2020/07/06/springboot%20%E6%B7%BB%E5%8A%A0%20es%20%E4%BE%9D%E8%B5%96%E7%89%88%E6%9C%AC%E9%97%AE%E9%A2%98/">
+										springboot 添加 es 依赖版本问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/09/v2ray%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/">
+										v2ray搭建教程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
@@ -1144,6 +1162,15 @@
 								<li class="file">
 									<a href="/2020/06/22/%E6%94%B6%E8%97%8F/">
 										收藏
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/13/%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96%E6%A1%86%E6%9E%B6%E4%B8%BA%E4%BB%80%E4%B9%88%E6%94%BE%E5%BC%83%20Hibernate%E3%80%81JPA%E3%80%81Mybatis%EF%BC%8C%E6%9C%80%E7%BB%88%E9%80%89%E6%8B%A9%20JDBCTemplate%EF%BC%81/">
+										数据持久化框架为什么放弃 Hibernate、JPA、Mybatis，最终选择 JDBCTemplate！
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1536,6 +1563,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2020/07/10/%E8%AF%B4%E8%AF%B4%20SpringMvc%20%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">
+										说说 SpringMvc 的执行流程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/07/01/%E9%85%8D%E7%BD%AE%20nginx/">
 										配置 nginx
 									</a>
@@ -1572,19 +1608,115 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/06/22/java/%E5%9F%BA%E7%A1%80/%E5%A4%9A%E6%80%81/">
+			<a href="/2020/06/22/java/%E5%9F%BA%E7%A1%80/%E6%8E%A5%E5%8F%A3/">
 				<h2 class="index-title">
-					多态
+					接口
 				</h2>
 				<div class="index-brief">
-					多态（polymorphism）
-多态的三个必要条件：
+					为什么需要接口？接口和抽象类的区别？
+接口就是比“抽象类”还“抽象”的“抽象类”，可以更加规范的对子类进行约束，全面地专业的实现了：规范和具体实现的分离。
+抽象类还提供某些具体实现，接口不提供任何实现，接口中所有方法都是抽象方法。接口是完全面向规范的，规定了一批类具有的公共方法规范。
+从接口的实现者
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/06/22/java/%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+				<h2 class="index-title">
+					数据类型
+				</h2>
+				<div class="index-brief">
+					1 字节=8 位：1byte = 8bit
+数值型：byte(字节)、short、int、long、float、double
+字符型（文本型）：char(字符)
+布尔型：boolean
+数据类型（两大类）
 
-多态是方法的多态，不是属性的多态（多态与属性无关）
-多态的存在要有3个必要条件：继承，方法重写，父类引用指向子类对象。
-父类引用指向子类对象后，用该父类引用调用子类重写的方法，此时多态就出现了。
 
-示例：最为多见的的一种用法，即：父类引用做方
+基本数据类型
+
+数值型
+
+整数类型：byte、short、int、long
+浮点类型：fl
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/06/22/java/%E5%9F%BA%E7%A1%80/%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
+				<h2 class="index-title">
+					抽象方法和抽象类
+				</h2>
+				<div class="index-brief">
+					抽象方法
+使用abstract修饰的方法，没有方法体，只有声明。定义的是一种“规范”，就是告诉子类必须要给抽象方法提供具体实现。
+抽象类
+包含抽象方法的类就是抽象类。通过abstract方法定义规范，然后要求子类必须定义具体实现。
+通过抽象类，我们就可以做到严格限制子类的设计，使子类之间更加通用。
+
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/06/22/java/%E5%9F%BA%E7%A1%80/%E5%B0%81%E8%A3%85/">
+				<h2 class="index-title">
+					封装
+				</h2>
+				<div class="index-brief">
+					封装的作用
+
+提高代码安全性
+提高代码的复用性
+“高内聚”：封装细节，便于修改内部代码，提高可维护性
+“低耦合”：简化外部调用，便于调用者使用，便于扩展和写作
+
+封装的实现–使用访问控制符
+
+
+
+修饰符
+同一个类
+同一个包中
+子类
+所有类
+
+
+
+
+private
+*
+
+
+
+
+
+default
+*
+*
 					...
 				</div>
 			</a>
@@ -1632,6 +1764,31 @@
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/06/22/java/%E5%9F%BA%E7%A1%80/%E5%A4%9A%E6%80%81/">
+				<h2 class="index-title">
+					多态
+				</h2>
+				<div class="index-brief">
+					多态（polymorphism）
+多态的三个必要条件：
+
+多态是方法的多态，不是属性的多态（多态与属性无关）
+多态的存在要有3个必要条件：继承，方法重写，父类引用指向子类对象。
+父类引用指向子类对象后，用该父类引用调用子类重写的方法，此时多态就出现了。
+
+示例：最为多见的的一种用法，即：父类引用做方
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/06/22/java/%E5%9F%BA%E7%A1%80/%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E5%80%BC%E6%9C%BA%E5%88%B6/">
 				<h2 class="index-title">
 					参数的传值机制
@@ -1643,6 +1800,25 @@
 传递是值的副本，副本改变不会影响原件
 引用类类型
 传递的是值的「副本」，但是引用类型指的是『对象的地址』，因此，副本和原参数都指向了同一个「地址
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/06/22/java/%E5%9F%BA%E7%A1%80/%E5%86%85%E9%83%A8%E7%B1%BB/">
+				<h2 class="index-title">
+					内部类
+				</h2>
+				<div class="index-brief">
+					内部类只是一个编译时概念，一旦编译成功，就会成为完全不同的两个类。对于一个名为Outer的外部类和其内部定义的名为Inner的内部类。编译完成会会出现Outer.class和Outer$Inner.class两个类的字节码文件。所以内部类是相对独立的一种存在，其成员变量、方法名可以和外部类的相同。
+
 					...
 				</div>
 			</a>
@@ -1681,25 +1857,6 @@ this的本质是“创建好的对象的地址”！由于在构造方法调用�
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/java/%E5%9F%BA%E7%A1%80/%E5%86%85%E9%83%A8%E7%B1%BB/">
-				<h2 class="index-title">
-					内部类
-				</h2>
-				<div class="index-brief">
-					内部类只是一个编译时概念，一旦编译成功，就会成为完全不同的两个类。对于一个名为Outer的外部类和其内部定义的名为Inner的内部类。编译完成会会出现Outer.class和Outer$Inner.class两个类的字节码文件。所以内部类是相对独立的一种存在，其成员变量、方法名可以和外部类的相同。
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/06/22/java/spring/%E3%80%90%E8%BD%AC%E3%80%91springJdbc%20%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">
 				<h2 class="index-title">
 					【转】springJdbc 源码学习
@@ -1712,113 +1869,6 @@ this的本质是“创建好的对象的地址”！由于在构造方法调用�
 在学习 Spring-JDBC 之前，我们有必要从 Java 原生提供的 JDBC 开始，对 JDBC 操作的一整套完整的流程有一个清晰的概念。
 /**
  * copied from https://www.tutori
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/06/22/java/%E5%9F%BA%E7%A1%80/final/">
-				<h2 class="index-title">
-					final
-				</h2>
-				<div class="index-brief">
-					final 关键字
-作用：
-修饰变量：
-被他修饰的变量不可改变，一旦赋值，就不能被重新赋值。
-修饰方法：
-该方法不可被子类重写，但是可以被重载！
-修饰类:
-被修饰类不能被集成。比如Math、String等
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/06/22/java/jvm/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
-				<h2 class="index-title">
-					类加载过程
-				</h2>
-				<div class="index-brief">
-					在冯。诺依曼的计算机模型中，任何程序都需要加载到内存才能与cpu进行交流。
-字节码.class文件同样需要加载到内存中，才可以实例化。“兵马未动，粮草先行”。ClassLoader 就是准备粮草的先行军，他的使命就是「提前加载.class类文件到内存中」，在加载类时，使用的是『Parents Del
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/06/22/java/jvm/%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
-				<h2 class="index-title">
-					对象实例化过程
-				</h2>
-				<div class="index-brief">
-					java是面向对象的静态请类型语言，声明并创建兑现改动代码很常见，根据某个类声明一个引用变量指向被创建的对象，并使用此引用变量操作该对象。在实例化对象的过程中，jvm中发生什么化学反应呢？
-字节码角度
-从下面最简单的 Object obj = new Object();代码进行分析，利用 javap
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/06/22/java/jvm/%E5%AF%B9%E8%B1%A1%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%B8%83%E5%B1%80/">
-				<h2 class="index-title">
-					对象在内存中的布局
-				</h2>
-				<div class="index-brief">
-					对象在内存中存储的部分分为三个区域
-
-
-header
-
-
-markword
-
-hashCode，gc信息，锁信息
-
-
-
-哈希码
-gc 分代年龄
-锁状态表示
-线程持有的锁
-偏向线程 id
-偏向时间戳
-
-
-
-klass point
-
-指针指向对象的类元数据，vm 通过这个指针来确定该对象是哪个类的实例
-
 					...
 				</div>
 			</a>

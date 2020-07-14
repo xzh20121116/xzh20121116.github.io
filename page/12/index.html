@@ -924,6 +924,24 @@
 							</ul>
 			
 							<ul>
+								<li class="file">
+									<a href="/2020/07/06/springboot%20%E6%B7%BB%E5%8A%A0%20es%20%E4%BE%9D%E8%B5%96%E7%89%88%E6%9C%AC%E9%97%AE%E9%A2%98/">
+										springboot 添加 es 依赖版本问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/09/v2ray%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/">
+										v2ray搭建教程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
@@ -1144,6 +1162,15 @@
 								<li class="file">
 									<a href="/2020/06/22/%E6%94%B6%E8%97%8F/">
 										收藏
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/13/%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96%E6%A1%86%E6%9E%B6%E4%B8%BA%E4%BB%80%E4%B9%88%E6%94%BE%E5%BC%83%20Hibernate%E3%80%81JPA%E3%80%81Mybatis%EF%BC%8C%E6%9C%80%E7%BB%88%E9%80%89%E6%8B%A9%20JDBCTemplate%EF%BC%81/">
+										数据持久化框架为什么放弃 Hibernate、JPA、Mybatis，最终选择 JDBCTemplate！
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1536,6 +1563,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2020/07/10/%E8%AF%B4%E8%AF%B4%20SpringMvc%20%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">
+										说说 SpringMvc 的执行流程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/07/01/%E9%85%8D%E7%BD%AE%20nginx/">
 										配置 nginx
 									</a>
@@ -1570,6 +1606,119 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
+				<h2 class="index-title">
+					mac 安装启动
+				</h2>
+				<div class="index-brief">
+					下载
+启动
+~/zookeeper-3.4.14/bin 
+./zkServer.sh start
+
+zookeeper 客户端
+./zkCli.sh -timeout 0 -r -server ip:port
+./zkCli.sh -timeout 5000 -server 192.9.200.2
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/Redis/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+				<h2 class="index-title">
+					分布式锁
+				</h2>
+				<div class="index-brief">
+					SETNX key value
+
+set if not exists
+如果不存在，则 set 一个
+set 成功返回 1，如果 key 存在了返回0；
+SETNX key seconds value
+
+给一个过期时间，这是一个原子操作
+入门版
+此版本是最最基础的版本
+加锁
+
+
+for(；；)
+
+
+s
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/Redis/redis%E4%B9%8B%E7%BA%A2%E9%94%81(Redlock)/">
+				<h2 class="index-title">
+					redis之红锁(Redlock)
+				</h2>
+				<div class="index-brief">
+					背景
+redis 常用的方式有
+
+单节点
+主从
+哨兵
+集群
+
+单节点不会在生产环境使用，因为达不到高可用，且连 RDB 和 AOF 都只能放在 master 上，所以基本不会使用
+剩下的几种模式都无法避免两个问题
+
+异步数据丢失
+脑裂问题
+
+针对这两个问题，redis 官方提出了红锁(RedLock
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/Redis/Redisson%E4%BD%BF%E7%94%A8/">
+				<h2 class="index-title">
+					Redisson使用
+				</h2>
+				<div class="index-brief">
+					添加 pom 依赖
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
+            &lt;artifactId&gt;re
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2020/05/31/hexo/Hexo%20%E6%A0%87%E9%A2%98%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7/">
@@ -1752,110 +1901,6 @@ Node节点是他的内部类，实现了Map.ENTRY()
 			</a>
                 <div class="article-meta">
 				    <span>2020-04-27</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E3%80%81volatile%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
-				<h2 class="index-title">
-					java内存模型、volatile的实现原理
-				</h2>
-				<div class="index-brief">
-					Java内存模型 jmm
-是一个抽象的概念，他描述了一组规则，定义了程序中各个变量的访问方式
-JMM同步规定
-
-线程加锁前，必须读取主内存的最新值到自己的工作内存
-线程解锁前，必须把共享变量的值刷新回主内存
-加锁、解锁是同一把锁
-
-jvm运行程序的实体是线程，每个线程创建的时候，jvm都会给他创建一
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-04-24</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/04/24/java/%E7%BA%BF%E7%A8%8B/Reentrantlock%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E3%80%81%E4%BB%A5%E5%8F%8A%E5%85%AC%E5%B9%B3%E9%94%81%E5%92%8C%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81%E7%9A%84%E5%8C%BA%E5%88%AB/">
-				<h2 class="index-title">
-					Reentrantlock的实现原理、以及公平锁和非公平锁的区别
-				</h2>
-				<div class="index-brief">
-					Reentrantlock 结构
-
-首先ReentrantLock继承自父类Lock，然后有3个内部类，其中Sync内部类继承自AQS，另外的两个内部类继承自Sync，这两个类分别是用来公平锁和非公平锁的。
-通过Sync重写的方法tryAcquire、tryRelease可以知道，Reentrant
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-04-24</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/04/23/java/%E7%BA%BF%E7%A8%8B/synchronized/">
-				<h2 class="index-title">
-					synchronized
-				</h2>
-				<div class="index-brief">
-					实现原理
-**结论：**无论是代码块，还是方法，都是通过持有对象的锁来实现同步的
-什么是对象的锁？
-对象在内存中存储的布局分为三个区域：
-
-
-对象头（header）
-
-
-mark word
-
-存储对象自身的运行时数据，比如hashcod，gc分代年龄、锁的相关信息
-
-
-
-klass point（类型
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-04-23</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/04/23/java/%E7%BA%BF%E7%A8%8B/sleep%E3%80%81wait%E3%80%81notify%E3%80%81yield%E3%80%81join%E7%9A%84%E5%8C%BA%E5%88%AB/">
-				<h2 class="index-title">
-					sleep、wait、notify、yield、join的区别
-				</h2>
-				<div class="index-brief">
-					
-线程间通过共享数据来实现通信，即:多个线程主动读取一个共享数据。
-举例：共享资源 int a；A、B两个线程轮序a的值，来确定自己做什么，浪费了cpu资源
-靠共享变量来做控制
-wait/notify机制（配合Synchronized）
-适用范围
-Synchronized代码中才能使用，因为这几个都
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-04-23</span>
                     
                             
                     

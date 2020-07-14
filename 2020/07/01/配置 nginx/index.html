@@ -926,6 +926,24 @@
 							</ul>
 			
 							<ul>
+								<li class="file">
+									<a href="/2020/07/06/springboot%20%E6%B7%BB%E5%8A%A0%20es%20%E4%BE%9D%E8%B5%96%E7%89%88%E6%9C%AC%E9%97%AE%E9%A2%98/">
+										springboot 添加 es 依赖版本问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/09/v2ray%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/">
+										v2ray搭建教程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
@@ -1146,6 +1164,15 @@
 								<li class="file">
 									<a href="/2020/06/22/%E6%94%B6%E8%97%8F/">
 										收藏
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/13/%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96%E6%A1%86%E6%9E%B6%E4%B8%BA%E4%BB%80%E4%B9%88%E6%94%BE%E5%BC%83%20Hibernate%E3%80%81JPA%E3%80%81Mybatis%EF%BC%8C%E6%9C%80%E7%BB%88%E9%80%89%E6%8B%A9%20JDBCTemplate%EF%BC%81/">
+										数据持久化框架为什么放弃 Hibernate、JPA、Mybatis，最终选择 JDBCTemplate！
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1537,6 +1564,15 @@
 							</ul>
 			
 							<ul>
+								<li class="file">
+									<a href="/2020/07/10/%E8%AF%B4%E8%AF%B4%20SpringMvc%20%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">
+										说说 SpringMvc 的执行流程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
 								<li class="file active">
 									<a href="/2020/07/01/%E9%85%8D%E7%BD%AE%20nginx/">
 										配置 nginx
@@ -1611,6 +1647,19 @@
 </li>
 </ol>
 <p>事实上，只需知道Nginx配置路径，其他路径均可在/etc/nginx/nginx.conf 以及/etc/nginx/conf.d/default.conf 中查询到。</p>
+<ol start="3">
+<li>
+<p>将端口号映射到指定的域名/xxx</p>
+<p><a href="http://xn--www-zr0f.xn--eqrt2g.com/news" target="_blank" rel="noopener">将www.域名.com/news</a> 映射到 xx.xx.xx.xx:81端口</p>
+<pre><code class="language-powershell">location /news {
+  proxy_pass  http://xx.xx.xx.xx:81/; # 转发规则,注意 81后面的斜杠，不然会不起作用
+  proxy_set_header Host $proxy_host; # 修改转发请求头，让8080端口的应用可以受到真实的请求
+  proxy_set_header X-Real-IP $remote_addr;
+  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+}
+</code></pre>
+</li>
+</ol>
 
 </div>
 
