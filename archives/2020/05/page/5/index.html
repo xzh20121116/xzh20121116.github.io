@@ -1608,6 +1608,30 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/05/31/java/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
+				<h2 class="index-title">
+					客户端ZooInspector
+				</h2>
+				<div class="index-brief">
+					下载
+https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip；
+使用
+下载后，解压，如下图
+
+启动
+java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/05/31/java/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
 				<h2 class="index-title">
 					分布式锁
@@ -1635,18 +1659,28 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
+			<a href="/2020/05/31/java/Redis/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
 				<h2 class="index-title">
-					客户端ZooInspector
+					分布式锁
 				</h2>
 				<div class="index-brief">
-					下载
-https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip；
-使用
-下载后，解压，如下图
+					SETNX key value
 
-启动
-java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
+set if not exists
+如果不存在，则 set 一个
+set 成功返回 1，如果 key 存在了返回0；
+SETNX key seconds value
+
+给一个过期时间，这是一个原子操作
+入门版
+此版本是最最基础的版本
+加锁
+
+
+for(；；)
+
+
+s
 					...
 				</div>
 			</a>
@@ -1719,28 +1753,16 @@ zookeeper 客户端
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/Redis/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+			<a href="/2020/05/31/java/Redis/Redisson%E4%BD%BF%E7%94%A8/">
 				<h2 class="index-title">
-					分布式锁
+					Redisson使用
 				</h2>
 				<div class="index-brief">
-					SETNX key value
-
-set if not exists
-如果不存在，则 set 一个
-set 成功返回 1，如果 key 存在了返回0；
-SETNX key seconds value
-
-给一个过期时间，这是一个原子操作
-入门版
-此版本是最最基础的版本
-加锁
-
-
-for(；；)
-
-
-s
+					添加 pom 依赖
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
+            &lt;artifactId&gt;re
 					...
 				</div>
 			</a>
@@ -1773,28 +1795,6 @@ redis 常用的方式有
 脑裂问题
 
 针对这两个问题，redis 官方提出了红锁(RedLock
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/Redis/Redisson%E4%BD%BF%E7%94%A8/">
-				<h2 class="index-title">
-					Redisson使用
-				</h2>
-				<div class="index-brief">
-					添加 pom 依赖
-    &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
-            &lt;artifactId&gt;re
 					...
 				</div>
 			</a>

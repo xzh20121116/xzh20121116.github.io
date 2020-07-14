@@ -1608,18 +1608,20 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/06/22/java/spring/%E3%80%90%E8%BD%AC%E3%80%91springJdbc%20%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">
+			<a href="/2020/06/22/java/%E5%9F%BA%E7%A1%80/final/">
 				<h2 class="index-title">
-					【转】springJdbc 源码学习
+					final
 				</h2>
 				<div class="index-brief">
-					Spring JDBC 源码学习
-15 Jan 2018
-@ffutop
-概览
-在学习 Spring-JDBC 之前，我们有必要从 Java 原生提供的 JDBC 开始，对 JDBC 操作的一整套完整的流程有一个清晰的概念。
-/**
- * copied from https://www.tutori
+					final 关键字
+作用：
+修饰变量：
+被他修饰的变量不可改变，一旦赋值，就不能被重新赋值。
+修饰方法：
+该方法不可被子类重写，但是可以被重载！
+修饰类:
+被修饰类不能被集成。比如Math、String等
+
 					...
 				</div>
 			</a>
@@ -1713,18 +1715,14 @@ klass point
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/java/jvm/jvm%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%92%E5%88%86/">
+			<a href="/2020/06/22/java/jvm/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8E%8B%E7%BC%A9%E6%8C%87%E9%92%88%E8%B6%85%E8%BF%87%2032g%20%E5%A4%B1%E6%95%88/">
 				<h2 class="index-title">
-					jvm内存区域划分
+					为什么压缩指针超过 32g 失效
 				</h2>
 				<div class="index-brief">
-					典型回答
-程序计数器
-每个线程都有自己的程序计数器，并且任何一个线程都只有一个方法在执行，也就是所谓的当前方法。
-程序计数器会存储当前线程正在执行的 java 方法的 jvm 指令地址；
-或者：如果执行本地方法，则是未指定值（undefined）
-虚拟机栈
-每个线程在创建时都会创建一个虚拟机栈，内部
+					在 Java 虚拟机中，每个 java 对象都有一个对象头，它由mark word和klass point构成。
+mark word 用来存储这个对象的运行时数据
+
 					...
 				</div>
 			</a>
@@ -1762,14 +1760,18 @@ cms 用于对老年代进行回收，目标是尽量减少应用的暂停时间�
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/java/jvm/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8E%8B%E7%BC%A9%E6%8C%87%E9%92%88%E8%B6%85%E8%BF%87%2032g%20%E5%A4%B1%E6%95%88/">
+			<a href="/2020/06/22/java/jvm/jvm%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%92%E5%88%86/">
 				<h2 class="index-title">
-					为什么压缩指针超过 32g 失效
+					jvm内存区域划分
 				</h2>
 				<div class="index-brief">
-					在 Java 虚拟机中，每个 java 对象都有一个对象头，它由mark word和klass point构成。
-mark word 用来存储这个对象的运行时数据
-
+					典型回答
+程序计数器
+每个线程都有自己的程序计数器，并且任何一个线程都只有一个方法在执行，也就是所谓的当前方法。
+程序计数器会存储当前线程正在执行的 java 方法的 jvm 指令地址；
+或者：如果执行本地方法，则是未指定值（undefined）
+虚拟机栈
+每个线程在创建时都会创建一个虚拟机栈，内部
 					...
 				</div>
 			</a>
