@@ -1608,21 +1608,12 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F%E5%92%8C%E6%A1%B6%E6%8E%92%E5%BA%8F/">
+			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E7%BA%BF%E6%80%A7%E6%8E%92%E5%BA%8F/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/">
 				<h2 class="index-title">
-					计数排序和桶排序
+					基数排序
 				</h2>
 				<div class="index-brief">
-					快排，堆排的时间复杂度是 nlogn
-无论冒泡还是快排、堆排，都是基于元素之间的比较来进行排序的
-冒泡：
-因为 8&gt;3，所以8 和 3 的位置交换
-
-堆排：
-因为 10&gt;7，所以 10 和 7 的位置交换
-
-有一些特殊的排序并不基于元素比较，如计数排序、桶排序、基数排序等
-以计数排序来说
+					
 					...
 				</div>
 			</a>
@@ -1688,6 +1679,28 @@
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%89%8B%E5%86%99Lru/">
+				<h2 class="index-title">
+					手写Lru
+				</h2>
+				<div class="index-brief">
+					public class Lru {
+   public static void main(String[] args) {
+      Lru l = new Lru(5);
+      l.put(&quot;1&quot;,&quot;1&quot;);
+      l.put(&quot;2
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
 				<h2 class="index-title">
 					插入排序
@@ -1701,28 +1714,6 @@ int[] arr = {5, 2, 4, 3, 1, 7, 9, 8, 6};
 
 index i 的数与 index i-1的数 比较大小，如果 index i 更小 ，两者交换位置
 交换位置之后，继续与前面的数比较，
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%89%8B%E5%86%99Lru/">
-				<h2 class="index-title">
-					手写Lru
-				</h2>
-				<div class="index-brief">
-					public class Lru {
-   public static void main(String[] args) {
-      Lru l = new Lru(5);
-      l.put(&quot;1&quot;,&quot;1&quot;);
-      l.put(&quot;2
 					...
 				</div>
 			</a>
@@ -1749,6 +1740,27 @@ java 对象排序算法-timsort
 申请空间，大小为两个已经排序序列之和，该空间用来存放合并后的序列
 设定两个指针，最初的位置分别为两个有序序列的起始位置
 比较两个指针所指向的元素，
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
+				<h2 class="index-title">
+					快速排序
+				</h2>
+				<div class="index-brief">
+					基于冒泡排序演变而来的
+快的原因是使用了分治法。
+跟冒泡一样，都是属于交换排序，通过元素之间的比较和交换位置来达到排序的目的
+跟冒泡不同的是：冒泡在每一轮中只把1 个元素冒泡到数列的一端，而快排则是每一轮挑选一个基准元素，并让其他比他大的元素移动到数列一遍，比他小的元素移动到数列的另一边，从而把数列
 					...
 				</div>
 			</a>
@@ -1798,15 +1810,17 @@ B 负责出队操作
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
+			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9C%AA%E5%AE%8C%E6%88%90--%E5%A6%82%E4%BD%95%E6%B1%82%E8%A7%A3%E9%87%91%E7%9F%BF%E9%97%AE%E9%A2%98%EF%BC%88%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%89/">
 				<h2 class="index-title">
-					快速排序
+					未完成--如何求解金矿问题（背包问题）
 				</h2>
 				<div class="index-brief">
-					基于冒泡排序演变而来的
-快的原因是使用了分治法。
-跟冒泡一样，都是属于交换排序，通过元素之间的比较和交换位置来达到排序的目的
-跟冒泡不同的是：冒泡在每一轮中只把1 个元素冒泡到数列的一端，而快排则是每一轮挑选一个基准元素，并让其他比他大的元素移动到数列一遍，比他小的元素移动到数列的另一边，从而把数列
+					典型的动态规划
+什么是动态规划
+就是把复杂的问题简化成较小的子问题，再从简单的子问题自底向上一步一步递推，最终得到复杂问题的最优解
+题目
+有 10 个人（矿工），五个大小不一的金矿，每个金矿需要的人数不同，
+如果参与挖矿的工人的总数是 10。每座金矿要么全挖，要么不挖，不能部分人挖部分金矿。要求用程
 					...
 				</div>
 			</a>
@@ -1839,29 +1853,6 @@ B 负责出队操作
 
 
 只有，每当有新元素进入 
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9C%AA%E5%AE%8C%E6%88%90--%E5%A6%82%E4%BD%95%E6%B1%82%E8%A7%A3%E9%87%91%E7%9F%BF%E9%97%AE%E9%A2%98%EF%BC%88%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%89/">
-				<h2 class="index-title">
-					未完成--如何求解金矿问题（背包问题）
-				</h2>
-				<div class="index-brief">
-					典型的动态规划
-什么是动态规划
-就是把复杂的问题简化成较小的子问题，再从简单的子问题自底向上一步一步递推，最终得到复杂问题的最优解
-题目
-有 10 个人（矿工），五个大小不一的金矿，每个金矿需要的人数不同，
-如果参与挖矿的工人的总数是 10。每座金矿要么全挖，要么不挖，不能部分人挖部分金矿。要求用程
 					...
 				</div>
 			</a>

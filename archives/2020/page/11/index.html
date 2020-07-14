@@ -1608,6 +1608,28 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/05/31/java/spring/ioc/">
+				<h2 class="index-title">
+					ioc
+				</h2>
+				<div class="index-brief">
+					ioc 既是一种思想，又是一种容器
+Ioc 思想
+Inversion of controlle 控制反转
+比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
+而 ioc 是，
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/05/31/java/spring/%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 				<h2 class="index-title">
 					事务实现原理
@@ -1639,6 +1661,24 @@ requi
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/05/31/java/spring/aop/">
+				<h2 class="index-title">
+					aop
+				</h2>
+				<div class="index-brief">
+					
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/05/31/java/spring/spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
 				<h2 class="index-title">
 					spring 循环依赖
@@ -1658,31 +1698,9 @@ requi
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/ioc/">
+			<a href="/2020/05/31/java/spring/Bean/">
 				<h2 class="index-title">
-					ioc
-				</h2>
-				<div class="index-brief">
-					ioc 既是一种思想，又是一种容器
-Ioc 思想
-Inversion of controlle 控制反转
-比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
-而 ioc 是，
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/spring/aop/">
-				<h2 class="index-title">
-					aop
+					Bean
 				</h2>
 				<div class="index-brief">
 					
@@ -1718,24 +1736,6 @@ Shenandoah 上千 g，也是上 T 了
 
 
 serial–ps
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/spring/Bean/">
-				<h2 class="index-title">
-					Bean
-				</h2>
-				<div class="index-brief">
-					
 					...
 				</div>
 			</a>
@@ -1826,29 +1826,19 @@ java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/Redis/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+			<a href="/2020/05/31/java/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
 				<h2 class="index-title">
-					常见问题
+					mac 安装启动
 				</h2>
 				<div class="index-brief">
-					雪崩
-是什么？
-多个热点 key 同时过期，导致大量访问直接落在 db
-解决方案
+					下载
+启动
+~/zookeeper-3.4.14/bin 
+./zkServer.sh start
 
-
-设置热点 key 永不过期，有更新的时候就更新缓存
-
-
-考虑对数据库的访问加上锁或者阻塞队列的方式，保证不会有大量的线程对 db 访问
-
-
-将缓存失效的时间分散开
-
-
-穿透
-是什么
-查询一个一定不存在的 key，比
+zookeeper 客户端
+./zkCli.sh -timeout 0 -r -server ip:port
+./zkCli.sh -timeout 5000 -server 192.9.200.2
 					...
 				</div>
 			</a>
