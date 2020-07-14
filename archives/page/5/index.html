@@ -1160,15 +1160,6 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/07/14/%E6%8E%A5%E5%8F%A3%E7%9A%84%20aop%20%E6%97%A5%E5%BF%97%E5%A4%B1%E6%95%88%E4%BA%86/">
-										接口的 aop 日志失效了
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
 									<a href="/2020/06/22/%E6%94%B6%E8%97%8F/">
 										收藏
 									</a>
@@ -1559,6 +1550,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2020/07/14/%E8%AE%B0%E9%94%99/%E6%8E%A5%E5%8F%A3%E7%9A%84%20aop%20%E6%97%A5%E5%BF%97%E5%A4%B1%E6%95%88%E4%BA%86/">
+										接口的 aop 日志失效了
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/06/22/%E8%AE%B0%E9%94%99/%E8%AE%B0%E4%B8%80%E6%AC%A1%20git%20%E6%97%A0%E6%B3%95%20pull%E3%80%81push/">
 										记一次 git 无法 pull、push
 									</a>
@@ -1617,15 +1617,14 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/06/22/java/%E5%9F%BA%E7%A1%80/%E6%8E%A5%E5%8F%A3/">
+			<a href="/2020/06/22/java/%E5%9F%BA%E7%A1%80/%E7%BB%A7%E6%89%BF%E6%A0%91%E8%BF%BD%E6%BA%AF/">
 				<h2 class="index-title">
-					接口
+					继承树追溯
 				</h2>
 				<div class="index-brief">
-					为什么需要接口？接口和抽象类的区别？
-接口就是比“抽象类”还“抽象”的“抽象类”，可以更加规范的对子类进行约束，全面地专业的实现了：规范和具体实现的分离。
-抽象类还提供某些具体实现，接口不提供任何实现，接口中所有方法都是抽象方法。接口是完全面向规范的，规定了一批类具有的公共方法规范。
-从接口的实现者
+					子类的构造方法，无论写与不写，第一句都是super(…)；即调用父类的构造方法;
+流程是这样的：先向上追溯到Object，然后再一次向下执行类的初始化块和构造方法，知道当前子类为止
+
 					...
 				</div>
 			</a>
@@ -1668,14 +1667,15 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/java/%E5%9F%BA%E7%A1%80/%E7%BB%A7%E6%89%BF%E6%A0%91%E8%BF%BD%E6%BA%AF/">
+			<a href="/2020/06/22/java/%E5%9F%BA%E7%A1%80/%E6%8E%A5%E5%8F%A3/">
 				<h2 class="index-title">
-					继承树追溯
+					接口
 				</h2>
 				<div class="index-brief">
-					子类的构造方法，无论写与不写，第一句都是super(…)；即调用父类的构造方法;
-流程是这样的：先向上追溯到Object，然后再一次向下执行类的初始化块和构造方法，知道当前子类为止
-
+					为什么需要接口？接口和抽象类的区别？
+接口就是比“抽象类”还“抽象”的“抽象类”，可以更加规范的对子类进行约束，全面地专业的实现了：规范和具体实现的分离。
+抽象类还提供某些具体实现，接口不提供任何实现，接口中所有方法都是抽象方法。接口是完全面向规范的，规定了一批类具有的公共方法规范。
+从接口的实现者
 					...
 				</div>
 			</a>
@@ -1818,6 +1818,32 @@ default
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/06/22/java/%E5%9F%BA%E7%A1%80/this%20%E7%9A%84%E6%9C%AC%E8%B4%A8/">
+				<h2 class="index-title">
+					this 的本质
+				</h2>
+				<div class="index-brief">
+					创建一个对象分为四步：
+
+分配对象空间，并将对象成员变量初始化为0或空或false
+执行属性值的显式初始化
+执行构造方法
+返回对象的地址给相关的变量
+
+this的本质是“创建好的对象的地址”！由于在构造方法调用前，对象已经创建。因此，在构造方法中也可以使用this代表“当前对象”  ，
+不能在静态方
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/06/22/java/%E5%9F%BA%E7%A1%80/%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E5%80%BC%E6%9C%BA%E5%88%B6/">
 				<h2 class="index-title">
 					参数的传值机制
@@ -1848,32 +1874,6 @@ default
 				<div class="index-brief">
 					内部类只是一个编译时概念，一旦编译成功，就会成为完全不同的两个类。对于一个名为Outer的外部类和其内部定义的名为Inner的内部类。编译完成会会出现Outer.class和Outer$Inner.class两个类的字节码文件。所以内部类是相对独立的一种存在，其成员变量、方法名可以和外部类的相同。
 
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/06/22/java/%E5%9F%BA%E7%A1%80/this%20%E7%9A%84%E6%9C%AC%E8%B4%A8/">
-				<h2 class="index-title">
-					this 的本质
-				</h2>
-				<div class="index-brief">
-					创建一个对象分为四步：
-
-分配对象空间，并将对象成员变量初始化为0或空或false
-执行属性值的显式初始化
-执行构造方法
-返回对象的地址给相关的变量
-
-this的本质是“创建好的对象的地址”！由于在构造方法调用前，对象已经创建。因此，在构造方法中也可以使用this代表“当前对象”  ，
-不能在静态方
 					...
 				</div>
 			</a>
