@@ -1160,6 +1160,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2020/07/14/%E6%8E%A5%E5%8F%A3%E7%9A%84%20aop%20%E6%97%A5%E5%BF%97%E5%A4%B1%E6%95%88%E4%BA%86/">
+										接口的 aop 日志失效了
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/06/22/%E6%94%B6%E8%97%8F/">
 										收藏
 									</a>
@@ -1608,31 +1617,6 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
-				<h2 class="index-title">
-					mac 安装启动
-				</h2>
-				<div class="index-brief">
-					下载
-启动
-~/zookeeper-3.4.14/bin 
-./zkServer.sh start
-
-zookeeper 客户端
-./zkCli.sh -timeout 0 -r -server ip:port
-./zkCli.sh -timeout 5000 -server 192.9.200.2
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/05/31/java/Redis/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
 				<h2 class="index-title">
 					常见问题
@@ -1668,16 +1652,53 @@ zookeeper 客户端
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/Redis/Redisson%E4%BD%BF%E7%94%A8/">
+			<a href="/2020/05/31/java/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
 				<h2 class="index-title">
-					Redisson使用
+					mac 安装启动
 				</h2>
 				<div class="index-brief">
-					添加 pom 依赖
-    &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
-            &lt;artifactId&gt;re
+					下载
+启动
+~/zookeeper-3.4.14/bin 
+./zkServer.sh start
+
+zookeeper 客户端
+./zkCli.sh -timeout 0 -r -server ip:port
+./zkCli.sh -timeout 5000 -server 192.9.200.2
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/Redis/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+				<h2 class="index-title">
+					分布式锁
+				</h2>
+				<div class="index-brief">
+					SETNX key value
+
+set if not exists
+如果不存在，则 set 一个
+set 成功返回 1，如果 key 存在了返回0；
+SETNX key seconds value
+
+给一个过期时间，这是一个原子操作
+入门版
+此版本是最最基础的版本
+加锁
+
+
+for(；；)
+
+
+s
 					...
 				</div>
 			</a>
@@ -1710,6 +1731,28 @@ redis 常用的方式有
 脑裂问题
 
 针对这两个问题，redis 官方提出了红锁(RedLock
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/Redis/Redisson%E4%BD%BF%E7%94%A8/">
+				<h2 class="index-title">
+					Redisson使用
+				</h2>
+				<div class="index-brief">
+					添加 pom 依赖
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
+            &lt;artifactId&gt;re
 					...
 				</div>
 			</a>
@@ -1866,52 +1909,10 @@ static final class Segment&lt;K,V&gt; extends Reentr
                 </div>
 		</div>	
 	
-		<div class="index-li">
-			<a href="/2020/04/27/java/%E9%9B%86%E5%90%88/HashMap/">
-				<h2 class="index-title">
-					HashMap
-				</h2>
-				<div class="index-brief">
-					数据结构
-1.7
-
-
-
-数组+链表
-
-
-Entry节点是他的内部类，实现了Map.ENTRY()
-
-
-插入过程使用头插法：扩容时死循环
-
-
-
-1.8
-
-
-数组+链表+红黑树
-Node节点是他的内部类，实现了Map.ENTRY()
-使用尾插法：避免扩容时死循环
-
-
-底层实现
-从三个方面说：put()、
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-04-27</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
 	
 	<div id="index-paginator">
 		
-			<a class="extend prev" rel="prev" href="/archives/2020/page/11/">&lt;</a><a class="page-number" href="/archives/2020/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2020/page/10/">10</a><a class="page-number" href="/archives/2020/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/archives/2020/page/13/">13</a><a class="extend next" rel="next" href="/archives/2020/page/13/">&gt;</a>
+			<a class="extend prev" rel="prev" href="/archives/2020/page/11/">&lt;</a><a class="page-number" href="/archives/2020/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2020/page/10/">10</a><a class="page-number" href="/archives/2020/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/archives/2020/page/13/">13</a><a class="page-number" href="/archives/2020/page/14/">14</a><a class="extend next" rel="next" href="/archives/2020/page/13/">&gt;</a>
 		
 	</div>
 </div>

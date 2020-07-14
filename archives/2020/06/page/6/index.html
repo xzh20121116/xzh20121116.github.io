@@ -1160,6 +1160,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2020/07/14/%E6%8E%A5%E5%8F%A3%E7%9A%84%20aop%20%E6%97%A5%E5%BF%97%E5%A4%B1%E6%95%88%E4%BA%86/">
+										接口的 aop 日志失效了
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/06/22/%E6%94%B6%E8%97%8F/">
 										收藏
 									</a>
@@ -1608,14 +1617,21 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/06/22/java/jvm/Monitor/">
+			<a href="/2020/06/22/java/jvm/jvm%20%E8%B0%83%E4%BC%98/">
 				<h2 class="index-title">
-					Monitor
+					jvm 调优
 				</h2>
 				<div class="index-brief">
-					任何对象都有一个 monitor 与之关联，当一个 monitor被持有后，它将处于锁定状态。
-Synchronized 在 jvm 里面的实现都是基于 进入和退出Monitor 来实现同步的
-一切接对象，所有的 java 对象也是天生的 monitor，每个 java 对象都有成为 Monitor
+					典型回答
+
+可以使用图形化工具，jconsole，visualvm 等
+使用命令行工具进行运行时查询，例如 jstat，jmap 等都可以查看堆、方法区的使用情况
+或者生成 dump 文件，分析等
+
+了解 jvm 常用命令行参数
+
+
+JVM的命令行参数参考：https://docs.oracle.c
 					...
 				</div>
 			</a>
