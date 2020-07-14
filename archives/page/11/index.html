@@ -1608,6 +1608,37 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/05/31/java/spring/%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+				<h2 class="index-title">
+					事务实现原理
+				</h2>
+				<div class="index-brief">
+					spring 的五种事务隔离级别
+
+默认使用数据库的事务
+读未提交
+读已提交
+可重复读
+串行化
+
+spring 的七种传播属性
+
+required：最常用，支持当前事务，如果没有，就新建
+supports：支持当前事务，如果没有，就没有
+mandatory：支持当前事务，如果没有，抛异常
+requi
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/05/31/java/spring/spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
 				<h2 class="index-title">
 					spring 循环依赖
@@ -1655,64 +1686,6 @@ Inversion of controlle 控制反转
 				</h2>
 				<div class="index-brief">
 					
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/spring/%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
-				<h2 class="index-title">
-					事务实现原理
-				</h2>
-				<div class="index-brief">
-					spring 的五种事务隔离级别
-
-默认使用数据库的事务
-读未提交
-读已提交
-可重复读
-串行化
-
-spring 的七种传播属性
-
-required：最常用，支持当前事务，如果没有，就新建
-supports：支持当前事务，如果没有，就没有
-mandatory：支持当前事务，如果没有，抛异常
-requi
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/jvm/%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
-				<h2 class="index-title">
-					排查堆内存溢出
-				</h2>
-				<div class="index-brief">
-					模拟堆内存溢出
-
-
-新建一个 Oom.java 文件，内容如下
-import java.util.ArrayList;
-import java.util.List;
-
-public class Oom {
-    public static void main(String[] args) {
-  
 					...
 				</div>
 			</a>
@@ -1775,18 +1748,21 @@ serial–ps
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
+			<a href="/2020/05/31/java/jvm/%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
 				<h2 class="index-title">
-					客户端ZooInspector
+					排查堆内存溢出
 				</h2>
 				<div class="index-brief">
-					下载
-https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip；
-使用
-下载后，解压，如下图
+					模拟堆内存溢出
 
-启动
-java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
+
+新建一个 Oom.java 文件，内容如下
+import java.util.ArrayList;
+import java.util.List;
+
+public class Oom {
+    public static void main(String[] args) {
+  
 					...
 				</div>
 			</a>
@@ -1814,6 +1790,30 @@ java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
 有序节点
 
 假如 当前有一个父节点为 /lock，我们可以在这个父节点下面创建子节点，使用有序节点，我创建子节点 /lock/node- ，并且指明有序，那么 zookeeper 在生成子节点的时候会自动的添加整数序号
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
+				<h2 class="index-title">
+					客户端ZooInspector
+				</h2>
+				<div class="index-brief">
+					下载
+https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip；
+使用
+下载后，解压，如下图
+
+启动
+java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
 					...
 				</div>
 			</a>

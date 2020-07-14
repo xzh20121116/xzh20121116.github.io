@@ -1608,18 +1608,31 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
+			<a href="/2020/05/31/java/%E4%BD%8D%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93/">
 				<h2 class="index-title">
-					依赖注入
+					位操作总结
 				</h2>
 				<div class="index-brief">
-					di 是相较于 ioc 的一种更具体的实现，ioc 可以理解为一个接口，di 就是他的实现
-装配方式优先级：自动装配 &gt;  java 配置文件 &gt; xml 配置文件
-自动装配
-spring 容器可以自动配置相互协作 bean 之间的关系。
-spring 从两个角度实现自动装配
-组件扫描
+					计算机中所有数据都是以二进制存储的，位运算其实就是直接对内存中的二进制数据进行操作，因此处理数据的素的非常快
+基本的位操作有  与、或、异或、取反、左移、右移这 6 种，规则如下表
 
+
+
+符号
+描述
+运算规则
+
+
+
+
+&amp;
+与
+两个位都为 1 时，结果才为 1
+
+
+|
+或
+两个位都为 0 时，
 					...
 				</div>
 			</a>
@@ -1650,31 +1663,49 @@ spring 从两个角度实现自动装配
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/%E4%BD%8D%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93/">
+			<a href="/2020/05/31/java/spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
 				<h2 class="index-title">
-					位操作总结
+					依赖注入
 				</h2>
 				<div class="index-brief">
-					计算机中所有数据都是以二进制存储的，位运算其实就是直接对内存中的二进制数据进行操作，因此处理数据的素的非常快
-基本的位操作有  与、或、异或、取反、左移、右移这 6 种，规则如下表
+					di 是相较于 ioc 的一种更具体的实现，ioc 可以理解为一个接口，di 就是他的实现
+装配方式优先级：自动装配 &gt;  java 配置文件 &gt; xml 配置文件
+自动装配
+spring 容器可以自动配置相互协作 bean 之间的关系。
+spring 从两个角度实现自动装配
+组件扫描
 
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/spring/%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+				<h2 class="index-title">
+					事务实现原理
+				</h2>
+				<div class="index-brief">
+					spring 的五种事务隔离级别
 
+默认使用数据库的事务
+读未提交
+读已提交
+可重复读
+串行化
 
-符号
-描述
-运算规则
+spring 的七种传播属性
 
-
-
-
-&amp;
-与
-两个位都为 1 时，结果才为 1
-
-
-|
-或
-两个位都为 0 时，
+required：最常用，支持当前事务，如果没有，就新建
+supports：支持当前事务，如果没有，就没有
+mandatory：支持当前事务，如果没有，抛异常
+requi
 					...
 				</div>
 			</a>
@@ -1746,64 +1777,6 @@ Inversion of controlle 控制反转
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/java/spring/%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
-				<h2 class="index-title">
-					事务实现原理
-				</h2>
-				<div class="index-brief">
-					spring 的五种事务隔离级别
-
-默认使用数据库的事务
-读未提交
-读已提交
-可重复读
-串行化
-
-spring 的七种传播属性
-
-required：最常用，支持当前事务，如果没有，就新建
-supports：支持当前事务，如果没有，就没有
-mandatory：支持当前事务，如果没有，抛异常
-requi
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/java/jvm/%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
-				<h2 class="index-title">
-					排查堆内存溢出
-				</h2>
-				<div class="index-brief">
-					模拟堆内存溢出
-
-
-新建一个 Oom.java 文件，内容如下
-import java.util.ArrayList;
-import java.util.List;
-
-public class Oom {
-    public static void main(String[] args) {
-  
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/05/31/java/jvm/%E5%B8%B8%E8%A7%81%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">
 				<h2 class="index-title">
 					常见垃圾回收器
@@ -1842,6 +1815,33 @@ serial–ps
 				</h2>
 				<div class="index-brief">
 					
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/java/jvm/%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
+				<h2 class="index-title">
+					排查堆内存溢出
+				</h2>
+				<div class="index-brief">
+					模拟堆内存溢出
+
+
+新建一个 Oom.java 文件，内容如下
+import java.util.ArrayList;
+import java.util.List;
+
+public class Oom {
+    public static void main(String[] args) {
+  
 					...
 				</div>
 			</a>
