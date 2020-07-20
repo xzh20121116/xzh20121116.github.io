@@ -1653,24 +1653,6 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/05/31/spring/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
-				<h2 class="index-title">
-					设计模式
-				</h2>
-				<div class="index-brief">
-					
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/05/31/spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
 				<h2 class="index-title">
 					依赖注入
@@ -1683,6 +1665,24 @@ spring 容器可以自动配置相互协作 bean 之间的关系。
 spring 从两个角度实现自动装配
 组件扫描
 
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/spring/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+				<h2 class="index-title">
+					设计模式
+				</h2>
+				<div class="index-brief">
+					
 					...
 				</div>
 			</a>
@@ -1732,6 +1732,43 @@ spring 从两个角度实现自动装配
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/05/31/spring/spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+				<h2 class="index-title">
+					spring 循环依赖
+				</h2>
+				<div class="index-brief">
+					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
+如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/spring/aop/">
+				<h2 class="index-title">
+					aop
+				</h2>
+				<div class="index-brief">
+					
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/05/31/spring/%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 				<h2 class="index-title">
 					事务实现原理
@@ -1751,25 +1788,6 @@ required：最常用，支持当前事务，如果没有，就新建
 supports：支持当前事务，如果没有，就没有
 mandatory：支持当前事务，如果没有，抛异常
 requi
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/spring/spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
-				<h2 class="index-title">
-					spring 循环依赖
-				</h2>
-				<div class="index-brief">
-					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
-如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
 					...
 				</div>
 			</a>
@@ -1804,44 +1822,12 @@ Inversion of controlle 控制反转
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/spring/aop/">
+			<a href="/2020/05/31/spring/Bean/">
 				<h2 class="index-title">
-					aop
+					Bean
 				</h2>
 				<div class="index-brief">
 					
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/jvm/%E5%B8%B8%E8%A7%81%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">
-				<h2 class="index-title">
-					常见垃圾回收器
-				</h2>
-				<div class="index-brief">
-					常见的垃圾回收器
-
-
-
-垃圾回收器的发展路线，是随着内存越来越大的过程而演进
-从分代算法演化到不分代算法
-Serial 算法 几十兆
-Parallel 算法 几个 G
-CMS 算法 几十个 G
-G1 算法 上百 G
-ZGC 4T
-Shenandoah 上千 g，也是上 T 了
-
-
-serial–ps
 					...
 				</div>
 			</a>
@@ -1881,12 +1867,26 @@ public class Oom {
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/spring/Bean/">
+			<a href="/2020/05/31/jvm/%E5%B8%B8%E8%A7%81%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">
 				<h2 class="index-title">
-					Bean
+					常见垃圾回收器
 				</h2>
 				<div class="index-brief">
-					
+					常见的垃圾回收器
+
+
+
+垃圾回收器的发展路线，是随着内存越来越大的过程而演进
+从分代算法演化到不分代算法
+Serial 算法 几十兆
+Parallel 算法 几个 G
+CMS 算法 几十个 G
+G1 算法 上百 G
+ZGC 4T
+Shenandoah 上千 g，也是上 T 了
+
+
+serial–ps
 					...
 				</div>
 			</a>

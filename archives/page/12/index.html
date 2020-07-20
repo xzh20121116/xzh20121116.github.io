@@ -1680,12 +1680,26 @@ public class Oom {
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/spring/Bean/">
+			<a href="/2020/05/31/jvm/%E5%B8%B8%E8%A7%81%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">
 				<h2 class="index-title">
-					Bean
+					常见垃圾回收器
 				</h2>
 				<div class="index-brief">
-					
+					常见的垃圾回收器
+
+
+
+垃圾回收器的发展路线，是随着内存越来越大的过程而演进
+从分代算法演化到不分代算法
+Serial 算法 几十兆
+Parallel 算法 几个 G
+CMS 算法 几十个 G
+G1 算法 上百 G
+ZGC 4T
+Shenandoah 上千 g，也是上 T 了
+
+
+serial–ps
 					...
 				</div>
 			</a>
@@ -1737,41 +1751,6 @@ java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
 有序节点
 
 假如 当前有一个父节点为 /lock，我们可以在这个父节点下面创建子节点，使用有序节点，我创建子节点 /lock/node- ，并且指明有序，那么 zookeeper 在生成子节点的时候会自动的添加整数序号
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/Redis/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
-				<h2 class="index-title">
-					常见问题
-				</h2>
-				<div class="index-brief">
-					雪崩
-是什么？
-多个热点 key 同时过期，导致大量访问直接落在 db
-解决方案
-
-
-设置热点 key 永不过期，有更新的时候就更新缓存
-
-
-考虑对数据库的访问加上锁或者阻塞队列的方式，保证不会有大量的线程对 db 访问
-
-
-将缓存失效的时间分散开
-
-
-穿透
-是什么
-查询一个一定不存在的 key，比
 					...
 				</div>
 			</a>
@@ -1843,16 +1822,29 @@ zookeeper 客户端
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/Redis/Redisson%E4%BD%BF%E7%94%A8/">
+			<a href="/2020/05/31/Redis/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
 				<h2 class="index-title">
-					Redisson使用
+					常见问题
 				</h2>
 				<div class="index-brief">
-					添加 pom 依赖
-    &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
-            &lt;artifactId&gt;re
+					雪崩
+是什么？
+多个热点 key 同时过期，导致大量访问直接落在 db
+解决方案
+
+
+设置热点 key 永不过期，有更新的时候就更新缓存
+
+
+考虑对数据库的访问加上锁或者阻塞队列的方式，保证不会有大量的线程对 db 访问
+
+
+将缓存失效的时间分散开
+
+
+穿透
+是什么
+查询一个一定不存在的 key，比
 					...
 				</div>
 			</a>
@@ -1885,6 +1877,28 @@ redis 常用的方式有
 脑裂问题
 
 针对这两个问题，redis 官方提出了红锁(RedLock
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/Redis/Redisson%E4%BD%BF%E7%94%A8/">
+				<h2 class="index-title">
+					Redisson使用
+				</h2>
+				<div class="index-brief">
+					添加 pom 依赖
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
+            &lt;artifactId&gt;re
 					...
 				</div>
 			</a>
