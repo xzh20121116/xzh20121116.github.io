@@ -1749,16 +1749,14 @@ JVM的命令行参数参考：https://docs.oracle.c
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/SpringMVC/%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
+			<a href="/2020/06/22/jvm/Monitor/">
 				<h2 class="index-title">
-					工作原理
+					Monitor
 				</h2>
 				<div class="index-brief">
-					MVC 模式
-mvc 是 model、view、controller 的缩写，分别代表 web 应用程序中的三种职责：
-model-模型：用于存储数据以及能处理用户请求的业务逻辑
-view-视图：向控制器提交数据，显示模型中的数据
-controller-控制器：根据视图提出的请求，判断将请求和数据交
+					任何对象都有一个 monitor 与之关联，当一个 monitor被持有后，它将处于锁定状态。
+Synchronized 在 jvm 里面的实现都是基于 进入和退出Monitor 来实现同步的
+一切接对象，所有的 java 对象也是天生的 monitor，每个 java 对象都有成为 Monitor
 					...
 				</div>
 			</a>
@@ -1771,14 +1769,16 @@ controller-控制器：根据视图提出的请求，判断将请求和数据交
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/jvm/Monitor/">
+			<a href="/2020/06/22/SpringMVC/%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
 				<h2 class="index-title">
-					Monitor
+					工作原理
 				</h2>
 				<div class="index-brief">
-					任何对象都有一个 monitor 与之关联，当一个 monitor被持有后，它将处于锁定状态。
-Synchronized 在 jvm 里面的实现都是基于 进入和退出Monitor 来实现同步的
-一切接对象，所有的 java 对象也是天生的 monitor，每个 java 对象都有成为 Monitor
+					MVC 模式
+mvc 是 model、view、controller 的缩写，分别代表 web 应用程序中的三种职责：
+model-模型：用于存储数据以及能处理用户请求的业务逻辑
+view-视图：向控制器提交数据，显示模型中的数据
+controller-控制器：根据视图提出的请求，判断将请求和数据交
 					...
 				</div>
 			</a>
