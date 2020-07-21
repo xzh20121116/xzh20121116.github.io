@@ -729,6 +729,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2020/07/21/Mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B0%83%E4%BC%98/">
+										数据库调优
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/07/21/Mysql/%E7%B4%A2%E5%BC%95/">
 										索引
 									</a>
@@ -1348,12 +1357,12 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
-										秒杀
+										秒杀-高并发
 									</a>
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/07/21/%E7%A7%92%E6%9D%80/%E7%A7%92%E6%9D%80/">
+									<a href="/2020/07/21/%E7%A7%92%E6%9D%80-%E9%AB%98%E5%B9%B6%E5%8F%91/%E7%A7%92%E6%9D%80/">
 										秒杀
 									</a>
 								</li>
@@ -1718,17 +1727,18 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/05/31/Spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
+			<a href="/2020/05/31/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 				<h2 class="index-title">
-					依赖注入
+					Aqs的核心成员、数据模型、锁的实现原理
 				</h2>
 				<div class="index-brief">
-					di 是相较于 ioc 的一种更具体的实现，ioc 可以理解为一个接口，di 就是他的实现
-装配方式优先级：自动装配 &gt;  java 配置文件 &gt; xml 配置文件
-自动装配
-spring 容器可以自动配置相互协作 bean 之间的关系。
-spring 从两个角度实现自动装配
-组件扫描
+					什么是AQS
+AQS（AbstractQueuedSynchronizer）就是一个抽象的队列同步器，AQS定义了一套多线程访问共享资源的同步器框架，许多同步类的实现都依赖于他，比如下面四个
+
+ReentrantLock
+Semaphore
+CountDownLatch
+CyclicBarrier
 
 					...
 				</div>
@@ -1748,6 +1758,30 @@ spring 从两个角度实现自动装配
 				</h2>
 				<div class="index-brief">
 					
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/Spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
+				<h2 class="index-title">
+					依赖注入
+				</h2>
+				<div class="index-brief">
+					di 是相较于 ioc 的一种更具体的实现，ioc 可以理解为一个接口，di 就是他的实现
+装配方式优先级：自动装配 &gt;  java 配置文件 &gt; xml 配置文件
+自动装配
+spring 容器可以自动配置相互协作 bean 之间的关系。
+spring 从两个角度实现自动装配
+组件扫描
+
 					...
 				</div>
 			</a>
@@ -1797,12 +1831,16 @@ spring 从两个角度实现自动装配
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/Spring/aop/">
+			<a href="/2020/05/31/Spring/ioc/">
 				<h2 class="index-title">
-					aop
+					ioc
 				</h2>
 				<div class="index-brief">
-					
+					ioc 既是一种思想，又是一种容器
+Ioc 思想
+Inversion of controlle 控制反转
+比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
+而 ioc 是，
 					...
 				</div>
 			</a>
@@ -1846,16 +1884,12 @@ requi
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/Spring/ioc/">
+			<a href="/2020/05/31/Spring/aop/">
 				<h2 class="index-title">
-					ioc
+					aop
 				</h2>
 				<div class="index-brief">
-					ioc 既是一种思想，又是一种容器
-Ioc 思想
-Inversion of controlle 控制反转
-比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
-而 ioc 是，
+					
 					...
 				</div>
 			</a>
@@ -1915,30 +1949,6 @@ Shenandoah 上千 g，也是上 T 了
 
 
 serial–ps
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
-				<h2 class="index-title">
-					客户端ZooInspector
-				</h2>
-				<div class="index-brief">
-					下载
-https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip；
-使用
-下载后，解压，如下图
-
-启动
-java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
 					...
 				</div>
 			</a>

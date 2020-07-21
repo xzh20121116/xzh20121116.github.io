@@ -729,6 +729,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2020/07/21/Mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B0%83%E4%BC%98/">
+										数据库调优
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/07/21/Mysql/%E7%B4%A2%E5%BC%95/">
 										索引
 									</a>
@@ -1348,12 +1357,12 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
-										秒杀
+										秒杀-高并发
 									</a>
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/07/21/%E7%A7%92%E6%9D%80/%E7%A7%92%E6%9D%80/">
+									<a href="/2020/07/21/%E7%A7%92%E6%9D%80-%E9%AB%98%E5%B9%B6%E5%8F%91/%E7%A7%92%E6%9D%80/">
 										秒杀
 									</a>
 								</li>
@@ -1718,12 +1727,16 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/05/31/Spring/aop/">
+			<a href="/2020/05/31/Spring/ioc/">
 				<h2 class="index-title">
-					aop
+					ioc
 				</h2>
 				<div class="index-brief">
-					
+					ioc 既是一种思想，又是一种容器
+Ioc 思想
+Inversion of controlle 控制反转
+比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
+而 ioc 是，
 					...
 				</div>
 			</a>
@@ -1767,16 +1780,12 @@ requi
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/Spring/ioc/">
+			<a href="/2020/05/31/Spring/aop/">
 				<h2 class="index-title">
-					ioc
+					aop
 				</h2>
 				<div class="index-brief">
-					ioc 既是一种思想，又是一种容器
-Ioc 思想
-Inversion of controlle 控制反转
-比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
-而 ioc 是，
+					
 					...
 				</div>
 			</a>
@@ -1848,30 +1857,6 @@ serial–ps
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
-				<h2 class="index-title">
-					客户端ZooInspector
-				</h2>
-				<div class="index-brief">
-					下载
-https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip；
-使用
-下载后，解压，如下图
-
-启动
-java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/05/31/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
 				<h2 class="index-title">
 					分布式锁
@@ -1887,6 +1872,30 @@ java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
 有序节点
 
 假如 当前有一个父节点为 /lock，我们可以在这个父节点下面创建子节点，使用有序节点，我创建子节点 /lock/node- ，并且指明有序，那么 zookeeper 在生成子节点的时候会自动的添加整数序号
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
+				<h2 class="index-title">
+					客户端ZooInspector
+				</h2>
+				<div class="index-brief">
+					下载
+https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip；
+使用
+下载后，解压，如下图
+
+启动
+java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
 					...
 				</div>
 			</a>
@@ -1933,31 +1942,6 @@ s
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
-				<h2 class="index-title">
-					mac 安装启动
-				</h2>
-				<div class="index-brief">
-					下载
-启动
-~/zookeeper-3.4.14/bin 
-./zkServer.sh start
-
-zookeeper 客户端
-./zkCli.sh -timeout 0 -r -server ip:port
-./zkCli.sh -timeout 5000 -server 192.9.200.2
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/05/31/Redis/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
 				<h2 class="index-title">
 					常见问题
@@ -1981,6 +1965,31 @@ zookeeper 客户端
 穿透
 是什么
 查询一个一定不存在的 key，比如
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
+				<h2 class="index-title">
+					mac 安装启动
+				</h2>
+				<div class="index-brief">
+					下载
+启动
+~/zookeeper-3.4.14/bin 
+./zkServer.sh start
+
+zookeeper 客户端
+./zkCli.sh -timeout 0 -r -server ip:port
+./zkCli.sh -timeout 5000 -server 192.9.200.2
 					...
 				</div>
 			</a>
