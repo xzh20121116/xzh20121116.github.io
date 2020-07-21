@@ -8,6 +8,8 @@
 	<!-- title -->
 	
 	<title>
+	
+		Redis/cluster 与 sentinel | 
 	 
 	温故知新
 	</title>
@@ -181,7 +183,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/2020/07/21/Redis/cluster%20%E4%B8%8E%20sentinel/">
 										cluster 与 sentinel
 									</a>
@@ -1688,291 +1690,131 @@
 
 	<!-- 引入正文 -->
 	<div id="content">
-		<div id="index">
+		<h1 id="article-title">
+
+	cluster 与 sentinel
+</h1>
+<div class="article-meta">
 	
-		<div class="index-li">
-			<a href="/2020/05/31/spring/ioc/">
-				<h2 class="index-title">
-					ioc
-				</h2>
-				<div class="index-brief">
-					ioc 既是一种思想，又是一种容器
-Ioc 思想
-Inversion of controlle 控制反转
-比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
-而 ioc 是，
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
+		<span>
+			阅读量:<span id="/2020/07/21/Redis/cluster%20%E4%B8%8E%20sentinel/" class="leancloud_visitors" data-flag-title="Redis/cluster 与 sentinel"></span>
+		</span>
 	
-		<div class="index-li">
-			<a href="/2020/05/31/spring/%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
-				<h2 class="index-title">
-					事务实现原理
-				</h2>
-				<div class="index-brief">
-					spring 的五种事务隔离级别
-
-默认使用数据库的事务
-读未提交
-读已提交
-可重复读
-串行化
-
-spring 的七种传播属性
-
-required：最常用，支持当前事务，如果没有，就新建
-supports：支持当前事务，如果没有，就没有
-mandatory：支持当前事务，如果没有，抛异常
-requi
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/spring/aop/">
-				<h2 class="index-title">
-					aop
-				</h2>
-				<div class="index-brief">
-					
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/jvm/%E5%B8%B8%E8%A7%81%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">
-				<h2 class="index-title">
-					常见垃圾回收器
-				</h2>
-				<div class="index-brief">
-					常见的垃圾回收器
-
-
-
-垃圾回收器的发展路线，是随着内存越来越大的过程而演进
-从分代算法演化到不分代算法
-Serial 算法 几十兆
-Parallel 算法 几个 G
-CMS 算法 几十个 G
-G1 算法 上百 G
-ZGC 4T
-Shenandoah 上千 g，也是上 T 了
-
-
-serial–ps
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/jvm/%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
-				<h2 class="index-title">
-					排查堆内存溢出
-				</h2>
-				<div class="index-brief">
-					模拟堆内存溢出
-
-
-新建一个 Oom.java 文件，内容如下
-import java.util.ArrayList;
-import java.util.List;
-
-public class Oom {
-    public static void main(String[] args) {
-  
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
-				<h2 class="index-title">
-					分布式锁
-				</h2>
-				<div class="index-brief">
-					zk是啥？
-
-数据库、文件存储系统，并且有监听通知机制（观察者模式）
-
-特性
-
-
-有序节点
-
-假如 当前有一个父节点为 /lock，我们可以在这个父节点下面创建子节点，使用有序节点，我创建子节点 /lock/node- ，并且指明有序，那么 zookeeper 在生成子节点的时候会自动的添加整数序号
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
-				<h2 class="index-title">
-					客户端ZooInspector
-				</h2>
-				<div class="index-brief">
-					下载
-https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip；
-使用
-下载后，解压，如下图
-
-启动
-java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/Redis/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
-				<h2 class="index-title">
-					分布式锁
-				</h2>
-				<div class="index-brief">
-					SETNX key value
-
-set if not exists
-如果不存在，则 set 一个
-set 成功返回 1，如果 key 存在了返回0；
-SETNX key seconds value
-
-给一个过期时间，这是一个原子操作
-入门版
-此版本是最最基础的版本
-加锁
-
-
-for(；；)
-
-
-s
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
-				<h2 class="index-title">
-					mac 安装启动
-				</h2>
-				<div class="index-brief">
-					下载
-启动
-~/zookeeper-3.4.14/bin 
-./zkServer.sh start
-
-zookeeper 客户端
-./zkCli.sh -timeout 0 -r -server ip:port
-./zkCli.sh -timeout 5000 -server 192.9.200.2
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/05/31/Redis/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
-				<h2 class="index-title">
-					常见问题
-				</h2>
-				<div class="index-brief">
-					雪崩
-是什么？
-多个热点 key 同时过期，导致大量访问直接落在 db
-解决方案
-
-
-设置热点 key 永不过期，有更新的时候就更新缓存
-
-
-考虑对数据库的访问加上锁或者阻塞队列的方式，保证不会有大量的线程对 db 访问
-
-
-将缓存失效的时间分散开
-
-
-穿透
-是什么
-查询一个一定不存在的 key，比
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-	
-	<div id="index-paginator">
-		
-			<a class="extend prev" rel="prev" href="/archives/page/11/">&lt;</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/10/">10</a><a class="page-number" href="/archives/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/archives/page/13/">13</a><a class="page-number" href="/archives/page/14/">14</a><a class="extend next" rel="next" href="/archives/page/13/">&gt;</a>
-		
-	</div>
+	<span>今晚打老虎</span>
+	<span>2020-07-21 13:54:05</span>
+    
+		<div id="article-categories">
+            
+		</div>
+    
 </div>
 
+<div id="article-content">
+	<h3 id="cluster-突破单机性能瓶颈"><a class="header-anchor" href="#cluster-突破单机性能瓶颈"></a>cluster 突破单机性能瓶颈</h3>
+<p>redis 是单线程的，如果在多核服务器上部署的话，可以部署多个实例，搭建一个redis 集群。</p>
+<p>也就是 redis cluster，并且是主从同步，读写分离的。</p>
+<p>一个 cluster 支撑多个 master，每一个 master 挂载多个 slave。</p>
+<p>master 负责写，slave 负责读。通过扩容 master 可以支撑更大的访问量。</p>
+<h3 id="数据都在内存中，断电重启怎么办？"><a class="header-anchor" href="#数据都在内存中，断电重启怎么办？"></a>数据都在内存中，断电重启怎么办？</h3>
+<p>当然是持久化，redis 有两种持久化方式，rdb和 aof。</p>
+<p><strong>rdb</strong>：对数据执行周期性的持久化，比如说一小时备份一次。更适合做冷备份。</p>
+<p><strong>aof</strong>：对每条写入命令作为日志，以 append-only的模式写入一个日志文件中，因为是只追加的方式，没有任何的磁盘寻址开销，所以很快，有点像 mysql 中的 binlog。</p>
+<p>下面分析一下两种持久化方式的优缺点：</p>
+<p><strong>rdb 的优点</strong>：每个 rdb 文件都是当时时刻的全量的数据，一旦服务挂了，可以用 rdb 来恢复到挂掉时的状态，当然了，恢复到某个时间点完整的数据，需要加上 aof</p>
+<p>rdb 对redis 的性能影响非常小，是因为在同步的时候他只是 fork 了一个子进程去做持久化，而且恢复数据的时候比 aof 要快很多</p>
+<p>**rdb 的缺点：**都是快照文件，每隔五分钟，或者一个小时才会生成一次，这意味这两次同步之间的数据可能会丢失。生成快照的时候如果文件很大，可能会导致客户端暂停几毫秒或者几秒。</p>
+<p><strong>aof 的优点</strong>：每条追加写一次，那么最多只丢失这一秒的数据；</p>
+<p>因为是追加写的方式，自然就少了很多的磁盘寻址的开销，写入性能惊人。</p>
+<p>aof 里面存储的一条条的操作指令。</p>
+<p>**aof 的缺点：**一样的数据，aof 的文件要比 rdb 大很多。</p>
+<p>而且开启 aof 后，写的 qps 会比 rdb支持的写低一些。</p>
+<p>其实 aof 还可以设置来一条追加一条，但是性能会低的可怕。</p>
+<p><strong>正确的选择</strong>：两个都要，出现问题了先恢复 rdb 文件，再根据 aof 补全到指定时间点的数据。</p>
+<h3 id="sentinel-保证集群的高可用"><a class="header-anchor" href="#sentinel-保证集群的高可用"></a>sentinel 保证集群的高可用</h3>
+<p>除了 cluster + rdb + aof 之后，还有 sentinel集群 来保证他的高可用。</p>
+<p>集群监控：哨兵用来监控 master 和 salve进程是否正常工作。</p>
+<p>消息通知：如果某个 redis 实例有故障，那么哨兵会发送消息给管理员。</p>
+<p>故障转移：如果master 挂了， 会自动转移到 slave 上。</p>
+<p>配置中心：如果故障转移发生了，通知 client 客户端新的 master 地址。</p>
+<p>哨兵必须用三个实例去保证自己的健壮性，哨兵+主从并<strong>不能保证数据不丢失</strong>，但是可以<strong>保证集群的高可用</strong>。</p>
+<p>三个哨兵的话，挂掉 1 个（实例+哨兵都挂），剩下的两哨兵进行选举，选举出一台进行故障转移，剩下的继续运行。</p>
+<p>两个哨兵的话，挂掉 1 个（实例+哨兵都挂），只剩下一个哨兵了，没有人去故障转移了。</p>
+<h3 id="master-、slave-之间的数据是如何同步的"><a class="header-anchor" href="#master-、slave-之间的数据是如何同步的"></a>master 、slave 之间的数据是如何同步的</h3>
+<p>slave 启动的时候，会发送一个<strong>psync</strong>命令给 master，如果是这个 slave 第一次连接 master，会触发一个全量的复制。master 开始生成 rdb 快照，并且把新的请求都缓存在内存中，rdb 快照生成之后会发送给 slave，slave 拿到数据，先写进本地磁盘，然后加载到内存，然后 master 把缓存中的新命令都发送给 slave。</p>
+<p>如果传输的过程中出现网络波动之类的，会自动重连的，会把缺少的数据补上的。</p>
+
+</div>
+
+
+    <div class="post-guide">
+        <div class="item left">
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2020/07/21/%E7%A7%92%E6%9D%80/%E7%A7%92%E6%9D%80/">
+                秒杀
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+	<div id="vcomments"></div>
+
+
+<script>
+	
+		// 评论
+		new Valine({
+			av: AV,
+			el: '#vcomments',
+			notify: false,
+			verify: false,
+			path: window.location.pathname,
+			appId: 'lsX646kI8Pj43gH38o38IHEl-gzGzoHsz',
+			appKey: 'SI9zpOfgyOmEDPGK8KI8niYh',
+			placeholder: '请输入评论',
+			avatar: 'retro',
+			recordIP: false
+		})
+	
+	
+    // 显示次数
+		function showTime(Counter) {
+			var query = new AV.Query("Counter");
+			if($(".leancloud_visitors").length > 0){
+				var url = $(".leancloud_visitors").attr('id').trim();
+				// where field
+				query.equalTo("words", url);
+				// count
+				query.count().then(function (number) {
+					// There are number instances of MyClass where words equals url.
+					$(document.getElementById(url)).text(number?  number : '--');
+				}, function (error) {
+					// error is an instance of AVError.
+				});
+			}
+		}
+		// 追加pv
+		function addCount(Counter) {
+			var url = $(".leancloud_visitors").length > 0 ? $(".leancloud_visitors").attr('id').trim() : 'xzh20121116.github.io';
+			var Counter = AV.Object.extend("Counter");
+			var query = new Counter;
+			query.save({
+				words: url
+			}).then(function (object) {
+			})
+		}
+		$(function () {
+			var Counter = AV.Object.extend("Counter");
+			addCount(Counter);
+			showTime(Counter);
+		});
+	
+</script>
 	</div>
 	<div id="footer">
 	<p>

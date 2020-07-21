@@ -182,6 +182,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2020/07/21/Redis/cluster%20%E4%B8%8E%20sentinel/">
+										cluster 与 sentinel
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/05/31/Redis/redis%E4%B9%8B%E7%BA%A2%E9%94%81(Redlock)/">
 										redis之红锁(Redlock)
 									</a>
@@ -1682,24 +1691,6 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/05/31/spring/aop/">
-				<h2 class="index-title">
-					aop
-				</h2>
-				<div class="index-brief">
-					
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/05/31/spring/ioc/">
 				<h2 class="index-title">
 					ioc
@@ -1722,21 +1713,43 @@ Inversion of controlle 控制反转
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/jvm/%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
+			<a href="/2020/05/31/spring/%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 				<h2 class="index-title">
-					排查堆内存溢出
+					事务实现原理
 				</h2>
 				<div class="index-brief">
-					模拟堆内存溢出
+					spring 的五种事务隔离级别
 
+默认使用数据库的事务
+读未提交
+读已提交
+可重复读
+串行化
 
-新建一个 Oom.java 文件，内容如下
-import java.util.ArrayList;
-import java.util.List;
+spring 的七种传播属性
 
-public class Oom {
-    public static void main(String[] args) {
-  
+required：最常用，支持当前事务，如果没有，就新建
+supports：支持当前事务，如果没有，就没有
+mandatory：支持当前事务，如果没有，抛异常
+requi
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/spring/aop/">
+				<h2 class="index-title">
+					aop
+				</h2>
+				<div class="index-brief">
+					
 					...
 				</div>
 			</a>
@@ -1781,18 +1794,21 @@ serial–ps
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
+			<a href="/2020/05/31/jvm/%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
 				<h2 class="index-title">
-					客户端ZooInspector
+					排查堆内存溢出
 				</h2>
 				<div class="index-brief">
-					下载
-https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip；
-使用
-下载后，解压，如下图
+					模拟堆内存溢出
 
-启动
-java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
+
+新建一个 Oom.java 文件，内容如下
+import java.util.ArrayList;
+import java.util.List;
+
+public class Oom {
+    public static void main(String[] args) {
+  
 					...
 				</div>
 			</a>
@@ -1820,6 +1836,30 @@ java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
 有序节点
 
 假如 当前有一个父节点为 /lock，我们可以在这个父节点下面创建子节点，使用有序节点，我创建子节点 /lock/node- ，并且指明有序，那么 zookeeper 在生成子节点的时候会自动的添加整数序号
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
+				<h2 class="index-title">
+					客户端ZooInspector
+				</h2>
+				<div class="index-brief">
+					下载
+https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip；
+使用
+下载后，解压，如下图
+
+启动
+java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
 					...
 				</div>
 			</a>
@@ -1866,41 +1906,6 @@ s
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/Redis/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
-				<h2 class="index-title">
-					常见问题
-				</h2>
-				<div class="index-brief">
-					雪崩
-是什么？
-多个热点 key 同时过期，导致大量访问直接落在 db
-解决方案
-
-
-设置热点 key 永不过期，有更新的时候就更新缓存
-
-
-考虑对数据库的访问加上锁或者阻塞队列的方式，保证不会有大量的线程对 db 访问
-
-
-将缓存失效的时间分散开
-
-
-穿透
-是什么
-查询一个一定不存在的 key，比
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/05/31/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
 				<h2 class="index-title">
 					mac 安装启动
@@ -1926,16 +1931,29 @@ zookeeper 客户端
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/Redis/Redisson%E4%BD%BF%E7%94%A8/">
+			<a href="/2020/05/31/Redis/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
 				<h2 class="index-title">
-					Redisson使用
+					常见问题
 				</h2>
 				<div class="index-brief">
-					添加 pom 依赖
-    &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
-            &lt;artifactId&gt;re
+					雪崩
+是什么？
+多个热点 key 同时过期，导致大量访问直接落在 db
+解决方案
+
+
+设置热点 key 永不过期，有更新的时候就更新缓存
+
+
+考虑对数据库的访问加上锁或者阻塞队列的方式，保证不会有大量的线程对 db 访问
+
+
+将缓存失效的时间分散开
+
+
+穿透
+是什么
+查询一个一定不存在的 key，比
 					...
 				</div>
 			</a>
