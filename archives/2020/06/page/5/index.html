@@ -1691,13 +1691,14 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/06/22/jvm/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
+			<a href="/2020/06/22/jvm/%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
 				<h2 class="index-title">
-					类加载过程
+					对象实例化过程
 				</h2>
 				<div class="index-brief">
-					在冯。诺依曼的计算机模型中，任何程序都需要加载到内存才能与cpu进行交流。
-字节码.class文件同样需要加载到内存中，才可以实例化。“兵马未动，粮草先行”。ClassLoader 就是准备粮草的先行军，他的使命就是「提前加载.class类文件到内存中」，在加载类时，使用的是『Parents Del
+					java是面向对象的静态请类型语言，声明并创建兑现改动代码很常见，根据某个类声明一个引用变量指向被创建的对象，并使用此引用变量操作该对象。在实例化对象的过程中，jvm中发生什么化学反应呢？
+字节码角度
+从下面最简单的 Object obj = new Object();代码进行分析，利用 javap
 					...
 				</div>
 			</a>
@@ -1752,14 +1753,13 @@ klass point
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/jvm/%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
+			<a href="/2020/06/22/jvm/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
 				<h2 class="index-title">
-					对象实例化过程
+					类加载过程
 				</h2>
 				<div class="index-brief">
-					java是面向对象的静态请类型语言，声明并创建兑现改动代码很常见，根据某个类声明一个引用变量指向被创建的对象，并使用此引用变量操作该对象。在实例化对象的过程中，jvm中发生什么化学反应呢？
-字节码角度
-从下面最简单的 Object obj = new Object();代码进行分析，利用 javap
+					在冯。诺依曼的计算机模型中，任何程序都需要加载到内存才能与cpu进行交流。
+字节码.class文件同样需要加载到内存中，才可以实例化。“兵马未动，粮草先行”。ClassLoader 就是准备粮草的先行军，他的使命就是「提前加载.class类文件到内存中」，在加载类时，使用的是『Parents Del
 					...
 				</div>
 			</a>
@@ -1772,19 +1772,14 @@ klass point
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/jvm/%E4%B8%BA%E4%BB%80%E4%B9%88CMS%E4%B8%A4%E6%AC%A1%E6%A0%87%E8%AE%B0%E8%A6%81STW/">
+			<a href="/2020/06/22/jvm/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8E%8B%E7%BC%A9%E6%8C%87%E9%92%88%E8%B6%85%E8%BF%87%2032g%20%E5%A4%B1%E6%95%88/">
 				<h2 class="index-title">
-					为什么CMS两次标记要STW
+					为什么压缩指针超过 32g 失效
 				</h2>
 				<div class="index-brief">
-					cms 执行过程
-cms 用于对老年代进行回收，目标是尽量减少应用的暂停时间，减少 fgc 的频率，利用和应用程序线程并发的gc 线程来标记清除老年代。cms 并非没有暂停，而是用两次短暂停来替代串行标记整理算法的长暂停
+					在 Java 虚拟机中，每个 java 对象都有一个对象头，它由mark word和klass point构成。
+mark word 用来存储这个对象的运行时数据
 
-
-初始标记- stw
-
-标记 gc root 可达的老年代对象
-遍历新生代对
 					...
 				</div>
 			</a>
@@ -1821,34 +1816,19 @@ cms 用于对老年代进行回收，目标是尽量减少应用的暂停时间�
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/jvm/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8E%8B%E7%BC%A9%E6%8C%87%E9%92%88%E8%B6%85%E8%BF%87%2032g%20%E5%A4%B1%E6%95%88/">
+			<a href="/2020/06/22/jvm/%E4%B8%BA%E4%BB%80%E4%B9%88CMS%E4%B8%A4%E6%AC%A1%E6%A0%87%E8%AE%B0%E8%A6%81STW/">
 				<h2 class="index-title">
-					为什么压缩指针超过 32g 失效
+					为什么CMS两次标记要STW
 				</h2>
 				<div class="index-brief">
-					在 Java 虚拟机中，每个 java 对象都有一个对象头，它由mark word和klass point构成。
-mark word 用来存储这个对象的运行时数据
+					cms 执行过程
+cms 用于对老年代进行回收，目标是尽量减少应用的暂停时间，减少 fgc 的频率，利用和应用程序线程并发的gc 线程来标记清除老年代。cms 并非没有暂停，而是用两次短暂停来替代串行标记整理算法的长暂停
 
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/06/22/jvm/Monitor/">
-				<h2 class="index-title">
-					Monitor
-				</h2>
-				<div class="index-brief">
-					任何对象都有一个 monitor 与之关联，当一个 monitor被持有后，它将处于锁定状态。
-Synchronized 在 jvm 里面的实现都是基于 进入和退出Monitor 来实现同步的
-一切接对象，所有的 java 对象也是天生的 monitor，每个 java 对象都有成为 Monitor
+
+初始标记- stw
+
+标记 gc root 可达的老年代对象
+遍历新生代对
 					...
 				</div>
 			</a>
@@ -1898,6 +1878,26 @@ controller-控制器：根据视图提出的请求，判断将请求和数据交
 
 
 JVM的命令行参数参考：https://docs.oracle.c
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/06/22/jvm/Monitor/">
+				<h2 class="index-title">
+					Monitor
+				</h2>
+				<div class="index-brief">
+					任何对象都有一个 monitor 与之关联，当一个 monitor被持有后，它将处于锁定状态。
+Synchronized 在 jvm 里面的实现都是基于 进入和退出Monitor 来实现同步的
+一切接对象，所有的 java 对象也是天生的 monitor，每个 java 对象都有成为 Monitor
 					...
 				</div>
 			</a>
