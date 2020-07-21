@@ -1691,6 +1691,32 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/06/22/java%E5%9F%BA%E7%A1%80/this%20%E7%9A%84%E6%9C%AC%E8%B4%A8/">
+				<h2 class="index-title">
+					this 的本质
+				</h2>
+				<div class="index-brief">
+					创建一个对象分为四步：
+
+分配对象空间，并将对象成员变量初始化为0或空或false
+执行属性值的显式初始化
+执行构造方法
+返回对象的地址给相关的变量
+
+this的本质是“创建好的对象的地址”！由于在构造方法调用前，对象已经创建。因此，在构造方法中也可以使用this代表“当前对象”  ，
+不能在静态方
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/06/22/java%E5%9F%BA%E7%A1%80/%E5%86%85%E9%83%A8%E7%B1%BB/">
 				<h2 class="index-title">
 					内部类
@@ -1721,32 +1747,6 @@
 传递是值的副本，副本改变不会影响原件
 引用类类型
 传递的是值的「副本」，但是引用类型指的是『对象的地址』，因此，副本和原参数都指向了同一个「地址
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/06/22/java%E5%9F%BA%E7%A1%80/this%20%E7%9A%84%E6%9C%AC%E8%B4%A8/">
-				<h2 class="index-title">
-					this 的本质
-				</h2>
-				<div class="index-brief">
-					创建一个对象分为四步：
-
-分配对象空间，并将对象成员变量初始化为0或空或false
-执行属性值的显式初始化
-执行构造方法
-返回对象的地址给相关的变量
-
-this的本质是“创建好的对象的地址”！由于在构造方法调用前，对象已经创建。因此，在构造方法中也可以使用this代表“当前对象”  ，
-不能在静态方
 					...
 				</div>
 			</a>
@@ -1915,14 +1915,18 @@ cms 用于对老年代进行回收，目标是尽量减少应用的暂停时间�
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/jvm/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8E%8B%E7%BC%A9%E6%8C%87%E9%92%88%E8%B6%85%E8%BF%87%2032g%20%E5%A4%B1%E6%95%88/">
+			<a href="/2020/06/22/jvm/jvm%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%92%E5%88%86/">
 				<h2 class="index-title">
-					为什么压缩指针超过 32g 失效
+					jvm内存区域划分
 				</h2>
 				<div class="index-brief">
-					在 Java 虚拟机中，每个 java 对象都有一个对象头，它由mark word和klass point构成。
-mark word 用来存储这个对象的运行时数据
-
+					典型回答
+程序计数器
+每个线程都有自己的程序计数器，并且任何一个线程都只有一个方法在执行，也就是所谓的当前方法。
+程序计数器会存储当前线程正在执行的 java 方法的 jvm 指令地址；
+或者：如果执行本地方法，则是未指定值（undefined）
+虚拟机栈
+每个线程在创建时都会创建一个虚拟机栈，内部
 					...
 				</div>
 			</a>
