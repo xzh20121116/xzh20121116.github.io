@@ -1369,6 +1369,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E7%A7%92%E6%9D%80-%E9%AB%98%E5%B9%B6%E5%8F%91/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E7%BA%BF%E7%A8%8B%E6%95%B0/">
+										高并发如何设置线程数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -1602,8 +1611,8 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/07/21/%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/Java%E6%9C%8D%E5%8A%A1%EF%BC%8CCPU100%25%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D/">
-										Java服务，CPU100%问题如何快速定位
+									<a href="/2020/07/21/%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/CPU100%25%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D/">
+										CPU100%问题如何快速定位
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1745,6 +1754,30 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2020/07/15/ELk/can%20not%20run%20elasticsearch%20as%20root/">
+				<h2 class="index-title">
+					can not run elasticsearch as root
+				</h2>
+				<div class="index-brief">
+					es 不让 root 用户启动，因此需要使用非 root 用户
+解决方案
+添加用户组es,及用户es 密码password
+给用户es:es添加指定目录拥有权限
+groupadd es
+useradd es -g es -p 123456 # -g 指定组 -p 指定密码
+chown -R es:e
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-15</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2020/07/14/%E9%BB%91%E8%8B%B9%E6%9E%9C/%E5%B1%8F%E8%94%BD%E7%83%A6%E4%BA%BA%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%96%B0%E6%8F%90%E7%A4%BA/">
@@ -1947,36 +1980,6 @@ yum search java|grep jdk
 
 2、选择指定的版本安装，注意最后的 * 以及yum源安装的是openjdk，注意openjdk的区别。
 yum install java-1.8.0-openj
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-01</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/01/Linux/linux%E5%AE%89%E8%A3%85yapi/">
-				<h2 class="index-title">
-					linux安装yapi
-				</h2>
-				<div class="index-brief">
-					api管理工具-Yapi的搭建-linux篇(完)
-一、环境要求
-
-操作系统：centos 7
-nodejs（7.6+)
-mongodb（2.6+）
-git
-
-二、资料
-yapi 地址
-
-示例站点：yapi.demo.qunar.com
-文档：hellosean1025.github.io/yapi
 					...
 				</div>
 			</a>
