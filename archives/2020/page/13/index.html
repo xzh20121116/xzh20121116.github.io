@@ -1682,16 +1682,26 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/05/31/Redis/Redisson%E4%BD%BF%E7%94%A8/">
+			<a href="/2020/05/31/Redis/redis%E4%B9%8B%E7%BA%A2%E9%94%81(Redlock)/">
 				<h2 class="index-title">
-					Redisson使用
+					redis之红锁(Redlock)
 				</h2>
 				<div class="index-brief">
-					添加 pom 依赖
-    &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
-            &lt;artifactId&gt;re
+					背景
+redis 常用的方式有
+
+单节点
+主从
+哨兵
+集群
+
+单节点不会在生产环境使用，因为达不到高可用，且连 RDB 和 AOF 都只能放在 master 上，所以基本不会使用
+剩下的几种模式都无法避免两个问题
+
+异步数据丢失
+脑裂问题
+
+针对这两个问题，redis 官方提出了红锁(RedLock
 					...
 				</div>
 			</a>

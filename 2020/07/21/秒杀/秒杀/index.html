@@ -1701,19 +1701,29 @@
 </div>
 
 <div id="article-content">
-	<h1>秒杀业务</h1>
+	<blockquote>
+<h6 id="秒杀业务场景说明"><a class="header-anchor" href="#秒杀业务场景说明"></a>秒杀业务场景说明</h6>
+</blockquote>
 <p>上游发起下单</p>
-<p>下游完成秒杀业务逻辑（库存检查、库存冻结、余额检查、余额冻结、订单生成、余额扣减、库存扣减、生成流水、余额解冻、库存解冻）</p>
-<p>上游下单业务简单，每秒 1w 个请求，下游业务复杂，每秒只能处理 2k 个请求，上游不限流，下游被压垮，引起雪崩</p>
-<h1>mq 削峰填谷</h1>
+<p>下游完成秒杀业务逻辑（库存检查、库存冻结、余额检查、余额冻结、订单生成、余额扣减、库存扣减、生成流水、余额解冻、库存解冻）。</p>
+<p>上游下单业务简单，每秒 1w 个请求，下游业务复杂，每秒只能处理 2k 个请求，上游不限流，下游被压垮，引起雪崩。</p>
+<blockquote>
+<h6 id="mq-削峰填谷"><a class="header-anchor" href="#mq-削峰填谷"></a>mq 削峰填谷</h6>
+</blockquote>
 <p>消费根据自己的处理能力，每隔一定时间、每次拉取若干条，实施流控，达到保护自身的效果。</p>
-<h1><strong>服务单一职责</strong>：</h1>
+<blockquote>
+<h6 id="服务单一职责："><a class="header-anchor" href="#服务单一职责："></a><strong>服务单一职责</strong>：</h6>
+</blockquote>
 <p>秒杀的服务、库都是独立的。</p>
 <p>订单服务对应订单库，秒杀服务对应秒杀库。</p>
-<h1><strong>url 动态化</strong>：</h1>
+<blockquote>
+<h6 id="url-动态化："><a class="header-anchor" href="#url-动态化："></a><strong>url 动态化</strong>：</h6>
+</blockquote>
 <p>两个接口：一个获取秒杀连接的 url，一个秒杀指定商品的 url。</p>
 <p>连写代码的人都不知道具体的 url，通过 md5 之类的加密算法去做 url，然后通过前端代码获取 url后台校验才能通过。</p>
-<h1>库存放在redis 中</h1>
+<blockquote>
+<h6 id="使用-lua完成查库存-扣减库存"><a class="header-anchor" href="#使用-lua完成查库存-扣减库存"></a>使用 lua完成查库存+扣减库存</h6>
+</blockquote>
 <p>一个秒杀的流程大概如下:</p>
 <p>1.查询库存</p>
 <p>2.判断库存是否足够，足够的话，扣减库存，秒杀成功。</p>
