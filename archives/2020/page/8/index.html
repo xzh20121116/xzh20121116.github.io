@@ -200,8 +200,26 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2020/07/21/Redis/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%94%A8Memcached/">
+										为什么不用Memcached
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/05/31/Redis/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
 										分布式锁
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/Redis/%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%9C%BA%E6%99%AF/">
+										常见数据类型及场景
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -845,6 +863,24 @@
 								<li class="file">
 									<a href="/2020/04/23/mysql/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%A0%E4%BA%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%A1%A8%E7%9A%84%E5%A4%A7%E5%B0%8F%E4%B8%8D%E5%8F%98%EF%BC%9F/">
 										为什么删了数据，表的大小不变？
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/mysql/%E7%B4%A2%E5%BC%95/">
+										索引
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/mysql/%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95/">
+										聚簇索引和非聚簇索引
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1691,6 +1727,69 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/06/22/jvm/%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
+				<h2 class="index-title">
+					对象实例化过程
+				</h2>
+				<div class="index-brief">
+					java是面向对象的静态请类型语言，声明并创建兑现改动代码很常见，根据某个类声明一个引用变量指向被创建的对象，并使用此引用变量操作该对象。在实例化对象的过程中，jvm中发生什么化学反应呢？
+字节码角度
+从下面最简单的 Object obj = new Object();代码进行分析，利用 javap
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/06/22/jvm/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
+				<h2 class="index-title">
+					类加载过程
+				</h2>
+				<div class="index-brief">
+					在冯。诺依曼的计算机模型中，任何程序都需要加载到内存才能与cpu进行交流。
+字节码.class文件同样需要加载到内存中，才可以实例化。“兵马未动，粮草先行”。ClassLoader 就是准备粮草的先行军，他的使命就是「提前加载.class类文件到内存中」，在加载类时，使用的是『Parents Del
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/06/22/jvm/jvm%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%92%E5%88%86/">
+				<h2 class="index-title">
+					jvm内存区域划分
+				</h2>
+				<div class="index-brief">
+					典型回答
+程序计数器
+每个线程都有自己的程序计数器，并且任何一个线程都只有一个方法在执行，也就是所谓的当前方法。
+程序计数器会存储当前线程正在执行的 java 方法的 jvm 指令地址；
+或者：如果执行本地方法，则是未指定值（undefined）
+虚拟机栈
+每个线程在创建时都会创建一个虚拟机栈，内部
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/06/22/jvm/%E4%B8%BA%E4%BB%80%E4%B9%88CMS%E4%B8%A4%E6%AC%A1%E6%A0%87%E8%AE%B0%E8%A6%81STW/">
 				<h2 class="index-title">
 					为什么CMS两次标记要STW
@@ -1716,16 +1815,34 @@ cms 用于对老年代进行回收，目标是尽量减少应用的暂停时间�
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/SpringMVC/%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
+			<a href="/2020/06/22/jvm/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8E%8B%E7%BC%A9%E6%8C%87%E9%92%88%E8%B6%85%E8%BF%87%2032g%20%E5%A4%B1%E6%95%88/">
 				<h2 class="index-title">
-					工作原理
+					为什么压缩指针超过 32g 失效
 				</h2>
 				<div class="index-brief">
-					MVC 模式
-mvc 是 model、view、controller 的缩写，分别代表 web 应用程序中的三种职责：
-model-模型：用于存储数据以及能处理用户请求的业务逻辑
-view-视图：向控制器提交数据，显示模型中的数据
-controller-控制器：根据视图提出的请求，判断将请求和数据交
+					在 Java 虚拟机中，每个 java 对象都有一个对象头，它由mark word和klass point构成。
+mark word 用来存储这个对象的运行时数据
+
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/06/22/jvm/Monitor/">
+				<h2 class="index-title">
+					Monitor
+				</h2>
+				<div class="index-brief">
+					任何对象都有一个 monitor 与之关联，当一个 monitor被持有后，它将处于锁定状态。
+Synchronized 在 jvm 里面的实现都是基于 进入和退出Monitor 来实现同步的
+一切接对象，所有的 java 对象也是天生的 monitor，每个 java 对象都有成为 Monitor
 					...
 				</div>
 			</a>
@@ -1765,14 +1882,16 @@ JVM的命令行参数参考：https://docs.oracle.c
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/jvm/Monitor/">
+			<a href="/2020/06/22/SpringMVC/%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
 				<h2 class="index-title">
-					Monitor
+					工作原理
 				</h2>
 				<div class="index-brief">
-					任何对象都有一个 monitor 与之关联，当一个 monitor被持有后，它将处于锁定状态。
-Synchronized 在 jvm 里面的实现都是基于 进入和退出Monitor 来实现同步的
-一切接对象，所有的 java 对象也是天生的 monitor，每个 java 对象都有成为 Monitor
+					MVC 模式
+mvc 是 model、view、controller 的缩写，分别代表 web 应用程序中的三种职责：
+model-模型：用于存储数据以及能处理用户请求的业务逻辑
+view-视图：向控制器提交数据，显示模型中的数据
+controller-控制器：根据视图提出的请求，判断将请求和数据交
 					...
 				</div>
 			</a>
@@ -1825,100 +1944,10 @@ Synchronized 在 jvm 里面的实现都是基于 进入和退出Monitor 来实�
                 </div>
 		</div>	
 	
-		<div class="index-li">
-			<a href="/2020/06/05/mybatis/xx/">
-				<h2 class="index-title">
-					xx
-				</h2>
-				<div class="index-brief">
-					mybatis 返回自增主键，方法的入参需要是对应的Entity，
-如何获得到主键呢
-执行 insert 完之后，entity.getID()，就能得到
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-05</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/06/04/springboot/springboot%20%E4%B9%8B%20Filter%20%E6%8C%87%E5%AE%9A%E8%BF%87%E6%BB%A4%20Url%20%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
-				<h2 class="index-title">
-					springboot 之 Filter 指定过滤 Url 的常见问题
-				</h2>
-				<div class="index-brief">
-					在使用Filter对一些自己指定的URL进行过滤拦截时，经常会出现如下错误：
-1、 明明在@WebFilter(urlPatterns={&quot;/app/online&quot;})中过滤的是/app/online 路径，但是运行之后发现，这个WebFilter过滤器对所有的URL都进行了过滤
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-04</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/06/03/linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
-				<h2 class="index-title">
-					【转】Linux查看内存使用情况方法
-				</h2>
-				<div class="index-brief">
-					top命令：
-输入命令：
-top
-输出内容展示：
-
-内容分析：
-PID：进程的ID
-USER：进程所有者
-​    PR：进程的优先级别，越小越优先被执行
-​    NI：进程Nice值，代表这个进程的优先值
-​    VIRT：进程占用的虚拟内存
-​    RES：进程占用的物理内存
-​    S
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-03</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/06/03/%E5%85%B6%E4%BB%96/%E3%80%90%E8%BD%AC%E3%80%91%E6%90%AD%E5%BB%BA%20gitlab/">
-				<h2 class="index-title">
-					【转】搭建 gitlab
-				</h2>
-				<div class="index-brief">
-					前言
-公司前端大佬因为某些原因离职了，走的比较匆忙，自己之前一直很少接触这方面的东西，一直都是一知半解。这两天我一边学，一边动手搭建，同时记录整个搭建过程。
-这是一系列文章，从搭建 Gitlab 到 安装、注册Gitlab-runner 再到二者结合去部署一个简单的项目，通过这几篇文章，你将学会如何
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-03</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
 	
 	<div id="index-paginator">
 		
-			<a class="extend prev" rel="prev" href="/archives/2020/page/7/">&lt;</a><a class="page-number" href="/archives/2020/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2020/page/6/">6</a><a class="page-number" href="/archives/2020/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/archives/2020/page/9/">9</a><a class="page-number" href="/archives/2020/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2020/page/14/">14</a><a class="extend next" rel="next" href="/archives/2020/page/9/">&gt;</a>
+			<a class="extend prev" rel="prev" href="/archives/2020/page/7/">&lt;</a><a class="page-number" href="/archives/2020/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2020/page/6/">6</a><a class="page-number" href="/archives/2020/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/archives/2020/page/9/">9</a><a class="page-number" href="/archives/2020/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2020/page/15/">15</a><a class="extend next" rel="next" href="/archives/2020/page/9/">&gt;</a>
 		
 	</div>
 </div>

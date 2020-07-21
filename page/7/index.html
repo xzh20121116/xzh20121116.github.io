@@ -200,8 +200,26 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2020/07/21/Redis/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%94%A8Memcached/">
+										为什么不用Memcached
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/05/31/Redis/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
 										分布式锁
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/Redis/%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%9C%BA%E6%99%AF/">
+										常见数据类型及场景
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -845,6 +863,24 @@
 								<li class="file">
 									<a href="/2020/04/23/mysql/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%A0%E4%BA%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%A1%A8%E7%9A%84%E5%A4%A7%E5%B0%8F%E4%B8%8D%E5%8F%98%EF%BC%9F/">
 										为什么删了数据，表的大小不变？
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/mysql/%E7%B4%A2%E5%BC%95/">
+										索引
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/mysql/%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95/">
+										聚簇索引和非聚簇索引
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1691,20 +1727,124 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/06/22/java%E5%9F%BA%E7%A1%80/this%20%E7%9A%84%E6%9C%AC%E8%B4%A8/">
+			<a href="/2020/06/22/java%E5%9F%BA%E7%A1%80/%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
 				<h2 class="index-title">
-					this 的本质
+					抽象方法和抽象类
 				</h2>
 				<div class="index-brief">
-					创建一个对象分为四步：
+					抽象方法
+使用abstract修饰的方法，没有方法体，只有声明。定义的是一种“规范”，就是告诉子类必须要给抽象方法提供具体实现。
+抽象类
+包含抽象方法的类就是抽象类。通过abstract方法定义规范，然后要求子类必须定义具体实现。
+通过抽象类，我们就可以做到严格限制子类的设计，使子类之间更加通用。
 
-分配对象空间，并将对象成员变量初始化为0或空或false
-执行属性值的显式初始化
-执行构造方法
-返回对象的地址给相关的变量
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/06/22/java%E5%9F%BA%E7%A1%80/%E5%B0%81%E8%A3%85/">
+				<h2 class="index-title">
+					封装
+				</h2>
+				<div class="index-brief">
+					封装的作用
 
-this的本质是“创建好的对象的地址”！由于在构造方法调用前，对象已经创建。因此，在构造方法中也可以使用this代表“当前对象”  ，
-不能在静态方
+提高代码安全性
+提高代码的复用性
+“高内聚”：封装细节，便于修改内部代码，提高可维护性
+“低耦合”：简化外部调用，便于调用者使用，便于扩展和写作
+
+封装的实现–使用访问控制符
+
+
+
+修饰符
+同一个类
+同一个包中
+子类
+所有类
+
+
+
+
+private
+*
+
+
+
+
+
+default
+*
+*
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/06/22/java%E5%9F%BA%E7%A1%80/%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%86%E7%B1%BB/">
+				<h2 class="index-title">
+					变量的分类
+				</h2>
+				<div class="index-brief">
+					局部变量（local variable）
+从属于方法
+成员变量（也叫实例变量，member variable）
+从属于对象
+静态变量（类变量 static variable）
+使用static 定义。从属于类，生命周期伴随类始终，从类加载到卸载。
+
+
+
+
+局部变量
+成员变量
+静态变量
+
+
+
+
+定义的
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/06/22/java%E5%9F%BA%E7%A1%80/%E5%A4%9A%E6%80%81/">
+				<h2 class="index-title">
+					多态
+				</h2>
+				<div class="index-brief">
+					多态（polymorphism）
+多态的三个必要条件：
+
+多态是方法的多态，不是属性的多态（多态与属性无关）
+多态的存在要有3个必要条件：继承，方法重写，父类引用指向子类对象。
+父类引用指向子类对象后，用该父类引用调用子类重写的方法，此时多态就出现了。
+
+示例：最为多见的的一种用法，即：父类引用做方
 					...
 				</div>
 			</a>
@@ -1747,6 +1887,32 @@ this的本质是“创建好的对象的地址”！由于在构造方法调用�
 				<div class="index-brief">
 					内部类只是一个编译时概念，一旦编译成功，就会成为完全不同的两个类。对于一个名为Outer的外部类和其内部定义的名为Inner的内部类。编译完成会会出现Outer.class和Outer$Inner.class两个类的字节码文件。所以内部类是相对独立的一种存在，其成员变量、方法名可以和外部类的相同。
 
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/06/22/java%E5%9F%BA%E7%A1%80/this%20%E7%9A%84%E6%9C%AC%E8%B4%A8/">
+				<h2 class="index-title">
+					this 的本质
+				</h2>
+				<div class="index-brief">
+					创建一个对象分为四步：
+
+分配对象空间，并将对象成员变量初始化为0或空或false
+执行属性值的显式初始化
+执行构造方法
+返回对象的地址给相关的变量
+
+this的本质是“创建好的对象的地址”！由于在构造方法调用前，对象已经创建。因此，在构造方法中也可以使用this代表“当前对象”  ，
+不能在静态方
 					...
 				</div>
 			</a>
@@ -1809,26 +1975,6 @@ this的本质是“创建好的对象的地址”！由于在构造方法调用�
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/jvm/%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
-				<h2 class="index-title">
-					对象实例化过程
-				</h2>
-				<div class="index-brief">
-					java是面向对象的静态请类型语言，声明并创建兑现改动代码很常见，根据某个类声明一个引用变量指向被创建的对象，并使用此引用变量操作该对象。在实例化对象的过程中，jvm中发生什么化学反应呢？
-字节码角度
-从下面最简单的 Object obj = new Object();代码进行分析，利用 javap
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/06/22/jvm/%E5%AF%B9%E8%B1%A1%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%B8%83%E5%B1%80/">
 				<h2 class="index-title">
 					对象在内存中的布局
@@ -1870,73 +2016,10 @@ klass point
                 </div>
 		</div>	
 	
-		<div class="index-li">
-			<a href="/2020/06/22/jvm/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
-				<h2 class="index-title">
-					类加载过程
-				</h2>
-				<div class="index-brief">
-					在冯。诺依曼的计算机模型中，任何程序都需要加载到内存才能与cpu进行交流。
-字节码.class文件同样需要加载到内存中，才可以实例化。“兵马未动，粮草先行”。ClassLoader 就是准备粮草的先行军，他的使命就是「提前加载.class类文件到内存中」，在加载类时，使用的是『Parents Del
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/06/22/jvm/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8E%8B%E7%BC%A9%E6%8C%87%E9%92%88%E8%B6%85%E8%BF%87%2032g%20%E5%A4%B1%E6%95%88/">
-				<h2 class="index-title">
-					为什么压缩指针超过 32g 失效
-				</h2>
-				<div class="index-brief">
-					在 Java 虚拟机中，每个 java 对象都有一个对象头，它由mark word和klass point构成。
-mark word 用来存储这个对象的运行时数据
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/06/22/jvm/jvm%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%92%E5%88%86/">
-				<h2 class="index-title">
-					jvm内存区域划分
-				</h2>
-				<div class="index-brief">
-					典型回答
-程序计数器
-每个线程都有自己的程序计数器，并且任何一个线程都只有一个方法在执行，也就是所谓的当前方法。
-程序计数器会存储当前线程正在执行的 java 方法的 jvm 指令地址；
-或者：如果执行本地方法，则是未指定值（undefined）
-虚拟机栈
-每个线程在创建时都会创建一个虚拟机栈，内部
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
 	
 	<div id="index-paginator">
 		
-			<a class="extend prev" rel="prev" href="/page/6/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="extend next" rel="next" href="/page/8/">&gt;</a>
+			<a class="extend prev" rel="prev" href="/page/6/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/8/">&gt;</a>
 		
 	</div>
 </div>

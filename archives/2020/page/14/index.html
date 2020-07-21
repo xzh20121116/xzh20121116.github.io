@@ -200,8 +200,26 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2020/07/21/Redis/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%94%A8Memcached/">
+										为什么不用Memcached
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/05/31/Redis/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
 										分布式锁
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/Redis/%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%9C%BA%E6%99%AF/">
+										常见数据类型及场景
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -845,6 +863,24 @@
 								<li class="file">
 									<a href="/2020/04/23/mysql/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%A0%E4%BA%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%A1%A8%E7%9A%84%E5%A4%A7%E5%B0%8F%E4%B8%8D%E5%8F%98%EF%BC%9F/">
 										为什么删了数据，表的大小不变？
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/mysql/%E7%B4%A2%E5%BC%95/">
+										索引
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/mysql/%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95/">
+										聚簇索引和非聚簇索引
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1691,6 +1727,123 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/04/28/java%E9%9B%86%E5%90%88/ConcurrentHashMap/">
+				<h2 class="index-title">
+					ConcurrentHashMap
+				</h2>
+				<div class="index-brief">
+					jdk 1.7 版本的实现原理
+数据结构
+数组+链表
+segment数组  + HashEntry链表
+
+
+
+segment
+
+是ConcurrentHashMap的一个内部类，主要的组成如下：
+static final class Segment&lt;K,V&gt; extends Reentr
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-04-28</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/04/27/java%E9%9B%86%E5%90%88/HashMap/">
+				<h2 class="index-title">
+					HashMap
+				</h2>
+				<div class="index-brief">
+					数据结构
+1.7
+
+
+
+数组+链表
+
+
+Entry节点是他的内部类，实现了Map.ENTRY()
+
+
+插入过程使用头插法：扩容时死循环
+
+
+
+1.8
+
+
+数组+链表+红黑树
+Node节点是他的内部类，实现了Map.ENTRY()
+使用尾插法：避免扩容时死循环
+
+
+底层实现
+从三个方面说：put()、
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-04-27</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/04/24/java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E3%80%81volatile%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+				<h2 class="index-title">
+					java内存模型、volatile的实现原理
+				</h2>
+				<div class="index-brief">
+					Java内存模型 jmm
+是一个抽象的概念，他描述了一组规则，定义了程序中各个变量的访问方式
+JMM同步规定
+
+线程加锁前，必须读取主内存的最新值到自己的工作内存
+线程解锁前，必须把共享变量的值刷新回主内存
+加锁、解锁是同一把锁
+
+jvm运行程序的实体是线程，每个线程创建的时候，jvm都会给他创建一
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-04-24</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/04/24/java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/Reentrantlock%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E3%80%81%E4%BB%A5%E5%8F%8A%E5%85%AC%E5%B9%B3%E9%94%81%E5%92%8C%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81%E7%9A%84%E5%8C%BA%E5%88%AB/">
+				<h2 class="index-title">
+					Reentrantlock的实现原理、以及公平锁和非公平锁的区别
+				</h2>
+				<div class="index-brief">
+					Reentrantlock 结构
+
+首先ReentrantLock继承自父类Lock，然后有3个内部类，其中Sync内部类继承自AQS，另外的两个内部类继承自Sync，这两个类分别是用来公平锁和非公平锁的。
+通过Sync重写的方法tryAcquire、tryRelease可以知道，Reentrant
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-04-24</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/04/23/java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/synchronized/">
 				<h2 class="index-title">
 					synchronized
@@ -1840,55 +1993,10 @@ InnoDB的数据是按页存储的，删除数据的时候，该数据的位置�
                 </div>
 		</div>	
 	
-		<div class="index-li">
-			<a href="/2020/04/22/mysql/mysql%20%E7%9A%84%E5%87%A0%E4%B8%AA%E6%97%A5%E5%BF%97/">
-				<h2 class="index-title">
-					mysql 的几个日志
-				</h2>
-				<div class="index-brief">
-					redo log
-redolog的背景：
-
-update user_table set name='王大锤' where id = '3'
-
-针对这条sql，它的执行过程是这样的：先把id=3的行查出来，然后将name 字段改成 java 3y，看起来没问题。
-实际上 mysql 基本存储结构是 页
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-04-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/04/21/mysql/mysql%E4%B9%8B%E9%94%81/">
-				<h2 class="index-title">
-					mysql之锁
-				</h2>
-				<div class="index-brief">
-					表锁
-表锁的语法是 lock tables … read/write。与 FTWRL类似，可以用 unlock tables主动释放锁，也可以在客户端断开连接的时候自动释放。需要注意：lock tables 语法除了会限制其他的线程的读写之外，也限定了本线程接下来的操作对象
-举个例子：
-线程A中执行
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-04-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
 	
 	<div id="index-paginator">
 		
-			<a class="extend prev" rel="prev" href="/archives/2020/page/13/">&lt;</a><a class="page-number" href="/archives/2020/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2020/page/12/">12</a><a class="page-number" href="/archives/2020/page/13/">13</a><span class="page-number current">14</span>
+			<a class="extend prev" rel="prev" href="/archives/2020/page/13/">&lt;</a><a class="page-number" href="/archives/2020/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2020/page/12/">12</a><a class="page-number" href="/archives/2020/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/archives/2020/page/15/">15</a><a class="extend next" rel="next" href="/archives/2020/page/15/">&gt;</a>
 		
 	</div>
 </div>
