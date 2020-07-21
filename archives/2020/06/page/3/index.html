@@ -926,15 +926,6 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
-							<ul>
-								<li class="file">
-									<a href="/2020/07/21/springCloudAlibaba/%E5%AD%A6%E4%B9%A0/">
-										学习
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
 								</li>
 								
 							</ul>
@@ -1824,6 +1815,30 @@ https://www.itjuzi.com/
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/06/22/mybatis/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/">
+				<h2 class="index-title">
+					常见面试题
+				</h2>
+				<div class="index-brief">
+					${}和#{}的区别是什么
+${}
+是 properties 文件中的变量占位符，它可以用于标签属性值和 sql 内部，属于静态文本替换。
+比如${driver}会被替换为com.mysql.jdbc.Driver.
+#{}
+是 sql 的参数占位符，会将 sql 中的#{}替换为？
+在 sql 执
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/06/22/mybatis/Untitled/">
 				<h2 class="index-title">
 					Untitled
@@ -1849,30 +1864,6 @@ CRUD
 
 
 
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/06/22/mybatis/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/">
-				<h2 class="index-title">
-					常见面试题
-				</h2>
-				<div class="index-brief">
-					${}和#{}的区别是什么
-${}
-是 properties 文件中的变量占位符，它可以用于标签属性值和 sql 内部，属于静态文本替换。
-比如${driver}会被替换为com.mysql.jdbc.Driver.
-#{}
-是 sql 的参数占位符，会将 sql 中的#{}替换为？
-在 sql 执
 					...
 				</div>
 			</a>
@@ -1913,24 +1904,14 @@ monitor 锁
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/java%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+			<a href="/2020/06/22/java%E5%9F%BA%E7%A1%80/%E7%BB%A7%E6%89%BF%E6%A0%91%E8%BF%BD%E6%BA%AF/">
 				<h2 class="index-title">
-					数据类型
+					继承树追溯
 				</h2>
 				<div class="index-brief">
-					1 字节=8 位：1byte = 8bit
-数值型：byte(字节)、short、int、long、float、double
-字符型（文本型）：char(字符)
-布尔型：boolean
-数据类型（两大类）
+					子类的构造方法，无论写与不写，第一句都是super(…)；即调用父类的构造方法;
+流程是这样的：先向上追溯到Object，然后再一次向下执行类的初始化块和构造方法，知道当前子类为止
 
-
-基本数据类型
-
-数值型
-
-整数类型：byte、short、int、long
-浮点类型：fl
 					...
 				</div>
 			</a>
@@ -1943,14 +1924,15 @@ monitor 锁
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/java%E5%9F%BA%E7%A1%80/%E7%BB%A7%E6%89%BF%E6%A0%91%E8%BF%BD%E6%BA%AF/">
+			<a href="/2020/06/22/java%E5%9F%BA%E7%A1%80/%E6%8E%A5%E5%8F%A3/">
 				<h2 class="index-title">
-					继承树追溯
+					接口
 				</h2>
 				<div class="index-brief">
-					子类的构造方法，无论写与不写，第一句都是super(…)；即调用父类的构造方法;
-流程是这样的：先向上追溯到Object，然后再一次向下执行类的初始化块和构造方法，知道当前子类为止
-
+					为什么需要接口？接口和抽象类的区别？
+接口就是比“抽象类”还“抽象”的“抽象类”，可以更加规范的对子类进行约束，全面地专业的实现了：规范和具体实现的分离。
+抽象类还提供某些具体实现，接口不提供任何实现，接口中所有方法都是抽象方法。接口是完全面向规范的，规定了一批类具有的公共方法规范。
+从接口的实现者
 					...
 				</div>
 			</a>

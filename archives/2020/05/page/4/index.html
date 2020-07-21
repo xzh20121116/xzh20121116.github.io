@@ -926,15 +926,6 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
-							<ul>
-								<li class="file">
-									<a href="/2020/07/21/springCloudAlibaba/%E5%AD%A6%E4%B9%A0/">
-										学习
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
 								</li>
 								
 							</ul>
@@ -1727,24 +1718,6 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/05/31/spring/aop/">
-				<h2 class="index-title">
-					aop
-				</h2>
-				<div class="index-brief">
-					
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-05-31</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/05/31/spring/%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 				<h2 class="index-title">
 					事务实现原理
@@ -1776,16 +1749,12 @@ requi
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/spring/ioc/">
+			<a href="/2020/05/31/spring/aop/">
 				<h2 class="index-title">
-					ioc
+					aop
 				</h2>
 				<div class="index-brief">
-					ioc 既是一种思想，又是一种容器
-Ioc 思想
-Inversion of controlle 控制反转
-比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
-而 ioc 是，
+					
 					...
 				</div>
 			</a>
@@ -1798,21 +1767,16 @@ Inversion of controlle 控制反转
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/jvm/%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
+			<a href="/2020/05/31/spring/ioc/">
 				<h2 class="index-title">
-					排查堆内存溢出
+					ioc
 				</h2>
 				<div class="index-brief">
-					模拟堆内存溢出
-
-
-新建一个 Oom.java 文件，内容如下
-import java.util.ArrayList;
-import java.util.List;
-
-public class Oom {
-    public static void main(String[] args) {
-  
+					ioc 既是一种思想，又是一种容器
+Ioc 思想
+Inversion of controlle 控制反转
+比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
+而 ioc 是，
 					...
 				</div>
 			</a>
@@ -1857,21 +1821,21 @@ serial–ps
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+			<a href="/2020/05/31/jvm/%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
 				<h2 class="index-title">
-					分布式锁
+					排查堆内存溢出
 				</h2>
 				<div class="index-brief">
-					zk是啥？
-
-数据库、文件存储系统，并且有监听通知机制（观察者模式）
-
-特性
+					模拟堆内存溢出
 
 
-有序节点
+新建一个 Oom.java 文件，内容如下
+import java.util.ArrayList;
+import java.util.List;
 
-假如 当前有一个父节点为 /lock，我们可以在这个父节点下面创建子节点，使用有序节点，我创建子节点 /lock/node- ，并且指明有序，那么 zookeeper 在生成子节点的时候会自动的添加整数序号
+public class Oom {
+    public static void main(String[] args) {
+  
 					...
 				</div>
 			</a>
@@ -1908,29 +1872,21 @@ java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/Redis/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+			<a href="/2020/05/31/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
 				<h2 class="index-title">
-					常见问题
+					分布式锁
 				</h2>
 				<div class="index-brief">
-					雪崩
-是什么
-多个热点 key 同时过期，导致大量访问直接落在 db
-解决方案
+					zk是啥？
+
+数据库、文件存储系统，并且有监听通知机制（观察者模式）
+
+特性
 
 
-设置热点 key 永不过期，有更新的时候就更新缓存
+有序节点
 
-
-考虑对数据库的访问加上锁或者阻塞队列的方式，保证不会有大量的线程对 db 访问
-
-
-将缓存失效的时间分散开
-
-
-穿透
-是什么
-查询一个一定不存在的 key，比如
+假如 当前有一个父节点为 /lock，我们可以在这个父节点下面创建子节点，使用有序节点，我创建子节点 /lock/node- ，并且指明有序，那么 zookeeper 在生成子节点的时候会自动的添加整数序号
 					...
 				</div>
 			</a>
@@ -1990,6 +1946,41 @@ s
 zookeeper 客户端
 ./zkCli.sh -timeout 0 -r -server ip:port
 ./zkCli.sh -timeout 5000 -server 192.9.200.2
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/Redis/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+				<h2 class="index-title">
+					常见问题
+				</h2>
+				<div class="index-brief">
+					雪崩
+是什么
+多个热点 key 同时过期，导致大量访问直接落在 db
+解决方案
+
+
+设置热点 key 永不过期，有更新的时候就更新缓存
+
+
+考虑对数据库的访问加上锁或者阻塞队列的方式，保证不会有大量的线程对 db 访问
+
+
+将缓存失效的时间分散开
+
+
+穿透
+是什么
+查询一个一定不存在的 key，比如
 					...
 				</div>
 			</a>

@@ -926,15 +926,6 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
-							<ul>
-								<li class="file">
-									<a href="/2020/07/21/springCloudAlibaba/%E5%AD%A6%E4%B9%A0/">
-										学习
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
 								</li>
 								
 							</ul>
@@ -1727,6 +1718,45 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/06/22/jvm/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
+				<h2 class="index-title">
+					类加载过程
+				</h2>
+				<div class="index-brief">
+					在冯。诺依曼的计算机模型中，任何程序都需要加载到内存才能与cpu进行交流。
+字节码.class文件同样需要加载到内存中，才可以实例化。“兵马未动，粮草先行”。ClassLoader 就是准备粮草的先行军，他的使命就是「提前加载.class类文件到内存中」，在加载类时，使用的是『Parents Del
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/06/22/jvm/%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
+				<h2 class="index-title">
+					对象实例化过程
+				</h2>
+				<div class="index-brief">
+					java是面向对象的静态请类型语言，声明并创建兑现改动代码很常见，根据某个类声明一个引用变量指向被创建的对象，并使用此引用变量操作该对象。在实例化对象的过程中，jvm中发生什么化学反应呢？
+字节码角度
+从下面最简单的 Object obj = new Object();代码进行分析，利用 javap
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/06/22/jvm/%E5%AF%B9%E8%B1%A1%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%B8%83%E5%B1%80/">
 				<h2 class="index-title">
 					对象在内存中的布局
@@ -1769,45 +1799,6 @@ klass point
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/jvm/%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
-				<h2 class="index-title">
-					对象实例化过程
-				</h2>
-				<div class="index-brief">
-					java是面向对象的静态请类型语言，声明并创建兑现改动代码很常见，根据某个类声明一个引用变量指向被创建的对象，并使用此引用变量操作该对象。在实例化对象的过程中，jvm中发生什么化学反应呢？
-字节码角度
-从下面最简单的 Object obj = new Object();代码进行分析，利用 javap
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/06/22/jvm/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
-				<h2 class="index-title">
-					类加载过程
-				</h2>
-				<div class="index-brief">
-					在冯。诺依曼的计算机模型中，任何程序都需要加载到内存才能与cpu进行交流。
-字节码.class文件同样需要加载到内存中，才可以实例化。“兵马未动，粮草先行”。ClassLoader 就是准备粮草的先行军，他的使命就是「提前加载.class类文件到内存中」，在加载类时，使用的是『Parents Del
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/06/22/jvm/jvm%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%92%E5%88%86/">
 				<h2 class="index-title">
 					jvm内存区域划分
@@ -1820,6 +1811,26 @@ klass point
 或者：如果执行本地方法，则是未指定值（undefined）
 虚拟机栈
 每个线程在创建时都会创建一个虚拟机栈，内部
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/06/22/jvm/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8E%8B%E7%BC%A9%E6%8C%87%E9%92%88%E8%B6%85%E8%BF%87%2032g%20%E5%A4%B1%E6%95%88/">
+				<h2 class="index-title">
+					为什么压缩指针超过 32g 失效
+				</h2>
+				<div class="index-brief">
+					在 Java 虚拟机中，每个 java 对象都有一个对象头，它由mark word和klass point构成。
+mark word 用来存储这个对象的运行时数据
+
 					...
 				</div>
 			</a>
@@ -1857,34 +1868,16 @@ cms 用于对老年代进行回收，目标是尽量减少应用的暂停时间�
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/jvm/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8E%8B%E7%BC%A9%E6%8C%87%E9%92%88%E8%B6%85%E8%BF%87%2032g%20%E5%A4%B1%E6%95%88/">
+			<a href="/2020/06/22/SpringMVC/%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
 				<h2 class="index-title">
-					为什么压缩指针超过 32g 失效
+					工作原理
 				</h2>
 				<div class="index-brief">
-					在 Java 虚拟机中，每个 java 对象都有一个对象头，它由mark word和klass point构成。
-mark word 用来存储这个对象的运行时数据
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/06/22/jvm/Monitor/">
-				<h2 class="index-title">
-					Monitor
-				</h2>
-				<div class="index-brief">
-					任何对象都有一个 monitor 与之关联，当一个 monitor被持有后，它将处于锁定状态。
-Synchronized 在 jvm 里面的实现都是基于 进入和退出Monitor 来实现同步的
-一切接对象，所有的 java 对象也是天生的 monitor，每个 java 对象都有成为 Monitor
+					MVC 模式
+mvc 是 model、view、controller 的缩写，分别代表 web 应用程序中的三种职责：
+model-模型：用于存储数据以及能处理用户请求的业务逻辑
+view-视图：向控制器提交数据，显示模型中的数据
+controller-控制器：根据视图提出的请求，判断将请求和数据交
 					...
 				</div>
 			</a>
@@ -1924,16 +1917,14 @@ JVM的命令行参数参考：https://docs.oracle.c
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/SpringMVC/%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
+			<a href="/2020/06/22/jvm/Monitor/">
 				<h2 class="index-title">
-					工作原理
+					Monitor
 				</h2>
 				<div class="index-brief">
-					MVC 模式
-mvc 是 model、view、controller 的缩写，分别代表 web 应用程序中的三种职责：
-model-模型：用于存储数据以及能处理用户请求的业务逻辑
-view-视图：向控制器提交数据，显示模型中的数据
-controller-控制器：根据视图提出的请求，判断将请求和数据交
+					任何对象都有一个 monitor 与之关联，当一个 monitor被持有后，它将处于锁定状态。
+Synchronized 在 jvm 里面的实现都是基于 进入和退出Monitor 来实现同步的
+一切接对象，所有的 java 对象也是天生的 monitor，每个 java 对象都有成为 Monitor
 					...
 				</div>
 			</a>
