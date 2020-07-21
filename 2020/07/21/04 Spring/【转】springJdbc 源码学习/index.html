@@ -1,0 +1,2589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	
+	<!-- title -->
+	
+	<title>
+	
+		04 Spring/【转】springJdbc 源码学习 | 
+	 
+	温故知新
+	</title>
+	
+	<!-- keywords,description -->
+	 
+
+	<!-- favicon -->
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+	
+  
+
+	
+<link rel="stylesheet" href="/css/main.css">
+
+	
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/darcula.min.css">
+
+
+	
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js"></script>
+
+	
+<script src="/js/main.js"></script>
+
+	
+		
+<script src="https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
+
+		
+<script src="https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
+
+	
+	
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+	<header id="header">
+    <a id="title" href="/" class="logo">温故知新</a>
+
+	<ul id="menu">
+		<!-- <li class="menu-item">
+			<a href="/about" class="menu-item-link">ABOUT</a>
+		</li> -->
+		
+		<!-- <li class="menu-item">
+			<a href="https://github.com/wujun234/uid-generator-spring-boot-starter" class="menu-item-link" target="_blank">
+				UidGenerator
+			</a>
+		</li> -->
+		<!-- <li class="menu-item">
+			<a href="https://github.com/wujun234" class="menu-item-link" target="_blank">
+				<i class="fa fa-github fa-2x"></i>
+			</a>
+		</li> -->
+	</ul>
+</header>
+
+	
+<div id="sidebar">
+	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
+	
+	<div id="site-toc">
+		<input id="search-input" class="search-input" type="text" placeholder="search...">
+		<div id="tree">
+			
+
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										01 算法与数据结构
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BD%8D%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93/">
+										位操作总结
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">
+										冒泡排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/">
+										基数排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%A0%86%E6%8E%92%E5%BA%8F/">
+										堆排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
+										常见排序算法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										常见面试题
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/Topk%E9%97%AE%E9%A2%98/">
+										Topk问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%88%A0%E5%8E%BBk%E4%B8%AA%E6%95%B0%E5%AD%97%E5%90%8E%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC/">
+										删去k个数字后的最小值
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E5%90%A6%E4%B8%BA2%E6%95%B4%E6%95%B0%E6%AC%A1%E5%B9%82/">
+										如何判断一个数否为2整数次幂
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E9%93%BE%E8%A1%A8%E6%9C%89%E7%8E%AF/">
+										如何判断链表有环
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%A7%E6%95%B4%E6%95%B0%E7%9B%B8%E5%8A%A0/">
+										如何实现大整数相加
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E6%B1%82%E5%87%BA%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/">
+										如何求出最大公约数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%AF%BB%E6%89%BE%E5%85%A8%E6%8E%92%E5%88%97%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%95%B0/">
+										寻找全排列的下一个数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%AF%BB%E6%89%BE%E7%BC%BA%E5%A4%B1%E7%9A%84%E6%95%B4%E6%95%B0/">
+										寻找缺失的整数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%97%A0%E5%BA%8F%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E5%90%8E%E6%9C%80%E5%A4%A7%E7%9B%B8%E9%82%BB%E5%B7%AE/">
+										无序数组排序后最大相邻差
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9C%80%E5%B0%8F%E6%A0%88%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+										最小栈的实现
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9C%AA%E5%AE%8C%E6%88%90--%E5%A6%82%E4%BD%95%E6%B1%82%E8%A7%A3%E9%87%91%E7%9F%BF%E9%97%AE%E9%A2%98%EF%BC%88%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%89/">
+										未完成--如何求解金矿问题（背包问题）
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/">
+										用栈实现队列
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
+										归并排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
+										快速排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%89%8B%E5%86%99Lru/">
+										手写Lru
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
+										插入排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F%E5%92%8C%E6%A1%B6%E6%8E%92%E5%BA%8F/">
+										计数排序和桶排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/31/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/">
+										选择排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										02 计算机基础
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/Http%20%E7%8A%B6%E6%80%81%E7%A0%81/">
+										Http 状态码
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5url%20%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">
+										在浏览器中输入url 发生了什么
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E5%AE%B9%E9%87%8F/">
+										存储单位容量
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										03 java
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Java基础
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/final/">
+										final
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/this%20%E7%9A%84%E6%9C%AC%E8%B4%A8/">
+										this 的本质
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/%E5%86%85%E9%83%A8%E7%B1%BB/">
+										内部类
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E5%80%BC%E6%9C%BA%E5%88%B6/">
+										参数的传值机制
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%86%E7%B1%BB/">
+										变量的分类
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/%E5%A4%9A%E6%80%81/">
+										多态
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/%E5%B0%81%E8%A3%85/">
+										封装
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
+										抽象方法和抽象类
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/%E6%8E%A5%E5%8F%A3/">
+										接口
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+										数据类型
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/%E7%BB%A7%E6%89%BF%E6%A0%91%E8%BF%BD%E6%BA%AF/">
+										继承树追溯
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Java线程和锁
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+										Aqs的核心成员、数据模型、锁的实现原理
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/MDC/">
+										MDC
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/24/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/Reentrantlock%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E3%80%81%E4%BB%A5%E5%8F%8A%E5%85%AC%E5%B9%B3%E9%94%81%E5%92%8C%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81%E7%9A%84%E5%8C%BA%E5%88%AB/">
+										Reentrantlock的实现原理、以及公平锁和非公平锁的区别
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/28/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/ThreadLocal/">
+										ThreadLocal
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/24/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E3%80%81volatile%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+										java内存模型、volatile的实现原理
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/23/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/sleep%E3%80%81wait%E3%80%81notify%E3%80%81yield%E3%80%81join%E7%9A%84%E5%8C%BA%E5%88%AB/">
+										sleep、wait、notify、yield、join的区别
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/23/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/synchronized/">
+										synchronized
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E5%87%A0%E7%A7%8D%E9%94%81/">
+										总结一下几种锁
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%A5%BD%E5%A4%84/">
+										线程池的好处
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/23/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E3%80%816%E7%A7%8D%E7%8A%B6%E6%80%81%E7%9A%84%E6%B5%81%E8%BD%AC/">
+										线程的生命周期、6种状态的流转
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Java集合
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/ArrayList/">
+										ArrayList
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/ConcurrentHashMap/">
+										ConcurrentHashMap
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/27/03%20java/Java%E9%9B%86%E5%90%88/HashMap/">
+										HashMap
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Jvm
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/Monitor/">
+										Monitor
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/jvm%20%E8%B0%83%E4%BC%98/">
+										jvm 调优
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/jvm%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%92%E5%88%86/">
+										jvm内存区域划分
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/%E4%B8%BA%E4%BB%80%E4%B9%88CMS%E4%B8%A4%E6%AC%A1%E6%A0%87%E8%AE%B0%E8%A6%81STW/">
+										为什么CMS两次标记要STW
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8E%8B%E7%BC%A9%E6%8C%87%E9%92%88%E8%B6%85%E8%BF%87%2032g%20%E5%A4%B1%E6%95%88/">
+										为什么压缩指针超过 32g 失效
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/%E5%AF%B9%E8%B1%A1%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%B8%83%E5%B1%80/">
+										对象在内存中的布局
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
+										对象实例化过程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/%E5%B8%B8%E8%A7%81%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">
+										常见垃圾回收器
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
+										排查堆内存溢出
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
+										类加载过程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/%E9%9D%A2%E8%AF%95%E8%A2%AB%E9%97%AE%E7%83%82%E7%9A%84JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%EF%BC%8C%E6%88%91%E4%BB%8A%E5%A4%A9%E5%86%8D%E6%9D%A5%E7%BB%99%E5%A4%A7%E5%AE%B6%E5%A4%8D%E4%B9%A0%E4%B8%80%E9%81%8D/">
+										面试被问烂的JVM内存区域，我今天再来给大家复习一遍
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										04 Spring
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/05/07/04%20Spring/BeanFactory-%E5%92%8C-ApplicationContext-%E5%8C%BA%E5%88%AB/">
+										BeanFactory-和-ApplicationContext-区别
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/04%20Spring/aop/">
+										aop
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/04%20Spring/ioc/">
+										ioc
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/04%20Spring/spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+										spring 循环依赖
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file active">
+									<a href="/2020/07/21/04%20Spring/%E3%80%90%E8%BD%AC%E3%80%91springJdbc%20%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">
+										【转】springJdbc 源码学习
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/04%20Spring/%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+										事务实现原理
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/04%20Spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
+										依赖注入
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/04%20Spring/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+										设计模式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										05 Springboot
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/05%20Springboot/springboot%20%E4%B9%8B%20Filter%20%E6%8C%87%E5%AE%9A%E8%BF%87%E6%BB%A4%20Url%20%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+										springboot 之 Filter 指定过滤 Url 的常见问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										06 微服务
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										0 服务注册与发现
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Zookeeper
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
+										mac 安装启动
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+										分布式锁
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
+										客户端ZooInspector
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										1 服务调用
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/1%20%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/Sentinel%20%E4%B8%8E%20Hystrix%20%E5%AF%B9%E6%AF%94/">
+										Sentinel 与 Hystrix 对比
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										07 SpringMVC
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/07%20SpringMVC/%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
+										工作原理
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/07%20SpringMVC/%E8%AF%B4%E8%AF%B4%20SpringMvc%20%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">
+										说说 SpringMvc 的执行流程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										08 Mysql
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/04/22/08%20Mysql/count(*)%E3%80%81count(%E4%B8%BB%E9%94%AE%20id)%E3%80%81count(%E5%AD%97%E6%AE%B5)%E5%92%8Ccount(1)%E7%AD%89%E4%B8%8D%E5%90%8C%E7%94%A8%E6%B3%95%E7%9A%84%E6%80%A7%E8%83%BD/">
+										count(*)、count(主键 id)、count(字段)和count(1)等不同用法的性能
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/22/08%20Mysql/mysql%20%E5%A6%82%E4%BD%95%E4%B8%BB%E5%A4%87%E4%B8%80%E8%87%B4+%E5%8F%8Cm%E5%BE%AA%E7%8E%AF%E5%A4%8D%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+										mysql 如何主备一致+双m循环复制解决方案
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/22/08%20Mysql/mysql%20%E7%9A%84%E5%87%A0%E4%B8%AA%E6%97%A5%E5%BF%97/">
+										mysql 的几个日志
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/21/08%20Mysql/mysql%E4%B9%8B%E9%94%81/">
+										mysql之锁
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/23/08%20Mysql/%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%A0%E4%BA%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%A1%A8%E7%9A%84%E5%A4%A7%E5%B0%8F%E4%B8%8D%E5%8F%98%EF%BC%9F/">
+										为什么删了数据，表的大小不变？
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/08%20Mysql/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B0%83%E4%BC%98/">
+										数据库调优
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/08%20Mysql/%E7%B4%A2%E5%BC%95/">
+										索引
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/08%20Mysql/%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95/">
+										聚簇索引和非聚簇索引
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										09 Mybatis
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/09%20Mybatis/MyBatis%E5%8A%A8%E6%80%81SQL%20foreach%E6%A0%87%E7%AD%BE%E5%AE%9E%E7%8E%B0%E6%89%B9%E9%87%8F%E6%8F%92%E5%85%A5/">
+										MyBatis动态SQL foreach标签实现批量插入
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/09%20Mybatis/Untitled/">
+										Untitled
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/09%20Mybatis/xx/">
+										xx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/09%20Mybatis/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/">
+										常见面试题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										10 Redis
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/Redisson%E4%BD%BF%E7%94%A8/">
+										Redisson使用
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/cluster%20%E4%B8%8E%20sentinel/">
+										cluster 与 sentinel
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/redis%E4%B9%8B%E7%BA%A2%E9%94%81(Redlock)/">
+										redis之红锁(Redlock)
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%94%A8Memcached/">
+										为什么不用Memcached
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+										分布式锁
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%9C%BA%E6%99%AF/">
+										常见数据类型及场景
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+										常见问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										11 ELk
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/11%20ELk/ElasticSearch/">
+										ElasticSearch
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/11%20ELk/can%20not%20run%20elasticsearch%20as%20root/">
+										can not run elasticsearch as root
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/11%20ELk/springboot%20%E6%B7%BB%E5%8A%A0%20es%20%E4%BE%9D%E8%B5%96%E7%89%88%E6%9C%AC%E9%97%AE%E9%A2%98/">
+										springboot 添加 es 依赖版本问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/11%20ELk/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%20es%EF%BC%8C%E5%A4%96%E7%BD%91%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE%209200/">
+										阿里云部署 es，外网无法访问 9200
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/11%20ELk/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%20kibana%EF%BC%8C%E5%A4%96%E7%BD%91%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE/">
+										阿里云部署 kibana，外网无法访问
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										12 Linux
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/12%20Linux/linux%20%E5%AE%89%E8%A3%85%20jdk/">
+										linux 安装 jdk
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/12%20Linux/linux%20%E5%AE%89%E8%A3%85%20nginx/">
+										linux 安装 nginx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/12%20Linux/linux%E5%AE%89%E8%A3%85yapi/">
+										linux安装yapi
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/12%20Linux/showdoc%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
+										showdoc 安装教程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/12%20Linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+										【转】Linux查看内存使用情况方法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										13 分布式相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+										分布式事务
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										15 Nginx
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/15%20Nginx/%E9%85%8D%E7%BD%AE%20nginx/">
+										配置 nginx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Hexo
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/Hexo/Hexo%20%E6%A0%87%E9%A2%98%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7/">
+										Hexo 标题自动编号
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/Hexo/%E5%A6%82%E4%BD%95%E8%AE%A9%20Hexo%20%E5%8D%9A%E5%AE%A2%E6%94%AF%E6%8C%81%20emoji/">
+										如何让 Hexo 博客支持 emoji
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										LeetCode
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/LeetCode/README/">
+										README
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Markdown
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/Markdown/%E3%80%90%E8%BD%AC%E3%80%91Markdown%20%E6%8F%92%E5%85%A5%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">
+										【转】Markdown 插入数学公式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										为什么这么设计【转】
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										数据库
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%B8%BA%E4%BB%80%E4%B9%88%20MongoDB%20%E4%BD%BF%E7%94%A8%20B%20%E6%A0%91/">
+										为什么 MongoDB 使用 B 树
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%B8%BA%E4%BB%80%E4%B9%88%20MySQL%20%E4%BD%BF%E7%94%A8%20B+%20%E6%A0%91/">
+										为什么 MySQL 使用 B+ 树
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%B8%BA%E4%BB%80%E4%B9%88%20Redis%20%E5%BF%AB%E7%85%A7%E4%BD%BF%E7%94%A8%E5%AD%90%E8%BF%9B%E7%A8%8B/">
+										为什么 Redis 快照使用子进程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%B8%BA%E4%BB%80%E4%B9%88%20Redis%20%E9%80%89%E6%8B%A9%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">
+										为什么 Redis 选择单线程模型
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										网络
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%20DNS%20%E4%BD%BF%E7%94%A8%20UDP%20%E5%8D%8F%E8%AE%AE/">
+										为什么 DNS 使用 UDP 协议
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%20HTTPS%20%E9%9C%80%E8%A6%81%207%20%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%BB%A5%E5%8F%8A%209%20%E5%80%8D%E6%97%B6%E5%BB%B6/">
+										为什么 HTTPS 需要 7 次握手以及 9 倍时延
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%20TCP%20%E5%8D%8F%E8%AE%AE%E6%9C%89%E7%B2%98%E5%8C%85%E9%97%AE%E9%A2%98/">
+										为什么 TCP 协议有粘包问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%20TCP%20%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E9%9C%80%E8%A6%81%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B/">
+										为什么 TCP 建立连接需要三次握手
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%20TCPIP%20%E5%8D%8F%E8%AE%AE%E4%BC%9A%E6%8B%86%E5%88%86%E6%95%B0%E6%8D%AE/">
+										为什么 TCPIP 协议会拆分数据
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%20UDP%20%E5%A4%B4%E5%8F%AA%E6%9C%89%208%20%E4%B8%AA%E5%AD%97%E8%8A%82/">
+										为什么 UDP 头只有 8 个字节
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%20tcp%20%E5%8D%8F%E8%AE%AE%E6%9C%89%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/">
+										为什么 tcp 协议有性能问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%B5%81%E5%AA%92%E4%BD%93%E7%9B%B4%E6%92%AD%E7%9A%84%E5%BB%B6%E8%BF%9F%E5%BE%88%E9%AB%98/">
+										为什么流媒体直播的延迟很高
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										收藏
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E6%94%B6%E8%97%8F/Sourcetree%20%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95/">
+										Sourcetree 设置默认工作目录
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E6%94%B6%E8%97%8F/v2ray%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/">
+										v2ray搭建教程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E6%94%B6%E8%97%8F/%E3%80%90%E8%BD%AC%E3%80%91%E3%80%90%E9%98%BF%E9%87%8C%E4%BA%91%E5%AE%98%E7%BD%91%E3%80%91oss%20%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%20Content-Type/">
+										【转】【阿里云官网】oss 如何设置 Content-Type
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E6%94%B6%E8%97%8F/%E3%80%90%E8%BD%AC%E3%80%91%E6%90%AD%E5%BB%BA%20gitlab/">
+										【转】搭建 gitlab
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E6%94%B6%E8%97%8F/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%93%AA%E5%AE%B6%E4%BE%BF%E5%AE%9C/">
+										云服务哪家便宜
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E6%94%B6%E8%97%8F/%E6%8E%A8%E8%8D%90%E7%BD%91%E5%9D%80/">
+										推荐网址
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E6%94%B6%E8%97%8F/%E6%94%B6%E8%97%8F/">
+										收藏
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E6%94%B6%E8%97%8F/%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96%E6%A1%86%E6%9E%B6%E4%B8%BA%E4%BB%80%E4%B9%88%E6%94%BE%E5%BC%83%20Hibernate%E3%80%81JPA%E3%80%81Mybatis%EF%BC%8C%E6%9C%80%E7%BB%88%E9%80%89%E6%8B%A9%20JDBCTemplate%EF%BC%81/">
+										数据持久化框架为什么放弃 Hibernate、JPA、Mybatis，最终选择 JDBCTemplate！
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										梯子
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E6%A2%AF%E5%AD%90/iphone%20%E4%BD%BF%E7%94%A8shadownrocket/">
+										iphone 使用shadownrocket
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E6%A2%AF%E5%AD%90/mac%E4%BD%BF%E7%94%A8%20v2ray/">
+										mac使用 v2ray
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										秒杀-高并发
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E7%A7%92%E6%9D%80-%E9%AB%98%E5%B9%B6%E5%8F%91/%E7%A7%92%E6%9D%80/">
+										秒杀
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E7%A7%92%E6%9D%80-%E9%AB%98%E5%B9%B6%E5%8F%91/%E9%AB%98%E5%B9%B6%E5%8F%91%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E7%BA%BF%E7%A8%8B%E6%95%B0/">
+										高并发如何设置线程数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										线上问题排查
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/CPU100%25%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D/">
+										CPU100%问题如何快速定位
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										维权
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E7%BB%B4%E6%9D%83/xx/">
+										xx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										记错
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E8%AE%B0%E9%94%99/%E5%A4%84%E7%90%86%20mybatis-plus%20%E4%B8%8E%20pageHelper%20%E5%86%B2%E7%AA%81/">
+										处理 mybatis-plus 与 pageHelper 冲突
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E8%AE%B0%E9%94%99/%E6%8E%A5%E5%8F%A3%E7%9A%84%20aop%20%E6%97%A5%E5%BF%97%E5%A4%B1%E6%95%88%E4%BA%86/">
+										接口的 aop 日志失效了
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E8%AE%B0%E9%94%99/%E8%AE%B0%E4%B8%80%E6%AC%A1%20git%20%E6%97%A0%E6%B3%95%20pull%E3%80%81push/">
+										记一次 git 无法 pull、push
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										黑苹果
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E9%BB%91%E8%8B%B9%E6%9E%9C/%E3%80%90%E8%BD%AC%E3%80%91NUC8%E4%BD%BF%E7%94%A8%E8%8B%B9%E6%9E%9C%E5%8E%9F%E8%A3%85%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1%E5%85%8D%E9%A9%B1%E5%8A%A8WiFi%E8%93%9D%E7%89%99AirDorpHandoff/">
+										【转】NUC8使用苹果原装无线网卡免驱动WiFi蓝牙AirDorpHandoff
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E9%BB%91%E8%8B%B9%E6%9E%9C/%E5%B1%8F%E8%94%BD%E7%83%A6%E4%BA%BA%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%96%B0%E6%8F%90%E7%A4%BA/">
+										屏蔽烦人的系统更新提示
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+		</div>
+	</div>
+</div>
+
+	<!-- 引入正文 -->
+	<div id="content">
+		<h1 id="article-title">
+
+	【转】springJdbc 源码学习
+</h1>
+<div class="article-meta">
+	
+		<span>
+			阅读量:<span id="/2020/07/21/04%20Spring/%E3%80%90%E8%BD%AC%E3%80%91springJdbc%20%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/" class="leancloud_visitors" data-flag-title="04 Spring/【转】springJdbc 源码学习"></span>
+		</span>
+	
+	<span>今晚打老虎</span>
+	<span>2020-07-21 18:49:54</span>
+    
+		<div id="article-categories">
+            
+		</div>
+    
+</div>
+
+<div id="article-content">
+	<h1>Spring JDBC 源码学习</h1>
+<p>15 Jan 2018</p>
+<p><a href="https://www.ffutop.com/" target="_blank" rel="noopener">@ffutop</a></p>
+<h2 id="概览"><a class="header-anchor" href="#概览"></a>概览</h2>
+<p>在学习 Spring-JDBC 之前，我们有必要从 Java 原生提供的 JDBC 开始，对 JDBC 操作的一整套完整的流程有一个清晰的概念。</p>
+<pre><code class="language-java">/**
+ * copied from https://www.tutorialspoint.com/jdbc/jdbc-sample-code.htm
+ * updated by DorMOUSENone
+ */
+
+//STEP 1. 引入必须的包
+import java.sql.*;
+
+public class Example {
+	// JDBC 驱动名 与 DB URL 
+    static final String JDBC_DRIVER = &quot;com.mysql.jdbc.Driver&quot;;  
+    static final String DB_URL = &quot;jdbc:mysql://&lt;host&gt;:&lt;port&gt;/&lt;dbName&gt;&quot;;
+
+  	// 数据库登录验证 (用户名、密码等)
+    static final String USER = &quot;username&quot;;
+    static final String PASS = &quot;password&quot;;
+   
+	public static void main(String[] args) {
+		Connection conn = null;
+		Statement stmt = null;
+		try{
+			//STEP 2: 注册驱动(注册到驱动管理器 DriverManager 类中)
+			Class.forName(&quot;com.mysql.jdbc.Driver&quot;);
+
+            //STEP 3: 创建一个连接
+          	System.out.println(&quot;Connecting to database...&quot;);
+          	conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+          	//STEP 4: 执行一个查询
+          	System.out.println(&quot;Creating statement...&quot;);
+          	stmt = conn.createStatement();
+          	String sql;
+          	sql = &quot;SELECT id, first, last, age FROM Employees&quot;;
+          	ResultSet rs = stmt.executeQuery(sql);
+
+          	//STEP 5: 将结果从结果集(ResultSet)中取出
+          	while(rs.next()){
+             	//根据列名逐一取出数据
+             	int id  = rs.getInt(&quot;id&quot;);
+             	int age = rs.getInt(&quot;age&quot;);
+             	String first = rs.getString(&quot;first&quot;);
+             	String last = rs.getString(&quot;last&quot;);
+
+             	//展示结果
+             	System.out.print(&quot;ID: &quot; + id);
+             	System.out.print(&quot;, Age: &quot; + age);
+             	System.out.print(&quot;, First: &quot; + first);
+             	System.out.println(&quot;, Last: &quot; + last);
+          	}
+          	//STEP 6: 清理环境
+          	rs.close();
+          	stmt.close();
+          	conn.close();
+       	}catch(SQLException se){
+          	//处理 JDBC 错误
+          	se.printStackTrace();
+       	}catch(Exception e){
+          	//处理 Class.forName() 引起的错误
+          	e.printStackTrace();
+       	}finally{
+          	// finally 代码库来关闭资源
+          	try{
+            	if(stmt!=null)
+                	stmt.close();
+          	}catch(SQLException se2){
+          	}// 不做任何处理
+          	try{
+           		if(conn!=null)
+                	conn.close();
+            }catch(SQLException se){
+               	se.printStackTrace();
+            }
+       	}
+       	System.out.println(&quot;Goodbye!&quot;);
+	}
+}
+</code></pre>
+<p>从上面的通用 JDBC 代码可以看到，利用 Java 原生提供的 java.sql.* 包可以完成注册驱动，创建连接，执行查询，处理结果等一系列一整套操作。</p>
+<p>而 Spring-JDBC 对于 Java 原生提供的 JDBC ，对一系列数据及操作进行了整合：</p>
+<ol>
+<li>实现了 DataSource 接口，用于整合数据源配置，将各种零散的属性值（诸如 URL、用户名、 密码等）整合成完整的一个对象，便于重用；也实现了 getConnection(…) 接口，便于直接通过 DataSource 获取连接。</li>
+<li>对执行查询的流程进行了封装。</li>
+<li>对结果集的处理提供了多种接口，针对不同的应用场景可自由选择所必须的实现类。例如直接通过 JDBC 获得 Bean ，而无需如上例 39-42 行所示，逐一编码进行提取。</li>
+</ol>
+<p>本节提供对《Spring-JDBC 源码学习》完整学习过程的一个梳理：</p>
+<ol>
+<li><a href="https://blog.csdn.net/dormousenone/article/details/79035440" target="_blank" rel="noopener">JdbcTemplate</a> 一节作为学习 Spring-jdbc 的切入点，是 org.springframework.jdbc.core 包中的核心类，是一个提供不同场景下数据库操作的模板类。主要描述其持有的属性 DataSource 等以及其实现的方法。</li>
+<li><a href="https://blog.csdn.net/dormousenone/article/details/79037012" target="_blank" rel="noopener">DataSource</a> 一节承接 JdbcTemplate 一节，提供 Spring-jdbc 对数据源的一个包装与应用。同时描述其核心方法 getConnection(…) 的实现。</li>
+<li><a href="https://blog.csdn.net/dormousenone/article/details/79042212" target="_blank" rel="noopener">DriverManager</a> 描述其对不同数据库供应商提供的驱动的管理与使用方法。同时简单描述通过具体驱动获得一个连接的实现。</li>
+<li><a href="https://blog.csdn.net/dormousenone/article/details/79046865" target="_blank" rel="noopener">PreparedStatement &amp; CallableStatement</a> 一节主要表述 Spring-jdbc 如何对执行查询的流程进行了封装。特别是对于 PreparedStatement 与 CallableStatement 这类预置可变 SQL 语句，在执行前必须对其中可变参数进行补全的 Statement 。</li>
+<li><a href="https://blog.csdn.net/dormousenone/article/details/79062275" target="_blank" rel="noopener">ResultSet</a> 描述 Spring-jdbc 如何对结果集进行处理，提供了多种不同的接口实现不同的处理逻辑。这种封装后的操作可以极大地简化直接使用 Java 原生 JDBC 所必须的硬编码提取数据的问题。</li>
+</ol>
+<h2 id="JdbcTemplate"><a class="header-anchor" href="#JdbcTemplate"></a>JdbcTemplate</h2>
+<p><img src="https://ws2.sinaimg.cn/large/006tNc79gy1fn90ghu9ufj30ki0jm75t.jpg" alt="img"></p>
+<p>JdbcTemplate 类作为 org.springframework.core 包下的核心类，对 Java 实现的 JDBC 进行了一定程度的封装，可以简化 JDBC 的使用，同时避免许多常见的错误。由该类来执行 JDBC 工作流，应用程序只需要提供 SQL 语句就可以获得 DB 执行结果（😀，当然实际操作上没有描述的这么简单）。</p>
+<p><strong>使用 JdbcTemplate 类只需要实现两个回调接口 PreparedStatementCreator (创建一个 PreparedStatement，给定连接，提供 SQL 语句以及必要的参数), ResultSetExtractor (用于花式获取结果集)。当然，不实现上述两个接口也可以进行简单的数据库操作，比如只通过 JdbcTemplate 获取一个连接(Connection) 或者执行一个静态 SQL Update。</strong></p>
+<p><em>看不懂无所谓，先继续向下看，会做更详细的讲解。</em></p>
+<h3 id="JdbcAccessor"><a class="header-anchor" href="#JdbcAccessor"></a>JdbcAccessor</h3>
+<p>首先了解 JdbcTemplate 的实现，JdbcTemplate 继承了 JdbcAccessor 抽象类，该抽象类有两个主要属性—— <strong>DataSource dataSource</strong> &amp; <strong>SQLExceptionTranslator exceptionTranslator</strong> ，以及一个懒加载标识符 <strong>lazyInit</strong> 。</p>
+<p>其中，</p>
+<ul>
+<li>DataSource 可以认为是一个存储有与数据库相关的属性实例，主要方法包括 <code>Connection getConnection()</code> &amp; <code>Connection getConnection(String username, String password)</code> 。</li>
+<li>SQLExceptionTranslator 利用策略模式将 Java 定义的 SQLException 转换成 Spring 声明的 DataAccessException。</li>
+</ul>
+<p>JdbcAccessor 实现的 InitializingBean 接口，InitializingBean 接口为 Bean 提供了一个初始化实例的方法 —— afterPropertiesSet() 方法，凡是继承该接口的类，一般都在类构造方法中执行该方法。同样的，声明初始化实例调用的方法还可采用 `` 在初始化 bean 时执行 myInitMethod() 方法。具体执行顺序为 ：</p>
+<ol>
+<li>bean 的属性注入</li>
+<li>调用 afterPropertiesSet() 方法</li>
+<li>执行 myInitMethod() 方法</li>
+</ol>
+<p>此处继承该接口是为了实现 DataSource 验证以及 SQLExceptionTranslator 的懒加载 OR NOT 的选择。</p>
+<pre><code class="language-java">@Override
+public void afterPropertiesSet() {
+	if (getDataSource() == null) {	// 判断是否注入了 DataSource
+		throw new IllegalArgumentException(&quot;Property 'dataSource' is required&quot;);
+	}
+	if (!isLazyInit()) {	// 根据懒加载标识符选择执行与否
+		getExceptionTranslator();	// 获取一个 SQLExceptionTranslator 实例
+	}
+}
+</code></pre>
+<p>该方法在 BeanFactory 完成该 bean 的依赖注入后执行，将首先判断 DataSource 是否已经被注入，再根据懒加载标识符来决定是否实例化一个 SQLExceptionTranslator 。</p>
+<h3 id="JdbcOperations"><a class="header-anchor" href="#JdbcOperations"></a>JdbcOperations</h3>
+<p>同时，JdbcTemplate 类实现了 JdbcOperations 接口，该接口定义了基本的 JDBC 操作。基本方法如下：</p>
+<ol>
+<li><code> T execute(ConnectionCallback action);</code></li>
+<li><code> T execute(StatementCallback action);</code></li>
+<li><code> T execute(PreparedStatementCreator psc, PreparedStatementCallback action);</code></li>
+<li><code> T execute(CallableStatementCreator csc, CallableStatementCallback action);</code></li>
+</ol>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fncp2ncqd6j31j00au0uv.jpg" alt="img"></p>
+<p>其它的 execute(…) , query(…), update(…) 等最终都将调用上述 4 种方法其一来完成目的。</p>
+<p>详细观察上述方法的入参， ConnectionCallback, StatementCallback, PreparedStatementCallback 和 CallableStatementCallback 四个 Callback 接口，分别都是函数式接口，其中的唯一方法 doInXXX() 将在 execute() 中被调用，以此实现获得 ResultSet 并返回 Result 。execute 中调用 doInXXX() 的通用代码如下 （以 Statement 为例）：</p>
+<p><em>对于不理解<strong>回调</strong>的同学，请自行了解概念</em></p>
+<pre><code class="language-java">public &lt;T&gt; T execute(StatementCallback&lt;T&gt; action) throws DataAccessException {
+	// 通过工具类 DataSourceUtils 获取一个连接
+  	Connection con = DataSourceUtils.getConnection(obtainDataSource());
+  	// 一个 Statement 空实例，PreparedStatement, CallableStatement 类似
+	Statement stmt = null;
+	try {
+		stmt = con.createStatement();	// 通过连接(Connection)获取一个 Statement
+		applyStatementSettings(stmt);	// 配置 Statement 参数
+      	// 回调执行 doInXXX() 方法, 并获得 result
+		T result = action.doInStatement(stmt);	
+		handleWarnings(stmt);
+		return result;
+	}
+	catch (SQLException ex) {
+		// Release Connection early, to avoid potential connection pool deadlock
+		// in the case when the exception translator hasn't been initialized yet.
+		String sql = getSql(action);
+		JdbcUtils.closeStatement(stmt);
+		stmt = null;
+		DataSourceUtils.releaseConnection(con, getDataSource());
+		con = null;
+		throw translateException(&quot;StatementCallback&quot;, sql, ex);
+	}
+	finally {
+		JdbcUtils.closeStatement(stmt);
+		DataSourceUtils.releaseConnection(con, getDataSource());
+	}
+}
+</code></pre>
+<p>对于 Statement, PreparedStatement, CallableStatement 的区别，首先下图表现了三个接口的继承关系。</p>
+<ul>
+<li>Statement 可以支持静态 SQL 语句</li>
+<li>PreparedStatement 支持可变参数的 SQL 语句</li>
+<li>CallableStatement 支持可变参数的 SQL 语句，并且支持定制 DB 的输出结果</li>
+</ul>
+<p><img src="https://ws3.sinaimg.cn/large/006tNc79gy1fncpaec17yj30ew0hcdh7.jpg" alt="img"></p>
+<h2 id="DataSource"><a class="header-anchor" href="#DataSource"></a>DataSource</h2>
+<p>上一节在粗略地了解了 JdbcTemplate 提供的方法之后，下面先来对 DataSource 做一点了解。</p>
+<h3 id="Java-提供的-DataSource-定义"><a class="header-anchor" href="#Java-提供的-DataSource-定义"></a>Java 提供的 DataSource 定义</h3>
+<p>DataSource 是 Java 核心库提供的接口。位于 javax.sql package 下。</p>
+<p>DataSource 接口可以被视作是一个提供物理 DB 实例连接(Connection) 的工厂，通过 DataSource 持有的各种属性（包括 DB Url, Username, Password 等）来获取一个连接(Connection) 。DataSource 接口有三种不同的实现方案：</p>
+<ol>
+<li>最基本的实现——生产一个标准连接(Connection) 对象</li>
+<li>连接池方案——生产会被自动添加到连接池的对象</li>
+<li>分布式事物实现——生产一个可以支持分布式事物，并默认被添加到连接池的连接对象</li>
+</ol>
+<p>包括两个对外提供连接(Connection) 对象的方法，</p>
+<pre><code class="language-java">Connection getConnection() throws SQLException;
+Connection getConnection(String username, String password) throws SQLException;
+</code></pre>
+<p>其父接口 CommonDataSource 提供设置/获取 LogWriter，登录 DB 超时时间和获取父 Logger 的方法。</p>
+<h3 id="Spring-JDBC-扩展的-DataSource-定义"><a class="header-anchor" href="#Spring-JDBC-扩展的-DataSource-定义"></a>Spring-JDBC 扩展的 DataSource 定义</h3>
+<p>在 Spring-jdbc 下，DataSources 最顶级的类是 AbstractDataSource ，对 DataSource 的所有父接口方法做了实现。但保留 getConnection() 方法由子类实现。</p>
+<p>在 AbstractDriverBasedDataSource 中，定义了大量的参数，诸如 url, username 等，这些都被用来定位并定义与数据库实例的连接。</p>
+<pre><code class="language-java">public abstract class AbstractDriverBasedDataSource extends AbstractDataSource {
+
+   @Nullable
+   private String url;
+
+   @Nullable
+   private String username;
+
+   @Nullable
+   private String password;
+
+   @Nullable
+   private String catalog;
+
+   @Nullable
+   private String schema;
+
+   @Nullable
+   // 可以看到此处有一个 Properties 类
+   private Properties connectionProperties;
+   
+   // 省略若干方法
+  
+
+	@Override
+	public Connection getConnection() throws SQLException {
+      	// 调用内部方法 getConnectionFromDriver()
+		return getConnectionFromDriver(getUsername(), getPassword());
+	}
+
+	@Override
+	public Connection getConnection(String username, String password) throws SQLException {
+      	// 调用内部方法 getConnectionFromDriver()
+		return getConnectionFromDriver(username, password);
+	}
+  
+   // 定义了一个获取 Connection 的方法，由 getConnection() 方法调用，
+   // 此方法主要是将属性做了一个整合
+   // 具体获取 Connection 的逻辑仍然下放到子类实现 见 40 行
+   protected Connection getConnectionFromDriver(@Nullable String username, @Nullable String password) throws SQLException {
+		Properties mergedProps = new Properties();
+		Properties connProps = getConnectionProperties();
+		if (connProps != null) {
+			mergedProps.putAll(connProps);
+		}
+		if (username != null) {
+			mergedProps.setProperty(&quot;user&quot;, username);
+		}
+		if (password != null) {
+			mergedProps.setProperty(&quot;password&quot;, password);
+		}
+		
+     	// 获取 Connection 逻辑下放
+		Connection con = getConnectionFromDriver(mergedProps);
+		if (this.catalog != null) {
+			con.setCatalog(this.catalog);
+		}
+		if (this.schema != null) {
+			con.setSchema(this.schema);
+		}
+		return con;
+	}
+  
+  	// 该类中获取 Connection 的方法是抽象方法
+    protected abstract Connection getConnectionFromDriver(Properties props) throws SQLException;
+
+}
+</code></pre>
+<p>整合方案为将除 url 外的所有参数整合在同一个 Properties 对象中 (其中，Properties 可以被认为是一个线程安全的 Hash Map) 。最终调用 <code>Connection getConnectionFromDriver(Properties props)</code> 获取连接。</p>
+<p>AbstractDriverBasedDataSource 抽象类的两个子类 DriverManagerDataSource 和 SimpleDriverDataSource 都以不同方式获得了连接(Connection)，但总结而言，获取连接(Connection) 的任务被委托给了 Driver 来实现（其中，Driver 有 Java 定义接口，并由各数据库提供商提供，例如 MySQL 提供了 mysql-connector-java-XXX.jar 来完成针对相应数据库的具体实现）。</p>
+<pre><code class="language-java">// ----------------------------
+// SimpleDriverDataSource 的实现
+// ----------------------------
+@Override
+protected Connection getConnectionFromDriver(Properties props) throws SQLException {
+	Driver driver = getDriver();
+	String url = getUrl();
+	Assert.notNull(driver, &quot;Driver must not be null&quot;);
+	if (logger.isDebugEnabled()) {
+		logger.debug(&quot;Creating new JDBC Driver Connection to [&quot; + url + &quot;]&quot;);
+	}
+  	// 哈哈，重点在这... driver 在该类中被预先注入
+	return driver.connect(url, props);
+}
+
+// -----------------------------
+// DriverManagerDataSource 的实现
+// -----------------------------
+@Override
+protected Connection getConnectionFromDriver(Properties props) throws SQLException {
+	String url = getUrl();
+	Assert.state(url != null, &quot;'url' not set&quot;);
+	if (logger.isDebugEnabled()) {
+		logger.debug(&quot;Creating new JDBC DriverManager Connection to [&quot; + url + &quot;]&quot;);
+	}
+  	// 调了个内部函数
+	return getConnectionFromDriverManager(url, props);
+}
+
+protected Connection getConnectionFromDriverManager(String url, Properties props) throws SQLException {
+    // 委托给 DriverManager 类来获取连接
+    // DriverManager 的主要操作是遍历在该管理类中注册的 Driver
+    // 每个 Driver 实例都去尝试一下，能不能获得一个连接
+    // 第一次在某个 Driver 中拿到一个连接即返回连接 (Connection)
+	return DriverManager.getConnection(url, props);
+}
+</code></pre>
+<p>简要的类图如下：</p>
+<p><img src="https://ws4.sinaimg.cn/large/006tNc79gy1fncrgqcjqoj31es15ajxj.jpg" alt="img"></p>
+<h2 id="DriverManager"><a class="header-anchor" href="#DriverManager"></a>DriverManager</h2>
+<p>上面提到 DataSource 获取连接(Connection) 的操作实质上将委托具体的 Driver 来提供 Connection 。有两种不同的方式，包括经由 DriverManager 遍历所有处于管理下的 Driver 尝试获取连接，或者在 DataSource 实例中直接声明一个特定的 Driver 来获取连接。</p>
+<p>对于获取连接的具体操作，挖坑-待填。只描述简单的数据库供应商提供的 Driver 如何与 java 相联系。</p>
+<p>###在 DriverManager 中注册 Driver 实例</p>
+<p>通常在与数据库交互逻辑的 Java 代码中，都会有 <code>Class.forName(&quot;com.mysql.jdbc.Driver&quot;)</code> (此处以 MySQL 提供的 mysql-connector-java-XXX.jar 为例，下同）的代码块，加载指定的 com.mysql.jdbc.Driver 为 java.lang.Class 类。</p>
+<p><em>当然，在 JDBC 4.0 标准下，可以不必再显示声明 <code>Class.forName(&quot;&quot;)</code> 语句，Driver 也同样会在 DriverManager 初始化时自动注册。</em></p>
+<pre><code class="language-java">// Class 类中对于 forName(String className) 的方法
+// 作用为返回一个 java.lang.Class 实例。
+public static Class&lt;?&gt; forName(String className) throws ClassNotFoundException {...}
+</code></pre>
+<p>同时， JVM 在加载类的过程中会执行类中的 static 代码块。下述 row 10 ~ 16 的代码片段将被执行。唯一的逻辑就是 new 一个 com.mysql.jdbc.Driver 实例，并将实例注册(registerDriver) 到 <strong>java.sql.DriverManager</strong> 中。</p>
+<pre><code class="language-java">package com.mysql.jdbc;
+
+public class Driver extends NonRegisteringDriver implements java.sql.Driver {
+	// ~ Static fields/initializers
+	// ---------------------------------------------
+
+	//
+	// Register ourselves with the DriverManager
+	//
+	static {
+		try {
+			java.sql.DriverManager.registerDriver(new Driver());
+		} catch (SQLException E) {
+			throw new RuntimeException(&quot;Can't register driver!&quot;);
+		}
+	}
+
+	// ~ Constructors
+	// -----------------------------------------------------------
+
+	/**
+	 * Construct a new driver and register it with DriverManager
+	 * 
+	 * @throws SQLException
+	 *             if a database error occurs.
+	 */
+	public Driver() throws SQLException {
+		// Required for Class.forName().newInstance()
+	}
+}
+</code></pre>
+<p>下面再来看一下 DriverManager 中的 registerDriver() 方法。</p>
+<pre><code class="language-java">public class DriverManager {
+
+  	// DriverManager 维护一个线程安全的 Driver 列表
+  	// 此处的 DriverInfo 里面即包装了 Driver 
+    private final static CopyOnWriteArrayList&lt;DriverInfo&gt; registeredDrivers = 
+      	new CopyOnWriteArrayList&lt;&gt;();
+
+  	// 在 DriverManager 中注册 Driver
+	public static synchronized void registerDriver(java.sql.Driver driver)
+        throws SQLException {
+        registerDriver(driver, null);
+    }
+  
+	public static synchronized void registerDriver(java.sql.Driver driver,
+            DriverAction da)
+        throws SQLException {
+
+      	/* 如果当前 Driver 不在列表中，即添加到列表。 */
+        if(driver != null) {
+            registeredDrivers.addIfAbsent(new DriverInfo(driver, da));
+        } else {
+            // This is for compatibility with the original DriverManager
+            throw new NullPointerException();
+        }
+
+        println(&quot;registerDriver: &quot; + driver);
+
+    }
+}
+</code></pre>
+<h3 id="通过-DriverManager-获取连接-Connection"><a class="header-anchor" href="#通过-DriverManager-获取连接-Connection"></a>通过 DriverManager 获取连接(Connection)</h3>
+<p>上一节有提到过可以通过 DriverManager 来遍历获取连接，也可以直接声明具体 Driver 并获取连接。下面代码展示的是通过 DriverManager 获取连接的操作。 <s>哈哈哈，反正最后都是由具体驱动实现获取连接。</s></p>
+<pre><code class="language-java">public class DriverManager {
+  	// 获取连接的 public 接口 (1)
+	public static Connection getConnection(String url,
+		java.util.Properties info) throws SQLException {
+		return (getConnection(url, info, Reflection.getCallerClass()));
+	}
+	// 获取连接的 public 接口 (2)
+    public static Connection getConnection(String url,
+        String user, String password) throws SQLException {
+        java.util.Properties info = new java.util.Properties();
+
+        if (user != null) {
+            info.put(&quot;user&quot;, user);
+        }
+        if (password != null) {
+            info.put(&quot;password&quot;, password);
+        }
+
+        return (getConnection(url, info, Reflection.getCallerClass()));
+    }
+	// 获取连接的 public 接口 (3)
+    public static Connection getConnection(String url)
+        throws SQLException {
+        java.util.Properties info = new java.util.Properties();
+        return (getConnection(url, info, Reflection.getCallerClass()));
+    }
+ 
+  	// 获取连接的内部逻辑实现
+    private static Connection getConnection(
+        String url, java.util.Properties info, Class&lt;?&gt; caller) 
+      	throws SQLException {
+        /*
+         * When callerCl is null, we should check the application's
+         * (which is invoking this class indirectly)
+         * classloader, so that the JDBC driver class outside rt.jar
+         * can be loaded from here.
+         */
+        ClassLoader callerCL = caller != null ? caller.getClassLoader() : null;
+        synchronized(DriverManager.class) {
+            // synchronize loading of the correct classloader.
+            if (callerCL == null) {
+                callerCL = Thread.currentThread().getContextClassLoader();
+            }
+        }
+		// url 是定位 DBMS 最重要的参数，不能为空
+        if(url == null) {
+            throw new SQLException(&quot;The url cannot be null&quot;, &quot;08001&quot;);
+        }
+
+        println(&quot;DriverManager.getConnection(\&quot;&quot; + url + &quot;\&quot;)&quot;);
+
+      	// 遍历所有注册的 Driver ，并都尝试获取连接(Connection)
+        SQLException reason = null;
+
+        for(DriverInfo aDriver : registeredDrivers) {
+          	// 判断注册的 Driver 是否由 ClassLoader callerCL 加载，不是则跳过
+            if(isDriverAllowed(aDriver.driver, callerCL)) {
+                try {
+                    println(&quot;    trying &quot; + aDriver.driver.getClass().getName());
+                    // 获取连接，:) 还是由 driver 实例自行提供
+                  	Connection con = aDriver.driver.connect(url, info);
+                    if (con != null) {
+                        // Success!
+                        println(&quot;getConnection returning &quot; + 
+                                aDriver.driver.getClass().getName());
+                        return (con);
+                    }
+                } catch (SQLException ex) {
+                    if (reason == null) {
+                        reason = ex;
+                    }
+                }
+
+            } else {
+                println(&quot;    skipping: &quot; + aDriver.getClass().getName());
+            }
+
+        }
+
+        // 如果运行到下列代码，则表明获取连接失败，抛出错误
+        if (reason != null)    {
+            println(&quot;getConnection failed: &quot; + reason);
+            throw reason;
+        }
+
+        println(&quot;getConnection: no suitable driver found for &quot;+ url);
+        throw new SQLException(&quot;No suitable driver found for &quot;+ url, &quot;08001&quot;);
+    }
+
+}
+</code></pre>
+<p><em>简单的提一嘴，Connection 仍然只是一个针对 Java -&gt; DB Server 的上层接口，如果想要更深层次地了解 Connection 与 DB Server 的交互，可以尝试去看一下 com.mysql.jdbc.MysqlIO 类，MySQL 实现的 JDBC4Connection 类也是在使用该类来实现对 DB Server 交互。（哈哈，只看过 MySQL 提供的 Driver 包）。</em></p>
+<h2 id="PreparedStatement-CallableStatement"><a class="header-anchor" href="#PreparedStatement-CallableStatement"></a>PreparedStatement &amp; CallableStatement</h2>
+<p>在了解了 DataSource 获取连接(Connection) 的实质以及 JdbcTemplate 的通用接口之后，使用 Spring-jdbc 进行数据库相关的操作可以直截了当的利用如下代码进行实现（此处仅展示通过 Java 硬编码的形式进行实现，XML 配置方法类似）。</p>
+<pre><code class="language-java">public static void main(String... args) {
+  	// 定义数据源
+	DriverManagerDataSource dataSource = new DriverManagerDataSource();
+  	// 配置参数
+	dataSource.setUrl(&quot;jdbc:mysql://&lt;host&gt;:&lt;port&gt;/&lt;dbName&gt;?&lt;props&gt;&quot;);
+   	dataSource.setUsername(&quot;&lt;username&gt;&quot;);
+    dataSource.setPassword(&quot;&lt;passwd&gt;&quot;);
+  	
+  	// 实例化一个 JDBC 工具类
+  	JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+  	// 执行相关 CRUD 操作	
+  	jdbcTemplate.execute();
+}
+</code></pre>
+<p>回顾第一节所讲的 JdbcTemplate 的 4 个基础方法：</p>
+<ol>
+<li><code> T execute(ConnectionCallback action);</code></li>
+<li><code> T execute(StatementCallback action);</code></li>
+<li><code> T execute(PreparedStatementCreator psc, PreparedStatementCallback action);</code></li>
+<li><code> T execute(CallableStatementCreator csc, CallableStatementCallback action);</code></li>
+</ol>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fndsm5tl7aj30zg0byq47.jpg" alt="img"></p>
+<p>四个基础方法都有一个特定的回调函数将通过预配置的 DataSource 得到的 Connection 或 更进一步的 Statement or PreparedStatement or CallableStatement 作为入参来执行定义的唯一方法。</p>
+<p>以 <code> T execute(StatementCallback action);</code> 为例来了解一下方法的核心逻辑。</p>
+<pre><code class="language-java">public &lt;T&gt; T execute(StatementCallback&lt;T&gt; action) throws DataAccessException {
+	// 通过工具类 DataSourceUtils 获取一个连接
+  	Connection con = DataSourceUtils.getConnection(obtainDataSource());
+  	// 一个 Statement 空实例，PreparedStatement, CallableStatement 类似
+	Statement stmt = null;
+	try {
+		stmt = con.createStatement();	// 通过连接(Connection)获取一个 Statement
+		applyStatementSettings(stmt);	// 配置 Statement 参数
+      	// 回调执行 doInXXX() 方法, 并获得 result
+		T result = action.doInStatement(stmt);	
+		handleWarnings(stmt);
+		return result;
+    } catch() {
+      
+    } finally {
+      
+    }
+}
+</code></pre>
+<p>但是，对于 PreparedStatement 和 CallableStatement 而言，获取一个 <em>XXX</em>Statement 的方式就有所不同了。</p>
+<pre><code class="language-java">// 获取 Statement 实例
+Statement stmt = con.createStatement();
+// 获取 PreparedStatement 实例
+// psc 是一个 PreparedStatementCreator 接口实现的实例
+PreparedStatement ps = psc.createPreparedStatement(con);
+// 获取 CallableStatement 实例
+// csc 是一个 CallableStatementCreator 接口实现的实例
+CallableStatement cs = csc.createCallableStatement(con);
+</code></pre>
+<p>可以看到 Statement 直接通过 Connection 获取实例，但是 PreparedStatement 和 CallableStatement 就有所不同，其区别就在于 PreparedStatement 和 CallableStatement 两个 Statement 都是可以定制入参的，更甚者， CallableStatement 可以定制 DB 执行结果的出参。当然，核心还是 <code>con.prepareStatement() OR con.prepareCall()</code> 方法，只不过是将获取 XXXStatement 的操作下放给 XXXStatementCreator 实例类实现，给予使用者重复的自主权，同时也是逻辑解耦的一种操作。</p>
+<p>例如：</p>
+<p>SimplePreparedStatementCreator 这个 PreparedStatementCreator 接口的实现类，只是简单的调用了 <code>con.prepareStatement(sql)</code> 方法。</p>
+<pre><code class="language-java">private static class SimplePreparedStatementCreator 
+  	implements PreparedStatementCreator, SqlProvider {
+
+	private final String sql;
+
+	@Override
+	public PreparedStatement createPreparedStatement(Connection con) 
+      	throws SQLException {
+		return con.prepareStatement(this.sql);
+	}
+}
+</code></pre>
+<p>而对于 PreparedStatementCreatorImpl ，在 createPreparedStatement(Connection con) 的实现上，又添加了更多的操作。</p>
+<pre><code class="language-java">private class PreparedStatementCreatorImpl
+		implements PreparedStatementCreator, PreparedStatementSetter, SqlProvider, ParameterDisposer {
+
+	private final String actualSql;
+
+	private final List&lt;?&gt; parameters;
+
+	@Override
+	public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+		PreparedStatement ps;
+		if (generatedKeysColumnNames != null || returnGeneratedKeys) {
+			if (generatedKeysColumnNames != null) {
+              	// 获取一个 PreparedStatement 实例，下同
+				ps = con.prepareStatement(this.actualSql, 
+                                          generatedKeysColumnNames);
+			}
+			else {
+				ps = con.prepareStatement(this.actualSql, 
+                                         PreparedStatement.RETURN_GENERATED_KEYS);
+			}
+		}
+		else if (resultSetType == ResultSet.TYPE_FORWARD_ONLY 
+                 &amp;&amp; !updatableResults) {
+			ps = con.prepareStatement(this.actualSql);
+		}
+		else {
+			ps = con.prepareStatement(this.actualSql, resultSetType,
+				updatableResults ? ResultSet.CONCUR_UPDATABLE : 
+                                      ResultSet.CONCUR_READ_ONLY);
+		}
+      	// 将可变 SQL (例如 SELECT * FROM msg WHERE id = ?) 的 ? 用实际参数替换
+		setValues(ps);
+		return ps;
+	}
+}
+</code></pre>
+<p>从上述两种 PreparedStatementCreator 接口的不同实现，也可以从另一种角度理解到，函数式接口将获取目标出参的具体逻辑交给使用者定义，给予了使用者充分的自主权，同时也是一种业务逻辑的解耦。</p>
+<p>在上面代码 PreparedStatementCreatorImpl 类的实现中，我们看到第 32 行代码 <code>setValue(ps)</code> 。此处的方法是由接口 PreparedStatementSetter 定义的。主要目的是将可变 SQL 中的 ? 参数用实际参数进行一个替换。</p>
+<pre><code class="language-java">// 以 SQL (SELECT * FROM msg WHERE id = ? AND day = ?) 为例
+/** 纯 Java 核心库的实现 PreparedStatement 参数注入 */
+ps.setInt(1, 1763);
+ps.setString(2, &quot;2018-01-01&quot;);
+ps.executeQuery();
+
+/** 以 Spring-jdbc 实现 PreparedStatement 参数注入 */
+// setValues() 由接口 PreparedStatementSetter 定义，封装了注入参数的具体实现逻辑
+// 可以由使用者自行定义
+setValues(ps);	
+ps.executeQuery();
+</code></pre>
+<p><img src="https://ws1.sinaimg.cn/large/006tKfTcgy1fndyybh4q1j31kw0u3afx.jpg" alt="img"></p>
+<p>上面类图表示了 PreparedStatementSetter 及其实现类的相关依赖。</p>
+<p>Setter 的主要目标即为对 SQL 中的 ? 参数进行注入。</p>
+<p><s>个人精力有限，对Spring-jdbc在Statement上对参数注入的回调理解有限。</s></p>
+<h2 id="ResultSet"><a class="header-anchor" href="#ResultSet"></a>ResultSet</h2>
+<p>在前几节已经提到讲了数据源、驱动管理器以及 Statement 之后，利用 JDBC 的最重要的目的就是对 DB 进行操作，并获得预期结果。对于查询语句而言，结果应该是若干记录行；就更新语句而言，结果可能是影响的行数。而 Spring-jdbc 对 ResultSet 额外进行的封装，即是将原本散乱的结果进行一个整合，例如整合成一个(一组)完整的 Bean 来进行展示。</p>
+<p>在 JdbcTemplate 中，四个基本方法入参都包括一个回调接口，而在执行回调获得 ResultSet 之后，方法并不是直接返回，而是进行了一定的操作。</p>
+<p>以一个 PreparedStatementCallback 的实例类为例，在 doInPreparedStatement() 方法中，获得了 ResultSet ，但是仍通过 rse.extractData(rs) 语句进行了处理后再返回结果</p>
+<pre><code class="language-java">public T doInPreparedStatement(PreparedStatement ps) throws SQLException {
+  	// 声明一个 ResultSet 
+	ResultSet rs = null;
+	try {
+		if (pss != null) {	// setValues() 方法填充 PreparedStatement 中的可变参数 ? 
+			pss.setValues(ps);
+		}
+		rs = ps.executeQuery();	// 执行查询 sql ，获取结果
+		return rse.extractData(rs);	// 重点... 该语句一定是对结果进行了一些操作.
+	}
+	finally {
+		JdbcUtils.closeResultSet(rs);
+		if (pss instanceof ParameterDisposer) {
+			((ParameterDisposer) pss).cleanupParameters();
+		}
+	}
+}
+</code></pre>
+<p>在来看一下究竟在返回结果前进行了什么操作。</p>
+<p>由于是一个回调接口的实现类，rse 应该在外部方法中。</p>
+<pre><code class="language-java">public &lt;T&gt; T query(
+		PreparedStatementCreator psc, @Nullable final PreparedStatementSetter pss, 
+  		final ResultSetExtractor&lt;T&gt; rse)
+		throws DataAccessException {
+
+	return execute(psc, new PreparedStatementCallback&lt;T&gt;() {
+		@Override
+		public T doInPreparedStatement(PreparedStatement ps) throws SQLException {
+			...	
+        }
+	});
+}
+</code></pre>
+<p>可以看到 rse 是一个 ResultSetExtractor 的实例。从名称上可以看出 Extractor 即为提取器，结果集提取器。</p>
+<pre><code class="language-java">/** 函数式接口，提供的唯一方法为 extractData(...) */
+@FunctionalInterface
+public interface ResultSetExtractor&lt;T&gt; {
+
+	@Nullable
+	T extractData(ResultSet rs) throws SQLException, DataAccessException;
+
+}
+</code></pre>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fndzz0pqnrj31a60i676v.jpg" alt="img"></p>
+<p>Spring-jdbc 中现有的实现有三个类，其中 RowCallbackHandlerResultSetExtractor 和 RowMapperResultSetExtractor 两个类从上面类图及命名即可看出，两个是作为一个适配器而存在的，将 extractData() 进行转换，分别由 RowCallbackHandler 和 RowMapper 实例进行具体操作。而 AbstractLobStreamingResultSetExtractor 类从名称上看，也是一个类似流操作的实现类(其中的 Lob 指的是 DB 中的 BLOB 与 CLOB 类型，在 Spring-jdbc 中也加入了额外的支持) 。</p>
+<h3 id="RowCallbackHandler"><a class="header-anchor" href="#RowCallbackHandler"></a>RowCallbackHandler</h3>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fnh2uw3a0aj30h20jeta4.jpg" alt="img"></p>
+<p>从名称上看，这是一个与 ResultSet 结果集行相关的回调接口。processRow(ResultSet rs) 方法将处理行相关的逻辑。</p>
+<p>从它的一个实现类 RowCountCallbackHandler 来说，其最主要的私有属性 rowCount 即是统计 ResultSet 的结果行数。下面是一个具体使用的该类的案例：</p>
+<pre><code class="language-java">public static void main(String[] args) throws ClassNotFoundException {
+
+    DriverManagerDataSource dataSource = new DriverManagerDataSource();
+    dataSource.setUrl(&quot;jdbc:mysql://&lt;host&gt;:&lt;port&gt;/&lt;dbName&gt;&quot;);
+    dataSource.setUsername(&quot;&lt;username&gt;&quot;);
+    dataSource.setPassword(&quot;&lt;password&gt;&quot;);
+
+    JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+    RowCountCallbackHandler rcch = new RowCountCallbackHandler();
+
+    jdbcTemplate.query(&quot;SELECT * FROM info WHERE id='2018'&quot;, (RowCallbackHandler) rcch);
+	
+  	System.out.println(rcch.getRowCount());	//获取结果集行数
+    System.out.println(rcch.getColumnCount());	// 获取结果集列数
+    for (String arg : rcch.getColumnNames()) {	// 打印结果集每一列名称
+        System.out.println(&quot;ColumnNames : &quot; + arg);
+    }
+    for (int i : rcch.getColumnTypes()) {	// 打印结果集每一列类型(Types 为枚举类)
+        System.out.println(&quot;ColumnTypes : &quot; + i);
+    }
+}
+</code></pre>
+<p>具体查看 RowCountCallbackHandler 类的 processRow() 方法可以看到，其获取列相关信息都来自于 ResultSetMetaData 。而结果行数来源于 Iterator 迭代。</p>
+<pre><code class="language-java">@Override
+public final void processRow(ResultSet rs) throws SQLException {
+	if (this.rowCount == 0) {
+		ResultSetMetaData rsmd = rs.getMetaData();
+		this.columnCount = rsmd.getColumnCount();
+		this.columnTypes = new int[this.columnCount];
+		this.columnNames = new String[this.columnCount];
+		for (int i = 0; i &lt; this.columnCount; i++) {
+			this.columnTypes[i] = rsmd.getColumnType(i + 1);
+			this.columnNames[i] = JdbcUtils.lookupColumnName(rsmd, i + 1);
+		}
+		// could also get column names
+	}
+	processRow(rs, this.rowCount++);
+}
+</code></pre>
+<h3 id="RowMapper"><a class="header-anchor" href="#RowMapper"></a>RowMapper</h3>
+<p>上面 RowCallbackHandler 接口从逻辑上划分是用于处理 ResultSet 元数据信息的。而 RowMapper 较上一个接口而言，有更高的实用性。</p>
+<p><img src="https://ws3.sinaimg.cn/large/006tKfTcgy1fnh3h739kaj30z60nago4.jpg" alt="img"></p>
+<p>特别是其实现类 BeanPropertyRowMapper 可以将散乱的 ResultSet 的结果数据整理成一个个 Object Bean 作为返回结果。而省去了对逐一读取 ResultSet 行记录并填充 Bean 属性的麻烦。</p>
+<pre><code class="language-java">JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);
+
+BeanPropertyRowMapper&lt;Model&gt; rowMapper = new BeanPropertyRowMapper&lt;&gt;(Model.class);
+List&lt;Model&gt; list = jdbcTemplate.query(&quot;SELECT * FROM info WHERE id = '2018'&quot;, rowMapper);
+/** 获得的 Model list 的对应属性将通过 Java 的反射机制进行填充
+ *	List&lt;Model&gt; list 即结果
+ */
+</code></pre>
+<p>当然，要求是 Model 类中的属性与 DB table 中的列名保持一致（大小写无要求）。</p>
+<p>而其它两个类的实现也是基于反射机制，实现其相应的业务逻辑</p>
+
+</div>
+
+
+    <div class="post-guide">
+        <div class="item left">
+            
+              <a href="/2020/07/21/04%20Spring/%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                  事务实现原理
+              </a>
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2020/07/21/04%20Spring/spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+                spring 循环依赖
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+
+
+
+	<div id="vcomments"></div>
+
+
+<script>
+	
+		// 评论
+		new Valine({
+			av: AV,
+			el: '#vcomments',
+			notify: false,
+			verify: false,
+			path: window.location.pathname,
+			appId: 'lsX646kI8Pj43gH38o38IHEl-gzGzoHsz',
+			appKey: 'SI9zpOfgyOmEDPGK8KI8niYh',
+			placeholder: '请输入评论',
+			avatar: 'retro',
+			recordIP: false
+		})
+	
+	
+    // 显示次数
+		function showTime(Counter) {
+			var query = new AV.Query("Counter");
+			if($(".leancloud_visitors").length > 0){
+				var url = $(".leancloud_visitors").attr('id').trim();
+				// where field
+				query.equalTo("words", url);
+				// count
+				query.count().then(function (number) {
+					// There are number instances of MyClass where words equals url.
+					$(document.getElementById(url)).text(number?  number : '--');
+				}, function (error) {
+					// error is an instance of AVError.
+				});
+			}
+		}
+		// 追加pv
+		function addCount(Counter) {
+			var url = $(".leancloud_visitors").length > 0 ? $(".leancloud_visitors").attr('id').trim() : 'xzh20121116.github.io';
+			var Counter = AV.Object.extend("Counter");
+			var query = new Counter;
+			query.save({
+				words: url
+			}).then(function (object) {
+			})
+		}
+		$(function () {
+			var Counter = AV.Object.extend("Counter");
+			addCount(Counter);
+			showTime(Counter);
+		});
+	
+</script>
+	</div>
+	<div id="footer">
+	<p>
+	©2019-<span id="footerYear"></span> 
+	<a href="/">今晚打老虎</a> 
+	
+	
+		|
+		<span id="busuanzi_container_site_pv">
+			pv
+			<span id="busuanzi_value_site_pv"></span>
+		</span>
+		|
+		<span id="busuanzi_container_site_uv"> 
+			uv
+			<span id="busuanzi_value_site_uv"></span>
+		</span>
+	
+	<br>
+	Theme <a href="//github.com/wujun234/hexo-theme-tree" target="_blank">Tree</a>
+	by <a href="//github.com/wujun234" target="_blank">WuJun</a>
+	Powered by <a href="//hexo.io" target="_blank">Hexo</a>
+	</p>
+</div>
+<script type="text/javascript"> 
+	document.getElementById('footerYear').innerHTML = new Date().getFullYear() + '';
+</script>
+	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</body>
+</html>
