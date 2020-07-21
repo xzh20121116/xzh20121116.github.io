@@ -1718,17 +1718,41 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/06/22/Java%E5%9F%BA%E7%A1%80/%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
+			<a href="/2020/06/22/Java%E5%9F%BA%E7%A1%80/%E5%B0%81%E8%A3%85/">
 				<h2 class="index-title">
-					抽象方法和抽象类
+					封装
 				</h2>
 				<div class="index-brief">
-					抽象方法
-使用abstract修饰的方法，没有方法体，只有声明。定义的是一种“规范”，就是告诉子类必须要给抽象方法提供具体实现。
-抽象类
-包含抽象方法的类就是抽象类。通过abstract方法定义规范，然后要求子类必须定义具体实现。
-通过抽象类，我们就可以做到严格限制子类的设计，使子类之间更加通用。
+					封装的作用
 
+提高代码安全性
+提高代码的复用性
+“高内聚”：封装细节，便于修改内部代码，提高可维护性
+“低耦合”：简化外部调用，便于调用者使用，便于扩展和写作
+
+封装的实现–使用访问控制符
+
+
+
+修饰符
+同一个类
+同一个包中
+子类
+所有类
+
+
+
+
+private
+*
+
+
+
+
+
+default
+*
+*
 					...
 				</div>
 			</a>
@@ -1801,25 +1825,6 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/Java%E5%9F%BA%E7%A1%80/%E5%86%85%E9%83%A8%E7%B1%BB/">
-				<h2 class="index-title">
-					内部类
-				</h2>
-				<div class="index-brief">
-					内部类只是一个编译时概念，一旦编译成功，就会成为完全不同的两个类。对于一个名为Outer的外部类和其内部定义的名为Inner的内部类。编译完成会会出现Outer.class和Outer$Inner.class两个类的字节码文件。所以内部类是相对独立的一种存在，其成员变量、方法名可以和外部类的相同。
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/06/22/Java%E5%9F%BA%E7%A1%80/this%20%E7%9A%84%E6%9C%AC%E8%B4%A8/">
 				<h2 class="index-title">
 					this 的本质
@@ -1834,6 +1839,25 @@
 
 this的本质是“创建好的对象的地址”！由于在构造方法调用前，对象已经创建。因此，在构造方法中也可以使用this代表“当前对象”  ，
 不能在静态方
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/06/22/Java%E5%9F%BA%E7%A1%80/%E5%86%85%E9%83%A8%E7%B1%BB/">
+				<h2 class="index-title">
+					内部类
+				</h2>
+				<div class="index-brief">
+					内部类只是一个编译时概念，一旦编译成功，就会成为完全不同的两个类。对于一个名为Outer的外部类和其内部定义的名为Inner的内部类。编译完成会会出现Outer.class和Outer$Inner.class两个类的字节码文件。所以内部类是相对独立的一种存在，其成员变量、方法名可以和外部类的相同。
+
 					...
 				</div>
 			</a>
@@ -1939,13 +1963,36 @@ this的本质是“创建好的对象的地址”！由于在构造方法调用�
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/Jvm/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
+			<a href="/2020/06/22/Jvm/%E5%AF%B9%E8%B1%A1%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%B8%83%E5%B1%80/">
 				<h2 class="index-title">
-					类加载过程
+					对象在内存中的布局
 				</h2>
 				<div class="index-brief">
-					在冯。诺依曼的计算机模型中，任何程序都需要加载到内存才能与cpu进行交流。
-字节码.class文件同样需要加载到内存中，才可以实例化。“兵马未动，粮草先行”。ClassLoader 就是准备粮草的先行军，他的使命就是「提前加载.class类文件到内存中」，在加载类时，使用的是『Parents Del
+					对象在内存中存储的部分分为三个区域
+
+
+header
+
+
+markword
+
+hashCode，gc信息，锁信息
+
+
+
+哈希码
+gc 分代年龄
+锁状态表示
+线程持有的锁
+偏向线程 id
+偏向时间戳
+
+
+
+klass point
+
+指针指向对象的类元数据，vm 通过这个指针来确定该对象是哪个类的实例
+
 					...
 				</div>
 			</a>

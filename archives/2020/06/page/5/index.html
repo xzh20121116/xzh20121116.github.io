@@ -1738,25 +1738,6 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/Jvm/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
-				<h2 class="index-title">
-					类加载过程
-				</h2>
-				<div class="index-brief">
-					在冯。诺依曼的计算机模型中，任何程序都需要加载到内存才能与cpu进行交流。
-字节码.class文件同样需要加载到内存中，才可以实例化。“兵马未动，粮草先行”。ClassLoader 就是准备粮草的先行军，他的使命就是「提前加载.class类文件到内存中」，在加载类时，使用的是『Parents Del
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/06/22/Jvm/%E5%AF%B9%E8%B1%A1%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%B8%83%E5%B1%80/">
 				<h2 class="index-title">
 					对象在内存中的布局
@@ -1787,6 +1768,25 @@ klass point
 
 指针指向对象的类元数据，vm 通过这个指针来确定该对象是哪个类的实例
 
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/06/22/Jvm/%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
+				<h2 class="index-title">
+					类加载过程
+				</h2>
+				<div class="index-brief">
+					在冯。诺依曼的计算机模型中，任何程序都需要加载到内存才能与cpu进行交流。
+字节码.class文件同样需要加载到内存中，才可以实例化。“兵马未动，粮草先行”。ClassLoader 就是准备粮草的先行军，他的使命就是「提前加载.class类文件到内存中」，在加载类时，使用的是『Parents Del
 					...
 				</div>
 			</a>
@@ -1868,14 +1868,16 @@ mark word 用来存储这个对象的运行时数据
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/Jvm/Monitor/">
+			<a href="/2020/06/22/SpringMVC/%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
 				<h2 class="index-title">
-					Monitor
+					工作原理
 				</h2>
 				<div class="index-brief">
-					任何对象都有一个 monitor 与之关联，当一个 monitor被持有后，它将处于锁定状态。
-Synchronized 在 jvm 里面的实现都是基于 进入和退出Monitor 来实现同步的
-一切接对象，所有的 java 对象也是天生的 monitor，每个 java 对象都有成为 Monitor
+					MVC 模式
+mvc 是 model、view、controller 的缩写，分别代表 web 应用程序中的三种职责：
+model-模型：用于存储数据以及能处理用户请求的业务逻辑
+view-视图：向控制器提交数据，显示模型中的数据
+controller-控制器：根据视图提出的请求，判断将请求和数据交
 					...
 				</div>
 			</a>
@@ -1915,16 +1917,14 @@ JVM的命令行参数参考：https://docs.oracle.c
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/SpringMVC/%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
+			<a href="/2020/06/22/Jvm/Monitor/">
 				<h2 class="index-title">
-					工作原理
+					Monitor
 				</h2>
 				<div class="index-brief">
-					MVC 模式
-mvc 是 model、view、controller 的缩写，分别代表 web 应用程序中的三种职责：
-model-模型：用于存储数据以及能处理用户请求的业务逻辑
-view-视图：向控制器提交数据，显示模型中的数据
-controller-控制器：根据视图提出的请求，判断将请求和数据交
+					任何对象都有一个 monitor 与之关联，当一个 monitor被持有后，它将处于锁定状态。
+Synchronized 在 jvm 里面的实现都是基于 进入和退出Monitor 来实现同步的
+一切接对象，所有的 java 对象也是天生的 monitor，每个 java 对象都有成为 Monitor
 					...
 				</div>
 			</a>
