@@ -1597,6 +1597,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										线上问题排查
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/Java%E6%9C%8D%E5%8A%A1%EF%BC%8CCPU100%25%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D/">
+										Java服务，CPU100%问题如何快速定位
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										维权
 									</a>
 									
@@ -1727,18 +1747,21 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/05/31/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
+			<a href="/2020/05/31/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
 				<h2 class="index-title">
-					客户端ZooInspector
+					分布式锁
 				</h2>
 				<div class="index-brief">
-					下载
-https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip；
-使用
-下载后，解压，如下图
+					zk是啥？
 
-启动
-java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
+数据库、文件存储系统，并且有监听通知机制（观察者模式）
+
+特性
+
+
+有序节点
+
+假如 当前有一个父节点为 /lock，我们可以在这个父节点下面创建子节点，使用有序节点，我创建子节点 /lock/node- ，并且指明有序，那么 zookeeper 在生成子节点的时候会自动的添加整数序号
 					...
 				</div>
 			</a>
@@ -1751,28 +1774,18 @@ java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/05/31/Redis/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+			<a href="/2020/05/31/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
 				<h2 class="index-title">
-					分布式锁
+					客户端ZooInspector
 				</h2>
 				<div class="index-brief">
-					SETNX key value
+					下载
+https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip；
+使用
+下载后，解压，如下图
 
-set if not exists
-如果不存在，则 set 一个
-set 成功返回 1，如果 key 存在了返回0；
-SETNX key seconds value
-
-给一个过期时间，这是一个原子操作
-入门版
-此版本是最最基础的版本
-加锁
-
-
-for(；；)
-
-
-s
+启动
+java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
 					...
 				</div>
 			</a>
@@ -1833,6 +1846,40 @@ s
 zookeeper 客户端
 ./zkCli.sh -timeout 0 -r -server ip:port
 ./zkCli.sh -timeout 5000 -server 192.9.200.2
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-05-31</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/05/31/Redis/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+				<h2 class="index-title">
+					分布式锁
+				</h2>
+				<div class="index-brief">
+					SETNX key value
+
+set if not exists
+如果不存在，则 set 一个
+set 成功返回 1，如果 key 存在了返回0；
+SETNX key seconds value
+
+给一个过期时间，这是一个原子操作
+入门版
+此版本是最最基础的版本
+加锁
+
+
+for(；；)
+
+
+s
 					...
 				</div>
 			</a>
@@ -1967,35 +2014,6 @@ ApplicationContext是 BeanFactory 的子类，以一种更面向框架的工作�
 因为，正常的场景，一般都是用来查询的，不会太频繁的增删（增删可以使用 LinkedList），线程安全使用 Vector
 不存在查询快，增删快，安全的结构
 数组是定
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-04-28</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/程序员/">程序员</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/04/28/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/ThreadLocal/">
-				<h2 class="index-title">
-					ThreadLocal
-				</h2>
-				<div class="index-brief">
-					不能称之为本地线程，而应该是CopyValueIntoEveryThread
-是什么？
-ThreadLocal 是一个本地线程副本变量工具类。主要用于将私有线程和该线程存放的副本对象做一个映射，各个线程之间的变量互不干扰，在高并发场景下，可以实现无状态的调用，适用于各个线程不共享变量值的操作。
-工作
 					...
 				</div>
 			</a>
