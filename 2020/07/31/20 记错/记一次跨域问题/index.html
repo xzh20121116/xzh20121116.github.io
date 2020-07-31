@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		13 分布式相关/分布式事务 | 
+		20 记错/记一次跨域问题 | 
 	 
 	温故知新
 	</title>
@@ -1265,9 +1265,18 @@
 									</a>
 									
 							<ul>
-								<li class="file active">
-									<a href="/2020/07/21/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
-										分布式事务
+								<li class="file">
+									<a href="/2020/07/21/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/1%20%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+										1 分布式事务
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/28/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/2%20%E5%88%86%E5%B8%83%E5%BC%8F%E9%99%90%E6%B5%81/">
+										2 分布式限流
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1541,6 +1550,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file active">
+									<a href="/2020/07/31/20%20%E8%AE%B0%E9%94%99/%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">
+										记一次跨域问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -1763,16 +1781,16 @@
 	<div id="content">
 		<h1 id="article-title">
 
-	分布式事务
+	记一次跨域问题
 </h1>
 <div class="article-meta">
 	
 		<span>
-			阅读量:<span id="/2020/07/21/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/" class="leancloud_visitors" data-flag-title="13 分布式相关/分布式事务"></span>
+			阅读量:<span id="/2020/07/31/20%20%E8%AE%B0%E9%94%99/%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/" class="leancloud_visitors" data-flag-title="20 记错/记一次跨域问题"></span>
 		</span>
 	
 	<span>今晚打老虎</span>
-	<span>2020-07-21 18:49:54</span>
+	<span>2020-07-31 18:18:31</span>
     
 		<div id="article-categories">
             
@@ -1781,74 +1799,28 @@
 </div>
 
 <div id="article-content">
-	<p>参考文章https://juejin.im/post/5aa3c7736fb9a028bb189bca</p>
-<p>参考文章https://juejin.im/post/5b5a0bf9f265da0f6523913b#heading-3</p>
-<h1>事务四大特性-ACID</h1>
-<ul>
-<li>
-<p>原子性-atomic</p>
-<p>一个事务操作不可分割，要么都成功，要么都失败，不能有一半成功一般失败的情况出现</p>
-</li>
-<li>
-<p>一致性- consistency</p>
-<p>这些数据在事务执行完成这个时间点之前，读到的一定是更新前的数据，之后读到的一定是更新后的数据，不应该存在一个时刻，让客户读到更新过程中的数据</p>
-</li>
-<li>
-<p>隔离性- isolation</p>
-<p>一个事务的执行不能被其他事务干扰，即一个事务内部的操作及使用的数据对正在进行的其他事务的隔离的，并发执行的各个事务之间不能相互干扰，有点想在游戏中打副本，我们打副本掉落的装备，与其他副本没有任何关联，也不会互相影响</p>
-</li>
-<li>
-<p>持久性</p>
-<p>一个事务一旦提交，后续的其他操作和故障都不会对事务的结果产生任何影响</p>
-<p>大部分的单体关系型数据库都完整的实现了 ACID，但是对于分布式系统来说，严格的实现 ACID这四个特性是几乎不可能的，或者说实现的代价太大了，大到我们无法接受</p>
-</li>
-</ul>
-<h1>分布式事务的基础</h1>
-<p>数据的 acid 四大特性已经无法满足分布式事务</p>
-<p>此时 CAP 理论出现</p>
-<ul>
-<li>c 一致性：对于某个客户端来说，读操作能能读到最新的写操作，对于数据分布在不同节点上的数据来说，如果在某个节点更新了数据，那么在其他节点如果都能读取到这个最新的数据，那么就称为强一致，如果有某个节点没有读取到，那么就是分布式不一致</li>
-<li>a 可用性：非故障节点在<strong>合理的时间</strong>内返回<strong>合理的响应</strong></li>
-<li>p 分区容错性：当出现网路分区后，系统能够继续工作，打个比方，集群中的某一台机器网络出现了问题，但是这个集群仍然可以正常工作</li>
-</ul>
-<p>CAP 三者不共存，如果选择 ca，而放弃 p，当发生分区时，为了保证一致性，必须拒绝这个请求，但是 a 又允许，所以分布式系统理论上不可能选择 CA 架构，只能选择 CP 或者 AP 架构</p>
-<p>对于 CP 来说，放弃可用性，追求一致性和分区容错性，zookeeper 就是追求的强一致</p>
-<p>对于 AP 来说，放弃一致性（这里说的是强一致性），追求分区容错和可用性，这是目前主流的方案，后面的 BASE 也是根据 AP 来扩展</p>
-<p>CAP 理论中是忽略网络延迟，也就是事务提交时，从节点 A 复制到节点 B，但是在显示中这个是明显不可能的，所以总会有一定的时间是不一致的，同时 CAP中选择两个，比如选择了 CP，并不是放弃 a，而是因为 p 出现的概率实在是太小了，大部分的时间仍然要保证 CA</p>
-<h2 id="BASE"><a class="header-anchor" href="#BASE"></a>BASE</h2>
-<p>BASE 是 Basically Available(基本可用)、Soft state(软状态)和 Eventually consistent (最终一致性)三个短语的缩写。是对CAP中AP的一个扩展</p>
-<ol>
-<li>基本可用：分布式系统在出现故障时，允许损失部分可用功能，保证核心功能可用。</li>
-<li>软状态：允许系统中存在中间状态，这个状态不影响系统可用性，这里指的是 CAP中的不一致</li>
-<li>最终一致性：经过一段时间后，所有数据节点都会达到一致</li>
-</ol>
-<p>BASE 解决了 CAP 中没有网络延迟，在 BASE中用软状态和最终一致，保证了延后的一致性。</p>
-<p>BASE 和 ACID 是相反的，完全不同于 ACID 的强一致性模型，而是通过牺牲强一致性来获得可用性，并允许数据在一段时间内是不一致的，但最终达到一致状态。</p>
-<h1>分布式事务解决方案</h1>
-<p><strong>是否真的需要分布式事务</strong></p>
-<p>微服务过多，就会出现分布式事务，如果是这个原因导致的，那么请聚合到一个项目中去，使用本地事务，不要过度迷恋微服务</p>
-<h2 id="2pc"><a class="header-anchor" href="#2pc"></a>2pc</h2>
-<p>说到 2pc 就不得不提 XA 协议</p>
-<p>在 xa 协议中分为两个阶段：第一阶段：preCommit，并反映是否可以提交；第二阶段：事务协调器要求每个事务都提交，或者都回滚</p>
-<p>XA <strong>的优点</strong></p>
-<p>尽量保证了数据的强一致性，实现成本低，比如 mysql就有两阶段提交（写操作的时候，修改数据，写入新行，新行更新到内存，写入 redolog处于 prepare 阶段，写入 binlog，commit）</p>
-<p>XA <strong>的缺点</strong></p>
-<p>是基于数据库的，时间长，占用了数据库的锁，只有两个都成了，才会提交或者回滚</p>
-<p>xa 协议比较简单，成本低，由于同步阻塞，不支持高并发</p>
-<h2 id="TCC"><a class="header-anchor" href="#TCC"></a>TCC</h2>
-<p>tcc 弥补了 2pc 的缺点，a 表的操作成功后，直接提交， b 操作失败了，直接回滚a 表操作</p>
-<p>tcc <strong>的缺点</strong></p>
-<p>代码的侵入性比较强</p>
-<h2 id="mq-事务"><a class="header-anchor" href="#mq-事务"></a>mq 事务</h2>
-<p>主流 mq 中，只有rocketmq 就实现了分布式事务</p>
-<p>流程图如下</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200720020139.png" alt="image-20200720020139784"></p>
-<ol>
-<li>发送方将半事务消息发送到 rocketMq 服务端</li>
-<li>rocketMq 服务端将消息持久化后，向发送方返回 Ack 确认消息已经发送成功，此时消息为半事物消息。</li>
-<li>发送方开始执行本地事务逻辑</li>
-<li>发送方根据本地事务执行结果，向服务端提交二次确认（提交 or 回滚），服务端收到提交，则将半事务消息标记成可投递，订阅方最终收到该消息</li>
-</ol>
+	<h2 id="问题描述"><a class="header-anchor" href="#问题描述"></a>问题描述</h2>
+<p>前端使用 vue axios  请求接口</p>
+<p>config.headers.token=xxxxxx</p>
+<p>后台 filter 拦截了，获取不到 token，代码如下，token 为 null；</p>
+<pre><code class="language-java">String token = request.getHeader(&quot;token&quot;);
+</code></pre>
+<p>该接口已经添加了注解@CrossOrigin用来处理跨域问题，前端收到的报错信息仍然是跨域问题</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20200731182647" alt="这里写图片描述"></p>
+<p>后台依旧获取不到 token</p>
+<h2 id="解决方案"><a class="header-anchor" href="#解决方案"></a>解决方案</h2>
+<p>在 filter 中添加了如下代码，问题解决了</p>
+<pre><code class="language-java">        //跨域
+        response.setHeader(&quot;Access-Control-Allow-Origin&quot;, &quot;*&quot;);
+        //跨域 Header
+        response.setHeader(&quot;Access-Control-Allow-Methods&quot;, &quot;*&quot;);
+        // 不带http://域名:端口的地址
+        response.setHeader(&quot;Access-Control-Allow-Headers&quot;, &quot;*&quot;);
+        response.setHeader(&quot;Access-Control-Allow-Credentials&quot;, &quot;true&quot;);
+</code></pre>
+<h2 id="试图分析原因："><a class="header-anchor" href="#试图分析原因："></a>试图分析原因：</h2>
+<p>理论请看这篇文章：（<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Access_control_CORS" target="_blank" rel="noopener">点这里</a>）简单来说就是，当在进行跨域请求的时候，如图自定义请求头，如添加Authorization字段，那么HTTP请求会发出一个预检请求，即OPTIONS请求，访问服务器是否允许该请求，如果浏览器没有进行跨域设置，则就会出现如上图所示的错误。</p>
+<p>浏览器的同源策略，就是出于安全考虑，浏览器会限制从脚本发起的跨域HTTP请求（比如异步请求GET, POST, PUT, DELETE, OPTIONS等等），所以浏览器会向所请求的服务器发起两次请求，第一次是浏览器使用OPTIONS方法发起一个预检请求，第二次才是真正的异步请求，第一次的预检请求获知服务器是否允许该跨域请求：如果允许，才发起第二次真实的请求；如果不允许，则拦截第二次请求。就是在预检请求的结果中开放前台向header中增加token值，第二次真实请求就可以附带上token。</p>
 
 </div>
 
@@ -1857,16 +1829,11 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/Topk%E9%97%AE%E9%A2%98/">
-                  <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  1常见面试题
-              </a>
-            
         </div>
         <div class="item right">
             
-              <a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
-                0 服务注册与发现
+              <a href="/2020/07/28/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/2%20%E5%88%86%E5%B8%83%E5%BC%8F%E9%99%90%E6%B5%81/">
+                2 分布式限流
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             

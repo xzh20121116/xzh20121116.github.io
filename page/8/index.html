@@ -1264,8 +1264,17 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/07/21/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
-										分布式事务
+									<a href="/2020/07/21/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/1%20%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+										1 分布式事务
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/28/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/2%20%E5%88%86%E5%B8%83%E5%BC%8F%E9%99%90%E6%B5%81/">
+										2 分布式限流
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1539,6 +1548,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/31/20%20%E8%AE%B0%E9%94%99/%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">
+										记一次跨域问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -1762,6 +1780,28 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/07/21/07%20SpringMVC/%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
+				<h2 class="index-title">
+					工作原理
+				</h2>
+				<div class="index-brief">
+					MVC 模式
+mvc 是 model、view、controller 的缩写，分别代表 web 应用程序中的三种职责：
+model-模型：用于存储数据以及能处理用户请求的业务逻辑
+view-视图：向控制器提交数据，显示模型中的数据
+controller-控制器：根据视图提出的请求，判断将请求和数据交
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/1%20%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/Sentinel%20%E4%B8%8E%20Hystrix%20%E5%AF%B9%E6%AF%94/">
 				<h2 class="index-title">
 					Sentinel 与 Hystrix 对比
@@ -1775,6 +1815,30 @@ Hystrix 使用的是自己创建的线程池
 Sentinel：信号量隔离（并发线程数限流）（模拟信号量）。
 Hystrix：线程池、信号量隔离。
 特别说明：Sentinel创建的线程不依赖容器的
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/04%20Spring/%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
+				<h2 class="index-title">
+					依赖注入
+				</h2>
+				<div class="index-brief">
+					di 是相较于 ioc 的一种更具体的实现，ioc 可以理解为一个接口，di 就是他的实现
+装配方式优先级：自动装配 &gt;  java 配置文件 &gt; xml 配置文件
+自动装配
+spring 容器可以自动配置相互协作 bean 之间的关系。
+spring 从两个角度实现自动装配
+组件扫描
+
 					...
 				</div>
 			</a>
@@ -1842,16 +1906,13 @@ requi
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/04%20Spring/ioc/">
+			<a href="/2020/07/21/04%20Spring/spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
 				<h2 class="index-title">
-					ioc
+					spring 循环依赖
 				</h2>
 				<div class="index-brief">
-					ioc 既是一种思想，又是一种容器
-Ioc 思想
-Inversion of controlle 控制反转
-比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
-而 ioc 是，
+					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
+如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
 					...
 				</div>
 			</a>
@@ -1864,13 +1925,16 @@ Inversion of controlle 控制反转
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/04%20Spring/spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+			<a href="/2020/07/21/04%20Spring/ioc/">
 				<h2 class="index-title">
-					spring 循环依赖
+					ioc
 				</h2>
 				<div class="index-brief">
-					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
-如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
+					ioc 既是一种思想，又是一种容器
+Ioc 思想
+Inversion of controlle 控制反转
+比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
+而 ioc 是，
 					...
 				</div>
 			</a>
@@ -1958,75 +2022,6 @@ for(；；)
 
 
 s
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/10%20Redis/1%20%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%9C%BA%E6%99%AF/">
-				<h2 class="index-title">
-					1 常见数据类型及场景
-				</h2>
-				<div class="index-brief">
-					string
-
-kv 缓存
-计数器
-共享用户 session
-
-Hash
-
-
-类似 map 的结构，k 还是 key，v 就变成的一个对象，每次读写缓存，可以操作对象中的某个字段。
-
-
-如果对象里面嵌套的其他的对象，就不太适合用 hash 了。
-
-
-list
-这是一个有序列表
-
-
-可以存储一些列表型
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/10%20Redis/5%20%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%94%A8Memcached/">
-				<h2 class="index-title">
-					5 为什么不用Memcached
-				</h2>
-				<div class="index-brief">
-					
-
-redis 支持复杂的数据结构
-
-
-redis 原生支持集群
-
-
-memcached使用多核，单核时 redis 性能高
-
-
-存储 100k 以上数据时，memcached 性能高
-
-
-
 					...
 				</div>
 			</a>

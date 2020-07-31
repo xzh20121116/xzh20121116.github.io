@@ -1264,8 +1264,17 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/07/21/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
-										分布式事务
+									<a href="/2020/07/21/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/1%20%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+										1 分布式事务
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/28/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/2%20%E5%88%86%E5%B8%83%E5%BC%8F%E9%99%90%E6%B5%81/">
+										2 分布式限流
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1539,6 +1548,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/31/20%20%E8%AE%B0%E9%94%99/%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">
+										记一次跨域问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -1762,6 +1780,61 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+				<h2 class="index-title">
+					Aqs的核心成员、数据模型、锁的实现原理
+				</h2>
+				<div class="index-brief">
+					什么是AQS
+AQS（AbstractQueuedSynchronizer）就是一个抽象的队列同步器，AQS定义了一套多线程访问共享资源的同步器框架，许多同步类的实现都依赖于他，比如下面四个
+
+ReentrantLock
+Semaphore
+CountDownLatch
+CyclicBarrier
+
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+				<h2 class="index-title">
+					数据类型
+				</h2>
+				<div class="index-brief">
+					1 字节=8 位：1byte = 8bit
+数值型：byte(字节)、short、int、long、float、double
+字符型（文本型）：char(字符)
+布尔型：boolean
+数据类型（两大类）
+
+
+基本数据类型
+
+数值型
+
+整数类型：byte、short、int、long
+浮点类型：fl
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/%E7%BB%A7%E6%89%BF%E6%A0%91%E8%BF%BD%E6%BA%AF/">
 				<h2 class="index-title">
 					继承树追溯
@@ -1791,6 +1864,29 @@
 接口就是比“抽象类”还“抽象”的“抽象类”，可以更加规范的对子类进行约束，全面地专业的实现了：规范和具体实现的分离。
 抽象类还提供某些具体实现，接口不提供任何实现，接口中所有方法都是抽象方法。接口是完全面向规范的，规定了一批类具有的公共方法规范。
 从接口的实现者
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
+				<h2 class="index-title">
+					抽象方法和抽象类
+				</h2>
+				<div class="index-brief">
+					抽象方法
+使用abstract修饰的方法，没有方法体，只有声明。定义的是一种“规范”，就是告诉子类必须要给抽象方法提供具体实现。
+抽象类
+包含抽象方法的类就是抽象类。通过abstract方法定义规范，然后要求子类必须定义具体实现。
+通过抽象类，我们就可以做到严格限制子类的设计，使子类之间更加通用。
+
 					...
 				</div>
 			</a>
@@ -1838,29 +1934,6 @@ private
 default
 *
 *
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
-				<h2 class="index-title">
-					抽象方法和抽象类
-				</h2>
-				<div class="index-brief">
-					抽象方法
-使用abstract修饰的方法，没有方法体，只有声明。定义的是一种“规范”，就是告诉子类必须要给抽象方法提供具体实现。
-抽象类
-包含抽象方法的类就是抽象类。通过abstract方法定义规范，然后要求子类必须定义具体实现。
-通过抽象类，我们就可以做到严格限制子类的设计，使子类之间更加通用。
-
 					...
 				</div>
 			</a>
@@ -1962,58 +2035,6 @@ default
 				</h2>
 				<div class="index-brief">
 					内部类只是一个编译时概念，一旦编译成功，就会成为完全不同的两个类。对于一个名为Outer的外部类和其内部定义的名为Inner的内部类。编译完成会会出现Outer.class和Outer$Inner.class两个类的字节码文件。所以内部类是相对独立的一种存在，其成员变量、方法名可以和外部类的相同。
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/this%20%E7%9A%84%E6%9C%AC%E8%B4%A8/">
-				<h2 class="index-title">
-					this 的本质
-				</h2>
-				<div class="index-brief">
-					创建一个对象分为四步：
-
-分配对象空间，并将对象成员变量初始化为0或空或false
-执行属性值的显式初始化
-执行构造方法
-返回对象的地址给相关的变量
-
-this的本质是“创建好的对象的地址”！由于在构造方法调用前，对象已经创建。因此，在构造方法中也可以使用this代表“当前对象”  ，
-不能在静态方
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/final/">
-				<h2 class="index-title">
-					final
-				</h2>
-				<div class="index-brief">
-					final 关键字
-作用：
-修饰变量：
-被他修饰的变量不可改变，一旦赋值，就不能被重新赋值。
-修饰方法：
-该方法不可被子类重写，但是可以被重载！
-修饰类:
-被修饰类不能被集成。比如Math、String等
 
 					...
 				</div>

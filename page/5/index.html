@@ -1264,8 +1264,17 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/07/21/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
-										分布式事务
+									<a href="/2020/07/21/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/1%20%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+										1 分布式事务
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/28/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/2%20%E5%88%86%E5%B8%83%E5%BC%8F%E9%99%90%E6%B5%81/">
+										2 分布式限流
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1539,6 +1548,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/31/20%20%E8%AE%B0%E9%94%99/%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">
+										记一次跨域问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -1762,6 +1780,70 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/3%E4%BD%8D%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93/">
+				<h2 class="index-title">
+					3位操作总结
+				</h2>
+				<div class="index-brief">
+					计算机中所有数据都是以二进制存储的，位运算其实就是直接对内存中的二进制数据进行操作，因此处理数据的素的非常快
+基本的位操作有  与、或、异或、取反、左移、右移这 6 种，规则如下表
+
+
+
+符号
+描述
+运算规则
+
+
+
+
+&amp;
+与
+两个位都为 1 时，结果才为 1
+
+
+|
+或
+两个位都为 0 时，
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/22/16%20%E7%A7%92%E6%9D%80-%E9%AB%98%E5%B9%B6%E5%8F%91/%E7%A7%92%E6%9D%80/">
+				<h2 class="index-title">
+					秒杀
+				</h2>
+				<div class="index-brief">
+					
+秒杀业务场景说明
+
+上游发起下单
+下游完成秒杀业务逻辑（库存检查、库存冻结、余额检查、余额冻结、订单生成、余额扣减、库存扣减、生成流水、余额解冻、库存解冻）。
+上游下单业务简单，每秒 1w 个请求，下游业务复杂，每秒只能处理 2k 个请求，上游不限流，下游被压垮，引起雪崩。
+
+mq 削峰填谷
+
+消
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F%E5%92%8C%E6%A1%B6%E6%8E%92%E5%BA%8F/">
 				<h2 class="index-title">
 					计数排序和桶排序
@@ -1862,6 +1944,27 @@ index i 的数与 index i-1的数 比较大小，如果 index i 更小 ，两者
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
+				<h2 class="index-title">
+					快速排序
+				</h2>
+				<div class="index-brief">
+					基于冒泡排序演变而来的
+快的原因是使用了分治法。
+跟冒泡一样，都是属于交换排序，通过元素之间的比较和交换位置来达到排序的目的
+跟冒泡不同的是：冒泡在每一轮中只把1 个元素冒泡到数列的一端，而快排则是每一轮挑选一个基准元素，并让其他比他大的元素移动到数列一遍，比他小的元素移动到数列的另一边，从而把数列
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
 				<h2 class="index-title">
 					归并排序
@@ -1888,15 +1991,19 @@ java 对象排序算法-timsort
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%A0%86%E6%8E%92%E5%BA%8F/">
 				<h2 class="index-title">
-					快速排序
+					堆排序
 				</h2>
 				<div class="index-brief">
-					基于冒泡排序演变而来的
-快的原因是使用了分治法。
-跟冒泡一样，都是属于交换排序，通过元素之间的比较和交换位置来达到排序的目的
-跟冒泡不同的是：冒泡在每一轮中只把1 个元素冒泡到数列的一端，而快排则是每一轮挑选一个基准元素，并让其他比他大的元素移动到数列一遍，比他小的元素移动到数列的另一边，从而把数列
+					什么是堆排序
+二叉堆的构建、删除、自我调整等基本操作正是实现堆排序的基础
+二叉堆的特性
+
+最大堆的堆顶是整个堆中最大的元素
+最小堆的堆顶是整个堆中最小的元素
+
+以最大堆为力，如果删除一个最大堆的堆顶（并不是完全删除，而是跟末尾的节点交换位置），经过自我调整，第 2 大的元素就会被交换上来，成为最大堆
 					...
 				</div>
 			</a>
@@ -1950,86 +2057,6 @@ $n $
 insertion
 $ n^2$
 $ n
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%A0%86%E6%8E%92%E5%BA%8F/">
-				<h2 class="index-title">
-					堆排序
-				</h2>
-				<div class="index-brief">
-					什么是堆排序
-二叉堆的构建、删除、自我调整等基本操作正是实现堆排序的基础
-二叉堆的特性
-
-最大堆的堆顶是整个堆中最大的元素
-最小堆的堆顶是整个堆中最小的元素
-
-以最大堆为力，如果删除一个最大堆的堆顶（并不是完全删除，而是跟末尾的节点交换位置），经过自我调整，第 2 大的元素就会被交换上来，成为最大堆
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/">
-				<h2 class="index-title">
-					基数排序
-				</h2>
-				<div class="index-brief">
-					
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/">
-				<h2 class="index-title">
-					用栈实现队列
-				</h2>
-				<div class="index-brief">
-					用栈来模拟一个队列，要求实现队列的两个基本操作：入队和出队
-栈的特点
-
-出入元素都是在栈顶
-
-队列的特点
-
-先入先出，队头和队尾
-
-提示
-
-一个栈不行，需要使用两个栈来实现队列
-
-思路
-有两个栈，AB
-A 负责入队操作
-B 负责出队操作
-
-可是两个栈是独立的，如何关联起来呢
-入队时，每个新元素都被压
 					...
 				</div>
 			</a>
