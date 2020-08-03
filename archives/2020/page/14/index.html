@@ -479,6 +479,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2020/08/03/03%20java/Java%E5%9F%BA%E7%A1%80/%E9%87%8D%E6%9E%84%E3%80%81%E9%87%8D%E5%86%99%E3%80%81%E9%87%8D%E8%BD%BD%E7%9A%84%E5%8C%BA%E5%88%AB/">
+										重构、重写、重载的区别
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -1780,6 +1789,41 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/ArrayList/">
+				<h2 class="index-title">
+					ArrayList
+				</h2>
+				<div class="index-brief">
+					ArrayList
+底层存储
+数组列表
+如果存储的是基本类型，只能存包装类
+特点：
+查询快，增删慢，线程不安全
+为什么不安全还用他呢？
+因为，正常的场景，一般都是用来查询的，不会太频繁的增删（增删可以使用 LinkedList），线程安全使用 Vector
+不存在查询快，增删快，安全的结构
+数组是定
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-04-28</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/程序员/">程序员</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/04/28/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/ThreadLocal/">
 				<h2 class="index-title">
 					ThreadLocal
@@ -2027,29 +2071,6 @@ InnoDB的数据是按页存储的，删除数据的时候，该数据的位置�
 			</a>
                 <div class="article-meta">
 				    <span>2020-04-23</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/04/22/08%20Mysql/mysql%20%E5%A6%82%E4%BD%95%E4%B8%BB%E5%A4%87%E4%B8%80%E8%87%B4+%E5%8F%8Cm%E5%BE%AA%E7%8E%AF%E5%A4%8D%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
-				<h2 class="index-title">
-					mysql 如何主备一致+双m循环复制解决方案
-				</h2>
-				<div class="index-brief">
-					事务日志的同步过程
-备库和主库之间维持了一个长连接，主库内部有一个线程专门服务于备库的这个长连接
-一个事务日志的完整同步过程如下：
-
-在备库上通过 change master命令，设置主库的ip、端口、用户名、密码，以及从哪个位置开始请求binlog
-在备库上执行 start slave  命令，这
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-04-22</span>
                     
                             
                     

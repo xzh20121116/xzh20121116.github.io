@@ -479,6 +479,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2020/08/03/03%20java/Java%E5%9F%BA%E7%A1%80/%E9%87%8D%E6%9E%84%E3%80%81%E9%87%8D%E5%86%99%E3%80%81%E9%87%8D%E8%BD%BD%E7%9A%84%E5%8C%BA%E5%88%AB/">
+										重构、重写、重载的区别
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -1780,6 +1789,27 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/MDC/">
+				<h2 class="index-title">
+					MDC
+				</h2>
+				<div class="index-brief">
+					MDC：Mapped Diagnostic Context，映射调试上下文
+是 log4j 和 logback 提供一种方便在多线程下记录日志的功能
+可以将 MDC 看成是一个与当前线程绑定的哈希表，MDC 中的内容可以被同一线程中执行的代码所访问，当前线程的子线程会继承父线程中的 MDCD 内容
+
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
 				<h2 class="index-title">
 					Aqs的核心成员、数据模型、锁的实现原理
@@ -1792,6 +1822,26 @@ ReentrantLock
 Semaphore
 CountDownLatch
 CyclicBarrier
+
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/%E7%BB%A7%E6%89%BF%E6%A0%91%E8%BF%BD%E6%BA%AF/">
+				<h2 class="index-title">
+					继承树追溯
+				</h2>
+				<div class="index-brief">
+					子类的构造方法，无论写与不写，第一句都是super(…)；即调用父类的构造方法;
+流程是这样的：先向上追溯到Object，然后再一次向下执行类的初始化块和构造方法，知道当前子类为止
 
 					...
 				</div>
@@ -1823,26 +1873,6 @@ CyclicBarrier
 
 整数类型：byte、short、int、long
 浮点类型：fl
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/%E7%BB%A7%E6%89%BF%E6%A0%91%E8%BF%BD%E6%BA%AF/">
-				<h2 class="index-title">
-					继承树追溯
-				</h2>
-				<div class="index-brief">
-					子类的构造方法，无论写与不写，第一句都是super(…)；即调用父类的构造方法;
-流程是这样的：先向上追溯到Object，然后再一次向下执行类的初始化块和构造方法，知道当前子类为止
-
 					...
 				</div>
 			</a>
@@ -2017,25 +2047,6 @@ default
 传递是值的副本，副本改变不会影响原件
 引用类类型
 传递的是值的「副本」，但是引用类型指的是『对象的地址』，因此，副本和原参数都指向了同一个「地址
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/%E5%86%85%E9%83%A8%E7%B1%BB/">
-				<h2 class="index-title">
-					内部类
-				</h2>
-				<div class="index-brief">
-					内部类只是一个编译时概念，一旦编译成功，就会成为完全不同的两个类。对于一个名为Outer的外部类和其内部定义的名为Inner的内部类。编译完成会会出现Outer.class和Outer$Inner.class两个类的字节码文件。所以内部类是相对独立的一种存在，其成员变量、方法名可以和外部类的相同。
-
 					...
 				</div>
 			</a>
