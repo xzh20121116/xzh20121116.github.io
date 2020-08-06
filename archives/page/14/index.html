@@ -598,6 +598,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2020/08/06/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/11%20%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84execute%E6%96%B9%E6%B3%95%E5%92%8Csubmit%E6%96%B9%E6%B3%95%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/">
+										11 线程池的execute方法和submit方法有什么区别？
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -1816,15 +1825,47 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/1%20%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E5%AE%B9%E9%87%8F/">
+			<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/3%20Http%20%E7%8A%B6%E6%80%81%E7%A0%81/">
 				<h2 class="index-title">
-					1 存储单位容量
+					3 Http 状态码
 				</h2>
 				<div class="index-brief">
-					1 Byte = 8 Bits.
-1 Kilobyte (KB) = 1024 Bytes.
-1 Megabyte (MB) = 1024 KB.
-1 Gigabyte (GB) = 1024 MB
+					
+
+
+
+类别
+原因
+
+
+
+
+1xx
+信息行状态码
+接收的请求正在处理
+
+
+2xx
+成功状态码
+请求正常处理完毕
+
+
+3xx
+重定向状态码
+需要进行附加造作以完成请求
+
+
+4xx
+客户端错误状态码
+服务器无法处理请求
+
+
+5xx
+服务器错误状态码
+服务器出错了
+
+
+
 
 					...
 				</div>
@@ -1869,6 +1910,28 @@ DNS 域名解析
 服务器处理请求
 
 web 服务器解析用户请求，经过处理之后
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/1%20%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E5%AE%B9%E9%87%8F/">
+				<h2 class="index-title">
+					1 存储单位容量
+				</h2>
+				<div class="index-brief">
+					1 Byte = 8 Bits.
+1 Kilobyte (KB) = 1024 Bytes.
+1 Megabyte (MB) = 1024 KB.
+1 Gigabyte (GB) = 1024 MB
+
 					...
 				</div>
 			</a>
@@ -2079,39 +2142,6 @@ jvm运行程序的实体是线程，每个线程创建的时候，jvm都会给�
 			</a>
                 <div class="article-meta">
 				    <span>2020-04-24</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/04/23/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/09%20synchronized/">
-				<h2 class="index-title">
-					09 synchronized
-				</h2>
-				<div class="index-brief">
-					实现原理
-**结论：**无论是代码块，还是方法，都是通过持有对象的锁来实现同步的
-什么是对象的锁？
-对象在内存中存储的布局分为三个区域：
-
-
-对象头（header）
-
-
-mark word
-
-存储对象自身的运行时数据，比如hashcode，gc分代年龄、锁的相关信息
-
-
-
-klass point（类
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-04-23</span>
                     
                             
                     
