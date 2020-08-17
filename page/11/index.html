@@ -1568,6 +1568,15 @@
 									
 							<ul>
 								<li class="file">
+									<a href="/2020/08/17/20%20%E8%AE%B0%E9%94%99/%E5%89%8D%E7%AB%AF%E6%97%A0%E6%B3%95%E6%8E%A5%E6%94%B6%20Long%20%E7%B1%BB%E5%9E%8B/">
+										前端无法接收 Long 类型
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/07/22/20%20%E8%AE%B0%E9%94%99/%E5%A4%84%E7%90%86%20mybatis-plus%20%E4%B8%8E%20pageHelper%20%E5%86%B2%E7%AA%81/">
 										处理 mybatis-plus 与 pageHelper 冲突
 									</a>
@@ -1825,6 +1834,29 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/07/21/12%20Linux/2%20linux%20%E5%AE%89%E8%A3%85%20nginx/">
+				<h2 class="index-title">
+					2 linux 安装 nginx
+				</h2>
+				<div class="index-brief">
+					yum 安装
+
+
+添加 yum 源
+Nginx 不在默认的 yum 源中，可以使用 epel 或者官网的 yum 源，本例使用官网的 yum 源。
+sudo rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-c
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/12%20Linux/1%20linux%20%E5%AE%89%E8%A3%85%20jdk/">
 				<h2 class="index-title">
 					1 linux 安装 jdk
@@ -1891,6 +1923,33 @@ yum install java-1.8.0-openj
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
+				<h2 class="index-title">
+					07 排查堆内存溢出
+				</h2>
+				<div class="index-brief">
+					模拟堆内存溢出
+
+
+新建一个 Oom.java 文件，内容如下
+import java.util.ArrayList;
+import java.util.List;
+
+public class Oom {
+    public static void main(String[] args) {
+  
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Jvm/01%20%E5%B8%B8%E8%A7%81%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">
 				<h2 class="index-title">
 					01 常见垃圾回收器
@@ -1911,33 +1970,6 @@ Shenandoah 上千 g，也是上 T 了
 
 
 serial–ps
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
-				<h2 class="index-title">
-					07 排查堆内存溢出
-				</h2>
-				<div class="index-brief">
-					模拟堆内存溢出
-
-
-新建一个 Oom.java 文件，内容如下
-import java.util.ArrayList;
-import java.util.List;
-
-public class Oom {
-    public static void main(String[] args) {
-  
 					...
 				</div>
 			</a>
@@ -2045,30 +2077,6 @@ cms 用于对老年代进行回收，目标是尽量减少应用的暂停时间�
 
 标记 gc root 可达的老年代对象
 遍历新生代对
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Jvm/11%20jvm%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%92%E5%88%86/">
-				<h2 class="index-title">
-					11 jvm内存区域划分
-				</h2>
-				<div class="index-brief">
-					典型回答
-程序计数器
-每个线程都有自己的程序计数器，并且任何一个线程都只有一个方法在执行，也就是所谓的当前方法。
-程序计数器会存储当前线程正在执行的 java 方法的 jvm 指令地址；
-或者：如果执行本地方法，则是未指定值（undefined）
-虚拟机栈
-每个线程在创建时都会创建一个虚拟机栈，内部
 					...
 				</div>
 			</a>
