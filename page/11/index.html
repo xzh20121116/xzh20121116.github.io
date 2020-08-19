@@ -764,6 +764,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2020/08/19/03%20java/Jvm/13%20%E6%96%B0%E4%B8%80%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8ZGC%E7%9A%84%E6%8E%A2%E7%B4%A2%E4%B8%8E%E5%AE%9E%E8%B7%B5/">
+										13 新一代垃圾回收器ZGC的探索与实践
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -1834,6 +1843,36 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/07/21/12%20Linux/3%20linux%E5%AE%89%E8%A3%85yapi/">
+				<h2 class="index-title">
+					3 linux安装yapi
+				</h2>
+				<div class="index-brief">
+					api管理工具-Yapi的搭建-linux篇(完)
+一、环境要求
+
+操作系统：centos 7
+nodejs（7.6+)
+mongodb（2.6+）
+git
+
+二、资料
+yapi 地址
+
+示例站点：yapi.demo.qunar.com
+文档：hellosean1025.github.io/yapi
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/12%20Linux/2%20linux%20%E5%AE%89%E8%A3%85%20nginx/">
 				<h2 class="index-title">
 					2 linux 安装 nginx
@@ -1923,33 +1962,6 @@ yum install java-1.8.0-openj
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
-				<h2 class="index-title">
-					07 排查堆内存溢出
-				</h2>
-				<div class="index-brief">
-					模拟堆内存溢出
-
-
-新建一个 Oom.java 文件，内容如下
-import java.util.ArrayList;
-import java.util.List;
-
-public class Oom {
-    public static void main(String[] args) {
-  
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Jvm/01%20%E5%B8%B8%E8%A7%81%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">
 				<h2 class="index-title">
 					01 常见垃圾回收器
@@ -1970,6 +1982,33 @@ Shenandoah 上千 g，也是上 T 了
 
 
 serial–ps
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
+				<h2 class="index-title">
+					07 排查堆内存溢出
+				</h2>
+				<div class="index-brief">
+					模拟堆内存溢出
+
+
+新建一个 Oom.java 文件，内容如下
+import java.util.ArrayList;
+import java.util.List;
+
+public class Oom {
+    public static void main(String[] args) {
+  
 					...
 				</div>
 			</a>
@@ -2052,31 +2091,6 @@ klass point
 					在 Java 虚拟机中，每个 java 对象都有一个对象头，它由mark word和klass point构成。
 mark word 用来存储这个对象的运行时数据
 
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Jvm/09%20%E4%B8%BA%E4%BB%80%E4%B9%88CMS%E4%B8%A4%E6%AC%A1%E6%A0%87%E8%AE%B0%E8%A6%81STW/">
-				<h2 class="index-title">
-					09 为什么CMS两次标记要STW
-				</h2>
-				<div class="index-brief">
-					cms 执行过程
-cms 用于对老年代进行回收，目标是尽量减少应用的暂停时间，减少 fgc 的频率，利用和应用程序线程并发的gc 线程来标记清除老年代。cms 并非没有暂停，而是用两次短暂停来替代串行标记整理算法的长暂停
-
-
-初始标记- stw
-
-标记 gc root 可达的老年代对象
-遍历新生代对
 					...
 				</div>
 			</a>

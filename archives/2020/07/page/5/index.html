@@ -764,6 +764,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2020/08/19/03%20java/Jvm/13%20%E6%96%B0%E4%B8%80%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8ZGC%E7%9A%84%E6%8E%A2%E7%B4%A2%E4%B8%8E%E5%AE%9E%E8%B7%B5/">
+										13 新一代垃圾回收器ZGC的探索与实践
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -1898,32 +1907,6 @@ mq 削峰填谷
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/">
-				<h2 class="index-title">
-					选择排序
-				</h2>
-				<div class="index-brief">
-					一句话：经过多次遍历，找出最小的数，放到前面
-最简单，最没用
-算法思想最简单
-基本不用
-时间复杂度：$O（ n^2）$
-给定一个乱序数组，给定一个最小数指针，从index0 开始 ，与后面的数比较，遍历完一次后，将最小数指针的数放到遍历的起始位置，循环
-
-
-选取 index0 为起始位置，即 ind
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F%E5%92%8C%E6%A1%B6%E6%8E%92%E5%BA%8F/">
 				<h2 class="index-title">
 					计数排序和桶排序
@@ -1951,19 +1934,20 @@ mq 削峰填谷
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/">
 				<h2 class="index-title">
-					插入排序
+					选择排序
 				</h2>
 				<div class="index-brief">
-					对于基本有序的数组最好用
-一个乱序数组
-int[] arr = {5, 2, 4, 3, 1, 7, 9, 8, 6};
+					一句话：经过多次遍历，找出最小的数，放到前面
+最简单，最没用
+算法思想最简单
+基本不用
+时间复杂度：$O（ n^2）$
+给定一个乱序数组，给定一个最小数指针，从index0 开始 ，与后面的数比较，遍历完一次后，将最小数指针的数放到遍历的起始位置，循环
 
-从 index 1 开始，往前插入：
 
-index i 的数与 index i-1的数 比较大小，如果 index i 更小 ，两者交换位置
-交换位置之后，继续与前面的数比较，
+选取 index0 为起始位置，即 ind
 					...
 				</div>
 			</a>
@@ -1986,6 +1970,31 @@ index i 的数与 index i-1的数 比较大小，如果 index i 更小 ，两者
       Lru l = new Lru(5);
       l.put(&quot;1&quot;,&quot;1&quot;);
       l.put(&quot;2
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
+				<h2 class="index-title">
+					插入排序
+				</h2>
+				<div class="index-brief">
+					对于基本有序的数组最好用
+一个乱序数组
+int[] arr = {5, 2, 4, 3, 1, 7, 9, 8, 6};
+
+从 index 1 开始，往前插入：
+
+index i 的数与 index i-1的数 比较大小，如果 index i 更小 ，两者交换位置
+交换位置之后，继续与前面的数比较，
 					...
 				</div>
 			</a>
@@ -2045,31 +2054,6 @@ java 对象排序算法-timsort
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%A0%86%E6%8E%92%E5%BA%8F/">
-				<h2 class="index-title">
-					堆排序
-				</h2>
-				<div class="index-brief">
-					什么是堆排序
-二叉堆的构建、删除、自我调整等基本操作正是实现堆排序的基础
-二叉堆的特性
-
-最大堆的堆顶是整个堆中最大的元素
-最小堆的堆顶是整个堆中最小的元素
-
-以最大堆为力，如果删除一个最大堆的堆顶（并不是完全删除，而是跟末尾的节点交换位置），经过自我调整，第 2 大的元素就会被交换上来，成为最大堆
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
 				<h2 class="index-title">
 					常见排序算法
@@ -2111,6 +2095,31 @@ $n $
 insertion
 $ n^2$
 $ n
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%A0%86%E6%8E%92%E5%BA%8F/">
+				<h2 class="index-title">
+					堆排序
+				</h2>
+				<div class="index-brief">
+					什么是堆排序
+二叉堆的构建、删除、自我调整等基本操作正是实现堆排序的基础
+二叉堆的特性
+
+最大堆的堆顶是整个堆中最大的元素
+最小堆的堆顶是整个堆中最小的元素
+
+以最大堆为力，如果删除一个最大堆的堆顶（并不是完全删除，而是跟末尾的节点交换位置），经过自我调整，第 2 大的元素就会被交换上来，成为最大堆
 					...
 				</div>
 			</a>

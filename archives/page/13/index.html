@@ -764,6 +764,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2020/08/19/03%20java/Jvm/13%20%E6%96%B0%E4%B8%80%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8ZGC%E7%9A%84%E6%8E%A2%E7%B4%A2%E4%B8%8E%E5%AE%9E%E8%B7%B5/">
+										13 新一代垃圾回收器ZGC的探索与实践
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -1834,6 +1843,50 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/07%20%E6%8E%A5%E5%8F%A3/">
+				<h2 class="index-title">
+					07 接口
+				</h2>
+				<div class="index-brief">
+					为什么需要接口？接口和抽象类的区别？
+接口就是比“抽象类”还“抽象”的“抽象类”，可以更加规范的对子类进行约束，全面地专业的实现了：规范和具体实现的分离。
+抽象类还提供某些具体实现，接口不提供任何实现，接口中所有方法都是抽象方法。接口是完全面向规范的，规定了一批类具有的公共方法规范。
+从接口的实现者
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/03%20%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
+				<h2 class="index-title">
+					03 抽象方法和抽象类
+				</h2>
+				<div class="index-brief">
+					抽象方法
+使用abstract修饰的方法，没有方法体，只有声明。定义的是一种“规范”，就是告诉子类必须要给抽象方法提供具体实现。
+抽象类
+包含抽象方法的类就是抽象类。通过abstract方法定义规范，然后要求子类必须定义具体实现。
+通过抽象类，我们就可以做到严格限制子类的设计，使子类之间更加通用。
+
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/05%20%E5%B0%81%E8%A3%85/">
 				<h2 class="index-title">
 					05 封装
@@ -1869,29 +1922,6 @@ private
 default
 *
 *
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/03%20%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
-				<h2 class="index-title">
-					03 抽象方法和抽象类
-				</h2>
-				<div class="index-brief">
-					抽象方法
-使用abstract修饰的方法，没有方法体，只有声明。定义的是一种“规范”，就是告诉子类必须要给抽象方法提供具体实现。
-抽象类
-包含抽象方法的类就是抽象类。通过abstract方法定义规范，然后要求子类必须定义具体实现。
-通过抽象类，我们就可以做到严格限制子类的设计，使子类之间更加通用。
-
 					...
 				</div>
 			</a>
@@ -2006,32 +2036,6 @@ default
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/12%20final/">
-				<h2 class="index-title">
-					12 final
-				</h2>
-				<div class="index-brief">
-					final 关键字
-作用：
-修饰变量：
-被他修饰的变量不可改变，一旦赋值，就不能被重新赋值。
-修饰方法：
-该方法不可被子类重写，但是可以被重载！
-修饰类:
-被修饰类不能被集成。比如Math、String等
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/13%20this%20%E7%9A%84%E6%9C%AC%E8%B4%A8/">
 				<h2 class="index-title">
 					13 this 的本质
@@ -2058,15 +2062,19 @@ this的本质是“创建好的对象的地址”！由于在构造方法调用�
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/11%20ELk/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%20kibana%EF%BC%8C%E5%A4%96%E7%BD%91%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE/">
+			<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/12%20final/">
 				<h2 class="index-title">
-					阿里云部署 kibana，外网无法访问
+					12 final
 				</h2>
 				<div class="index-brief">
-					无法通过ip+端口号访问
-解决办法
-修改 kibana 目录下的 config 下的 kibana.yml
-host 由 localhost 改为 0.0.0.0
+					final 关键字
+作用：
+修饰变量：
+被他修饰的变量不可改变，一旦赋值，就不能被重新赋值。
+修饰方法：
+该方法不可被子类重写，但是可以被重载！
+修饰类:
+被修饰类不能被集成。比如Math、String等
 
 					...
 				</div>
@@ -2080,16 +2088,16 @@ host 由 localhost 改为 0.0.0.0
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/11%20ELk/springboot%20%E6%B7%BB%E5%8A%A0%20es%20%E4%BE%9D%E8%B5%96%E7%89%88%E6%9C%AC%E9%97%AE%E9%A2%98/">
+			<a href="/2020/07/21/11%20ELk/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%20kibana%EF%BC%8C%E5%A4%96%E7%BD%91%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE/">
 				<h2 class="index-title">
-					springboot 添加 es 依赖版本问题
+					阿里云部署 kibana，外网无法访问
 				</h2>
 				<div class="index-brief">
-					springboot 中默认指定了es 的版本
-此时如果添加如下依赖，就会导致es 的版本使用的是 springboot 默认的
-        &lt;!-- es --&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.e
+					无法通过ip+端口号访问
+解决办法
+修改 kibana 目录下的 config 下的 kibana.yml
+host 由 localhost 改为 0.0.0.0
+
 					...
 				</div>
 			</a>
