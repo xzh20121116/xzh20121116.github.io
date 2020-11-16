@@ -374,6 +374,15 @@
 									</a>
 									
 							<ul>
+								<li class="file">
+									<a href="/2020/11/16/03%20java/Java8%20Stream/">
+										Java8 Stream
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
@@ -1881,12 +1890,18 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/07/21/09%20Mybatis/2%20MyBatis%E5%8A%A8%E6%80%81SQL%20foreach%E6%A0%87%E7%AD%BE%E5%AE%9E%E7%8E%B0%E6%89%B9%E9%87%8F%E6%8F%92%E5%85%A5/">
+			<a href="/2020/07/21/09%20Mybatis/1%20%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/">
 				<h2 class="index-title">
-					2 MyBatis动态SQL foreach标签实现批量插入
+					1 常见面试题
 				</h2>
 				<div class="index-brief">
-					
+					${}和#{}的区别是什么
+${}
+是 properties 文件中的变量占位符，它可以用于标签属性值和 sql 内部，属于静态文本替换。
+比如${driver}会被替换为com.mysql.jdbc.Driver.
+#{}
+是 sql 的参数占位符，会将 sql 中的#{}替换为？
+在 sql 执
 					...
 				</div>
 			</a>
@@ -1899,24 +1914,12 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/12%20Linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+			<a href="/2020/07/21/09%20Mybatis/2%20MyBatis%E5%8A%A8%E6%80%81SQL%20foreach%E6%A0%87%E7%AD%BE%E5%AE%9E%E7%8E%B0%E6%89%B9%E9%87%8F%E6%8F%92%E5%85%A5/">
 				<h2 class="index-title">
-					【转】Linux查看内存使用情况方法
+					2 MyBatis动态SQL foreach标签实现批量插入
 				</h2>
 				<div class="index-brief">
-					top命令：
-输入命令：
-top
-输出内容展示：
-
-内容分析：
-PID：进程的ID
-USER：进程所有者
-​    PR：进程的优先级别，越小越优先被执行
-​    NI：进程Nice值，代表这个进程的优先值
-​    VIRT：进程占用的虚拟内存
-​    RES：进程占用的物理内存
-​    S
+					
 					...
 				</div>
 			</a>
@@ -1961,6 +1964,36 @@ github
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/07/21/12%20Linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+				<h2 class="index-title">
+					【转】Linux查看内存使用情况方法
+				</h2>
+				<div class="index-brief">
+					top命令：
+输入命令：
+top
+输出内容展示：
+
+内容分析：
+PID：进程的ID
+USER：进程所有者
+​    PR：进程的优先级别，越小越优先被执行
+​    NI：进程Nice值，代表这个进程的优先值
+​    VIRT：进程占用的虚拟内存
+​    RES：进程占用的物理内存
+​    S
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/12%20Linux/3%20linux%E5%AE%89%E8%A3%85yapi/">
 				<h2 class="index-title">
 					3 linux安装yapi
@@ -1991,29 +2024,6 @@ yapi 地址
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/12%20Linux/2%20linux%20%E5%AE%89%E8%A3%85%20nginx/">
-				<h2 class="index-title">
-					2 linux 安装 nginx
-				</h2>
-				<div class="index-brief">
-					yum 安装
-
-
-添加 yum 源
-Nginx 不在默认的 yum 源中，可以使用 epel 或者官网的 yum 源，本例使用官网的 yum 源。
-sudo rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-c
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/21/12%20Linux/1%20linux%20%E5%AE%89%E8%A3%85%20jdk/">
 				<h2 class="index-title">
 					1 linux 安装 jdk
@@ -2027,6 +2037,29 @@ yum search java|grep jdk
 
 2、选择指定的版本安装，注意最后的 * 以及yum源安装的是openjdk，注意openjdk的区别。
 yum install java-1.8.0-openj
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/12%20Linux/2%20linux%20%E5%AE%89%E8%A3%85%20nginx/">
+				<h2 class="index-title">
+					2 linux 安装 nginx
+				</h2>
+				<div class="index-brief">
+					yum 安装
+
+
+添加 yum 源
+Nginx 不在默认的 yum 源中，可以使用 epel 或者官网的 yum 源，本例使用官网的 yum 源。
+sudo rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-c
 					...
 				</div>
 			</a>
@@ -2068,33 +2101,6 @@ yum install java-1.8.0-openj
 				<div class="index-brief">
 					在冯。诺依曼的计算机模型中，任何程序都需要加载到内存才能与cpu进行交流。
 字节码.class文件同样需要加载到内存中，才可以实例化。“兵马未动，粮草先行”。ClassLoader 就是准备粮草的先行军，他的使命就是「提前加载.class类文件到内存中」，在加载类时，使用的是『Parents Del
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
-				<h2 class="index-title">
-					07 排查堆内存溢出
-				</h2>
-				<div class="index-brief">
-					模拟堆内存溢出
-
-
-新建一个 Oom.java 文件，内容如下
-import java.util.ArrayList;
-import java.util.List;
-
-public class Oom {
-    public static void main(String[] args) {
-  
 					...
 				</div>
 			</a>
