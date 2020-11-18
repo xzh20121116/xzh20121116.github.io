@@ -625,6 +625,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/18/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/13%20%E4%BB%8E%20Reentrantlock%20%E6%9D%A5%E7%9C%8B%20AQS%20%E7%9A%84%E5%8E%9F%E7%90%86/">
+										13 从 Reentrantlock 来看 AQS 的原理
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -1899,21 +1908,13 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
+			<a href="/2020/07/21/03%20java/Jvm/05%20%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
 				<h2 class="index-title">
-					07 排查堆内存溢出
+					05 类加载过程
 				</h2>
 				<div class="index-brief">
-					模拟堆内存溢出
-
-
-新建一个 Oom.java 文件，内容如下
-import java.util.ArrayList;
-import java.util.List;
-
-public class Oom {
-    public static void main(String[] args) {
-  
+					在冯。诺依曼的计算机模型中，任何程序都需要加载到内存才能与cpu进行交流。
+字节码.class文件同样需要加载到内存中，才可以实例化。“兵马未动，粮草先行”。ClassLoader 就是准备粮草的先行军，他的使命就是「提前加载.class类文件到内存中」，在加载类时，使用的是『Parents Del
 					...
 				</div>
 			</a>
@@ -1946,6 +1947,33 @@ Shenandoah 上千 g，也是上 T 了
 
 
 serial–ps
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
+				<h2 class="index-title">
+					07 排查堆内存溢出
+				</h2>
+				<div class="index-brief">
+					模拟堆内存溢出
+
+
+新建一个 Oom.java 文件，内容如下
+import java.util.ArrayList;
+import java.util.List;
+
+public class Oom {
+    public static void main(String[] args) {
+  
 					...
 				</div>
 			</a>
@@ -2124,39 +2152,6 @@ JVM的命令行参数参考：https://docs.oracle.c
 					任何对象都有一个 monitor 与之关联，当一个 monitor被持有后，它将处于锁定状态。
 Synchronized 在 jvm 里面的实现都是基于 进入和退出Monitor 来实现同步的
 一切接对象，所有的 java 对象也是天生的 monitor，每个 java 对象都有成为 Monitor
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/01%20%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%A5%BD%E5%A4%84/">
-				<h2 class="index-title">
-					01 线程池的好处
-				</h2>
-				<div class="index-brief">
-					线程池的好处
-
-
-帮助我们管理线程，避免增加创建线程和销毁线程的资源损耗。
-
-因为线程其实也是一个对象，创建一个对象，需要经过类加载过程，销毁一个对象，需要走GC垃圾回收流程，都是需要资源开销的
-
-
-
-提高响应速度
-
-如果任务达到了，直接从线程池拿线程  比 重新创建一个线程，速度快很多
-
-
-
-重复
 					...
 				</div>
 			</a>
