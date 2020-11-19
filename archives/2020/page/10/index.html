@@ -634,6 +634,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/18/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/14%20notify()%20%E4%BC%9A%E7%AB%8B%E5%88%BB%E9%87%8A%E6%94%BE%E9%94%81%E5%90%97/">
+										14 notify() 会立刻释放锁吗
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -1665,6 +1674,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/19/20%20%E8%AE%B0%E9%94%99/07Could%20not%20extract%20response:%20no%20suitable%20HttpMessageConverter%20found%20for%20response%20type/">
+										07Could not extract response: no suitable HttpMessageConverter found for response type
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -1908,6 +1926,47 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/07/21/04%20Spring/7%20spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+				<h2 class="index-title">
+					7 spring 循环依赖
+				</h2>
+				<div class="index-brief">
+					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
+如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/04%20Spring/6%20ioc/">
+				<h2 class="index-title">
+					6 ioc
+				</h2>
+				<div class="index-brief">
+					ioc 既是一种思想，又是一种容器
+Ioc 思想
+Inversion of controlle 控制反转
+比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
+而 ioc 是，
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/04%20Spring/4%20aop/">
 				<h2 class="index-title">
 					4 aop
@@ -1961,40 +2020,6 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/10%20Redis/3%20%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
-				<h2 class="index-title">
-					3 分布式锁
-				</h2>
-				<div class="index-brief">
-					SETNX key value
-
-set if not exists
-如果不存在，则 set 一个
-set 成功返回 1，如果 key 存在了返回0；
-SETNX key seconds value
-
-给一个过期时间，这是一个原子操作
-入门版
-此版本是最最基础的版本
-加锁
-
-
-for(；；)
-
-
-s
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/21/10%20Redis/1%20%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%9C%BA%E6%99%AF/">
 				<h2 class="index-title">
 					1 常见数据类型及场景
@@ -2020,6 +2045,40 @@ list
 
 
 可以存储一些列表型
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/10%20Redis/3%20%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+				<h2 class="index-title">
+					3 分布式锁
+				</h2>
+				<div class="index-brief">
+					SETNX key value
+
+set if not exists
+如果不存在，则 set 一个
+set 成功返回 1，如果 key 存在了返回0；
+SETNX key seconds value
+
+给一个过期时间，这是一个原子操作
+入门版
+此版本是最最基础的版本
+加锁
+
+
+for(；；)
+
+
+s
 					...
 				</div>
 			</a>
@@ -2096,28 +2155,6 @@ redis 常用的方式有
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/10%20Redis/6%20cluster%20%E4%B8%8E%20sentinel/">
-				<h2 class="index-title">
-					6 cluster 与 sentinel
-				</h2>
-				<div class="index-brief">
-					cluster 突破单机性能瓶颈
-redis 是单线程的，如果在多核服务器上部署的话，可以部署多个实例，搭建一个redis 集群。
-也就是 redis cluster，并且是主从同步，读写分离的。
-一个 cluster 支撑多个 master，每一个 master 挂载多个 slave。
-maste
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/21/10%20Redis/8%20Redisson%E4%BD%BF%E7%94%A8/">
 				<h2 class="index-title">
 					8 Redisson使用
@@ -2140,51 +2177,16 @@ maste
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/15%20Nginx/1%20%E9%85%8D%E7%BD%AE%20nginx/">
+			<a href="/2020/07/21/10%20Redis/6%20cluster%20%E4%B8%8E%20sentinel/">
 				<h2 class="index-title">
-					1 配置 nginx
+					6 cluster 与 sentinel
 				</h2>
 				<div class="index-brief">
-					
-
-Nginx默认目录
-输入命令：
-whereis nginx
-
-即可看到类似于如下的内容：
-nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx
-
-
-
-以下是Nginx的默认路径：
-(1) Nginx配置路径：/et
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/08%20Mysql/1%20%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95/">
-				<h2 class="index-title">
-					1 聚簇索引和非聚簇索引
-				</h2>
-				<div class="index-brief">
-					区别
-聚簇索引和非聚簇索引的区别是：叶节点是否存放一整行数据。
-
-InnoDB 使用的是聚簇索引
-myIsam使用的是非聚簇索引（不论是主键索引还是二级索引）
-
-下图形象说明了聚簇索引表(InnoDB)和非聚簇索引(MyISAM)的区别：
-
-
-聚簇索引（左图）：表数据和主键是一起存储的，主键索引的叶
+					cluster 突破单机性能瓶颈
+redis 是单线程的，如果在多核服务器上部署的话，可以部署多个实例，搭建一个redis 集群。
+也就是 redis cluster，并且是主从同步，读写分离的。
+一个 cluster 支撑多个 master，每一个 master 挂载多个 slave。
+maste
 					...
 				</div>
 			</a>
