@@ -1976,6 +1976,68 @@ public class WxMappingJackson2HttpMessageConverter extends MappingJackson2HttpMe
 
 
 </code></pre>
+<h2 id="最新消息：这个配置文件，可能会导致-ios-接收不到响应，安卓及-h5-没有出现此情况"><a class="header-anchor" href="#最新消息：这个配置文件，可能会导致-ios-接收不到响应，安卓及-h5-没有出现此情况"></a>最新消息：这个配置文件，可能会导致 ios 接收不到响应，安卓及 h5 没有出现此情况</h2>
+<p>删掉上面这个配置，改用专门 feignCLient 配置</p>
+<pre><code class="language-java">
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.alibaba.fastjson.support.config.FastJsonConfig;
+import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.alibaba.fastjson.support.springfox.SwaggerJsonSerializer;
+import feign.Logger;
+import feign.codec.Decoder;
+import feign.codec.Encoder;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.ObjectFactory;
+import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
+import org.springframework.cloud.openfeign.support.ResponseEntityDecoder;
+import org.springframework.cloud.openfeign.support.SpringDecoder;
+import org.springframework.cloud.openfeign.support.SpringEncoder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+
+import java.util.ArrayList;
+import java.util.List;
+
+
+@Configuration
+public class FeignConfig {
+    @Bean
+    Logger.Level feignLoggerLevel() {
+        return Logger.Level.FULL;
+    }
+
+
+    @Bean
+    public Decoder feignDecoder() {
+        return new ResponseEntityDecoder(new SpringDecoder(feignHttpMessageConverter()));
+    }
+
+    public ObjectFactory&lt;HttpMessageConverters&gt; feignHttpMessageConverter() {
+        final HttpMessageConverters httpMessageConverters = new HttpMessageConverters(new PhpMappingJackson2HttpMessageConverter());
+        return new ObjectFactory&lt;HttpMessageConverters&gt;() {
+            @Override
+            public HttpMessageConverters getObject() throws BeansException {
+                return httpMessageConverters;
+            }
+        };
+    }
+
+    public class PhpMappingJackson2HttpMessageConverter extends MappingJackson2HttpMessageConverter {
+        PhpMappingJackson2HttpMessageConverter(){
+            List&lt;MediaType&gt; mediaTypes = new ArrayList&lt;&gt;();
+            mediaTypes.add(MediaType.valueOf(MediaType.TEXT_PLAIN + &quot;;charset=UTF-8&quot;)); //关键
+            mediaTypes.add(MediaType.valueOf(MediaType.APPLICATION_JSON + &quot;;charset=UTF-8&quot;)); //关键
+            mediaTypes.add(MediaType.valueOf(MediaType.APPLICATION_XML + &quot;;charset=UTF-8&quot;)); //关键
+            mediaTypes.add(MediaType.valueOf(MediaType.ALL_VALUE + &quot;;charset=UTF-8&quot;)); //关键
+            setSupportedMediaTypes(mediaTypes);
+        }
+    }
+
+}
+</code></pre>
 
 </div>
 
