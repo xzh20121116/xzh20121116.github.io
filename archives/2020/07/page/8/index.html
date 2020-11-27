@@ -1966,30 +1966,6 @@ controller-控制器：根据视图提出的请求，判断将请求和数据交
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/04%20Spring/3%20%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
-				<h2 class="index-title">
-					3 依赖注入
-				</h2>
-				<div class="index-brief">
-					di 是相较于 ioc 的一种更具体的实现，ioc 可以理解为一个接口，di 就是他的实现
-装配方式优先级：自动装配 &gt;  java 配置文件 &gt; xml 配置文件
-自动装配
-spring 容器可以自动配置相互协作 bean 之间的关系。
-spring 从两个角度实现自动装配
-组件扫描
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/1%20%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/Sentinel%20%E4%B8%8E%20Hystrix%20%E5%AF%B9%E6%AF%94/">
 				<h2 class="index-title">
 					Sentinel 与 Hystrix 对比
@@ -2003,6 +1979,30 @@ Hystrix 使用的是自己创建的线程池
 Sentinel：信号量隔离（并发线程数限流）（模拟信号量）。
 Hystrix：线程池、信号量隔离。
 特别说明：Sentinel创建的线程不依赖容器的
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/04%20Spring/3%20%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
+				<h2 class="index-title">
+					3 依赖注入
+				</h2>
+				<div class="index-brief">
+					di 是相较于 ioc 的一种更具体的实现，ioc 可以理解为一个接口，di 就是他的实现
+装配方式优先级：自动装配 &gt;  java 配置文件 &gt; xml 配置文件
+自动装配
+spring 容器可以自动配置相互协作 bean 之间的关系。
+spring 从两个角度实现自动装配
+组件扫描
+
 					...
 				</div>
 			</a>
@@ -2070,13 +2070,16 @@ requi
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/04%20Spring/7%20spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+			<a href="/2020/07/21/04%20Spring/6%20ioc/">
 				<h2 class="index-title">
-					7 spring 循环依赖
+					6 ioc
 				</h2>
 				<div class="index-brief">
-					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
-如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
+					ioc 既是一种思想，又是一种容器
+Ioc 思想
+Inversion of controlle 控制反转
+比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
+而 ioc 是，
 					...
 				</div>
 			</a>
@@ -2089,16 +2092,13 @@ requi
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/04%20Spring/6%20ioc/">
+			<a href="/2020/07/21/04%20Spring/7%20spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
 				<h2 class="index-title">
-					6 ioc
+					7 spring 循环依赖
 				</h2>
 				<div class="index-brief">
-					ioc 既是一种思想，又是一种容器
-Ioc 思想
-Inversion of controlle 控制反转
-比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
-而 ioc 是，
+					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
+如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
 					...
 				</div>
 			</a>
