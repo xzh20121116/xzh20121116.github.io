@@ -1734,6 +1734,24 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2020/11/20/22%20%E6%94%B6%E8%97%8F/centOs%20%E5%B8%B8%E7%94%A8%E6%96%87%E4%BB%B6%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
+										centOs 常用文件命令总结
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/20/22%20%E6%94%B6%E8%97%8F/mac%E7%94%B5%E8%84%91iTerm2%E9%93%BE%E6%8E%A5linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%AD%E7%BA%BF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+										mac电脑iTerm2链接linux服务器断线解决方案
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/07/22/22%20%E6%94%B6%E8%97%8F/v2ray%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/">
 										v2ray搭建教程
 									</a>
@@ -1926,6 +1944,50 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/08/19/03%20java/Jvm/13%20%E6%96%B0%E4%B8%80%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8ZGC%E7%9A%84%E6%8E%A2%E7%B4%A2%E4%B8%8E%E5%AE%9E%E8%B7%B5/">
+				<h2 class="index-title">
+					13 新一代垃圾回收器ZGC的探索与实践
+				</h2>
+				<div class="index-brief">
+					2020年08月06日 作者: 王东 王伟 文章链接 12996字 26分钟阅读
+ZGC（The Z Garbage Collector）是JDK 11中推出的一款低延迟垃圾回收器，它的设计目标包括：
+
+停顿时间不超过10ms；
+停顿时间不会随着堆的大小，或者活跃对象的大小而增加；
+支持8MB~4T
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-08-19</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/08/17/20%20%E8%AE%B0%E9%94%99/05%E5%89%8D%E7%AB%AF%E6%97%A0%E6%B3%95%E6%8E%A5%E6%94%B6%20Long%20%E7%B1%BB%E5%9E%8B/">
+				<h2 class="index-title">
+					05前端无法接收 Long 类型
+				</h2>
+				<div class="index-brief">
+					我后端是用的雪花算法生成的20位的唯一ID，我返回给前端的时候，例如：
+我返回的是Long类型的，但是前端接收之后精度丢失，导致和我后端给的不一致，解决办法就是使用String类型的。
+后端传输JSON格式化为String类型的。
+@JsonFormat(shape = JsonFormat.Sha
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-08-17</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/08/06/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/11%20%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84execute%E6%96%B9%E6%B3%95%E5%92%8Csubmit%E6%96%B9%E6%B3%95%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/">
 				<h2 class="index-title">
 					11 线程池的execute方法和submit方法有什么区别？
@@ -2085,45 +2147,6 @@ String token = request.getHeader(&quot;token&quot;);
 			</a>
                 <div class="article-meta">
 				    <span>2020-07-28</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/28/10%20Redis/4%20%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8C%E5%86%99%E6%97%B6%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7/">
-				<h2 class="index-title">
-					4 如何保证缓存与数据库双写时的数据一致性
-				</h2>
-				<div class="index-brief">
-					如何保证缓存与数据库双写时的数据一致性？
-在做系统优化时，想到了将数据进行分级存储的思路。因为在系统中会存在一些数据，有些数据的实时性要求不高，比如一些配置信息。基本上配置了很久才会变一次。而有一些数据实时性要求非常高，比如订单和流水的数据。所以这里根据数据要求实时性不同将数据分为三级。
-
-第1级：
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-28</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/23/11%20ELk/2%20kibana%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
-				<h2 class="index-title">
-					2 kibana 安装启动
-				</h2>
-				<div class="index-brief">
-					
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-23</span>
                     
                             
                     

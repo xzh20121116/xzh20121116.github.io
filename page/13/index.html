@@ -1734,6 +1734,24 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2020/11/20/22%20%E6%94%B6%E8%97%8F/centOs%20%E5%B8%B8%E7%94%A8%E6%96%87%E4%BB%B6%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
+										centOs 常用文件命令总结
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/20/22%20%E6%94%B6%E8%97%8F/mac%E7%94%B5%E8%84%91iTerm2%E9%93%BE%E6%8E%A5linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%AD%E7%BA%BF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+										mac电脑iTerm2链接linux服务器断线解决方案
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/07/22/22%20%E6%94%B6%E8%97%8F/v2ray%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/">
 										v2ray搭建教程
 									</a>
@@ -1924,6 +1942,55 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Jvm/09%20%E4%B8%BA%E4%BB%80%E4%B9%88CMS%E4%B8%A4%E6%AC%A1%E6%A0%87%E8%AE%B0%E8%A6%81STW/">
+				<h2 class="index-title">
+					09 为什么CMS两次标记要STW
+				</h2>
+				<div class="index-brief">
+					cms 执行过程
+cms 用于对老年代进行回收，目标是尽量减少应用的暂停时间，减少 fgc 的频率，利用和应用程序线程并发的gc 线程来标记清除老年代。cms 并非没有暂停，而是用两次短暂停来替代串行标记整理算法的长暂停
+
+
+初始标记- stw
+
+标记 gc root 可达的老年代对象
+遍历新生代对
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Jvm/11%20jvm%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%92%E5%88%86/">
+				<h2 class="index-title">
+					11 jvm内存区域划分
+				</h2>
+				<div class="index-brief">
+					典型回答
+程序计数器
+每个线程都有自己的程序计数器，并且任何一个线程都只有一个方法在执行，也就是所谓的当前方法。
+程序计数器会存储当前线程正在执行的 java 方法的 jvm 指令地址；
+或者：如果执行本地方法，则是未指定值（undefined）
+虚拟机栈
+每个线程在创建时都会创建一个虚拟机栈，内部
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Jvm/10%20jvm%20%E8%B0%83%E4%BC%98/">
@@ -2118,50 +2185,6 @@ CyclicBarrier
 
 整数类型：byte、short、int、long
 浮点类型：fl
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/07%20%E6%8E%A5%E5%8F%A3/">
-				<h2 class="index-title">
-					07 接口
-				</h2>
-				<div class="index-brief">
-					为什么需要接口？接口和抽象类的区别？
-接口就是比“抽象类”还“抽象”的“抽象类”，可以更加规范的对子类进行约束，全面地专业的实现了：规范和具体实现的分离。
-抽象类还提供某些具体实现，接口不提供任何实现，接口中所有方法都是抽象方法。接口是完全面向规范的，规定了一批类具有的公共方法规范。
-从接口的实现者
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/03%20%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
-				<h2 class="index-title">
-					03 抽象方法和抽象类
-				</h2>
-				<div class="index-brief">
-					抽象方法
-使用abstract修饰的方法，没有方法体，只有声明。定义的是一种“规范”，就是告诉子类必须要给抽象方法提供具体实现。
-抽象类
-包含抽象方法的类就是抽象类。通过abstract方法定义规范，然后要求子类必须定义具体实现。
-通过抽象类，我们就可以做到严格限制子类的设计，使子类之间更加通用。
-
 					...
 				</div>
 			</a>

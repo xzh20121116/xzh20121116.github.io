@@ -1734,6 +1734,24 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2020/11/20/22%20%E6%94%B6%E8%97%8F/centOs%20%E5%B8%B8%E7%94%A8%E6%96%87%E4%BB%B6%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
+										centOs 常用文件命令总结
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/20/22%20%E6%94%B6%E8%97%8F/mac%E7%94%B5%E8%84%91iTerm2%E9%93%BE%E6%8E%A5linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%AD%E7%BA%BF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+										mac电脑iTerm2链接linux服务器断线解决方案
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/07/22/22%20%E6%94%B6%E8%97%8F/v2ray%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/">
 										v2ray搭建教程
 									</a>
@@ -1926,18 +1944,41 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/Topk%E9%97%AE%E9%A2%98/">
 				<h2 class="index-title">
-					客户端ZooInspector
+					Topk问题
 				</h2>
 				<div class="index-brief">
-					下载
-https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip；
-使用
-下载后，解压，如下图
+					找出不重复的
+思路一：分治法+HashMap
+将 2.5 亿个整数，分批操作，例如分成 250w 一批，共 100 批次，放到 HashMap&lt;数，出现的次数&gt;里
+每操作完一次，就把 HashMap 出现次数小于 1 的删掉
+重复，直到把 100 批都处理完
+HashMap 中的就是不重
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/1%20%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+				<h2 class="index-title">
+					1 分布式事务
+				</h2>
+				<div class="index-brief">
+					参考文章https://juejin.im/post/5aa3c7736fb9a028bb189bca
+参考文章https://juejin.im/post/5b5a0bf9f265da0f6523913b#heading-3
+事务四大特性-ACID
 
-启动
-java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
+
+原子性-atomic
+一个事务操作不可分割，
 					...
 				</div>
 			</a>
@@ -1950,19 +1991,18 @@ java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
+			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
 				<h2 class="index-title">
-					mac 安装启动
+					客户端ZooInspector
 				</h2>
 				<div class="index-brief">
 					下载
-启动
-~/zookeeper-3.4.14/bin 
-./zkServer.sh start
+https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip；
+使用
+下载后，解压，如下图
 
-zookeeper 客户端
-./zkCli.sh -timeout 0 -r -server ip:port
-./zkCli.sh -timeout 5000 -server 192.9.200.2
+启动
+java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
 					...
 				</div>
 			</a>
@@ -1990,6 +2030,31 @@ zookeeper 客户端
 有序节点
 
 假如 当前有一个父节点为 /lock，我们可以在这个父节点下面创建子节点，使用有序节点，我创建子节点 /lock/node- ，并且指明有序，那么 zookeeper 在生成子节点的时候会自动的添加整数序号
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
+				<h2 class="index-title">
+					mac 安装启动
+				</h2>
+				<div class="index-brief">
+					下载
+启动
+~/zookeeper-3.4.14/bin 
+./zkServer.sh start
+
+zookeeper 客户端
+./zkCli.sh -timeout 0 -r -server ip:port
+./zkCli.sh -timeout 5000 -server 192.9.200.2
 					...
 				</div>
 			</a>
@@ -2066,31 +2131,6 @@ controller-控制器：根据视图提出的请求，判断将请求和数据交
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/1%20%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/Sentinel%20%E4%B8%8E%20Hystrix%20%E5%AF%B9%E6%AF%94/">
-				<h2 class="index-title">
-					Sentinel 与 Hystrix 对比
-				</h2>
-				<div class="index-brief">
-					线程模型对比
-
-Sentinel 使用的是 tomcat/jetty/other 本身的线程池。
-Hystrix 使用的是自己创建的线程池
-隔离策略
-Sentinel：信号量隔离（并发线程数限流）（模拟信号量）。
-Hystrix：线程池、信号量隔离。
-特别说明：Sentinel创建的线程不依赖容器的
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/21/04%20Spring/3%20%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
 				<h2 class="index-title">
 					3 依赖注入
@@ -2115,49 +2155,19 @@ spring 从两个角度实现自动装配
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/04%20Spring/2%20%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/1%20%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/Sentinel%20%E4%B8%8E%20Hystrix%20%E5%AF%B9%E6%AF%94/">
 				<h2 class="index-title">
-					2 事务实现原理
+					Sentinel 与 Hystrix 对比
 				</h2>
 				<div class="index-brief">
-					spring 的五种事务隔离级别
+					线程模型对比
 
-默认使用数据库的事务
-读未提交
-读已提交
-可重复读
-串行化
-
-spring 的七种传播属性
-
-required：最常用，支持当前事务，如果没有，就新建
-supports：支持当前事务，如果没有，就没有
-mandatory：支持当前事务，如果没有，抛异常
-requi
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/04%20Spring/%E3%80%90%E8%BD%AC%E3%80%91springJdbc%20%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">
-				<h2 class="index-title">
-					【转】springJdbc 源码学习
-				</h2>
-				<div class="index-brief">
-					Spring JDBC 源码学习
-15 Jan 2018
-@ffutop
-概览
-在学习 Spring-JDBC 之前，我们有必要从 Java 原生提供的 JDBC 开始，对 JDBC 操作的一整套完整的流程有一个清晰的概念。
-/**
- * copied from https://www.tutori
+Sentinel 使用的是 tomcat/jetty/other 本身的线程池。
+Hystrix 使用的是自己创建的线程池
+隔离策略
+Sentinel：信号量隔离（并发线程数限流）（模拟信号量）。
+Hystrix：线程池、信号量隔离。
+特别说明：Sentinel创建的线程不依赖容器的
 					...
 				</div>
 			</a>
