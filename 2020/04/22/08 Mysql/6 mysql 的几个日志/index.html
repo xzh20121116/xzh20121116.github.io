@@ -1965,12 +1965,12 @@
 <div id="article-content">
 	<p>mysql的几个日志，有innodb的 redolog，有server层的binlog，还有用于回滚的 undolog</p>
 <a id="more"></a>
-<h1>redo log</h1>
+<h1>Redo log</h1>
 <p>redolog的背景：</p>
 <blockquote>
 <pre><code class="language-sql">update user_table set name='王大锤' where id = '3'
 </code></pre>
-<p>针对这条sql，它的执行过程是这样的：先把id=3的行查出来，然后将name 字段改成 java 3y，看起来没问题。</p>
+<p>针对这条sql，它的执行过程是这样的：先把id=3的行查出来，然后将name 字段改成 王大锤，看起来没问题。</p>
 <p>实际上 mysql 基本存储结构是 <strong>页（记录都在页里面）</strong>，所以mysql是先把这条记录 所在的页找到，然后把该页<strong>加载到</strong> <strong>内存</strong>，然后把内存修改。</p>
 <p>这种情况就存在一个问题，如果内存中数据改了，但是还没刷盘，数据库此时挂了，那么这条修改就丢失了。</p>
 <p>如果每次修改之后就刷盘，那么速度会很慢。因此，引入了redo log：内存写完了，会写一份redo log，这份 redo log 记录了这次在某个页上做了什么修改。</p>
@@ -2008,7 +2008,7 @@ insert into t1 .../* 数据的内存被修改，redolog buffer 写入了日志�
 insert into t2 .../* 数据的内存被修改，redolog buffer 写入了日志，还未写到redolog文件*/
 commit; /* 写到redolog文件中 */
 </code></pre>
-<h1>binlog</h1>
+<h1>Bin log</h1>
 <p>server层的日志，所有的引擎都看可以使用。</p>
 <p>记录了<strong>表结构和数据</strong>的变更，比如<strong>update、delete、insert、truncate、create</strong>，不记录<strong>select</strong>。</p>
 <p><strong>两种存储格式</strong></p>
@@ -2041,7 +2041,21 @@ commit; /* 写到redolog文件中 */
 </blockquote>
 </li>
 </ul>
-<h1>undo log</h1>
+<h1>Undo log</h1>
+<p>所谓是 undolog 就是回滚日志，当进行插入、删除、修改操作时，一定会生成 undolog，并且一定优先于修改后的数据落盘</p>
+<p><strong>举个例子</strong></p>
+<p>张三银行账户里有 1000 元，他要转 400 到理财账户</p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20201130134128.png" alt="image-20201130134128418" style="zoom:50%;" />
+<ol>
+<li>事务开始</li>
+<li>查询数据</li>
+<li>进行 update 操作 balance = balace - 400</li>
+<li>记录（张三，1000）到 undolog，回滚时需要把这条更新过来</li>
+<li>进行 update 操作 amount = amount+400</li>
+<li>记录（张三，0）到 undolog，回滚时需要把这条更新过来</li>
+<li>事务提交/回滚</li>
+</ol>
+<p>可以看到，每一条变更数据的操作，都伴随着一条undo log的生成，undolog就是记录数据的原始状态。这一点在一些其他的分布式框架里也有用到，比如 Seata就是采用自己解析 sql并生成反向sql 存储下来，将来抛异常时就执行回滚语句的方式来做的分布式事务，而不是借助 mysql自身的 undolog 机制</p>
 <p><strong>作用</strong></p>
 <ul>
 <li>

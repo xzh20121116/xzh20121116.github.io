@@ -2013,13 +2013,13 @@ InnoDB的数据是按页存储的，删除数据的时候，该数据的位置�
 					6 mysql 的几个日志
 				</h2>
 				<div class="index-brief">
-					redo log
+					Redo log
 redolog的背景：
 
 update user_table set name='王大锤' where id = '3'
 
-针对这条sql，它的执行过程是这样的：先把id=3的行查出来，然后将name 字段改成 java 3y，看起来没问题。
-实际上 mysql 基本存储结构是 页
+针对这条sql，它的执行过程是这样的：先把id=3的行查出来，然后将name 字段改成 王大锤，看起来没问题。
+实际上 mysql 基本存储结构是 页（记录都
 					...
 				</div>
 			</a>

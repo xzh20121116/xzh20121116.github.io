@@ -1976,11 +1976,11 @@
 <li>Innodb：需要把数据一行一行的从引擎里读出来，然后累积计数</li>
 </ul>
 </blockquote>
-<p><strong>为什么innodb 不跟 MyIsam一样，存个总数</strong></p>
+<p><strong>为什么innodb 不跟 MyISAM一样，存个总数</strong></p>
 <blockquote>
 <p>因为，即使在<strong>同一个时刻</strong>的<strong>多个查询</strong>，由于mvcc的原因，该返回多少行是不确定的</p>
 </blockquote>
-<p>InnoDB，主键索引树叶子节点存的是数据，普通索引树的叶子节点村的是主键值，所有：普通索引树比主键索引树小很多。</p>
+<p>InnoDB，主键索引树叶子节点存的是数据，普通索引树的叶子节点存的是主键值，所有：普通索引树比主键索引树小很多。</p>
 <p>count(*)  并不会把全部字段取出来，而是专门做了优化，<strong>不取值</strong>。count( *) 肯定不是 null，<strong>按行累加</strong>。</p>
 <p>对于<strong>count(*)</strong>，遍历哪个树，结果都是一样的，因此，mysql的优化器会找到最小的树来遍历</p>
 <p><strong>为什么不用show table status</strong></p>
