@@ -1999,24 +1999,6 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%B8%BA%E4%BB%80%E4%B9%88%20MongoDB%20%E4%BD%BF%E7%94%A8%20B%20%E6%A0%91/">
-				<h2 class="index-title">
-					为什么 MongoDB 使用 B 树
-				</h2>
-				<div class="index-brief">
-					我们在这一系列前面的文章曾经分析过 为什么 MySQL 使用 B+ 树，有读者在文章下面留言，希望能出一个为什么 MongoDB 使用 B 树的对比文章，这是一个比较好的问题，MySQL 和 MongoDB 两种不同类型的数据库使用了相似却不同的数据结构，为什么 MySQL 选择使用 B+ 树而 M
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/22/18%20%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/1%20CPU100%25%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D/">
 				<h2 class="index-title">
 					1 CPU100%问题如何快速定位
@@ -2035,6 +2017,24 @@
 图示：
 
 如上图，最耗CPU的进程
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%B8%BA%E4%BB%80%E4%B9%88%20MongoDB%20%E4%BD%BF%E7%94%A8%20B%20%E6%A0%91/">
+				<h2 class="index-title">
+					为什么 MongoDB 使用 B 树
+				</h2>
+				<div class="index-brief">
+					我们在这一系列前面的文章曾经分析过 为什么 MySQL 使用 B+ 树，有读者在文章下面留言，希望能出一个为什么 MongoDB 使用 B 树的对比文章，这是一个比较好的问题，MySQL 和 MongoDB 两种不同类型的数据库使用了相似却不同的数据结构，为什么 MySQL 选择使用 B+ 树而 M
 					...
 				</div>
 			</a>
@@ -2186,20 +2186,21 @@ mq 削峰填谷
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F%E5%92%8C%E6%A1%B6%E6%8E%92%E5%BA%8F/">
 				<h2 class="index-title">
-					选择排序
+					计数排序和桶排序
 				</h2>
 				<div class="index-brief">
-					一句话：经过多次遍历，找出最小的数，放到前面
-最简单，最没用
-算法思想最简单
-基本不用
-时间复杂度：$O（ n^2）$
-给定一个乱序数组，给定一个最小数指针，从index0 开始 ，与后面的数比较，遍历完一次后，将最小数指针的数放到遍历的起始位置，循环
+					快排，堆排的时间复杂度是 nlogn
+无论冒泡还是快排、堆排，都是基于元素之间的比较来进行排序的
+冒泡：
+因为 8&gt;3，所以8 和 3 的位置交换
 
+堆排：
+因为 10&gt;7，所以 10 和 7 的位置交换
 
-选取 index0 为起始位置，即 ind
+有一些特殊的排序并不基于元素比较，如计数排序、桶排序、基数排序等
+以计数排序来说
 					...
 				</div>
 			</a>
