@@ -1110,7 +1110,7 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/04/22/08%20Mysql/9%20InnoDB%20%E7%9A%84%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E9%94%81%E7%9A%84%E5%85%B3%E7%B3%BB/">
+									<a href="/2020/11/30/08%20Mysql/9%20InnoDB%20%E7%9A%84%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E9%94%81%E7%9A%84%E5%85%B3%E7%B3%BB/">
 										9 InnoDB 的事务隔离级别和锁的关系
 									</a>
 								</li>
@@ -1953,16 +1953,26 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/07/21/10%20Redis/6%20cluster%20%E4%B8%8E%20sentinel/">
+			<a href="/2020/07/21/10%20Redis/7%20redis%E4%B9%8B%E7%BA%A2%E9%94%81(Redlock)/">
 				<h2 class="index-title">
-					6 cluster 与 sentinel
+					7 redis之红锁(Redlock)
 				</h2>
 				<div class="index-brief">
-					cluster 突破单机性能瓶颈
-redis 是单线程的，如果在多核服务器上部署的话，可以部署多个实例，搭建一个redis 集群。
-也就是 redis cluster，并且是主从同步，读写分离的。
-一个 cluster 支撑多个 master，每一个 master 挂载多个 slave。
-maste
+					背景
+redis 常用的方式有
+
+单节点
+主从
+哨兵
+集群
+
+单节点不会在生产环境使用，因为达不到高可用，且连 RDB 和 AOF 都只能放在 master 上，所以基本不会使用
+剩下的几种模式都无法避免两个问题
+
+异步数据丢失
+脑裂问题
+
+针对这两个问题，redis 官方提出了红锁(RedLock
 					...
 				</div>
 			</a>
@@ -1985,6 +1995,28 @@ maste
         &lt;dependency&gt;
             &lt;groupId&gt;org.redisson&lt;/groupId&gt;
             &lt;artifactId&gt;re
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/10%20Redis/6%20cluster%20%E4%B8%8E%20sentinel/">
+				<h2 class="index-title">
+					6 cluster 与 sentinel
+				</h2>
+				<div class="index-brief">
+					cluster 突破单机性能瓶颈
+redis 是单线程的，如果在多核服务器上部署的话，可以部署多个实例，搭建一个redis 集群。
+也就是 redis cluster，并且是主从同步，读写分离的。
+一个 cluster 支撑多个 master，每一个 master 挂载多个 slave。
+maste
 					...
 				</div>
 			</a>
@@ -2132,38 +2164,6 @@ ${}
 				</h2>
 				<div class="index-brief">
 					
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/12%20Linux/4%20showdoc%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
-				<h2 class="index-title">
-					4 showdoc 安装教程
-				</h2>
-				<div class="index-brief">
-					showDoc官网
-首页
-文档
-github
-安装步骤
- cd /usr/local/huifan
- 
- # 创建安装目录
- mkdir showdoc
- 
- # 切换目录
- cd showdoc/
- 
- #下载脚本并赋予权限
- wget https://www.showdoc.cc/script/
 					...
 				</div>
 			</a>

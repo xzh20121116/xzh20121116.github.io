@@ -1110,7 +1110,7 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/04/22/08%20Mysql/9%20InnoDB%20%E7%9A%84%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E9%94%81%E7%9A%84%E5%85%B3%E7%B3%BB/">
+									<a href="/2020/11/30/08%20Mysql/9%20InnoDB%20%E7%9A%84%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E9%94%81%E7%9A%84%E5%85%B3%E7%B3%BB/">
 										9 InnoDB 的事务隔离级别和锁的关系
 									</a>
 								</li>
@@ -1953,6 +1953,38 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/07/21/12%20Linux/4%20showdoc%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
+				<h2 class="index-title">
+					4 showdoc 安装教程
+				</h2>
+				<div class="index-brief">
+					showDoc官网
+首页
+文档
+github
+安装步骤
+ cd /usr/local/huifan
+ 
+ # 创建安装目录
+ mkdir showdoc
+ 
+ # 切换目录
+ cd showdoc/
+ 
+ #下载脚本并赋予权限
+ wget https://www.showdoc.cc/script/
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/12%20Linux/3%20linux%E5%AE%89%E8%A3%85yapi/">
 				<h2 class="index-title">
 					3 linux安装yapi
@@ -2072,6 +2104,38 @@ sudo rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-c
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Jvm/01%20%E5%B8%B8%E8%A7%81%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">
+				<h2 class="index-title">
+					01 常见垃圾回收器
+				</h2>
+				<div class="index-brief">
+					常见的垃圾回收器
+
+
+
+垃圾回收器的发展路线，是随着内存越来越大的过程而演进
+从分代算法演化到不分代算法
+Serial 算法 几十兆
+Parallel 算法 几个 G
+CMS 算法 几十个 G
+G1 算法 上百 G
+ZGC 4T
+Shenandoah 上千 g，也是上 T 了
+
+
+serial–ps
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
 				<h2 class="index-title">
 					07 排查堆内存溢出
@@ -2099,26 +2163,14 @@ public class Oom {
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Jvm/01%20%E5%B8%B8%E8%A7%81%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">
+			<a href="/2020/07/21/03%20java/Jvm/03%20%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
 				<h2 class="index-title">
-					01 常见垃圾回收器
+					03 对象实例化过程
 				</h2>
 				<div class="index-brief">
-					常见的垃圾回收器
-
-
-
-垃圾回收器的发展路线，是随着内存越来越大的过程而演进
-从分代算法演化到不分代算法
-Serial 算法 几十兆
-Parallel 算法 几个 G
-CMS 算法 几十个 G
-G1 算法 上百 G
-ZGC 4T
-Shenandoah 上千 g，也是上 T 了
-
-
-serial–ps
+					java是面向对象的静态请类型语言，声明并创建兑现改动代码很常见，根据某个类声明一个引用变量指向被创建的对象，并使用此引用变量操作该对象。在实例化对象的过程中，jvm中发生什么化学反应呢？
+字节码角度
+从下面最简单的 Object obj = new Object();代码进行分析，利用 javap
 					...
 				</div>
 			</a>
@@ -2160,46 +2212,6 @@ gc 分代年龄
 klass point
 
 指针指向对象的类元数据，vm 通过这个指针来确定该对象是哪个类的实例
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Jvm/03%20%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
-				<h2 class="index-title">
-					03 对象实例化过程
-				</h2>
-				<div class="index-brief">
-					java是面向对象的静态请类型语言，声明并创建兑现改动代码很常见，根据某个类声明一个引用变量指向被创建的对象，并使用此引用变量操作该对象。在实例化对象的过程中，jvm中发生什么化学反应呢？
-字节码角度
-从下面最简单的 Object obj = new Object();代码进行分析，利用 javap
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Jvm/08%20%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8E%8B%E7%BC%A9%E6%8C%87%E9%92%88%E8%B6%85%E8%BF%87%2032g%20%E5%A4%B1%E6%95%88/">
-				<h2 class="index-title">
-					08 为什么压缩指针超过 32g 失效
-				</h2>
-				<div class="index-brief">
-					在 Java 虚拟机中，每个 java 对象都有一个对象头，它由mark word和klass point构成。
-mark word 用来存储这个对象的运行时数据
 
 					...
 				</div>
