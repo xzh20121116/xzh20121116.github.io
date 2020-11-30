@@ -1108,6 +1108,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/22/08%20Mysql/9%20InnoDB%20%E7%9A%84%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E9%94%81%E7%9A%84%E5%85%B3%E7%B3%BB/">
+										9 InnoDB 的事务隔离级别和锁的关系
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -1974,29 +1983,6 @@ yapi 地址
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/12%20Linux/2%20linux%20%E5%AE%89%E8%A3%85%20nginx/">
-				<h2 class="index-title">
-					2 linux 安装 nginx
-				</h2>
-				<div class="index-brief">
-					yum 安装
-
-
-添加 yum 源
-Nginx 不在默认的 yum 源中，可以使用 epel 或者官网的 yum 源，本例使用官网的 yum 源。
-sudo rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-c
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/21/12%20Linux/1%20linux%20%E5%AE%89%E8%A3%85%20jdk/">
 				<h2 class="index-title">
 					1 linux 安装 jdk
@@ -2010,6 +1996,29 @@ yum search java|grep jdk
 
 2、选择指定的版本安装，注意最后的 * 以及yum源安装的是openjdk，注意openjdk的区别。
 yum install java-1.8.0-openj
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/12%20Linux/2%20linux%20%E5%AE%89%E8%A3%85%20nginx/">
+				<h2 class="index-title">
+					2 linux 安装 nginx
+				</h2>
+				<div class="index-brief">
+					yum 安装
+
+
+添加 yum 源
+Nginx 不在默认的 yum 源中，可以使用 epel 或者官网的 yum 源，本例使用官网的 yum 源。
+sudo rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-c
 					...
 				</div>
 			</a>
@@ -2063,6 +2072,33 @@ yum install java-1.8.0-openj
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
+				<h2 class="index-title">
+					07 排查堆内存溢出
+				</h2>
+				<div class="index-brief">
+					模拟堆内存溢出
+
+
+新建一个 Oom.java 文件，内容如下
+import java.util.ArrayList;
+import java.util.List;
+
+public class Oom {
+    public static void main(String[] args) {
+  
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Jvm/01%20%E5%B8%B8%E8%A7%81%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8/">
 				<h2 class="index-title">
 					01 常见垃圾回收器
@@ -2083,33 +2119,6 @@ Shenandoah 上千 g，也是上 T 了
 
 
 serial–ps
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
-				<h2 class="index-title">
-					07 排查堆内存溢出
-				</h2>
-				<div class="index-brief">
-					模拟堆内存溢出
-
-
-新建一个 Oom.java 文件，内容如下
-import java.util.ArrayList;
-import java.util.List;
-
-public class Oom {
-    public static void main(String[] args) {
-  
 					...
 				</div>
 			</a>
@@ -2206,7 +2215,7 @@ mark word 用来存储这个对象的运行时数据
 	
 	<div id="index-paginator">
 		
-			<a class="extend prev" rel="prev" href="/archives/2020/page/11/">&lt;</a><a class="page-number" href="/archives/2020/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2020/page/10/">10</a><a class="page-number" href="/archives/2020/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/archives/2020/page/13/">13</a><a class="page-number" href="/archives/2020/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2020/page/16/">16</a><a class="extend next" rel="next" href="/archives/2020/page/13/">&gt;</a>
+			<a class="extend prev" rel="prev" href="/archives/2020/page/11/">&lt;</a><a class="page-number" href="/archives/2020/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2020/page/10/">10</a><a class="page-number" href="/archives/2020/page/11/">11</a><span class="page-number current">12</span><a class="page-number" href="/archives/2020/page/13/">13</a><a class="page-number" href="/archives/2020/page/14/">14</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2020/page/17/">17</a><a class="extend next" rel="next" href="/archives/2020/page/13/">&gt;</a>
 		
 	</div>
 </div>
