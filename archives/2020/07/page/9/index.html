@@ -656,8 +656,8 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/1%20ArrayList/">
-										1 ArrayList
+									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/01%20ArrayList/">
+										01 ArrayList
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -665,8 +665,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/2%20ConcurrentHashMap/">
-										2 ConcurrentHashMap
+									<a href="/2020/04/27/03%20java/Java%E9%9B%86%E5%90%88/02%20HashMap/">
+										02 HashMap
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -674,8 +674,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/04/27/03%20java/Java%E9%9B%86%E5%90%88/3%20HashMap/">
-										3 HashMap
+									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/03%20ConcurrentHashMap/">
+										03 ConcurrentHashMap
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1119,8 +1119,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/12/01/08%20Mysql/10%20mysql%20%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86/">
-										10 mysql 索引原理
+									<a href="/2020/12/01/08%20Mysql/10%20mysql%20%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/">
+										10 mysql 索引原理及慢查询优化
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1962,28 +1962,31 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/07/21/10%20Redis/3%20%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+			<a href="/2020/07/21/10%20Redis/1%20%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%9C%BA%E6%99%AF/">
 				<h2 class="index-title">
-					3 分布式锁
+					1 常见数据类型及场景
 				</h2>
 				<div class="index-brief">
-					SETNX key value
+					string
 
-set if not exists
-如果不存在，则 set 一个
-set 成功返回 1，如果 key 存在了返回0；
-SETNX key seconds value
+kv 缓存
+计数器
+共享用户 session
 
-给一个过期时间，这是一个原子操作
-入门版
-此版本是最最基础的版本
-加锁
+Hash
 
 
-for(；；)
+类似 map 的结构，k 还是 key，v 就变成的一个对象，每次读写缓存，可以操作对象中的某个字段。
 
 
-s
+如果对象里面嵌套的其他的对象，就不太适合用 hash 了。
+
+
+list
+这是一个有序列表
+
+
+可以存储一些列表型
 					...
 				</div>
 			</a>
@@ -2060,16 +2063,16 @@ redis 常用的方式有
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/10%20Redis/6%20cluster%20%E4%B8%8E%20sentinel/">
+			<a href="/2020/07/21/10%20Redis/8%20Redisson%E4%BD%BF%E7%94%A8/">
 				<h2 class="index-title">
-					6 cluster 与 sentinel
+					8 Redisson使用
 				</h2>
 				<div class="index-brief">
-					cluster 突破单机性能瓶颈
-redis 是单线程的，如果在多核服务器上部署的话，可以部署多个实例，搭建一个redis 集群。
-也就是 redis cluster，并且是主从同步，读写分离的。
-一个 cluster 支撑多个 master，每一个 master 挂载多个 slave。
-maste
+					添加 pom 依赖
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
+            &lt;artifactId&gt;re
 					...
 				</div>
 			</a>
@@ -2082,16 +2085,16 @@ maste
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/10%20Redis/8%20Redisson%E4%BD%BF%E7%94%A8/">
+			<a href="/2020/07/21/10%20Redis/6%20cluster%20%E4%B8%8E%20sentinel/">
 				<h2 class="index-title">
-					8 Redisson使用
+					6 cluster 与 sentinel
 				</h2>
 				<div class="index-brief">
-					添加 pom 依赖
-    &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
-            &lt;artifactId&gt;re
+					cluster 突破单机性能瓶颈
+redis 是单线程的，如果在多核服务器上部署的话，可以部署多个实例，搭建一个redis 集群。
+也就是 redis cluster，并且是主从同步，读写分离的。
+一个 cluster 支撑多个 master，每一个 master 挂载多个 slave。
+maste
 					...
 				</div>
 			</a>

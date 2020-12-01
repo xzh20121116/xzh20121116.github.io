@@ -656,8 +656,8 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/1%20ArrayList/">
-										1 ArrayList
+									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/01%20ArrayList/">
+										01 ArrayList
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -665,8 +665,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/2%20ConcurrentHashMap/">
-										2 ConcurrentHashMap
+									<a href="/2020/04/27/03%20java/Java%E9%9B%86%E5%90%88/02%20HashMap/">
+										02 HashMap
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -674,8 +674,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/04/27/03%20java/Java%E9%9B%86%E5%90%88/3%20HashMap/">
-										3 HashMap
+									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/03%20ConcurrentHashMap/">
+										03 ConcurrentHashMap
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1119,8 +1119,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/12/01/08%20Mysql/10%20mysql%20%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86/">
-										10 mysql 索引原理
+									<a href="/2020/12/01/08%20Mysql/10%20mysql%20%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/">
+										10 mysql 索引原理及慢查询优化
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1962,15 +1962,21 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/12/01/08%20Mysql/10%20mysql%20%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86/">
+			<a href="/2020/12/01/08%20Mysql/10%20mysql%20%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/">
 				<h2 class="index-title">
-					10 mysql 索引原理
+					10 mysql 索引原理及慢查询优化
 				</h2>
 				<div class="index-brief">
-					索引目的
-索引的目的在于提高查询效率，可以类比字典，如果要查询“mysql”这个单词，我们肯定需要先定位到 m字母，然后从上往下找到y 字母，依次找到剩下的字母，。如果没有索引，那么可能需要把所有的单词看一遍才能找到你想要的。
-索引原理
-除了字典、生活中随处可见索引的例子，如火车站的车次表，图书的目
+					一个慢查询引发的思考
+select
+   count(*) 
+from
+   task 
+where
+   status=2 
+   and operator_id=20839 
+   and operate_time&gt;1371169729 
+   and operate_time&lt;13
 					...
 				</div>
 			</a>

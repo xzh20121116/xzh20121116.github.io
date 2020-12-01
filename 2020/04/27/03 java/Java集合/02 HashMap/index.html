@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		08 Mysql/10 mysql 索引原理 | 
+		HashMap底层、1.7与1.8区别、常见面试题 | 
 	 
 	温故知新
 	</title>
@@ -658,8 +658,17 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/1%20ArrayList/">
-										1 ArrayList
+									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/01%20ArrayList/">
+										01 ArrayList
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file active">
+									<a href="/2020/04/27/03%20java/Java%E9%9B%86%E5%90%88/02%20HashMap/">
+										02 HashMap
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -667,17 +676,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/2%20ConcurrentHashMap/">
-										2 ConcurrentHashMap
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2020/04/27/03%20java/Java%E9%9B%86%E5%90%88/3%20HashMap/">
-										3 HashMap
+									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/03%20ConcurrentHashMap/">
+										03 ConcurrentHashMap
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1120,9 +1120,9 @@
 							</ul>
 			
 							<ul>
-								<li class="file active">
-									<a href="/2020/12/01/08%20Mysql/10%20mysql%20%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86/">
-										10 mysql 索引原理
+								<li class="file">
+									<a href="/2020/12/01/08%20Mysql/10%20mysql%20%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/">
+										10 mysql 索引原理及慢查询优化
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1963,16 +1963,16 @@
 	<div id="content">
 		<h1 id="article-title">
 
-	10 mysql 索引原理
+	02 HashMap
 </h1>
 <div class="article-meta">
 	
 		<span>
-			阅读量:<span id="/2020/12/01/08%20Mysql/10%20mysql%20%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86/" class="leancloud_visitors" data-flag-title="08 Mysql/10 mysql 索引原理"></span>
+			阅读量:<span id="/2020/04/27/03%20java/Java%E9%9B%86%E5%90%88/02%20HashMap/" class="leancloud_visitors" data-flag-title="HashMap底层、1.7与1.8区别、常见面试题"></span>
 		</span>
 	
 	<span>今晚打老虎</span>
-	<span>2020-12-01 11:42:11</span>
+	<span>2020-04-27 13:11:29</span>
     
 		<div id="article-categories">
             
@@ -1981,46 +1981,297 @@
 </div>
 
 <div id="article-content">
-	<h2 id="索引目的"><a class="header-anchor" href="#索引目的"></a>索引目的</h2>
-<p>索引的目的在于提高查询效率，可以类比字典，如果要查询“mysql”这个单词，我们肯定需要先定位到 m字母，然后从上往下找到y 字母，依次找到剩下的字母，。如果没有索引，那么可能需要把所有的单词看一遍才能找到你想要的。</p>
-<h2 id="索引原理"><a class="header-anchor" href="#索引原理"></a>索引原理</h2>
-<p>除了字典、生活中随处可见索引的例子，如火车站的车次表，图书的目录等。它们的原理都是一样的，通过不断的缩小想要获得数据的范围来筛选出最终想要的结果，同时把随机的事件变成顺序的时间，也就是我们总是通过同一种查找方式来锁定数据。</p>
-<p>数据库也是一样，但显然要复杂许多，因为不仅面临着等值查询，还有范围查询（&gt;、&lt;、between、in）、模糊查询（like）、并集查询（or）等等。数据库应该选择怎么样的方式来应对所有的问题呢？我们回想字典的例子，能不能把数据分成段，然后分段查询呢？最简单的如果 1000 条数据，1 到 100 分成第一段，101 到 200 分成第二段，201 到 300 分成第三段。。。这样查第 250 条数据，只要找第三段就可以了，一下子取出了 90%的无效数据。但是如果有 1千万条记录呢？分成几段比较好呢？稍有算法基础的同学会想到搜索树，其平均复杂度是 lgN，具有不错的查询性能。但这里忽略了一个关键的问题，复杂度模型是基于每次相同的操作成本来考虑的，数据库实现比较复杂，数据保存在磁盘上，而为了提高性能，每次又可以把部分数据读入内存来计算，因为我们知道访问磁盘的成本大概是访问内存的十万倍左右，所以简单的搜索树难以满足复杂的应用场景。</p>
-<h3 id="磁盘-IO与预读"><a class="header-anchor" href="#磁盘-IO与预读"></a>磁盘 IO与预读</h3>
-<p>前面提到了访问磁盘，那么这里先简单介绍一下磁盘 IO 和预读，磁盘读取数据靠的是机械运动，每次读取数据花费的时间可以分为寻道时间、旋转延迟、传输时间三个部分，寻道时间指的的是磁臂移动到指定磁道所需要的时间，主流磁盘一般在 5ms 一下；旋转延迟就是我们经常听说的磁盘转速，比如一个磁盘 7200 转，表示每分钟能转 7200 次，也就是说 1 秒钟能转 120 次，旋转延迟就是 1/120/2=4.17ms；传输时间指的是从磁盘读出或将数据写入磁盘的时间，一般在零点零几秒，相对于前面两个时间可以忽略不计。那么访问一次磁盘的时间，即一次磁盘 IO 的时间约等于 5+4.17=9ms 左右，听起来很不错，但是要知道一套 500-MIPS 的机器每秒可以执行 5 亿条指令，因为指令依靠的是电的性质，换句话说执行一次 IO 的时间口一致性 40 万条指令，数据库动辄十万百万千万的数据，每次 9ms 的时间，显然是个灾难。下面是计算机硬件延迟的对比图，供参考：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20201201132443.png" alt="image-20201201132443221"></p>
-<p>考虑到磁盘 IO 是非常昂贵的操作，计算机系统做了一些优化，当一次 IO 时，不光把当前磁盘地址的数据，而是把相邻的数据也都读取到内存缓冲区内，因为局部预读性原理告诉我们，当计算机访问一个地址的数据的时候，与其相邻的数据很快会被访问到。每一次 IO 读取的数据我们称之为一页（page）。具体一页有多大数据跟操作系统有关，一般为 4k、8k，也就是读取一页内的数据的时候，实际上才发生了一次 IO，这个理论对于索引的数据结构设计非常有帮助。</p>
-<h4 id="索引的数据结构"><a class="header-anchor" href="#索引的数据结构"></a>索引的数据结构</h4>
-<p>前面讲了生活中索引的例子，索引的基本原理，数据库的复杂性，又讲了操作系统的相关知识，目的就是让大家了解，任何一种数据结构都不是凭空产生的，一定会有它的背景和使用场景，我们现在总结一下，我们需要这种数据结构能够做什么？其实很简单，那就是：每次查找数据时把磁盘 IO 控制在一个很小的数量级，最好是常数数量级。那么我们就想到如果有一个高度可控的多路搜索树能否满足需求呢？就这样，b+树应运而生。</p>
-<h4 id="详解-B-树"><a class="header-anchor" href="#详解-B-树"></a>详解 B+树</h4>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20201201132941.png" alt="image-20201201132941381"></p>
-<p>如上图，是一颗 b+树，关于 b+树的定义可以参见<a href="https://zh.wikipedia.org/wiki/B%2B%E6%A0%91" target="_blank" rel="noopener">b+树</a>，这里直说重点，浅蓝色的块我们称之为一个磁盘块，可以看到每个磁盘块包含几个数据项（深蓝色所示）和指针（黄色所示），如磁盘块 1 包含数据向 17 和 35，包含指针 P1、P2、P3，P1表示小于 17 的磁盘块，p2 表示在 17-35 之间的磁盘块，p3表示大于 35 的磁盘块。真实的数据存在与叶子节点即3、5、9、10、13、15、28、29、36、60、75、79、90、99。非叶子节点不存储真实的数据，只存储指引搜索方向的数据向，如果 17、35 并不真实存在于数据表中。</p>
-<h4 id="B-树的查找过程"><a class="header-anchor" href="#B-树的查找过程"></a>B+树的查找过程</h4>
-<p>如图所示，如果要查找数据项 29，那么首先会把磁盘快 1 由磁盘加载到内存，此时发生一次 IO，在内存中用二分查找确定 29 在 17 和 35 之间，锁定磁盘块 1 的 P2 指针，通过指针加载磁盘块 8 到内存，发生第三次 Io，同事内存中做二分查找找到 29，结束查询，总计三次 IO。真实的情况是：3 层的 b+树可以表示上百万的数据，如果上百万的数据查找只需要三次 IO，性能提高经是非常巨大的，如果没有索引，每个数据项都要发生一次 IO，那么总共需要百万次的 IO，成本太高了。</p>
-<h4 id="B-树性质"><a class="header-anchor" href="#B-树性质"></a>B+树性质</h4>
+	<h2 id="数据结构"><a class="header-anchor" href="#数据结构"></a>数据结构</h2>
+<p>1.7版本</p>
+<ul>
+<li>
+<p>数组+链表</p>
+</li>
+<li>
+<p><code>Entry</code>节点是他的内部类，实现了<code>Map.ENTRY()</code></p>
+</li>
+<li>
+<p>插入过程使用<code>头插法</code>：扩容时死循环</p>
+</li>
+</ul>
+<p>1.8版本</p>
+<ul>
+<li>数组+链表+红黑树</li>
+<li><code>Node</code>节点是他的内部类，实现了<code>Map.ENTRY()</code></li>
+<li>使用<code>尾插法</code>：避免扩容时死循环</li>
+</ul>
+<h2 id="底层实现"><a class="header-anchor" href="#底层实现"></a>底层实现</h2>
+<p>从三个方面说：<code>put()</code>、 <code>get()</code>、 <code>resize()</code>，对比1.7版本与1.8版本。</p>
+<h3 id="1-7-版本"><a class="header-anchor" href="#1-7-版本"></a>1.7 版本</h3>
+<h4 id="put"><a class="header-anchor" href="#put"></a>put()</h4>
+<p>是有返回值的，</p>
+<p>如果是key已存在，覆盖旧值，则返回旧值</p>
+<p>如果新key不存在，则返回null</p>
+<p><strong>源码</strong></p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427113334.png" alt="image-20200427113334153" style="zoom:50%;" />
+<p>如图所示，整个流程可以大致分为四步处理</p>
 <ol>
-<li>通过上面的分析，我们知道 IO 次数取决于 B+树的高度 h，假设当前数据表的数据为 N，每个磁盘块的数据项的数量是 m，则有 h=log(m+1)N，当数据量 N 一定的情况下，m 越大，h 越小；而 m=磁盘块的大小/数据项的大小，磁盘块的大小也就是一个数据页的大小，是固定的，如果数据项占得空间越小，数据项的数量越多，树的高度越低，这就为什么每个数据项，即索引字段要尽量的小，比如 int 占 4 字节，要比 bigint 8 字节少一半。这也是为什么 b+树要求把真实的数据放到叶子节点而不是内层节点，一旦放到内层节点，磁盘块的数据项会大幅度下降，导致树增高，当数据项等于 1 时将会退化成线性表。</li>
-<li>当 b+树的数据项是复合的数据结构，比如（name,age,sex）的时候，b+树是按照从左到右的数据来建立搜索树的，比如当（张三，20，F）这样的数据来检索的时候，b+树会优先比较 name 来确定下一步的搜索方向，如果 name 相同再一次比较 age 和 sex，最后得到检索的数据；但当（20，F）这样的没有 name 的数据来的时候，b+树就不知道下一步该查那个节点，因为建立搜索树的时候 name 就是第一个比较因子，必须要先根据 name 来搜索才能知道下一步去哪里查询。比如当（张三，F）这样的数据来检索时，b+树可以用 name 来指定搜索方向，但下一个字段 age 的确实，所以只能把名字等于张三的数据都找到，然后在匹配性别是 F 的数据了，这个是非常重要的性质，即索引的最左匹配特性。</li>
+<li>key为null的处理</li>
+<li>计算目标bucket的下标：即数组中的位置</li>
+<li>找到指定bucket，遍历Entry节点链表，若找到相同key相同的Entry节点，则做替换</li>
+<li>未没有找到目标Entry节点时，则新增一个Entry节点</li>
 </ol>
-<p>关于 MySQL 索引原理是比较枯燥的东西，有一个感性的认识，不需要理解得非常透彻和深入。</p>
-<h3 id="建索引的几大原则"><a class="header-anchor" href="#建索引的几大原则"></a>建索引的几大原则</h3>
+<p><strong><code>putForNllKey（value）</code>：key为null的处理说明</strong></p>
+<p>说明1：HashMap中，可以存在null的kv</p>
+<p>说明2：key为null的，固定是放在table[0]的位置：即下标为0的bucket</p>
+<ul>
+<li>首先选择**table[0]**位置的链表</li>
+<li>对链表做遍历操作</li>
+<li>如果有节点的key为null，则将新value替换掉旧value</li>
+<li>如果没有key为null的节点，则新增一个key为null的Entry节点</li>
+</ul>
+<p><code>void addEntry(int hash, K key, V value, int bucketIndex)</code></p>
+<blockquote>
+<p>这是一个通用方法</p>
+<p>给定四个参数，新增一个Entry节点，另外还担负了扩容职责。</p>
+<p>如果哈希表中存放的<strong>kv数量</strong>超过了当前<strong>阈值threshold</strong>，且当前的bucket下标有链表存在，那么就进行<strong>扩容resize</strong>处理</p>
+<p>扩容后，<strong>重新计算hash</strong>，得到新的bucket下标，然后使用<strong>头插法</strong>新增节点</p>
+</blockquote>
+<h4 id="resize"><a class="header-anchor" href="#resize"></a>resize()</h4>
+<p><strong>扩容的流程如下</strong>：</p>
 <ol>
 <li>
-<p>最左前缀匹配原则，非常重要的 原则，mysql 会一致向右匹配知道遇到范围查询（&gt;、&lt;、between、like）就停止匹配，比如 a=1 and b=2 and c&gt;3 and d =4 如果建立(a,b,c,d)顺序的索引，d 是用不到索引的，如果建立(a,b,c,d)的索引则都可以用到，a,b,d的顺序可以任意调整。</p>
+<p>插入kv时，发现容量不足</p>
 </li>
 <li>
-<p>=和 in 可以乱序，比如a=1 and b=2 and c=3 建立（a,b,c）索引可以任意顺序，mysql 的查询优化器会帮你优化完成索引可以识别的形式。</p>
+<p>保存旧的数组（old table）</p>
 </li>
 <li>
-<p>尽量选择区分度搞的列做为索引，区分度的公式就是 count（distinct col）/ count(*)，表示字段不重复的比例，比例越大我们扫描的记录数越少，唯一键的区分度是 1，而一些状态值、性别字段可能在大数据面前区分度就是0，那可能会有人为，这个比例有什么经验值吗？使用场景不同，这个值也很难确定，一般需要 join 的字段我们要求都是 0.1 以上，即平均一条扫描 10 条记录。</p>
+<p>根据新容量（2倍）新建数组（new table）</p>
 </li>
 <li>
-<p>索引列不能参与计算，保持列“干净”，比如 from_unixtime(create_time) = “2014-05-29”就不能使用到索引，原因很简单，b+树中存的都是数据表中的字段值，但进行检索时，需要把所有元素都应用函数才能比较，显然成本太大。所以语句应该写成 create_time=unix_timestamp(‘2014-05-29’)。</p>
+<p>将old table上的kv 转移到 new table 中</p>
+<ol>
+<li>遍历旧数组的每个数据</li>
+<li>重新计算每个<code>旧kv</code>在新数组的位置（<code>不含新kv</code>）</li>
+<li>将旧数组上的每个<code>旧kv</code>,逐个转移到新数组中（头插法，<code>不含新kv</code>）</li>
+</ol>
 </li>
 <li>
-<p>尽量的扩展索引，不要新建索引。比如表中已经有 a 的索引，现在要加（a,b）的索引，那么只需要修改原来的索引即可。</p>
+<p>新数组引用到HashMap的table属性上</p>
+</li>
+<li>
+<p>重新设置扩容阈值（threshold）</p>
+</li>
+<li>
+<p>扩容结束</p>
+<p>此时table = 扩容后（2倍）+ 旧数据</p>
+</li>
+<li>
+<p>处理第一步要插入的kv</p>
+<ol>
+<li>计算新kv的hash值</li>
+<li>计算出新kv在table中的位置</li>
+<li>将数据插入到对应的位置</li>
+</ol>
 </li>
 </ol>
+<p><strong>扩容的源码如下</strong></p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427115545.png" alt="image-20200427115545105" style="zoom:50%;" />
+<p><strong>核心点1</strong>：扩容后大小是扩容前的<strong>2倍</strong></p>
+<pre><code class="language-java">oldCapacity = table.length;
+newCapacity = 2 * oldCapacity;
+</code></pre>
+<p><strong>核心点2</strong>：<strong>数据搬迁</strong>：从旧table（即数组）迁到扩容后的新table</p>
+<ol>
+<li>
+<p>先决策是否需要对每个Entry链表节点重新hash</p>
+</li>
+<li>
+<p>然后根据hash值计算得到bucket下标</p>
+</li>
+<li>
+<p>使用头插法做接点迁移</p>
+</li>
+</ol>
+<h4 id="get-方法"><a class="header-anchor" href="#get-方法"></a>get()方法</h4>
+<p>相对于put（）方法，get（）方法的实现就简单多了，主要分为两步</p>
+<ol>
+<li>通过key的hash值计算出在table中的下标</li>
+<li>遍历对应table的链表，逐个对比，得到结果。</li>
+</ol>
+<h4 id="fail-fast策略"><a class="header-anchor" href="#fail-fast策略"></a>fail-fast策略</h4>
+<p>hashmap中有一个变量<code>modcount</code>，用于实现Hashmap中的快速失败</p>
+<p>在对Map的做迭代(Iterator)操作时，会将**<code>modCount</code><strong>域变量赋值给</strong><code>expectedModCount</code>**局部变量。</p>
+<p>在迭代过程中，用于做内容修改次数的一致性校验。</p>
+<p>如果两个对比不一致，则会抛出异常**<code>ConcurrentModificationException</code>**</p>
+<h3 id="1-8-版本"><a class="header-anchor" href="#1-8-版本"></a>1.8 版本</h3>
+<p>与jdk1.7的核心差异</p>
+<ol>
+<li>
+<p>数据结构不同，1.8为数组+链表+红黑树</p>
+</li>
+<li>
+<p>resize时数据迁移的方式不同，1.8为尾插法</p>
+</li>
+<li>
+<p>链表节点的定义不同（内核没有变，不影响理解）：Entry–&gt;Node类，都实现了Map.Entry()</p>
+</li>
+</ol>
+<h4 id="put-方法"><a class="header-anchor" href="#put-方法"></a>put()方法</h4>
+<p>与1.7类似，多了转换红黑树的步骤，头插法变尾插法，具体流程可以看下图</p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427105750.png" alt="image-20200427105750336" style="zoom:50%;" />
+<p><strong>put()方法源码</strong></p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427132313.png" alt="image-20200427132313825" style="zoom:50%;" />
+<h4 id="resize-v2"><a class="header-anchor" href="#resize-v2"></a>resize()</h4>
+<p><strong>流程</strong></p>
+<ol>
+<li>
+<p>插入新kv，发现容量不足</p>
+</li>
+<li>
+<p>异常情况判断</p>
+<ol>
+<li>是否需要初始化</li>
+<li>若当前容量  &gt; 最大值，则不扩容</li>
+</ol>
+</li>
+<li>
+<p>根据新容量（2倍）新建数组（new table）</p>
+</li>
+<li>
+<p>保存旧数组(old table)</p>
+</li>
+<li>
+<p>将旧数组上的数据转移到新数组中（old table -&gt; new table）</p>
+<ol>
+<li>
+<p>遍历数组的每个数据</p>
+</li>
+<li>
+<p>重新计算每个数据在新数组中的存储位置（<code>含新数据</code>）</p>
+<p>原位置  or  原位置+旧容量</p>
+</li>
+<li>
+<p>将旧数组上的每个主句逐个转移到新数组中（<code>含新数据</code>）</p>
+<p>尾插法</p>
+</li>
+</ol>
+</li>
+<li>
+<p>将新数组table引用到HashMap的table属性上</p>
+</li>
+<li>
+<p>重新设置扩容阈值（threshold）</p>
+</li>
+<li>
+<p>扩容结束</p>
+</li>
+</ol>
+<h4 id="get"><a class="header-anchor" href="#get"></a>get()</h4>
+<p>比较简单</p>
+<ol>
+<li>根据key计算出hash值，进一步计算得到table的下标，若bucket上为红黑树，则再进行红黑树查找，若不是红黑树，遍历链表</li>
+</ol>
+<p>map家族的关系</p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427105258.png" alt="image-20200427105258224" style="zoom:50%;" />
+<h2 id="HashMap、HashTable对比"><a class="header-anchor" href="#HashMap、HashTable对比"></a>HashMap、HashTable对比</h2>
+<h3 id="共同点"><a class="header-anchor" href="#共同点"></a>共同点</h3>
+<p>底层都是使用哈希表+链表的实现方式</p>
+<h3 id="不同点"><a class="header-anchor" href="#不同点"></a>不同点</h3>
+<ul>
+<li>
+<p>Hashtable线程安全，所有的操作都添加了Synchronized关键字修饰，效率低下</p>
+</li>
+<li>
+<p>很少使用hashtable了，太旧了</p>
+</li>
+<li>
+<p>HashTable  的 kv 都不能为null，否则直接npe</p>
+</li>
+</ul>
+<h2 id="HashMap线程不安全的原因"><a class="header-anchor" href="#HashMap线程不安全的原因"></a>HashMap线程不安全的原因</h2>
+<h3 id="数据覆盖问题"><a class="header-anchor" href="#数据覆盖问题"></a>数据覆盖问题</h3>
+<p>情景描述：</p>
+<blockquote>
+<p>两个线程执行<code>put（）</code>操作时，可能导致数据覆盖，1.7、1.8都存在此问题</p>
+<p>a、b两个线程同时执行put操作，且两个key都指向同一个bucket，那么此时两个结点都会做头插法</p>
+<pre><code class="language-java">public V put(K key, V value) {
+    ...
+    addEntry(hash, key, value, i);
+}
+
+void addEntry(int hash, K key, V value, int bucketIndex) {
+    ...
+    createEntry(hash, key, value, bucketIndex);
+}
+
+void createEntry(int hash, K key, V value, int bucketIndex) {
+    Entry&lt;K,V&gt; e = table[bucketIndex];
+    table[bucketIndex] = new Entry&lt;&gt;(hash, key, value, e);
+    size++;
+}
+
+</code></pre>
+<p>看下最后的<code>createEntry()</code>方法，首先获取到了bucket上的头结点，然后再将新结点作为bucket的头部，并指向旧的头结点，完成一次头插法的操作。<br>
+当线程A和线程B都获取到了bucket的头结点后，若此时线程A的时间片用完，线程B将其新数据完成了头插法操作，此时轮到线程A操作，但这时线程A所据有的旧头结点已经过时了（并未包含线程B刚插入的新结点），线程A再做头插法操作，就会抹掉B刚刚新增的结点，导致数据丢失。</p>
+<p>其实不光是<code>put()</code>操作，删除操作、修改操作，同样都会有覆盖问题。</p>
+</blockquote>
+<h3 id="扩容时导致死循环"><a class="header-anchor" href="#扩容时导致死循环"></a>扩容时导致死循环</h3>
+<p>1.7多线程会出现，因为扩容使用头插法，将原本的顺序做了翻转</p>
+<p>1.8就没有了，因为用了尾插法。</p>
+<h2 id="如何规避HashMap的线程不安全"><a class="header-anchor" href="#如何规避HashMap的线程不安全"></a>如何规避HashMap的线程不安全</h2>
+<h3 id="将Map转为包装类"><a class="header-anchor" href="#将Map转为包装类"></a>将Map转为包装类</h3>
+<p>**<code>Collections.SynchronizedMap()</code>**方法，实例代码：</p>
+<pre><code class="language-java">Map&lt;String, Integer&gt; testMap = new HashMap&lt;&gt;();
+...
+ // 转为线程安全的map
+Map&lt;String, Integer&gt; map = Collections.synchronizedMap(testMap);
+</code></pre>
+<p>内部实现很简单，等同于Hashtable，只是对当前传入的map对象，新增对象锁（synchronized）</p>
+<h3 id="使用ConcurrentHashMap"><a class="header-anchor" href="#使用ConcurrentHashMap"></a>使用ConcurrentHashMap</h3>
+<h2 id="链表转红黑树的阈值是8，而不是7或者20？"><a class="header-anchor" href="#链表转红黑树的阈值是8，而不是7或者20？"></a>链表转红黑树的阈值是8，而不是7或者20？</h2>
+<p>由于treenode（红黑树节点）的大小约是常规节点(HashMap的node节点？)的两倍，</p>
+<p>因此我们仅在容器包含足够的节点以保证使用时，才才使用他们</p>
+<blockquote>
+<p>这句话是什么意思呢？就是因为红黑树节点占用空间，不到万不得已不用他</p>
+</blockquote>
+<p>当他们（红黑树）变得太小（由于移除或调整大小）时，会转换成普通节点</p>
+<blockquote>
+<p>如果红黑树&lt;=6退化成链表</p>
+<p>如果链表长度&gt;=8转变为红黑树</p>
+<p>中间有个<code>差值7</code>可以有效防止链表和树的频繁转换</p>
+<p>如果没有这个<code>差值7</code>的话，一个HashMap不听的插入删除，长度一会7一会8，就会发生频发的转变</p>
+</blockquote>
+<p>容器中节点分布在hash桶中的频率符合泊松分布，桶的长度超过8的概率非常小，约百万分之1？</p>
+<h2 id="哈希表如何解决Hash冲突？"><a class="header-anchor" href="#哈希表如何解决Hash冲突？"></a>哈希表如何解决Hash冲突？</h2>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427152811.png" alt="image-20200427152811036"></p>
+<h2 id="为什么HashMap使用String、Integer这样的包装类做为key"><a class="header-anchor" href="#为什么HashMap使用String、Integer这样的包装类做为key"></a>为什么HashMap使用String、Integer这样的包装类做为key</h2>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427152956.png" alt="image-20200427152956728"></p>
+<h2 id="如果key为Object类型，需要如何处理"><a class="header-anchor" href="#如果key为Object类型，需要如何处理"></a>如果key为Object类型，需要如何处理?</h2>
+<p>重写<code>HashCode（）</code>、<code>equals()</code></p>
+<p><code>HashCode（）</code></p>
+<blockquote>
+<p>计算数据的存储位置</p>
+<p>实现不恰当，可能会导致严重的hash碰撞</p>
+</blockquote>
+<p><code>equals()</code></p>
+<blockquote>
+<p>用于比较是否存在相同key，用于新增或更新</p>
+<p>保证键key在哈希表中的唯一性</p>
+</blockquote>
+<h2 id="为什么每次扩容是-2的幂次"><a class="header-anchor" href="#为什么每次扩容是-2的幂次"></a>为什么每次扩容是 2的幂次</h2>
+<ol>
+<li>方便位运算</li>
+<li>均匀分布</li>
+</ol>
+<h2 id="如何计算在数组中的位置"><a class="header-anchor" href="#如何计算在数组中的位置"></a>如何计算在数组中的位置</h2>
+<p>用 hash 值对数组的长度取余(取模)</p>
+<p>在 java 中是通过位运算来优化性能的，可以简单的理解成取模操作</p>
+<p>通过 hash 函数，将字符串或者其他类型的 key 转化成数组的下标 index</p>
+<p>给出一个长度为 8 的数组，当 key=001121 时</p>
+<pre><code class="language-java">index = hashCode(&quot;001121&quot;) % Array.length = 1420036703 % 8 = 7
+</code></pre>
+<h2 id="扩容的条件"><a class="header-anchor" href="#扩容的条件"></a>扩容的条件</h2>
+<pre><code class="language-java">// Capacity 即 HashMap 当前的长度
+// LoadFactor 负载因子，默认是 0.75
+HashMap.size() &gt;= Capacity X LoadFactor
+</code></pre>
 
 </div>
 
@@ -2029,11 +2280,16 @@
     <div class="post-guide">
         <div class="item left">
             
+              <a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/03%20ConcurrentHashMap/">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                  03 ConcurrentHashMap
+              </a>
+            
         </div>
         <div class="item right">
             
-              <a href="/2020/11/30/08%20Mysql/09%20InnoDB%20%E7%9A%84%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E9%94%81%E7%9A%84%E5%85%B3%E7%B3%BB/">
-                09 InnoDB 的事务隔离级别和锁的关系
+              <a href="/2020/04/24/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/05%20java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E3%80%81volatile%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+                05 java内存模型、volatile的实现原理
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             

@@ -656,8 +656,8 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/1%20ArrayList/">
-										1 ArrayList
+									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/01%20ArrayList/">
+										01 ArrayList
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -665,8 +665,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/2%20ConcurrentHashMap/">
-										2 ConcurrentHashMap
+									<a href="/2020/04/27/03%20java/Java%E9%9B%86%E5%90%88/02%20HashMap/">
+										02 HashMap
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -674,8 +674,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/04/27/03%20java/Java%E9%9B%86%E5%90%88/3%20HashMap/">
-										3 HashMap
+									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/03%20ConcurrentHashMap/">
+										03 ConcurrentHashMap
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1119,8 +1119,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/12/01/08%20Mysql/10%20mysql%20%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86/">
-										10 mysql 索引原理
+									<a href="/2020/12/01/08%20Mysql/10%20mysql%20%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/">
+										10 mysql 索引原理及慢查询优化
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1962,20 +1962,20 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/12%20final/">
+			<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/13%20this%20%E7%9A%84%E6%9C%AC%E8%B4%A8/">
 				<h2 class="index-title">
-					12 final
+					13 this 的本质
 				</h2>
 				<div class="index-brief">
-					final 关键字
-作用：
-修饰变量：
-被他修饰的变量不可改变，一旦赋值，就不能被重新赋值。
-修饰方法：
-该方法不可被子类重写，但是可以被重载！
-修饰类:
-被修饰类不能被集成。比如Math、String等
+					创建一个对象分为四步：
 
+分配对象空间，并将对象成员变量初始化为0或空或false
+执行属性值的显式初始化
+执行构造方法
+返回对象的地址给相关的变量
+
+this的本质是“创建好的对象的地址”！由于在构造方法调用前，对象已经创建。因此，在构造方法中也可以使用this代表“当前对象”  ，
+不能在静态方
 					...
 				</div>
 			</a>
@@ -2056,6 +2056,28 @@ ElasticSearch是基于 Lucene 做了一些封装和增强
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/1%20%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E5%AE%B9%E9%87%8F/">
+				<h2 class="index-title">
+					1 存储单位容量
+				</h2>
+				<div class="index-brief">
+					1 Byte = 8 Bits.
+1 Kilobyte (KB) = 1024 Bytes.
+1 Megabyte (MB) = 1024 KB.
+1 Gigabyte (GB) = 1024 MB
+
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/2%20%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5url%20%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">
 				<h2 class="index-title">
 					2 在浏览器中输入url 发生了什么
@@ -2087,28 +2109,6 @@ DNS 域名解析
 服务器处理请求
 
 web 服务器解析用户请求，经过处理之后
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/1%20%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E5%AE%B9%E9%87%8F/">
-				<h2 class="index-title">
-					1 存储单位容量
-				</h2>
-				<div class="index-brief">
-					1 Byte = 8 Bits.
-1 Kilobyte (KB) = 1024 Bytes.
-1 Megabyte (MB) = 1024 KB.
-1 Gigabyte (GB) = 1024 MB
-
 					...
 				</div>
 			</a>
@@ -2199,9 +2199,9 @@ ApplicationContext是 BeanFactory 的子类，以一种更面向框架的工作�
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/1%20ArrayList/">
+			<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/01%20ArrayList/">
 				<h2 class="index-title">
-					1 ArrayList
+					01 ArrayList
 				</h2>
 				<div class="index-brief">
 					ArrayList

@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		HashMap底层、1.7与1.8区别、常见面试题 | 
+		ArrayList、CopyOnWriteArrayList、LinkedList、Vector区别 | 
 	 
 	温故知新
 	</title>
@@ -657,27 +657,27 @@
 									</a>
 									
 							<ul>
-								<li class="file">
-									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/1%20ArrayList/">
-										1 ArrayList
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/2%20ConcurrentHashMap/">
-										2 ConcurrentHashMap
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
 								<li class="file active">
-									<a href="/2020/04/27/03%20java/Java%E9%9B%86%E5%90%88/3%20HashMap/">
-										3 HashMap
+									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/01%20ArrayList/">
+										01 ArrayList
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/27/03%20java/Java%E9%9B%86%E5%90%88/02%20HashMap/">
+										02 HashMap
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/03%20ConcurrentHashMap/">
+										03 ConcurrentHashMap
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1121,8 +1121,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/12/01/08%20Mysql/10%20mysql%20%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86/">
-										10 mysql 索引原理
+									<a href="/2020/12/01/08%20Mysql/10%20mysql%20%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/">
+										10 mysql 索引原理及慢查询优化
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1963,357 +1963,72 @@
 	<div id="content">
 		<h1 id="article-title">
 
-	3 HashMap
+	01 ArrayList
 </h1>
 <div class="article-meta">
 	
 		<span>
-			阅读量:<span id="/2020/04/27/03%20java/Java%E9%9B%86%E5%90%88/3%20HashMap/" class="leancloud_visitors" data-flag-title="HashMap底层、1.7与1.8区别、常见面试题"></span>
+			阅读量:<span id="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/01%20ArrayList/" class="leancloud_visitors" data-flag-title="ArrayList、CopyOnWriteArrayList、LinkedList、Vector区别"></span>
 		</span>
 	
 	<span>今晚打老虎</span>
-	<span>2020-04-27 13:11:29</span>
+	<span>2020-04-28 16:43:09</span>
     
 		<div id="article-categories">
+            
+                
+                    <span>
+                        <i class="fa fa-folder" aria-hidden="true"></i>
+                        <a href="/categories/程序员/">程序员</a>
+						
+                    </span>
+                
             
 		</div>
     
 </div>
 
 <div id="article-content">
-	<p>谈谈hashMap的底层数据结构实现，以及JDK1.8后做了哪些改进、以及常见的面试题</p>
+	<hr>
 <a id="more"></a>
-<h1>数据结构</h1>
-<p><strong>1.7</strong></p>
-<blockquote>
-<ul>
-<li>
-<p>数组+链表</p>
-</li>
-<li>
-<p><code>Entry</code>节点是他的内部类，实现了<code>Map.ENTRY()</code></p>
-</li>
-<li>
-<p>插入过程使用<code>头插法</code>：扩容时死循环</p>
-</li>
-</ul>
-</blockquote>
-<p>1.8</p>
-<blockquote>
-<ul>
-<li>数组+链表+红黑树</li>
-<li><code>Node</code>节点是他的内部类，实现了<code>Map.ENTRY()</code></li>
-<li>使用<code>尾插法</code>：避免扩容时死循环</li>
-</ul>
-</blockquote>
-<h1>底层实现</h1>
-<p>从三个方面说：<code>put()</code>、 <code>get()</code>、 <code>resize()</code>，对比1.7版本与1.8版本。</p>
-<h2 id="jdk7-版本"><a class="header-anchor" href="#jdk7-版本"></a>jdk7 版本</h2>
-<h3 id="put"><a class="header-anchor" href="#put"></a>put()</h3>
-<blockquote>
-<p>是有返回值的，</p>
-<p>如果是key已存在，覆盖旧值，则返回旧值</p>
-<p>如果新key不存在，则返回null</p>
-</blockquote>
-<p><strong>源码</strong></p>
-<blockquote>
-<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427113334.png" alt="image-20200427113334153" style="zoom:50%;" />
-</blockquote>
-<p>如图所示，整个<code>**流程**</code>可以大致分为四步处理</p>
-<blockquote>
+<h1>ArrayList</h1>
+<h2 id="底层存储"><a class="header-anchor" href="#底层存储"></a>底层存储</h2>
+<p>数组列表</p>
+<p>如果存储的是基本类型，只能存包装类</p>
+<h2 id="特点："><a class="header-anchor" href="#特点："></a>特点：</h2>
+<p>查询快，增删慢，线程不安全</p>
+<h2 id="为什么不安全还用他呢？"><a class="header-anchor" href="#为什么不安全还用他呢？"></a>为什么不安全还用他呢？</h2>
+<p>因为，正常的场景，一般都是用来查询的，不会太频繁的增删（增删可以使用 LinkedList），线程安全使用 Vector</p>
+<p>不存在查询快，增删快，安全的结构</p>
+<h2 id="数组是定长的，如果不断的往-Arraylist-里添加数据，会有问题吗"><a class="header-anchor" href="#数组是定长的，如果不断的往-Arraylist-里添加数据，会有问题吗"></a>数组是定长的，如果不断的往 Arraylist 里添加数据，会有问题吗</h2>
+<p>无参构造，初始化默认空数组，第一次 <code>add</code> 的时候才会制定 10 的初始容量</p>
+<p>结论：不会有问题</p>
+<p>实现比较简单，通过数组扩容的方式去实现的。</p>
+<p>比如现在有一个长度为 10 的数组，我们需要新增一个元素，发现已经满了，Arraylist 会这样做</p>
 <ol>
-<li>key为null的处理</li>
-<li>计算目标bucket的下标：即数组中的位置</li>
-<li>找到指定bucket，遍历Entry节点链表，若找到相同key相同的Entry节点，则做替换</li>
-<li>未没有找到目标Entry节点时，则新增一个Entry节点</li>
+<li>重新定义一个长度为 10+10/2的数组，也就是新增一个长度为 15 的数组</li>
+<li>把原来的数据原封不动的<code>复制</code>到新数组中</li>
+<li>把指向原数组的地址，指向新数组</li>
 </ol>
-</blockquote>
-<p><code>putForNllKey（value）</code>：key为null的处理说明</p>
+<h2 id="1-7-与-1-8-在初始化时的区别"><a class="header-anchor" href="#1-7-与-1-8-在初始化时的区别"></a>1.7 与 1.8 在初始化时的区别</h2>
+<p>1.7以前，调动 <code>this(10)</code>才是真正的容量为 10</p>
+<p>1.7 即本身以后默认是走空数组，只有第一次 add 的时候容量才变为 10</p>
+<h2 id="为什么增删效率低"><a class="header-anchor" href="#为什么增删效率低"></a>为什么增删效率低</h2>
+<p>因为底层结构是数组，增删都设计到对指定索引后面数据的复制修改</p>
+<p>流程</p>
 <blockquote>
-<p>说明1：HashMap中，可以存在null的kv</p>
-<p>说明2：key为null的，固定是放在table[0]的位置：即下标为0的bucket</p>
-<ul>
-<li>首先选择**table[0]**位置的链表</li>
-<li>对链表做遍历操作</li>
-<li>如果有节点的key为null，则将新value替换掉旧value</li>
-<li>如果没有key为null的节点，则新增一个key为null的Entry节点</li>
-</ul>
+<p>增删都是一样的，都复制了一个数组</p>
+<p>一个容量为 10 的 ArrayList，</p>
+<p>如果插入的数据在 index5，</p>
+<p>那么就从index5开始复制后面的数组，然后把复制的数组放到 inde5+1 的位置</p>
+<p>插入新的元素</p>
 </blockquote>
-<p><code>void addEntry(int hash, K key, V value, int bucketIndex)</code></p>
-<blockquote>
-<p>这是一个通用方法</p>
-<p>给定四个参数，新增一个Entry节点，另外还担负了扩容职责。</p>
-<p>如果哈希表中存放的<strong>kv数量</strong>超过了当前<strong>阈值threshold</strong>，且当前的bucket下标有链表存在，那么就进行<strong>扩容resize</strong>处理</p>
-<p>扩容后，<strong>重新计算hash</strong>，得到新的bucket下标，然后使用<strong>头插法</strong>新增节点</p>
-</blockquote>
-<h3 id="2-1-2resize"><a class="header-anchor" href="#2-1-2resize"></a>2.1.2	resize()</h3>
-<p><strong>流程</strong></p>
-<blockquote>
-<ol>
-<li>
-<p>插入kv时，发现容量不足</p>
-</li>
-<li>
-<p>保存旧的数组（old table）</p>
-</li>
-<li>
-<p>根据新容量（2倍）新建数组（new table）</p>
-</li>
-<li>
-<p>将old table上的kv 转移到 new table 中</p>
-<blockquote>
-<ol>
-<li>遍历旧数组的每个数据</li>
-<li>重新计算每个<code>旧kv</code>在新数组的位置（<code>不含新kv</code>）</li>
-<li>将旧数组上的每个<code>旧kv</code>,逐个转移到新数组中（头插法，<code>不含新kv</code>）</li>
-</ol>
-</blockquote>
-</li>
-<li>
-<p>新数组引用到HashMap的table属性上</p>
-</li>
-<li>
-<p>重新设置扩容阈值（threshold）</p>
-</li>
-<li>
-<p>扩容结束</p>
-<blockquote>
-<p>此时table = 扩容后（2倍）+ 旧数据</p>
-</blockquote>
-</li>
-<li>
-<p>处理第一步要插入的kv</p>
-<blockquote>
-<ol>
-<li>计算新kv的hash值</li>
-<li>计算出新kv在table中的位置</li>
-<li>将数据插入到对应的位置</li>
-</ol>
-</blockquote>
-</li>
-</ol>
-</blockquote>
-<p><strong>源码</strong></p>
-<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427115545.png" alt="image-20200427115545105" style="zoom:50%;" />
-<p><strong>核心点1</strong>：扩容后大小是扩容前的<strong>2倍</strong></p>
-<blockquote>
-<pre><code class="language-java">oldCapacity = table.length;
-newCapacity = 2 * oldCapacity;
-</code></pre>
-</blockquote>
-<p><strong>核心点2</strong>：<strong>数据搬迁</strong>：从旧table（即数组）迁到扩容后的新table</p>
-<blockquote>
-<ol>
-<li>
-<p>先决策是否需要对每个Entry链表节点重新hash</p>
-</li>
-<li>
-<p>然后根据hash值计算得到bucket下标</p>
-</li>
-<li>
-<p>使用头插法做接点迁移</p>
-</li>
-</ol>
-</blockquote>
-<p><strong>核心点3</strong></p>
-<blockquote></blockquote>
-<h3 id="get"><a class="header-anchor" href="#get"></a>get()</h3>
-<p>相对于put（）方法，get（）方法的实现就简单多了，主要分为两步</p>
-<ol>
-<li>通过key的hash值计算出在table中的下标</li>
-<li>遍历对应table的链表，逐个对比，得到结果。</li>
-</ol>
-<h3 id="fail-fast策略"><a class="header-anchor" href="#fail-fast策略"></a>fail-fast策略</h3>
-<p>hashmap中有一个变量<code>modcount</code>，用于实现Hashmap中的快速失败</p>
-<p>在对Map的做迭代(Iterator)操作时，会将**<code>modCount</code><strong>域变量赋值给</strong><code>expectedModCount</code>**局部变量。</p>
-<p>在迭代过程中，用于做内容修改次数的一致性校验。</p>
-<p>如果两个对比不一致，则会抛出异常**<code>ConcurrentModificationException</code>**</p>
-<h2 id="jdk8-版本"><a class="header-anchor" href="#jdk8-版本"></a>jdk8 版本</h2>
-<h3 id="与jdk1-7的核心差异"><a class="header-anchor" href="#与jdk1-7的核心差异"></a>与jdk1.7的核心差异</h3>
-<ol>
-<li>
-<p>数据结构不同，1.8为数组+链表+红黑树</p>
-</li>
-<li>
-<p>resize时数据迁移的方式不同，1.8为尾插法</p>
-</li>
-<li>
-<p>链表节点的定义不同（内核没有变，不影响理解）：Entry–&gt;Node类，都实现了Map.Entry()</p>
-</li>
-</ol>
-<h3 id="put-v2"><a class="header-anchor" href="#put-v2"></a>put()</h3>
-<p>与1.7类似，多了转换红黑树的步骤，头插法变尾插法，其他与1.7类似</p>
-<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427105750.png" alt="image-20200427105750336" style="zoom:50%;" />
-<p><strong>源码</strong></p>
-<blockquote>
-<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427132313.png" alt="image-20200427132313825" style="zoom:50%;" />
-</blockquote>
-<h3 id="resize"><a class="header-anchor" href="#resize"></a>resize()</h3>
-<p><strong>流程</strong></p>
-<blockquote>
-<ol>
-<li>
-<p>插入新kv，发现容量不足</p>
-</li>
-<li>
-<p>异常情况判断</p>
-<blockquote>
-<ol>
-<li>是否需要初始化</li>
-<li>若当前容量  &gt; 最大值，则不扩容</li>
-</ol>
-</blockquote>
-</li>
-<li>
-<p>根据新容量（2倍）新建数组（new table）</p>
-</li>
-<li>
-<p>保存旧数组(old table)</p>
-</li>
-<li>
-<p>将旧数组上的数据转移到新数组中（old table -&gt; new table）</p>
-<blockquote>
-<ol>
-<li>
-<p>遍历数组的每个数据</p>
-</li>
-<li>
-<p>重新计算每个数据在新数组中的存储位置（<code>含新数据</code>）</p>
-<blockquote>
-<ul>
-<li>原位置  or  原位置+旧容量</li>
-</ul>
-</blockquote>
-</li>
-<li>
-<p>将旧数组上的每个主句逐个转移到新数组中（<code>含新数据</code>）</p>
-<blockquote>
-<p>尾插法</p>
-</blockquote>
-</li>
-</ol>
-</blockquote>
-</li>
-<li>
-<p>将新数组table引用到HashMap的table属性上</p>
-</li>
-<li>
-<p>重新设置扩容阈值（threshold）</p>
-</li>
-<li>
-<p>扩容结束</p>
-</li>
-</ol>
-</blockquote>
-<h3 id="get-v2"><a class="header-anchor" href="#get-v2"></a>get()</h3>
-<p>比较简单</p>
-<ol>
-<li>根据key计算出hash值，进一步计算得到table的下标，若bucket上为红黑树，则再进行红黑树查找，若不是红黑树，遍历链表</li>
-</ol>
-<p>map家族的关系</p>
-<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427105258.png" alt="image-20200427105258224" style="zoom:50%;" />
-<h1>HashMap、HashTable对比</h1>
-<h2 id="共同点"><a class="header-anchor" href="#共同点"></a>共同点</h2>
-<p>底层都是使用哈希表+链表的实现方式</p>
-<h2 id="不同点"><a class="header-anchor" href="#不同点"></a>不同点</h2>
-<ul>
-<li>
-<p>Hashtable线程安全，所有的操作都添加了Synchronized关键字修饰，效率低下</p>
-</li>
-<li>
-<p>很少使用hashtable了，太旧了</p>
-</li>
-<li>
-<p>HashTable  的 kv 都不能为null，否则直接npe</p>
-</li>
-</ul>
-<h1>HashMap线程不安全的原因</h1>
-<h2 id="数据覆盖问题"><a class="header-anchor" href="#数据覆盖问题"></a>数据覆盖问题</h2>
-<p>情景描述：</p>
-<blockquote>
-<p>两个线程执行<code>put（）</code>操作时，可能导致数据覆盖，1.7、1.8都存在此问题</p>
-<p>a、b两个线程同时执行put操作，且两个key都指向同一个bucket，那么此时两个结点都会做头插法</p>
-<pre><code class="language-java">public V put(K key, V value) {
-    ...
-    addEntry(hash, key, value, i);
-}
-
-void addEntry(int hash, K key, V value, int bucketIndex) {
-    ...
-    createEntry(hash, key, value, bucketIndex);
-}
-
-void createEntry(int hash, K key, V value, int bucketIndex) {
-    Entry&lt;K,V&gt; e = table[bucketIndex];
-    table[bucketIndex] = new Entry&lt;&gt;(hash, key, value, e);
-    size++;
-}
-
-</code></pre>
-<p>看下最后的<code>createEntry()</code>方法，首先获取到了bucket上的头结点，然后再将新结点作为bucket的头部，并指向旧的头结点，完成一次头插法的操作。<br>
-当线程A和线程B都获取到了bucket的头结点后，若此时线程A的时间片用完，线程B将其新数据完成了头插法操作，此时轮到线程A操作，但这时线程A所据有的旧头结点已经过时了（并未包含线程B刚插入的新结点），线程A再做头插法操作，就会抹掉B刚刚新增的结点，导致数据丢失。</p>
-<p>其实不光是<code>put()</code>操作，删除操作、修改操作，同样都会有覆盖问题。</p>
-</blockquote>
-<h2 id="扩容时导致死循环"><a class="header-anchor" href="#扩容时导致死循环"></a>扩容时导致死循环</h2>
-<p>1.7多线程会出现，因为扩容使用头插法，将原本的顺序做了翻转</p>
-<p>1.8就没有了，因为用了尾插法。</p>
-<h1>如何规避HashMap的线程不安全</h1>
-<h2 id="将Map转为包装类"><a class="header-anchor" href="#将Map转为包装类"></a>将Map转为包装类</h2>
-<p>**<code>Collections.SynchronizedMap()</code>**方法，实例代码：</p>
-<pre><code class="language-java">Map&lt;String, Integer&gt; testMap = new HashMap&lt;&gt;();
-...
- // 转为线程安全的map
-Map&lt;String, Integer&gt; map = Collections.synchronizedMap(testMap);
-</code></pre>
-<p>内部实现很简单，等同于Hashtable，只是对当前传入的map对象，新增对象锁（synchronized）</p>
-<h2 id="使用ConcurrentHashMap"><a class="header-anchor" href="#使用ConcurrentHashMap"></a>使用ConcurrentHashMap</h2>
-<h1>链表转红黑树的阈值是8，而不是7或者20？</h1>
-<p>由于treenode（红黑树节点）的大小约是常规节点(HashMap的node节点？)的两倍，</p>
-<p>因此我们仅在容器包含足够的节点以保证使用时，才才使用他们</p>
-<blockquote>
-<p>这句话是什么意思呢？就是因为红黑树节点占用空间，不到万不得已不用他</p>
-</blockquote>
-<p>当他们（红黑树）变得太小（由于移除或调整大小）时，会转换成普通节点</p>
-<blockquote>
-<p>如果红黑树&lt;=6退化成链表</p>
-<p>如果链表长度&gt;=8转变为红黑树</p>
-<p>中间有个<code>差值7</code>可以有效防止链表和树的频繁转换</p>
-<p>如果没有这个<code>差值7</code>的话，一个HashMap不听的插入删除，长度一会7一会8，就会发生频发的转变</p>
-</blockquote>
-<p>容器中节点分布在hash桶中的频率符合泊松分布，桶的长度超过8的概率非常小，约百万分之1？</p>
-<h1>哈希表如何解决Hash冲突？</h1>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427152811.png" alt="image-20200427152811036"></p>
-<h1>为什么HashMap使用String、Integer这样的包装类做为key</h1>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427152956.png" alt="image-20200427152956728"></p>
-<h1>如果key为Object类型，需要如何处理?</h1>
-<p>重写<code>HashCode（）</code>、<code>equals()</code></p>
-<p><code>HashCode（）</code></p>
-<blockquote>
-<p>计算数据的存储位置</p>
-<p>实现不恰当，可能会导致严重的hash碰撞</p>
-</blockquote>
-<p><code>equals()</code></p>
-<blockquote>
-<p>用于比较是否存在相同key，用于新增或更新</p>
-<p>保证键key在哈希表中的唯一性</p>
-</blockquote>
-<h1>为什么每次扩容是 2的幂次</h1>
-<ol>
-<li>方便位运算</li>
-<li>均匀分布</li>
-</ol>
-<h1>如何计算在数组中的位置</h1>
-<p>用 hash 值对数组的长度取余(取模)</p>
-<p>在 java 中是通过位运算来优化性能的，可以简单的理解成取模操作</p>
-<p>通过 hash 函数，将字符串或者其他类型的 key 转化成数组的下标 index</p>
-<p>给出一个长度为 8 的数组，当 key=001121 时</p>
-<pre><code class="language-java">index = hashCode(&quot;001121&quot;) % Array.length = 1420036703 % 8 = 7
-</code></pre>
-<h1>扩容的条件</h1>
-<pre><code class="language-java">// Capacity 即 HashMap 当前的长度
-// LoadFactor 负载因子，默认是 0.75
-HashMap.size() &gt;= Capacity X LoadFactor
-</code></pre>
+<p>10 个长度的 Arraylist，如果要插入的数据在 index5，那么需要将 index5 后面的所有数据都往后挪一下，空出这个 5 来给新插入的数据用</p>
+<h2 id="是线程安全的吗？"><a class="header-anchor" href="#是线程安全的吗？"></a>是线程安全的吗？</h2>
+<p>不是</p>
+<p>线程安全可以使用Vector</p>
+<p>就是线程安全版本的 ArrayList，所有的方法的都加上了 Synchronized</p>
+<p>也可以使用 Collections.synchronizedList 把一个普通 ArrayList 包装成一个线程安全的</p>
 
 </div>
 
@@ -2322,16 +2037,16 @@ HashMap.size() &gt;= Capacity X LoadFactor
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/2%20ConcurrentHashMap/">
+              <a href="/2020/05/07/04%20Spring/5%20BeanFactory-%E5%92%8C-ApplicationContext-%E5%8C%BA%E5%88%AB/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  2 ConcurrentHashMap
+                  
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2020/04/24/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/05%20java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E3%80%81volatile%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
-                05 java内存模型、volatile的实现原理
+              <a href="/2020/04/28/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/10%20ThreadLocal/">
+                10 ThreadLocal
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
