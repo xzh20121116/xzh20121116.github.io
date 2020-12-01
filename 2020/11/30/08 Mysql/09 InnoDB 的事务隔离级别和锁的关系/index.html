@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		count(*)、count(主键 id)、count(字段) 和 count(1) 等不同用法的性能差别 | 
+		InnoDB 的事务隔离级别和锁的关系 | 
 	 
 	温故知新
 	</title>
@@ -1040,8 +1040,8 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/07/21/08%20Mysql/1%20%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95/">
-										1 聚簇索引和非聚簇索引
+									<a href="/2020/07/21/08%20Mysql/01%20%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95/">
+										01 聚簇索引和非聚簇索引
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1049,8 +1049,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/07/21/08%20Mysql/2%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B0%83%E4%BC%98/">
-										2 数据库调优
+									<a href="/2020/07/21/08%20Mysql/02%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B0%83%E4%BC%98/">
+										02 数据库调优
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1058,8 +1058,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/07/21/08%20Mysql/3%20%E7%B4%A2%E5%BC%95/">
-										3 索引
+									<a href="/2020/07/21/08%20Mysql/03%20%E7%B4%A2%E5%BC%95/">
+										03 索引
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1067,8 +1067,44 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/04/23/08%20Mysql/4%20%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%A0%E4%BA%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%A1%A8%E7%9A%84%E5%A4%A7%E5%B0%8F%E4%B8%8D%E5%8F%98%EF%BC%9F/">
-										4 为什么删了数据，表的大小不变？
+									<a href="/2020/04/23/08%20Mysql/04%20%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%A0%E4%BA%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%A1%A8%E7%9A%84%E5%A4%A7%E5%B0%8F%E4%B8%8D%E5%8F%98%EF%BC%9F/">
+										04 为什么删了数据，表的大小不变？
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/22/08%20Mysql/05%20count(*)%E3%80%81count(%E4%B8%BB%E9%94%AE%20id)%E3%80%81count(%E5%AD%97%E6%AE%B5)%E5%92%8Ccount(1)%E7%AD%89%E4%B8%8D%E5%90%8C%E7%94%A8%E6%B3%95%E7%9A%84%E6%80%A7%E8%83%BD/">
+										05 count(*)、count(主键 id)、count(字段)和count(1)等不同用法的性能
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/22/08%20Mysql/06%20mysql%20%E7%9A%84%E5%87%A0%E4%B8%AA%E6%97%A5%E5%BF%97/">
+										06 mysql 的几个日志
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/22/08%20Mysql/07%20mysql%20%E5%A6%82%E4%BD%95%E4%B8%BB%E5%A4%87%E4%B8%80%E8%87%B4+%E5%8F%8Cm%E5%BE%AA%E7%8E%AF%E5%A4%8D%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+										07 mysql 如何主备一致+双m循环复制解决方案
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/21/08%20Mysql/08%20mysql%E4%B9%8B%E9%94%81/">
+										08 mysql之锁
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1076,8 +1112,8 @@
 			
 							<ul>
 								<li class="file active">
-									<a href="/2020/04/22/08%20Mysql/5%20count(*)%E3%80%81count(%E4%B8%BB%E9%94%AE%20id)%E3%80%81count(%E5%AD%97%E6%AE%B5)%E5%92%8Ccount(1)%E7%AD%89%E4%B8%8D%E5%90%8C%E7%94%A8%E6%B3%95%E7%9A%84%E6%80%A7%E8%83%BD/">
-										5 count(*)、count(主键 id)、count(字段)和count(1)等不同用法的性能
+									<a href="/2020/11/30/08%20Mysql/09%20InnoDB%20%E7%9A%84%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E9%94%81%E7%9A%84%E5%85%B3%E7%B3%BB/">
+										09 InnoDB 的事务隔离级别和锁的关系
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1085,35 +1121,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/04/22/08%20Mysql/6%20mysql%20%E7%9A%84%E5%87%A0%E4%B8%AA%E6%97%A5%E5%BF%97/">
-										6 mysql 的几个日志
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2020/04/22/08%20Mysql/7%20mysql%20%E5%A6%82%E4%BD%95%E4%B8%BB%E5%A4%87%E4%B8%80%E8%87%B4+%E5%8F%8Cm%E5%BE%AA%E7%8E%AF%E5%A4%8D%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
-										7 mysql 如何主备一致+双m循环复制解决方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2020/04/21/08%20Mysql/8%20mysql%E4%B9%8B%E9%94%81/">
-										8 mysql之锁
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2020/11/30/08%20Mysql/9%20InnoDB%20%E7%9A%84%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E9%94%81%E7%9A%84%E5%85%B3%E7%B3%BB/">
-										9 InnoDB 的事务隔离级别和锁的关系
+									<a href="/2020/12/01/08%20Mysql/10%20mysql%20%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86/">
+										10 mysql 索引原理
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1954,16 +1963,16 @@
 	<div id="content">
 		<h1 id="article-title">
 
-	5 count(*)、count(主键 id)、count(字段)和count(1)等不同用法的性能
+	09 InnoDB 的事务隔离级别和锁的关系
 </h1>
 <div class="article-meta">
 	
 		<span>
-			阅读量:<span id="/2020/04/22/08%20Mysql/5%20count(*)%E3%80%81count(%E4%B8%BB%E9%94%AE%20id)%E3%80%81count(%E5%AD%97%E6%AE%B5)%E5%92%8Ccount(1)%E7%AD%89%E4%B8%8D%E5%90%8C%E7%94%A8%E6%B3%95%E7%9A%84%E6%80%A7%E8%83%BD/" class="leancloud_visitors" data-flag-title="count(*)、count(主键 id)、count(字段) 和 count(1) 等不同用法的性能差别"></span>
+			阅读量:<span id="/2020/11/30/08%20Mysql/09%20InnoDB%20%E7%9A%84%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E9%94%81%E7%9A%84%E5%85%B3%E7%B3%BB/" class="leancloud_visitors" data-flag-title="InnoDB 的事务隔离级别和锁的关系"></span>
 		</span>
 	
 	<span>今晚打老虎</span>
-	<span>2020-04-22 15:28:14</span>
+	<span>2020-11-30 15:28:14</span>
     
 		<div id="article-categories">
             
@@ -1972,71 +1981,279 @@
 </div>
 
 <div id="article-content">
-	<p>count(*)、count(主键 id)、count(字段) 和 count(1) 等不同用法的性能，有哪些差别。</p>
+	<p>我们都知道事务的几种性质，数据库为了维护这些性质，尤其是一些隔离性和一致性，一般使用加锁的方式。同时数据库又是个高并发的应用，同一时间会有大量的并发访问，如果加锁过度，会极大的降低并发处理能力。所以对于加锁的处理，可以说是数据库对于事务处理的精髓所在。这里通过分析MySQL中 InnoDB引擎的加锁机制，来理解在事务处理中数据库到底做了什么？</p>
 <a id="more"></a>
-<p><strong>count() 是一个聚合函数</strong>，对于返回的结果集，一行行地判断，如果 count 函数的参数不是 NULL，累计值就加 1，否则不加。最后返回累计值。</p>
-<p>所以，count(*)、count(主键 id) 和 count(1) 都表示返回满足条件的结果集的总行数；而 count(字段），则表示返回满足条件的数据行里面，参数“字段”不为 NULL 的总个数。</p>
-<h2 id="count（-）"><a class="header-anchor" href="#count（-）"></a>count（*）</h2>
-<p><strong>count（*）的实现方式</strong></p>
-<blockquote>
-<p><strong>无条件筛选</strong>的情况下是这样实现的：</p>
+<h2 id="一次封锁-or-两段锁？"><a class="header-anchor" href="#一次封锁-or-两段锁？"></a>一次封锁 or 两段锁？</h2>
+<p>因为有大量的并发访问，为了预防死锁，一般应用中推荐使用一次封锁，就是在方法的开始阶段，已经预先知道会使用哪些数据，然后全部锁住，在方法运行之后，再全部解锁。这种方式可以有效避免循环死锁，但在数据库中却不适用，因为在事务开始阶段，并不知道会使用到哪些数据。</p>
+<p>数据库遵循的是两段锁协议，将事务分成两个阶段，加锁阶段和解锁阶段（所以叫两段锁）</p>
 <ul>
-<li>MyIsam：把表的总行数存在了磁盘上，因此执行count（*）的时候直接返回这个数，效率高</li>
-<li>Innodb：需要把数据一行一行的从引擎里读出来，然后累积计数</li>
+<li>
+<p>加锁阶段：在改阶段可以进行加锁操作。在对任何数据进行<strong>读</strong>操作之前都要申请并获得 S 锁（共享锁，其他事务可以继续加共享锁，但不能加排他锁），在进行<strong>写</strong>操作之前要申请并获得 X 锁（排他锁，其他事务不能再获得任何锁）。加锁不成功，则事务进入等待状态，直到加锁成功才继续执行。</p>
+</li>
+<li>
+<p>解锁阶段：当事务释放了一个封锁之后，事务进入解锁阶段，在该阶段只能进行解锁操作不能再进行加锁操作。</p>
+<table>
+<thead>
+<tr>
+<th>事务</th>
+<th>加锁/解锁处理</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>begin；</td>
+<td></td>
+</tr>
+<tr>
+<td>insert into xxtable</td>
+<td>加 insert 对应的锁</td>
+</tr>
+<tr>
+<td>update xxtable set</td>
+<td>加 update 对应的锁</td>
+</tr>
+<tr>
+<td>delete from xxtable</td>
+<td>加 delete 对应的锁</td>
+</tr>
+<tr>
+<td>commit;</td>
+<td>事务提交时，同时释放 insert、update、delete 对应的锁</td>
+</tr>
+</tbody>
+</table>
+</li>
 </ul>
-</blockquote>
-<p><strong>为什么innodb 不跟 MyISAM一样，存个总数</strong></p>
+<p>这种方式虽然无法避免死锁，但是两段锁协议可以保证事务的鬓发调度是串行化（串行化很重要，尤其是在回复数据和备份的时候）的。</p>
+<h2 id="事务中的加锁方式"><a class="header-anchor" href="#事务中的加锁方式"></a>事务中的加锁方式</h2>
+<h3 id="四种隔离级别"><a class="header-anchor" href="#四种隔离级别"></a>四种隔离级别</h3>
 <blockquote>
-<p>因为，即使在<strong>同一个时刻</strong>的<strong>多个查询</strong>，由于mvcc的原因，该返回多少行是不确定的</p>
+<p>在数据库操作中，为了有效保证并发读数据的正确性，提出的事务隔离界别。数据库的锁，就是为了构建这些隔离界别而存在的。</p>
 </blockquote>
-<p>InnoDB，主键索引树叶子节点存的是数据，普通索引树的叶子节点存的是主键值，所有：普通索引树比主键索引树小很多。</p>
-<p>count(*)  并不会把全部字段取出来，而是专门做了优化，<strong>不取值</strong>。count( *) 肯定不是 null，<strong>按行累加</strong>。</p>
-<p>对于<strong>count(*)</strong>，遍历哪个树，结果都是一样的，因此，mysql的优化器会找到最小的树来遍历</p>
-<p><strong>为什么不用show table status</strong></p>
-<blockquote>
-<p>这个命令的输出结果里面有一个<strong>table_rows</strong>用于显示这个表当前有多少行。</p>
-<p>索引统计的值是通过采样估算出来的，<strong>table_rows</strong>也是采样估算的，很不准确，官方称误差达到40%到50%</p>
-</blockquote>
-<p><strong>小结</strong></p>
-<blockquote>
-<ul>
-<li>MyISAM 表虽然 count(*) 很快，但是不支持事务；</li>
-<li>show table status 命令虽然返回很快，但是不准确；</li>
-<li>InnoDB 表直接 count(*) 会遍历全表，虽然结果准确，但会导致性能问题</li>
-</ul>
-</blockquote>
-<h2 id="分析性能差别的原则"><a class="header-anchor" href="#分析性能差别的原则"></a><strong>分析性能差别的原则</strong></h2>
 <ol>
-<li>server层要什么就给什么</li>
-<li>InnoDB只给必要的值</li>
-<li>现在的优化器只优化了 count(*) 的语义为“取行数”，其他“显而易见”的优化并没有做。</li>
+<li>读未提交：允许脏读，也就是可能读取到其他会话中为提交事务修改的数据（一般数据库都不会用）</li>
+<li>读已提交：只能读到已经提交的数据，Oracle 的默认隔离界别（不重复读）</li>
+<li>可重复读：只管自己启动事务时的状态，不受其他事务的影响（mysql 默认）</li>
+<li>串行化：按照顺序提交事务，每次读都需要获得表级的共享锁，读写都会阻塞</li>
 </ol>
-<p>这是什么意思呢？下面一个个分析</p>
-<h2 id="count-主键-id"><a class="header-anchor" href="#count-主键-id"></a><strong>count(主键 id)</strong></h2>
-<p>InnoDB <strong>遍历整个表</strong> ，把每一行的id<strong>值都取出来</strong>，返回给server层。server层拿到id后，判断是不可能为空的，就按行累加</p>
-<h2 id="count-1"><a class="header-anchor" href="#count-1"></a><strong>count(1)</strong></h2>
-<p>InnoDB 引擎<strong>遍历整张表</strong>，但<strong>不取值</strong>。server 层对于返回的每一行，放一个数字“1”进去，判断是不可能为空的，按行累加。</p>
-<p>比**count（主键id）**快，因为这里不涉及解析数据行、拷贝字段值的操作</p>
-<h2 id="count-字段"><a class="header-anchor" href="#count-字段"></a><strong>count(字段)</strong></h2>
-<p>需要区分<strong>字段是否not null</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">隔离级别</th>
+<th style="text-align:left">脏读（Dirty Read）</th>
+<th style="text-align:left">不可重复读（NonRepeatable Read）</th>
+<th style="text-align:left">幻读（Phantom Read）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">未提交读（Read uncommitted）</td>
+<td style="text-align:left">可能</td>
+<td style="text-align:left">可能</td>
+<td style="text-align:left">可能</td>
+</tr>
+<tr>
+<td style="text-align:left">已提交读（Read committed）</td>
+<td style="text-align:left">不可能</td>
+<td style="text-align:left">可能</td>
+<td style="text-align:left">可能</td>
+</tr>
+<tr>
+<td style="text-align:left">可重复读（Repeatable read）</td>
+<td style="text-align:left">不可能</td>
+<td style="text-align:left">不可能</td>
+<td style="text-align:left">可能（实践未复现幻读）</td>
+</tr>
+<tr>
+<td style="text-align:left">可串行化（Serializable ）</td>
+<td style="text-align:left">不可能</td>
+<td style="text-align:left">不可能</td>
+<td style="text-align:left">不可能</td>
+</tr>
+</tbody>
+</table>
+<p>MySQL 中锁的种类</p>
+<p>MySQL 中锁的种类很多，有常见的表锁和行锁，Metadata等等，表锁是对一整张表加锁，虽然可以分为读锁和写锁，但毕竟是锁住整张表，会导致并发能力下降，一般是做 ddl 处理时使用。</p>
+<p>行锁则是锁住数据行，这种加锁方式比较复杂，但是由于只锁住优先的数据，对于其他数据不加限制，所以并发能力强，MySQL 一般都是用行锁来处理并发事务，这里主要讨论的也就是行锁</p>
+<h3 id="Read-Committed（读已提交）"><a class="header-anchor" href="#Read-Committed（读已提交）"></a>Read Committed（读已提交）</h3>
+<p>在RC 级别中，数据的读取都是不加锁的，但是数据的写入、修改和删除是需要加锁的，效果如下</p>
+<pre><code class="language-bash">MySQL&gt; show create table class_teacher \G\
+Table: class_teacher
+Create Table: CREATE TABLE `class_teacher` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `class_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `teacher_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_teacher_id` (`teacher_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+1 row in set (0.02 sec)
+MySQL&gt; select * from class_teacher;
++----+--------------+------------+
+| id | class_name   | teacher_id |
++----+--------------+------------+
+|  1 | 初三一班     |          1 |
+|  3 | 初二一班     |          2 |
+|  4 | 初二二班     |          2 |
++----+--------------+------------+
+</code></pre>
+<p>由于MySQL的InnoDB默认是使用的RR级别，所以我们先要将该session开启成RC级别，并且设置binlog的模式</p>
+<pre><code class="language-sql">SET session transaction isolation level read committed;
+SET SESSION binlog_format = 'ROW';（或者是MIXED）
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>事务 A</th>
+<th>事务 B</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>begin；</td>
+<td>begin</td>
+</tr>
+<tr>
+<td>update class_teacher set class_name=’A 班’ where teacher_id=1;</td>
+<td>update class_teacher set class_name=‘B 班’ where teacher_id=1;</td>
+</tr>
+<tr>
+<td>commit;</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>为了防止并发过程中修改冲突，事务 A 中 MySQL 给 teacher_id=1 =1 的数据加行锁，并一直不 commit（释放锁），那么事务 B 也就拿不到该行锁，wait 直到超时。</p>
+<p>这时，我们需要注意，teacher_id=1 是有<strong>索引</strong>的，如果条件改成没有索引的字段 class_name ，where class_name =“初一三班”，那么 mysql 会给整张表的所有数据行家上行锁。这里听起来有点不可思议，但是当 sql 运行的过程中，MySQL 并不知道哪些数据行是 class_name ='初一三班’（没有索引嘛），如果一个条件无法通过索引快速过滤，存储引擎层面就会将所有记录加锁返回，再由 MySQL 的 server 层进行过滤。</p>
+<p>但是！！在实际的使用过程中，MySQL 做了一下改进，在 Server 过滤条件，发现不满足后，会调用 unlock_row方法，把不满足条件的记录释放锁（违背了两段锁协议的约束）。这样做，保证了最后只会持有满足条件记录上的锁，但是每条记录的加锁操作是不能省略的。可见，即使是 MySQL，为了效率也会违反规范的。</p>
+<p>这种情况同样适用于 MySQL 默认隔离界别 RR。所以对一个数据量很大的表做批量修改的时候，如果无法使用相应的索引，MySQL Server 过滤数据的时候特别慢，就会出现虽然没有修改某些行的数据，但是他们还是被锁住了的现象。</p>
+<h3 id="Repeatable-Read（可重读）"><a class="header-anchor" href="#Repeatable-Read（可重读）"></a>Repeatable Read（可重读）</h3>
+<p>这是 MySQL 中 InnoDB 默认的隔离级别。拆分为”读”和”写”两个模块来讲解</p>
+<h4 id="读"><a class="header-anchor" href="#读"></a>读</h4>
+<hr>
+<p>读就是可重读，可重读这个概念是一事务的多个实例在并发读取数据时，会看到同样的数据行，有点抽象，看下效果</p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20201130162215.png" alt="image-20201130162215019" style="zoom:50%;" />
+<p>事务 B 修改 id=1 的数据提交之后，事务 A 同样的查询，后一次和前一次的结果不一样，这就是不可重读（重新读取产生的结果不一样）。这就很可能带来一些问题。</p>
+<hr>
+<p>下面是 RR 级别中 MYSQL 的表现：</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20201130162635.png" alt="image-20201130162635607"></p>
+<p>注意到，当 teacher_id =1 时，事务 A 先做了一次读取，事务 B 中间修改了 id=1 的数据，并 commit 之后，事务 A 第二次读到的数据和第一次完全相同，所以说它是可重复读到。</p>
+<p>MySQL 是怎么做到的呢？</p>
+<hr>
+<h3 id="不可重复读和幻读的区别"><a class="header-anchor" href="#不可重复读和幻读的区别"></a>不可重复读和幻读的区别</h3>
+<p>很容易搞混的不可重复读和幻读，不可重复读重点在 update 和 delete。幻读重点在 insert</p>
+<p>如果使用锁机制来实现这两种隔离级别，在可重复读中，该 sql 第一次读取到数据后，就将这些数据加锁，其他事务无法修改这些数据，就可以实现可重复读了。但这种方法却无法锁住 insert 的数据，所以当事务 A 闲钱读取了数据，或者修改了全部数据，事务 B 还是可以 insert 数据提交，这时事务 A 就会发现莫名其妙多了一条之前没有的数据，这就是幻读，不能通过行锁来避免，需要Serializable隔离级别，读用读锁，写用写锁，读写互斥，这么做可以有效避免幻读、不可重复读、脏读等，但会极大的降低数据库的并发能力</p>
+<p>所以说不可重复读和幻读最大的区别，就在于如何通过锁机制来解决他们产生的问题。</p>
+<p>上面说的，是使用悲观锁来处理这两种问题。但是成熟的数据库（MySQL、ORACLE、PostgreSQL等）出于性能考虑，都使用了以乐观锁为理论基础的 MVCC 来避免这两中问题</p>
+<h3 id="悲观锁和乐观锁"><a class="header-anchor" href="#悲观锁和乐观锁"></a>悲观锁和乐观锁</h3>
 <ul>
-<li>
-<p>非空</p>
-<blockquote>
-<p>一行行的从记录里面读出这个字段，判断不能为null，按行累加</p>
-</blockquote>
+<li>悲观锁</li>
+</ul>
+<p>正如其名，它指的是对数据被外界（包括本系统当前的其他事务，以及来自外部系统的事务处理）修改持保守态度，因此，在整个数据处理过程中，将数据处于锁定状态。悲观锁的实现，往往依靠数据库提供的锁机制（也只有数据库层提供的锁机制才能真正保证数据访问的排他性，否则，即使在本系统中实现了加锁机制，也无法保证外部系统不会修改数据）</p>
+<p>在悲观锁的情况下，为了保证食物的隔离性，就需要一致性锁定读。读取数据时给加锁，其他事务无法修改这些数据。修改删除数据时也要加锁，其他事务法务读取这些数据。</p>
+<ul>
+<li>乐观锁</li>
+</ul>
+<p>相对悲观锁而言，乐观锁采取了更加宽松的加锁机制。悲观锁大多数情况下依靠数据库的锁机制实现，以保证操作最大程度的独占性。但随之而来的数据库性能的大幅度下降，特别是对于长事务而言，这样的开销往往无法承受。</p>
+<p>而乐观锁机制在一定程度上解决了这个问题。乐观锁，大多是基于数据版本（Version）记录机制实现的。什么是数据版本？即为数据增加一个版本标识，在基于数据库表的版本解决方案中，一般是通过为数据库表增加一个“version”字段来实现。读取数据时，将此版本号一同读出，之后更新时，对此版本号加一。此时，将提交数据的版本数据与数据库表对应记录的当前版本信息进行对比，如果提交的数据版本大于数据库表当前版本号，则予以更新，否则认为是过期数据。</p>
+<h3 id="MVCC-在-MySQL-的-InnoDB-中的实现"><a class="header-anchor" href="#MVCC-在-MySQL-的-InnoDB-中的实现"></a>MVCC 在 MySQL 的 InnoDB 中的实现</h3>
+<p>MultiVersion Concurrency Control</p>
+<p>多版本并发控制</p>
+<p>理解为：事务对数据库的任何修改都不会直接覆盖之前的数据，而是产生一个新的版本与老版本共存，使得读取时可以完全不加锁。</p>
+<p>一个事务在读取一行数据时，由具体的隔离级别来控制到底读取该行的哪个版本。同时在读取的过程中完全不加锁，除非用 select XXX for update 强行加锁。</p>
+<p>MVCC 的实现没有固定的规范，每个数据库都会有不同的实现方式，这里讨论的是InnoDB 的 MVCC。</p>
+<p>在 InnoDB 中，会在每行数据后添加两个额外的隐藏的值来实现 MVCC，这两个值一个记录什么时候被创建，另外一个记录这行数据什么时候过期（或者被删除）。实际操作中，存储的不是时间，而是事务的版本号，没开启一个事务，版本号就会递增，在<strong>可重复读</strong>级别下：</p>
+<ul>
+<li>select 时：读取创建版本号 &lt;= 当前事务版本号，删除版本号为空或者 &gt; 当前事务版本号 的行数据</li>
+<li>Insert 时：保存 当前事务版本号 为该行的创建版本号</li>
+<li>Delete 时：保存 当前事务版本号 为改行的删除版本号</li>
+<li>Update 时：插入一条新记录，保存当前事务版本号为行创建版本号，同事保存当前事务版本号到原来删除的行</li>
+</ul>
+<p>通过 MVCC，虽然每行记录都需要额外的存储空间，更多的行检查工作以及一些额外的维护工作，但可以减少锁的使用，大多数读操作都不用加锁，读数据操作很简单，性能很好，并且能保证只读取到符合标准的行，也只锁住必要的行。</p>
+<p>无论是网上，还是一些书籍中  RR 级别是可重复读，但无法解决<strong>幻读</strong>，而只有Serializable级别才能解决幻读，用下面的例子来检测一下：</p>
+<p>事务A在查询teacher_id=1的数据时会读到事务C新加的数据。但是测试后发现，在MySQL中是不存在这种情况的，在事务C提交后，事务A还是不会读到这条数据。（未复现幻读，mysql 已经解决了幻读？）</p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20201130144328.png" alt="image-20201130144328080" style="zoom:50%;" />
+<p>读问题解决了，根据 MVCC的定义，并发提交数据时会出现冲突，那么冲突如何解决呢？看看 InnoDB 中 RR 级别对于写数据的处理。</p>
+<h3 id="“读”与“读”的区别"><a class="header-anchor" href="#“读”与“读”的区别"></a>“读”与“读”的区别</h3>
+<p>可能有人挥一挥，事务的隔离级别其实都是对于读数据的定义，但到了这里，就被拆解成读和写两个模块来讲解。这主要是因为 MySQL 中的读，和事务隔离级别中的读，是不一样的。</p>
+<p>我们且看，在 RR 级别中，通过 MVCC 机制，虽然让数据变得可重复读，但我们读到的数据可能是历史数据，是不及时的数据，不是数据库当前的数据！这在一些对于数据的时效特别敏感的业务中，就很可能出问题。</p>
+<p>对于这种读取历史数据的方式，我们叫他快照度（snapshot read），而读取数据库当前版本数据的当时，叫当前读（current read）。很显然，在 MVCC 中：</p>
+<ul>
+<li>快照度：就是 select
+<ul>
+<li>select * from table …;</li>
+</ul>
 </li>
-<li>
-<p>可以为空</p>
-<blockquote>
-<p>一行行的从记录里面读出这个字段，把值取出来，不是null，才累加</p>
-</blockquote>
+<li>当前读：特殊的读操作，插入/更新/删除操作，属于当前读，处理的都是当前的数据，需要加锁。
+<ul>
+<li>select * from table where ? lock in share mode;</li>
+<li>select * from table where ？for update;</li>
+<li>insert;</li>
+<li>update;</li>
+<li>delete</li>
+</ul>
 </li>
 </ul>
-<p><strong>以上都对应第一条原则：server要什么字段，innoDB就给什么字段</strong>，但是count（*）是个例外</p>
-<h2 id="效率排行"><a class="header-anchor" href="#效率排行"></a>效率排行</h2>
-<p>count(字段) &lt; count(主键 id) &lt;  count(1) ≈ count(*)</p>
-<p>推荐使用 count（*），因为有专门的优化</p>
+<p>事务的隔离级别实际上都是定义了当前读的级别，MySQL 为了减少锁处理（包括等待其他锁）的时间，提升并发能力，引入了快照读的概念，使得 select 不用加锁。而 update、insert这些“当前读”，这需要另外的模块来解决了。</p>
+<h3 id="写（”当前读”）"><a class="header-anchor" href="#写（”当前读”）"></a>写（”当前读”）</h3>
+<p>事务的隔离级别汇总虽然只定义了读数据的要求，实际上这也可以说是写数据的要求。上文的“读”，实际是讲的快照读；而这里说的“写”就是当前读了。</p>
+<p>为了解决当前读中的幻读问题，MySQL 事务使用了Next-Key 锁</p>
+<h3 id="Next-Key"><a class="header-anchor" href="#Next-Key"></a>Next-Key</h3>
+<p>Next-Key 锁是行锁和 GAP（间隙所）的合并，行锁上文已经介绍，接下来说下 GAP 间隙锁。</p>
+<p>行锁可以防止不同事务版本的数据修改提交时造成数据冲突的情况。但是如何避免别的事务插入数据就成了问题。我们可以看下 RR 级别和 RC 级别的对比</p>
+<p>RR 级别：</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20201130170234.png" alt="image-20201130170234173"></p>
+<p>RC 级别：</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20201130170259.png" alt="image-20201130170259007"></p>
+<p>通过对比我们可以发现，在 RC 级别中，事务 A 修改了所有 teacher_id=30 的数据，但是当事务B insert 进新数据后，事务 A 发现莫名其妙多了一行 teacher_id=30的数据，而且没有被之前的 update 语句所修改，这就是“当前读”的幻读。</p>
+<p>RR 级别中，事务 A 在 update 后加锁，事务 B 无法插入新数据，这样事务 A 在 updage 前后读的数据保持一致，避免了幻读。这个锁，就是 Gap 锁。</p>
+<p>MySQL 是这么实现：</p>
+<p>在 class_teacher 这张表中，teacher_id 是个索引，那么它就会维护一套 B+数的数据关系，为了简化，我们用链表结构来表达（实际上是个树形结构，但原理相同）</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20201130170648.png" alt="image-20201130170648855"></p>
+<p>如图所示，InnoDB 使用的是聚集索引，teacher_id 身为二级索引，就要维护一个索引字段和主键 id 的树状结构（这里用链表形式表现），并保持顺序排列。</p>
+<p>InnoDB 将这段数据分成几个区间</p>
+<ul>
+<li>(negative infinity，5],</li>
+<li>(5,30),</li>
+<li>(30,positive infinity);</li>
+</ul>
+<p>update class_teacher set class_name =“初三四班” where teacher_id =30；不仅用行锁，锁住了响应的数据行，同时也在两边的区间，（5,30]和（30，positive infinity），都加入了 GAP 锁。这样事务 B 就无法在这两个区间insert 进新数据</p>
+<p>受限于这种实现方式，InnoDB 很多时候会锁住不需要锁的区间。如下图所示：</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20201130171105.png" alt="image-20201130171105173"></p>
+<p>update 的 teacher_id=20是在(5,30]区间，即使没有修改任何数据，InnoDB 也会在这个区间价 gap 锁，而其他区间不会影响，事务 C 正常插入。</p>
+<p>如果使用的是没有索引的字段，比如 update class_teacher set teacher_id =7 where class_name =“初三八班” （即使没有匹配到任何数据），那么会给全表加入 gap 锁。同时，它不能像上文中行锁一样经过 MySQL Server 过滤自动解除不满足条件的锁，因为没有索引，则这些字段也就没有排序，也就没有区间。除非该事物提交，否则其他事务无法插入任何数据。</p>
+<p>行锁方式别的事务修改或删除，GAP 锁防止别的事务新增，行锁和 GAP 锁结合形成的 Next-Key 锁共同解决了 RR 级别在写数据时的幻读问题。</p>
+<h2 id="事务的四大特性-ACID"><a class="header-anchor" href="#事务的四大特性-ACID"></a>事务的四大特性-ACID</h2>
+<ul>
+<li>
+<p>原子性-atomic</p>
+<p>一个事务操作不可分割，要么都成功，要么都失败，不能有一半成功一般失败的情况出现</p>
+<p>这里是通过undo log 来实现的</p>
+<blockquote>
+<p>undo log 又是什么呢？可以理解为要执行的 sql 的反向 sql，也就是回滚 sql，比如 insert 了一条，undolog 里就会保存一条 delete xxx where id = xxx。</p>
+</blockquote>
+</li>
+<li>
+<p>一致性- consistency</p>
+<p>这些数据在事务执行完成这个时间点之前，读到的一定是更新前的数据，之后读到的一定是更新后的数据，不应该存在一个时刻，让客户读到更新过程中的数据</p>
+</li>
+<li>
+<p>隔离性- isolation</p>
+<p>一个事务的执行不能被其他事务干扰，即一个事务内部的操作及使用的数据对正在进行的其他事务的隔离的，并发执行的各个事务之间不能相互干扰，有点想在游戏中打副本，我们打副本掉落的装备，与其他副本没有任何关联，也不会互相影响</p>
+<p>这个是通过读写锁+MVCC来实现的。mysql在为了并发量和数据隔离方面做了很多的尝试，其中 MVCC就是比较好的解决方案。</p>
+<blockquote>
+<p>四大隔离级别</p>
+</blockquote>
+</li>
+<li>
+<p>持久性</p>
+<p>一个事务一旦提交，后续的其他操作和故障都不会对事务的结果产生任何影响，就算服务器崩溃，也不能丢失数据，在下次启动时需要能自动恢复，这里是通过redo log实现的。</p>
+<blockquote>
+<p>如何才能持久呢？很简单，写入磁盘就行了。mysql 大部分时间都是在 Innodb_buffer_pool里做内存读写的，特定情况下才会落盘。如果服务器突然崩溃，没来得及落盘的数据就会丢失。所以有了 redolog 顺序写磁盘（顺序写速度极快，后续的落盘是随机写，速度慢），在事务提交后，事务日志会顺序写入磁盘，然后写入 pool内存里，然后才是后续的那些按照规则将索引数据落盘。</p>
+</blockquote>
+<p>大部分的单体关系型数据库都完整的实现了 ACID，但是对于分布式系统来说，严格的实现 ACID这四个特性是几乎不可能的，或者说实现的代价太大了，大到我们无法接受</p>
+</li>
+</ul>
+<p>ACID只是个概念，最终目的是保护数据的一致性和可靠不丢失。</p>
 
 </div>
 
@@ -2045,16 +2262,16 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2020/04/22/08%20Mysql/7%20mysql%20%E5%A6%82%E4%BD%95%E4%B8%BB%E5%A4%87%E4%B8%80%E8%87%B4+%E5%8F%8Cm%E5%BE%AA%E7%8E%AF%E5%A4%8D%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+              <a href="/2020/12/01/08%20Mysql/10%20mysql%20%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  7 mysql 如何主备一致+双m循环复制解决方案
+                  10 mysql 索引原理
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2020/04/22/08%20Mysql/6%20mysql%20%E7%9A%84%E5%87%A0%E4%B8%AA%E6%97%A5%E5%BF%97/">
-                6 mysql 的几个日志
+              <a href="/2020/11/20/12%20Linux/5%20CentOS%20%E5%B8%B8%E7%94%A8%E6%96%87%E4%BB%B6%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
+                5 CentOS 常用文件命令总结
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             

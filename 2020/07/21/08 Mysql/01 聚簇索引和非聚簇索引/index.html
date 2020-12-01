@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		mysql之锁 | 
+		08 Mysql/01 聚簇索引和非聚簇索引 | 
 	 
 	温故知新
 	</title>
@@ -1039,72 +1039,9 @@
 									</a>
 									
 							<ul>
-								<li class="file">
-									<a href="/2020/07/21/08%20Mysql/1%20%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95/">
-										1 聚簇索引和非聚簇索引
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2020/07/21/08%20Mysql/2%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B0%83%E4%BC%98/">
-										2 数据库调优
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2020/07/21/08%20Mysql/3%20%E7%B4%A2%E5%BC%95/">
-										3 索引
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2020/04/23/08%20Mysql/4%20%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%A0%E4%BA%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%A1%A8%E7%9A%84%E5%A4%A7%E5%B0%8F%E4%B8%8D%E5%8F%98%EF%BC%9F/">
-										4 为什么删了数据，表的大小不变？
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2020/04/22/08%20Mysql/5%20count(*)%E3%80%81count(%E4%B8%BB%E9%94%AE%20id)%E3%80%81count(%E5%AD%97%E6%AE%B5)%E5%92%8Ccount(1)%E7%AD%89%E4%B8%8D%E5%90%8C%E7%94%A8%E6%B3%95%E7%9A%84%E6%80%A7%E8%83%BD/">
-										5 count(*)、count(主键 id)、count(字段)和count(1)等不同用法的性能
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2020/04/22/08%20Mysql/6%20mysql%20%E7%9A%84%E5%87%A0%E4%B8%AA%E6%97%A5%E5%BF%97/">
-										6 mysql 的几个日志
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2020/04/22/08%20Mysql/7%20mysql%20%E5%A6%82%E4%BD%95%E4%B8%BB%E5%A4%87%E4%B8%80%E8%87%B4+%E5%8F%8Cm%E5%BE%AA%E7%8E%AF%E5%A4%8D%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
-										7 mysql 如何主备一致+双m循环复制解决方案
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
 								<li class="file active">
-									<a href="/2020/04/21/08%20Mysql/8%20mysql%E4%B9%8B%E9%94%81/">
-										8 mysql之锁
+									<a href="/2020/07/21/08%20Mysql/01%20%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95/">
+										01 聚簇索引和非聚簇索引
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1112,8 +1049,80 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/11/30/08%20Mysql/9%20InnoDB%20%E7%9A%84%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E9%94%81%E7%9A%84%E5%85%B3%E7%B3%BB/">
-										9 InnoDB 的事务隔离级别和锁的关系
+									<a href="/2020/07/21/08%20Mysql/02%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B0%83%E4%BC%98/">
+										02 数据库调优
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/08%20Mysql/03%20%E7%B4%A2%E5%BC%95/">
+										03 索引
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/23/08%20Mysql/04%20%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%A0%E4%BA%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%A1%A8%E7%9A%84%E5%A4%A7%E5%B0%8F%E4%B8%8D%E5%8F%98%EF%BC%9F/">
+										04 为什么删了数据，表的大小不变？
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/22/08%20Mysql/05%20count(*)%E3%80%81count(%E4%B8%BB%E9%94%AE%20id)%E3%80%81count(%E5%AD%97%E6%AE%B5)%E5%92%8Ccount(1)%E7%AD%89%E4%B8%8D%E5%90%8C%E7%94%A8%E6%B3%95%E7%9A%84%E6%80%A7%E8%83%BD/">
+										05 count(*)、count(主键 id)、count(字段)和count(1)等不同用法的性能
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/22/08%20Mysql/06%20mysql%20%E7%9A%84%E5%87%A0%E4%B8%AA%E6%97%A5%E5%BF%97/">
+										06 mysql 的几个日志
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/22/08%20Mysql/07%20mysql%20%E5%A6%82%E4%BD%95%E4%B8%BB%E5%A4%87%E4%B8%80%E8%87%B4+%E5%8F%8Cm%E5%BE%AA%E7%8E%AF%E5%A4%8D%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+										07 mysql 如何主备一致+双m循环复制解决方案
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/21/08%20Mysql/08%20mysql%E4%B9%8B%E9%94%81/">
+										08 mysql之锁
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/30/08%20Mysql/09%20InnoDB%20%E7%9A%84%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E9%94%81%E7%9A%84%E5%85%B3%E7%B3%BB/">
+										09 InnoDB 的事务隔离级别和锁的关系
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/12/01/08%20Mysql/10%20mysql%20%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86/">
+										10 mysql 索引原理
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1954,16 +1963,16 @@
 	<div id="content">
 		<h1 id="article-title">
 
-	8 mysql之锁
+	01 聚簇索引和非聚簇索引
 </h1>
 <div class="article-meta">
 	
 		<span>
-			阅读量:<span id="/2020/04/21/08%20Mysql/8%20mysql%E4%B9%8B%E9%94%81/" class="leancloud_visitors" data-flag-title="mysql之锁"></span>
+			阅读量:<span id="/2020/07/21/08%20Mysql/01%20%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95/" class="leancloud_visitors" data-flag-title="08 Mysql/01 聚簇索引和非聚簇索引"></span>
 		</span>
 	
 	<span>今晚打老虎</span>
-	<span>2020-04-21 21:53:28</span>
+	<span>2020-07-21 18:49:54</span>
     
 		<div id="article-categories">
             
@@ -1972,71 +1981,40 @@
 </div>
 
 <div id="article-content">
-	<h1>表级锁</h1>
-<p>mysql 里面<strong>表级别</strong>的锁有两种：表锁、元数据锁（meta data lock ，MDL）</p>
-<a id="more"></a>
-<h2 id="表锁"><a class="header-anchor" href="#表锁"></a><strong>表锁</strong></h2>
-<p>表锁的语法是 lock tables … read/write。与 FTWRL类似，可以用 <strong>unlock tables</strong>主动释放锁，也可以在客户端断开连接的时候自动释放。需要注意：lock tables 语法除了会限制其他的线程的读写之外，也限定了本线程接下来的操作对象</p>
-<p><strong>举个例子</strong>：</p>
-<p>线程A中执行 lock tables  t1 read，t2 write  这个语句，则其他线程写 t1 ，读t2 的语句都会被阻塞。线程A 在释放锁之前，也只能 执行读 t1、写t2的操作。连写t1都不允许，自然也不能访问其他表</p>
-<p>对于innodb来说，一般不使用lock tables命令，影响太大</p>
-<h2 id="MDL"><a class="header-anchor" href="#MDL"></a>MDL</h2>
-<p>mdl不需要显式使用，在访问一个表的时候会自动加上。你可以想象一下，如果一个查询正在遍历一个表中的数据，而执行期间另一个线程对这个表结构做变更，删了一列，那么查询线程拿到的结果跟表结构对不上，肯定是不行的。</p>
-<p>因此，在 MySQL 5.5 版本中引入了 MDL，</p>
-<p><strong>MDL 读锁：对一个表做增删改查操作，自动加</strong></p>
-<p><strong>MDL 写锁：对表做结构变更操作的时候，自动加</strong></p>
+	<h2 id="区别"><a class="header-anchor" href="#区别"></a>区别</h2>
+<p>聚簇索引和非聚簇索引的区别是：叶节点是否存放一整行数据。</p>
 <ul>
-<li>读锁之间不互斥，即：多个线程可以同时对一张表增删改查</li>
-<li>读写之间互斥、写锁之间互斥：保证变更表结构操作的安全性。因此如果有两个线程要同时给一个表加字段，需要一个等待另一个执行完才能开始</li>
+<li>InnoDB 使用的是聚簇索引</li>
+<li>myIsam使用的是非聚簇索引（不论是主键索引还是二级索引）</li>
 </ul>
-<p><strong>mdl的作用</strong>：保证读写的正确性</p>
-<h1>行级锁</h1>
-<p>mysql的行锁是引擎层各自实现的，但并不是所有的引擎都支持行锁，MyIsam不支持行锁。</p>
-<blockquote>
-<p>事务a更新1行数据，事务b也更新同一行数据，那么B要等A执行完之后，才能进行更新</p>
-</blockquote>
-<h2 id="两阶段锁"><a class="header-anchor" href="#两阶段锁"></a>两阶段锁</h2>
-<p>在innodb中，行锁是在需要的时候才加上的，但并不是不用了就立刻释放，而是等待事务结束了才释放（commit提交后事务结束）。</p>
-<p>如果事务中需要锁多行，要把可能造成锁冲突，最可能影响并发度的锁尽量往后放</p>
-<h2 id="死锁"><a class="header-anchor" href="#死锁"></a>死锁</h2>
-<table>
-<thead>
-<tr>
-<th>时间点</th>
-<th>事务a</th>
-<th>事务b</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>t1</td>
-<td>begin; set k=xx where id =1</td>
-<td>begin;</td>
-</tr>
-<tr>
-<td>t2</td>
-<td></td>
-<td>set k =yy where id=2</td>
-</tr>
-<tr>
-<td>t3</td>
-<td>set k =yy where id=2</td>
-<td></td>
-</tr>
-<tr>
-<td>t4</td>
-<td></td>
-<td>set k=xx where id =1</td>
-</tr>
-</tbody>
-</table>
-<p>这个时候，事务A在等待事务B释放 id =2的行锁，而事务B在等待事务A释放id =1 的行锁，互相等待对方释放锁资源，即进入<strong>死锁</strong>状态</p>
-<h2 id="MVCC"><a class="header-anchor" href="#MVCC"></a>MVCC</h2>
-<p>mysql中，实际上每条记录在更新的时候都会同步记录一条回滚操作，通过回滚操作都可以得到前一个状态的值。</p>
-<p>假如一个值1被按顺序修改为2、3、4，在回滚日志里就会有类似下面的记录</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200422100302.png" alt="image-20200422100302567"></p>
-<p>当前值是4，但是在查询这条记录的时候，不同时刻启动的事务会有不同的 <strong>read-view</strong>，在视图A、B、C里面记录的分别是1、2、4</p>
-<p>同一条记录在系统中可以存在多个版本，这就是数据库的<strong>多版本并发控制</strong>——MVCC</p>
+<p>下图形象说明了聚簇索引表(InnoDB)和非聚簇索引(MyISAM)的区别：</p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20200721165233.png" alt="image-20200721165233494" style="zoom:50%;" />
+<ul>
+<li>聚簇索引（左图）：表数据和主键是一起存储的，主键索引的叶节点存储<strong>行数据</strong>（包含了主键值），二级索引的叶子节点存储的是主键的值。使用的是 b+数作为索引的存储结构。</li>
+<li>非聚簇索引（右图）：表数据和索引是分成两部分存储的，主键索引和二级索引上没有任何区别，叶子节点存储的是索引+索引对应的数据记录。</li>
+</ul>
+<h2 id="聚簇索引的优点"><a class="header-anchor" href="#聚簇索引的优点"></a>聚簇索引的优点</h2>
+<ul>
+<li>范围查询时，聚簇索引效率高</li>
+<li>查找速度快，因为非聚簇索引定位到主键时，需要多一次 io（目标寻址）</li>
+<li>使用覆盖索引扫描的查询可以直接使用叶节点中的主键值</li>
+</ul>
+<h2 id="聚簇索引的缺点"><a class="header-anchor" href="#聚簇索引的缺点"></a>聚簇索引的缺点</h2>
+<ul>
+<li>
+<p>插入速度严重依赖于<strong>插入顺序</strong> ，按照主键的顺序插入是最快的 ，否则将出现页分裂，严重影响性能。因此 Innodb 一般都要定义一个自增主键。</p>
+</li>
+<li>
+<p>更新主键的代价太高，因为将会导致被更新的行移动。因此，对于 innodb 来说，主键不要更新。</p>
+</li>
+<li>
+<p>二级索引访问需要两次索引查找，第一次找到主键，第二次根据主键值找到行数据。</p>
+<p>这是因为二级索引存储的是主键值，而不是数据的指针，当初这么做是为了减少当行移动或数据页分裂时二级索引的维护工作，但会让二级索引占用更多的空间。</p>
+</li>
+<li>
+<p>插入新值时比非聚簇索引慢得多，因为插入要保证主键不能重复，判断主键不能重复，聚簇索引要遍历所有的叶子节点（非聚簇索引也要遍历所有的叶子节点），但聚簇索引的叶子节点存储的是行数据，一般比主键大得多，这样就导致判断是否重复时要付出高昂的 io 代价。</p>
+</li>
+</ul>
 
 </div>
 
@@ -2045,13 +2023,18 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2020/04/22/08%20Mysql/6%20mysql%20%E7%9A%84%E5%87%A0%E4%B8%AA%E6%97%A5%E5%BF%97/">
+              <a href="/2020/07/21/15%20Nginx/1%20%E9%85%8D%E7%BD%AE%20nginx/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  6 mysql 的几个日志
+                  1 配置 nginx
               </a>
             
         </div>
         <div class="item right">
+            
+              <a href="/2020/07/21/08%20Mysql/03%20%E7%B4%A2%E5%BC%95/">
+                03 索引
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
             
         </div>
     </div>
