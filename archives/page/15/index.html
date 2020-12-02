@@ -375,6 +375,15 @@
 									
 							<ul>
 								<li class="file">
+									<a href="/2020/12/02/03%20java/Bio%E3%80%81Nio%E3%80%81Aio/">
+										Bio、Nio、Aio
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/11/16/03%20java/Java8%20Stream/">
 										Java8 Stream
 									</a>
@@ -1988,6 +1997,32 @@ this的本质是“创建好的对象的地址”！由于在构造方法调用�
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/12%20final/">
+				<h2 class="index-title">
+					12 final
+				</h2>
+				<div class="index-brief">
+					final 关键字
+作用：
+修饰变量：
+被他修饰的变量不可改变，一旦赋值，就不能被重新赋值。
+修饰方法：
+该方法不可被子类重写，但是可以被重载！
+修饰类:
+被修饰类不能被集成。比如Math、String等
+
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/11%20ELk/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%20kibana%EF%BC%8C%E5%A4%96%E7%BD%91%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE/">
 				<h2 class="index-title">
 					阿里云部署 kibana，外网无法访问
@@ -2056,15 +2091,47 @@ ElasticSearch是基于 Lucene 做了一些封装和增强
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/1%20%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E5%AE%B9%E9%87%8F/">
+			<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/3%20Http%20%E7%8A%B6%E6%80%81%E7%A0%81/">
 				<h2 class="index-title">
-					1 存储单位容量
+					3 Http 状态码
 				</h2>
 				<div class="index-brief">
-					1 Byte = 8 Bits.
-1 Kilobyte (KB) = 1024 Bytes.
-1 Megabyte (MB) = 1024 KB.
-1 Gigabyte (GB) = 1024 MB
+					
+
+
+
+类别
+原因
+
+
+
+
+1xx
+信息行状态码
+接收的请求正在处理
+
+
+2xx
+成功状态码
+请求正常处理完毕
+
+
+3xx
+重定向状态码
+需要进行附加造作以完成请求
+
+
+4xx
+客户端错误状态码
+服务器无法处理请求
+
+
+5xx
+服务器错误状态码
+服务器出错了
+
+
+
 
 					...
 				</div>
@@ -2121,47 +2188,15 @@ web 服务器解析用户请求，经过处理之后
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/3%20Http%20%E7%8A%B6%E6%80%81%E7%A0%81/">
+			<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/1%20%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E5%AE%B9%E9%87%8F/">
 				<h2 class="index-title">
-					3 Http 状态码
+					1 存储单位容量
 				</h2>
 				<div class="index-brief">
-					
-
-
-
-类别
-原因
-
-
-
-
-1xx
-信息行状态码
-接收的请求正在处理
-
-
-2xx
-成功状态码
-请求正常处理完毕
-
-
-3xx
-重定向状态码
-需要进行附加造作以完成请求
-
-
-4xx
-客户端错误状态码
-服务器无法处理请求
-
-
-5xx
-服务器错误状态码
-服务器出错了
-
-
-
+					1 Byte = 8 Bits.
+1 Kilobyte (KB) = 1024 Bytes.
+1 Megabyte (MB) = 1024 KB.
+1 Gigabyte (GB) = 1024 MB
 
 					...
 				</div>
@@ -2214,35 +2249,6 @@ ApplicationContext是 BeanFactory 的子类，以一种更面向框架的工作�
 因为，正常的场景，一般都是用来查询的，不会太频繁的增删（增删可以使用 LinkedList），线程安全使用 Vector
 不存在查询快，增删快，安全的结构
 数组是定
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-04-28</span>
-                    
-                            
-                                
-                                    <span>
-                                        <i class="fa fa-folder" aria-hidden="true"></i>
-                                        <a href="/categories/程序员/">程序员</a>
-										
-                                    </span>
-                                
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/04/28/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/10%20ThreadLocal/">
-				<h2 class="index-title">
-					10 ThreadLocal
-				</h2>
-				<div class="index-brief">
-					不能称之为本地线程，而应该是CopyValueIntoEveryThread
-是什么？
-ThreadLocal 是一个本地线程副本变量工具类。主要用于将私有线程和该线程存放的副本对象做一个映射，各个线程之间的变量互不干扰，在高并发场景下，可以实现无状态的调用，适用于各个线程不共享变量值的操作。
-工作
 					...
 				</div>
 			</a>
