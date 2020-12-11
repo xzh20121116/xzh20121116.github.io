@@ -2206,7 +2206,7 @@
 <p>Incremental Update 算法关注引用的增加（A–&gt;C的引用）</p>
 <p>G1 如果使用 Incremental Update 算法，因为变成灰色的成员需要重新扫，重新再来一遍，效率太低。所以 G 在处理并发标记的过程比 CMS 效率要高，这个主要是解决漏标的算法决定的。</p>
 <h2 id="G1-GC模式"><a class="header-anchor" href="#G1-GC模式"></a>G1 GC模式</h2>
-<p>G1提供了两种GC模式，Young GC和Mixed GC，两种都是完全Stop The World的。 * Young GC：选定所有年轻代里的Region。通过控制年轻代的region个数，即年轻代内存大小，来控制young GC的时间开销。 * Mixed GC：选定所有年轻代里的Region，外加根据global concurrent marking统计得出收集收益高的若干老年代Region。在用户指定的开销目标范围内尽可能选择收益高的老年代Region。</p>
+<p>G1提供了两种GC模式，Young GC和Mixed GC，两种都是完全Stop The World的。 <strong>Young GC</strong>：选定所有年轻代里的Region。通过控制年轻代的region个数，即年轻代内存大小，来控制young GC的时间开销。  <strong>Mixed GC</strong>：选定所有年轻代里的Region，外加根据global concurrent marking统计得出收集收益高的若干老年代Region。在用户指定的开销目标范围内尽可能选择收益高的老年代Region。</p>
 <p>由上面的描述可知，Mixed GC不是full GC，它只能回收部分老年代的Region，如果mixed GC实在无法跟上程序分配内存的速度，导致老年代填满无法继续进行Mixed GC，就会使用serial old GC（full GC）来收集整个GC heap。所以我们可以知道，G1是不提供full GC的。</p>
 
 </div>
@@ -2216,16 +2216,16 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2020/07/21/03%20java/Jvm/05%20%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
+              <a href="/2020/07/21/03%20java/Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  05 类加载过程
+                  07 排查堆内存溢出
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2020/07/21/03%20java/Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
-                07 排查堆内存溢出
+              <a href="/2020/07/21/03%20java/Jvm/03%20%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
+                03 对象实例化过程
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
