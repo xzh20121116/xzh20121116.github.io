@@ -1448,8 +1448,8 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/07/22/16%20%E7%A7%92%E6%9D%80-%E9%AB%98%E5%B9%B6%E5%8F%91/1%20%E9%AB%98%E5%B9%B6%E5%8F%91%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E7%BA%BF%E7%A8%8B%E6%95%B0/">
-										1 高并发如何设置线程数
+									<a href="/2020/07/22/16%20%E7%A7%92%E6%9D%80-%E9%AB%98%E5%B9%B6%E5%8F%91/01.%20%E9%AB%98%E5%B9%B6%E5%8F%91%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E7%BA%BF%E7%A8%8B%E6%95%B0/">
+										01. 高并发如何设置线程数
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1457,8 +1457,17 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/07/22/16%20%E7%A7%92%E6%9D%80-%E9%AB%98%E5%B9%B6%E5%8F%91/2%20%E7%A7%92%E6%9D%80/">
-										2 秒杀
+									<a href="/2020/07/22/16%20%E7%A7%92%E6%9D%80-%E9%AB%98%E5%B9%B6%E5%8F%91/02.%20%E7%A7%92%E6%9D%80/">
+										02. 秒杀
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/12/14/16%20%E7%A7%92%E6%9D%80-%E9%AB%98%E5%B9%B6%E5%8F%91/03.%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F/">
+										03.如何设计秒杀系统
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -2097,13 +2106,16 @@ requi
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/04%20Spring/7%20spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+			<a href="/2020/07/21/04%20Spring/6%20ioc/">
 				<h2 class="index-title">
-					7 spring 循环依赖
+					6 ioc
 				</h2>
 				<div class="index-brief">
-					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
-如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
+					ioc 既是一种思想，又是一种容器
+Ioc 思想
+Inversion of controlle 控制反转
+比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
+而 ioc 是，
 					...
 				</div>
 			</a>
@@ -2116,16 +2128,13 @@ requi
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/04%20Spring/6%20ioc/">
+			<a href="/2020/07/21/04%20Spring/7%20spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
 				<h2 class="index-title">
-					6 ioc
+					7 spring 循环依赖
 				</h2>
 				<div class="index-brief">
-					ioc 既是一种思想，又是一种容器
-Ioc 思想
-Inversion of controlle 控制反转
-比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
-而 ioc 是，
+					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
+如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
 					...
 				</div>
 			</a>
@@ -2191,31 +2200,28 @@ Inversion of controlle 控制反转
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/10%20Redis/1%20%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%9C%BA%E6%99%AF/">
+			<a href="/2020/07/21/10%20Redis/3%20%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
 				<h2 class="index-title">
-					1 常见数据类型及场景
+					3 分布式锁
 				</h2>
 				<div class="index-brief">
-					string
+					SETNX key value
 
-kv 缓存
-计数器
-共享用户 session
+set if not exists
+如果不存在，则 set 一个
+set 成功返回 1，如果 key 存在了返回0；
+SETNX key seconds value
 
-Hash
-
-
-类似 map 的结构，k 还是 key，v 就变成的一个对象，每次读写缓存，可以操作对象中的某个字段。
-
-
-如果对象里面嵌套的其他的对象，就不太适合用 hash 了。
+给一个过期时间，这是一个原子操作
+入门版
+此版本是最最基础的版本
+加锁
 
 
-list
-这是一个有序列表
+for(；；)
 
 
-可以存储一些列表型
+s
 					...
 				</div>
 			</a>
