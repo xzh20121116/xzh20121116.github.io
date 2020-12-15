@@ -2000,13 +2000,13 @@
 
 <div id="article-content">
 	<p>内部类只是一个编译时概念，一旦编译成功，就会成为完全不同的两个类。对于一个名为Outer的外部类和其内部定义的名为Inner的内部类。编译完成会会出现Outer.class和Outer$Inner.class两个类的字节码文件。所以内部类是相对独立的一种存在，其成员变量、方法名可以和外部类的相同。</p>
-<h1>作用</h1>
+<h2 id="作用"><a class="header-anchor" href="#作用"></a>作用</h2>
 <ol>
 <li>内部类提供了更好的封装。只能让外部类直接访问，不允许同一个包中的其他类直接访问</li>
 <li>内部类可以直接访问外部类的私有属性，内部类被当成其外部类的成员。但外部类不能访问内部类的内部属性</li>
 <li>接口只是解决了多重继承的部分问题，而内部类是的多重继承的解决方案变得更加完整。</li>
 </ol>
-<h1>使用场合</h1>
+<h2 id="使用场合"><a class="header-anchor" href="#使用场合"></a>使用场合</h2>
 <ol>
 <li>由于内部类提供了更好的封装特性，并且可以很方便的访问外部类的属性，所以，在只为外部类提供服务的情况下可以优先考虑使用内部类。</li>
 <li>使用内部类间接实现多继承：每个内部类都能独立集成一个类或实现多个接口，所以无论外部类是否已经集成了某个类或者实现了某些接口，对于内部类没有任何影响</li>
@@ -2019,16 +2019,16 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/01%20%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%86%E7%B1%BB/">
+              <a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/02%20%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E5%80%BC%E6%9C%BA%E5%88%B6/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  01 变量的分类
+                  02 参数的传值机制
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/02%20%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E5%80%BC%E6%9C%BA%E5%88%B6/">
-                02 参数的传值机制
+              <a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/12%20final/">
+                12 final
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
