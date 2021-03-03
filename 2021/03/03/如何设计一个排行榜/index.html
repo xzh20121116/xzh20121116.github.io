@@ -1,0 +1,2549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	
+	<!-- title -->
+	
+	<title>
+	
+		如何设计一个排行榜 | 
+	 
+	温故知新
+	</title>
+	
+	<!-- keywords,description -->
+	 
+
+	<!-- favicon -->
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+	
+  
+
+	
+<link rel="stylesheet" href="/css/main.css">
+
+	
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/darcula.min.css">
+
+
+	
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js"></script>
+
+	
+<script src="/js/main.js"></script>
+
+	
+		
+<script src="https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
+
+		
+<script src="https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
+
+	
+	
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+	<header id="header">
+    <a id="title" href="/" class="logo">温故知新</a>
+
+	<ul id="menu">
+		<!-- <li class="menu-item">
+			<a href="/about" class="menu-item-link">ABOUT</a>
+		</li> -->
+		
+		<!-- <li class="menu-item">
+			<a href="https://github.com/wujun234/uid-generator-spring-boot-starter" class="menu-item-link" target="_blank">
+				UidGenerator
+			</a>
+		</li> -->
+		<!-- <li class="menu-item">
+			<a href="https://github.com/wujun234" class="menu-item-link" target="_blank">
+				<i class="fa fa-github fa-2x"></i>
+			</a>
+		</li> -->
+	</ul>
+</header>
+
+	
+<div id="sidebar">
+	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
+	
+	<div id="site-toc">
+		<input id="search-input" class="search-input" type="text" placeholder="search...">
+		<div id="tree">
+			
+
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										01 算法与数据结构
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										1常见面试题
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/Topk%E9%97%AE%E9%A2%98/">
+										Topk问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%88%A0%E5%8E%BBk%E4%B8%AA%E6%95%B0%E5%AD%97%E5%90%8E%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC/">
+										删去k个数字后的最小值
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E5%90%A6%E4%B8%BA2%E6%95%B4%E6%95%B0%E6%AC%A1%E5%B9%82/">
+										如何判断一个数否为2整数次幂
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E9%93%BE%E8%A1%A8%E6%9C%89%E7%8E%AF/">
+										如何判断链表有环
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%A7%E6%95%B4%E6%95%B0%E7%9B%B8%E5%8A%A0/">
+										如何实现大整数相加
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E6%B1%82%E5%87%BA%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/">
+										如何求出最大公约数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%AF%BB%E6%89%BE%E5%85%A8%E6%8E%92%E5%88%97%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%95%B0/">
+										寻找全排列的下一个数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%AF%BB%E6%89%BE%E7%BC%BA%E5%A4%B1%E7%9A%84%E6%95%B4%E6%95%B0/">
+										寻找缺失的整数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%97%A0%E5%BA%8F%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E5%90%8E%E6%9C%80%E5%A4%A7%E7%9B%B8%E9%82%BB%E5%B7%AE/">
+										无序数组排序后最大相邻差
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9C%80%E5%B0%8F%E6%A0%88%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+										最小栈的实现
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9C%AA%E5%AE%8C%E6%88%90--%E5%A6%82%E4%BD%95%E6%B1%82%E8%A7%A3%E9%87%91%E7%9F%BF%E9%97%AE%E9%A2%98%EF%BC%88%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%89/">
+										未完成--如何求解金矿问题（背包问题）
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/">
+										用栈实现队列
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										2排序算法
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">
+										冒泡排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/">
+										基数排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%A0%86%E6%8E%92%E5%BA%8F/">
+										堆排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
+										常见排序算法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
+										归并排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
+										快速排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E6%89%8B%E5%86%99Lru/">
+										手写Lru
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
+										插入排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F%E5%92%8C%E6%A1%B6%E6%8E%92%E5%BA%8F/">
+										计数排序和桶排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/">
+										选择排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/3%E4%BD%8D%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93/">
+										3位操作总结
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										02 计算机基础
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/1%20%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E5%AE%B9%E9%87%8F/">
+										1 存储单位容量
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/2%20%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5url%20%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">
+										2 在浏览器中输入url 发生了什么
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/3%20Http%20%E7%8A%B6%E6%80%81%E7%A0%81/">
+										3 Http 状态码
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										03 java
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/12/02/03%20java/BIO%E4%B8%8ENIO%E4%B8%8EAIO/">
+										BIO与NIO与AIO
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/16/03%20java/Java8%20Stream/">
+										Java8 Stream
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Java基础
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/01%20%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%86%E7%B1%BB/">
+										01 变量的分类
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/02%20%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E5%80%BC%E6%9C%BA%E5%88%B6/">
+										02 参数的传值机制
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/03%20%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
+										03 抽象方法和抽象类
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/04%20%E5%A4%9A%E6%80%81/">
+										04 多态
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/05%20%E5%B0%81%E8%A3%85/">
+										05 封装
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/06%20%E7%BB%A7%E6%89%BF%E6%A0%91%E8%BF%BD%E6%BA%AF/">
+										06 继承树追溯
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/07%20%E6%8E%A5%E5%8F%A3/">
+										07 接口
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/08%20%E5%86%85%E9%83%A8%E7%B1%BB/">
+										08 内部类
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/09%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+										09 数据类型
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/08/04/03%20java/Java%E5%9F%BA%E7%A1%80/10%20%E4%B8%80%E4%B8%AA%20java%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%88%B0%E5%BA%95%E6%9C%89%E5%87%A0%E4%B8%AA%E5%AD%97%E8%8A%82/">
+										10 一个 java 字符串到底有几个字节
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/08/03/03%20java/Java%E5%9F%BA%E7%A1%80/11%E9%87%8D%E6%9E%84%E3%80%81%E9%87%8D%E5%86%99%E3%80%81%E9%87%8D%E8%BD%BD%E7%9A%84%E5%8C%BA%E5%88%AB/">
+										11重构、重写、重载的区别
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/12%20final/">
+										12 final
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/13%20this%20%E7%9A%84%E6%9C%AC%E8%B4%A8/">
+										13 this 的本质
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Java线程和锁
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/01%20%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%A5%BD%E5%A4%84/">
+										01 线程池的好处
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/23/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/02%20%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E3%80%816%E7%A7%8D%E7%8A%B6%E6%80%81%E7%9A%84%E6%B5%81%E8%BD%AC/">
+										02 线程的生命周期、6种状态的流转
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/03%20%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E5%87%A0%E7%A7%8D%E9%94%81/">
+										03 总结一下几种锁
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/04%20Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+										04 Aqs的核心成员、数据模型、锁的实现原理
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/24/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/05%20java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E3%80%81volatile%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+										05 java内存模型、volatile的实现原理
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/06%20MDC/">
+										06 MDC
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/24/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/07%20Reentrantlock%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E3%80%81%E4%BB%A5%E5%8F%8A%E5%85%AC%E5%B9%B3%E9%94%81%E5%92%8C%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81%E7%9A%84%E5%8C%BA%E5%88%AB/">
+										07 Reentrantlock的实现原理、以及公平锁和非公平锁的区别
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/23/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/08%20sleep%E3%80%81wait%E3%80%81notify%E3%80%81yield%E3%80%81join%E7%9A%84%E5%8C%BA%E5%88%AB/">
+										08 sleep、wait、notify、yield、join的区别
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/23/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/09%20synchronized/">
+										09 synchronized
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/28/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/10%20ThreadLocal/">
+										10 ThreadLocal
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/08/06/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/11%20%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84execute%E6%96%B9%E6%B3%95%E5%92%8Csubmit%E6%96%B9%E6%B3%95%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/">
+										11 线程池的execute方法和submit方法有什么区别？
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/18/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/12%20java%20%E9%94%81%E4%BA%8B/">
+										12 java 锁事
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/18/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/13%20%E4%BB%8E%20Reentrantlock%20%E6%9D%A5%E7%9C%8B%20AQS%20%E7%9A%84%E5%8E%9F%E7%90%86/">
+										13 从 Reentrantlock 来看 AQS 的原理
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/18/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/14%20notify()%20%E4%BC%9A%E7%AB%8B%E5%88%BB%E9%87%8A%E6%94%BE%E9%94%81%E5%90%97/">
+										14 notify() 会立刻释放锁吗
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Java集合
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/01%20ArrayList/">
+										01 ArrayList
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/27/03%20java/Java%E9%9B%86%E5%90%88/02%20HashMap/">
+										02 HashMap
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/28/03%20java/Java%E9%9B%86%E5%90%88/03%20ConcurrentHashMap/">
+										03 ConcurrentHashMap
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Jvm
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/01%20%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E5%8F%8A%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/">
+										01 垃圾回收器及算法原理
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/08/03/03%20java/Jvm/02%20%E5%B8%B8%E9%87%8F%E6%B1%A0/">
+										02 常量池
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/03%20%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
+										03 对象实例化过程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/04%20%E5%AF%B9%E8%B1%A1%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%B8%83%E5%B1%80/">
+										04 对象在内存中的布局
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/05%20%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
+										05 类加载过程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/06%20%E9%9D%A2%E8%AF%95%E8%A2%AB%E9%97%AE%E7%83%82%E7%9A%84JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%EF%BC%8C%E6%88%91%E4%BB%8A%E5%A4%A9%E5%86%8D%E6%9D%A5%E7%BB%99%E5%A4%A7%E5%AE%B6%E5%A4%8D%E4%B9%A0%E4%B8%80%E9%81%8D/">
+										06 面试被问烂的JVM内存区域，我今天再来给大家复习一遍
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
+										07 排查堆内存溢出
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/08%20%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8E%8B%E7%BC%A9%E6%8C%87%E9%92%88%E8%B6%85%E8%BF%87%2032g%20%E5%A4%B1%E6%95%88/">
+										08 为什么压缩指针超过 32g 失效
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/09%20%E4%B8%BA%E4%BB%80%E4%B9%88CMS%E4%B8%A4%E6%AC%A1%E6%A0%87%E8%AE%B0%E8%A6%81STW/">
+										09 为什么CMS两次标记要STW
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/10%20jvm%20%E8%B0%83%E4%BC%98/">
+										10 jvm 调优
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/11%20jvm%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%92%E5%88%86/">
+										11 jvm内存区域划分
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Jvm/12%20Monitor/">
+										12 Monitor
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/08/19/03%20java/Jvm/13%20%E6%96%B0%E4%B8%80%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8ZGC%E7%9A%84%E6%8E%A2%E7%B4%A2%E4%B8%8E%E5%AE%9E%E8%B7%B5/">
+										13 新一代垃圾回收器ZGC的探索与实践
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										04 Spring
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/28/04%20Spring/1%20spring%20%E7%94%A8%E5%88%B0%E4%BA%86%E5%93%AA%E4%BA%9B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+										1 spring 用到了哪些设计模式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/04%20Spring/2%20%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+										2 事务实现原理
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/04%20Spring/3%20%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
+										3 依赖注入
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/04%20Spring/4%20aop/">
+										4 aop
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/07/04%20Spring/5%20BeanFactory-%E5%92%8C-ApplicationContext-%E5%8C%BA%E5%88%AB/">
+										5 BeanFactory-和-ApplicationContext-区别
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/04%20Spring/6%20ioc/">
+										6 ioc
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/04%20Spring/7%20spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+										7 spring 循环依赖
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/04%20Spring/%E3%80%90%E8%BD%AC%E3%80%91springJdbc%20%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">
+										【转】springJdbc 源码学习
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										05 Springboot
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/05%20Springboot/springboot%20%E4%B9%8B%20Filter%20%E6%8C%87%E5%AE%9A%E8%BF%87%E6%BB%A4%20Url%20%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+										springboot 之 Filter 指定过滤 Url 的常见问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										06 微服务
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										0 服务注册与发现
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Zookeeper
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
+										mac 安装启动
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+										分布式锁
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
+										客户端ZooInspector
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										1 服务调用
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/1%20%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/Sentinel%20%E4%B8%8E%20Hystrix%20%E5%AF%B9%E6%AF%94/">
+										Sentinel 与 Hystrix 对比
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										07 SpringMVC
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/07%20SpringMVC/%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
+										工作原理
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/07%20SpringMVC/%E8%AF%B4%E8%AF%B4%20SpringMvc%20%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">
+										说说 SpringMvc 的执行流程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										08 Mysql
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/08%20Mysql/01%20%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95/">
+										01 聚簇索引和非聚簇索引
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/08%20Mysql/02%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B0%83%E4%BC%98/">
+										02 数据库调优
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/08%20Mysql/03%20%E7%B4%A2%E5%BC%95/">
+										03 索引
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/23/08%20Mysql/04%20%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%A0%E4%BA%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%A1%A8%E7%9A%84%E5%A4%A7%E5%B0%8F%E4%B8%8D%E5%8F%98%EF%BC%9F/">
+										04 为什么删了数据，表的大小不变？
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/22/08%20Mysql/05%20count(*)%E3%80%81count(%E4%B8%BB%E9%94%AE%20id)%E3%80%81count(%E5%AD%97%E6%AE%B5)%E5%92%8Ccount(1)%E7%AD%89%E4%B8%8D%E5%90%8C%E7%94%A8%E6%B3%95%E7%9A%84%E6%80%A7%E8%83%BD/">
+										05 count(*)、count(主键 id)、count(字段)和count(1)等不同用法的性能
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/22/08%20Mysql/06%20mysql%20%E7%9A%84%E5%87%A0%E4%B8%AA%E6%97%A5%E5%BF%97/">
+										06 mysql 的几个日志
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/22/08%20Mysql/07%20mysql%20%E5%A6%82%E4%BD%95%E4%B8%BB%E5%A4%87%E4%B8%80%E8%87%B4+%E5%8F%8Cm%E5%BE%AA%E7%8E%AF%E5%A4%8D%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+										07 mysql 如何主备一致+双m循环复制解决方案
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/21/08%20Mysql/08%20mysql%E4%B9%8B%E9%94%81/">
+										08 mysql之锁
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/30/08%20Mysql/09%20InnoDB%20%E7%9A%84%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E9%94%81%E7%9A%84%E5%85%B3%E7%B3%BB/">
+										09 InnoDB 的事务隔离级别和锁的关系
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/12/01/08%20Mysql/10%20mysql%20%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/">
+										10 mysql 索引原理及慢查询优化
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										09 Mybatis
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/09%20Mybatis/1%20%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/">
+										1 常见面试题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/09%20Mybatis/2%20MyBatis%E5%8A%A8%E6%80%81SQL%20foreach%E6%A0%87%E7%AD%BE%E5%AE%9E%E7%8E%B0%E6%89%B9%E9%87%8F%E6%8F%92%E5%85%A5/">
+										2 MyBatis动态SQL foreach标签实现批量插入
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										10 Redis
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/1%20%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%9C%BA%E6%99%AF/">
+										1 常见数据类型及场景
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/2%20%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+										2 常见问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/3%20%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+										3 分布式锁
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/28/10%20Redis/4%20%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8C%E5%86%99%E6%97%B6%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7/">
+										4 如何保证缓存与数据库双写时的数据一致性
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/5%20%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%94%A8Memcached/">
+										5 为什么不用Memcached
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/6%20cluster%20%E4%B8%8E%20sentinel/">
+										6 cluster 与 sentinel
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/7%20redis%E4%B9%8B%E7%BA%A2%E9%94%81(Redlock)/">
+										7 redis之红锁(Redlock)
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/8%20Redisson%E4%BD%BF%E7%94%A8/">
+										8 Redisson使用
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/09/10%20Redis/9%20redis%E5%B8%B8%E8%A7%81%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BA%95%E5%B1%82%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+										9 redis常见对象的底层数据结构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										11 ELk
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/11%20ELk/1%20es%E5%AE%89%E8%A3%85/">
+										1 es安装
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/23/11%20ELk/2%20kibana%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
+										2 kibana 安装启动
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/11%20ELk/ElasticSearch/">
+										ElasticSearch
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/11%20ELk/springboot%20%E6%B7%BB%E5%8A%A0%20es%20%E4%BE%9D%E8%B5%96%E7%89%88%E6%9C%AC%E9%97%AE%E9%A2%98/">
+										springboot 添加 es 依赖版本问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/11%20ELk/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%20kibana%EF%BC%8C%E5%A4%96%E7%BD%91%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE/">
+										阿里云部署 kibana，外网无法访问
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										12 Linux
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/12%20Linux/1%20linux%20%E5%AE%89%E8%A3%85%20jdk/">
+										1 linux 安装 jdk
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/12%20Linux/2%20linux%20%E5%AE%89%E8%A3%85%20nginx/">
+										2 linux 安装 nginx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/12%20Linux/3%20linux%E5%AE%89%E8%A3%85yapi/">
+										3 linux安装yapi
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/12%20Linux/4%20showdoc%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
+										4 showdoc 安装教程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/20/12%20Linux/5%20CentOS%20%E5%B8%B8%E7%94%A8%E6%96%87%E4%BB%B6%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
+										5 CentOS 常用文件命令总结
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/12%20Linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+										【转】Linux查看内存使用情况方法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										13 分布式相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/1%20%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+										1 分布式事务
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/28/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/2%20%E5%88%86%E5%B8%83%E5%BC%8F%E9%99%90%E6%B5%81/">
+										2 分布式限流
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/08/04/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/3%20%E6%94%AF%E4%BB%98%E5%AE%9D%E7%9A%84%E6%9E%B6%E6%9E%84%E5%88%B0%E5%BA%95%E6%9C%89%E5%A4%9A%E7%89%9B%E9%80%BC/">
+										3 支付宝的架构到底有多牛逼
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										15 Nginx
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/15%20Nginx/1%20%E9%85%8D%E7%BD%AE%20nginx/">
+										1 配置 nginx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										16 秒杀-高并发
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/16%20%E7%A7%92%E6%9D%80-%E9%AB%98%E5%B9%B6%E5%8F%91/01.%20%E9%AB%98%E5%B9%B6%E5%8F%91%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E7%BA%BF%E7%A8%8B%E6%95%B0/">
+										01. 高并发如何设置线程数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/16%20%E7%A7%92%E6%9D%80-%E9%AB%98%E5%B9%B6%E5%8F%91/02.%20%E7%A7%92%E6%9D%80/">
+										02. 秒杀
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/12/14/16%20%E7%A7%92%E6%9D%80-%E9%AB%98%E5%B9%B6%E5%8F%91/03.%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F/">
+										03.如何设计秒杀系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										17 LeetCode
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/17%20LeetCode/README/">
+										README
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										18 线上问题排查
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/18%20%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/1%20CPU100%25%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D/">
+										1 CPU100%问题如何快速定位
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										19 为什么这么设计【转】
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										数据库
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%B8%BA%E4%BB%80%E4%B9%88%20MongoDB%20%E4%BD%BF%E7%94%A8%20B%20%E6%A0%91/">
+										为什么 MongoDB 使用 B 树
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%B8%BA%E4%BB%80%E4%B9%88%20MySQL%20%E4%BD%BF%E7%94%A8%20B+%20%E6%A0%91/">
+										为什么 MySQL 使用 B+ 树
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%B8%BA%E4%BB%80%E4%B9%88%20Redis%20%E5%BF%AB%E7%85%A7%E4%BD%BF%E7%94%A8%E5%AD%90%E8%BF%9B%E7%A8%8B/">
+										为什么 Redis 快照使用子进程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%B8%BA%E4%BB%80%E4%B9%88%20Redis%20%E9%80%89%E6%8B%A9%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">
+										为什么 Redis 选择单线程模型
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										网络
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%20DNS%20%E4%BD%BF%E7%94%A8%20UDP%20%E5%8D%8F%E8%AE%AE/">
+										为什么 DNS 使用 UDP 协议
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%20HTTPS%20%E9%9C%80%E8%A6%81%207%20%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%BB%A5%E5%8F%8A%209%20%E5%80%8D%E6%97%B6%E5%BB%B6/">
+										为什么 HTTPS 需要 7 次握手以及 9 倍时延
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%20TCP%20%E5%8D%8F%E8%AE%AE%E6%9C%89%E7%B2%98%E5%8C%85%E9%97%AE%E9%A2%98/">
+										为什么 TCP 协议有粘包问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%20TCP%20%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E9%9C%80%E8%A6%81%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B/">
+										为什么 TCP 建立连接需要三次握手
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%20TCPIP%20%E5%8D%8F%E8%AE%AE%E4%BC%9A%E6%8B%86%E5%88%86%E6%95%B0%E6%8D%AE/">
+										为什么 TCPIP 协议会拆分数据
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%20UDP%20%E5%A4%B4%E5%8F%AA%E6%9C%89%208%20%E4%B8%AA%E5%AD%97%E8%8A%82/">
+										为什么 UDP 头只有 8 个字节
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%20tcp%20%E5%8D%8F%E8%AE%AE%E6%9C%89%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/">
+										为什么 tcp 协议有性能问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%B5%81%E5%AA%92%E4%BD%93%E7%9B%B4%E6%92%AD%E7%9A%84%E5%BB%B6%E8%BF%9F%E5%BE%88%E9%AB%98/">
+										为什么流媒体直播的延迟很高
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										20 记错
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/20%20%E8%AE%B0%E9%94%99/01%E5%A4%84%E7%90%86%20mybatis-plus%20%E4%B8%8E%20pageHelper%20%E5%86%B2%E7%AA%81/">
+										01处理 mybatis-plus 与 pageHelper 冲突
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/20%20%E8%AE%B0%E9%94%99/02%E8%AE%B0%E4%B8%80%E6%AC%A1%20git%20%E6%97%A0%E6%B3%95%20pull%E3%80%81push/">
+										02记一次 git 无法 pull、push
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/31/20%20%E8%AE%B0%E9%94%99/03%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">
+										03记一次跨域问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/20%20%E8%AE%B0%E9%94%99/04%E6%8E%A5%E5%8F%A3%E7%9A%84%20aop%20%E6%97%A5%E5%BF%97%E5%A4%B1%E6%95%88%E4%BA%86/">
+										04接口的 aop 日志失效了
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/08/17/20%20%E8%AE%B0%E9%94%99/05%E5%89%8D%E7%AB%AF%E6%97%A0%E6%B3%95%E6%8E%A5%E6%94%B6%20Long%20%E7%B1%BB%E5%9E%8B/">
+										05前端无法接收 Long 类型
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/09/17/20%20%E8%AE%B0%E9%94%99/06%E8%AE%B0%E4%B8%80%E6%AC%A1%E2%80%9C%E9%AB%98%E5%B9%B6%E5%8F%91%E2%80%9Dmd/">
+										06记一次“高并发”md
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/19/20%20%E8%AE%B0%E9%94%99/07Could%20not%20extract%20response:%20no%20suitable%20HttpMessageConverter%20found%20for%20response%20type/">
+										07Could not extract response: no suitable HttpMessageConverter found for response type
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										21 黑苹果
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/21%20%E9%BB%91%E8%8B%B9%E6%9E%9C/%E3%80%90%E8%BD%AC%E3%80%91NUC8%E4%BD%BF%E7%94%A8%E8%8B%B9%E6%9E%9C%E5%8E%9F%E8%A3%85%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1%E5%85%8D%E9%A9%B1%E5%8A%A8WiFi%E8%93%9D%E7%89%99AirDorpHandoff/">
+										【转】NUC8使用苹果原装无线网卡免驱动WiFi蓝牙AirDorpHandoff
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/21%20%E9%BB%91%E8%8B%B9%E6%9E%9C/%E5%B1%8F%E8%94%BD%E7%83%A6%E4%BA%BA%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%96%B0%E6%8F%90%E7%A4%BA/">
+										屏蔽烦人的系统更新提示
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										22 收藏
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/22%20%E6%94%B6%E8%97%8F/Sourcetree%20%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95/">
+										Sourcetree 设置默认工作目录
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/20/22%20%E6%94%B6%E8%97%8F/mac%E7%94%B5%E8%84%91iTerm2%E9%93%BE%E6%8E%A5linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%AD%E7%BA%BF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+										mac电脑iTerm2链接linux服务器断线解决方案
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/22%20%E6%94%B6%E8%97%8F/v2ray%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/">
+										v2ray搭建教程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/22%20%E6%94%B6%E8%97%8F/%E3%80%90%E8%BD%AC%E3%80%91%E3%80%90%E9%98%BF%E9%87%8C%E4%BA%91%E5%AE%98%E7%BD%91%E3%80%91oss%20%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%20Content-Type/">
+										【转】【阿里云官网】oss 如何设置 Content-Type
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/22%20%E6%94%B6%E8%97%8F/%E3%80%90%E8%BD%AC%E3%80%91%E6%90%AD%E5%BB%BA%20gitlab/">
+										【转】搭建 gitlab
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/22%20%E6%94%B6%E8%97%8F/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%93%AA%E5%AE%B6%E4%BE%BF%E5%AE%9C/">
+										云服务哪家便宜
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/22%20%E6%94%B6%E8%97%8F/%E6%8E%A8%E8%8D%90%E7%BD%91%E5%9D%80/">
+										推荐网址
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/22%20%E6%94%B6%E8%97%8F/%E6%94%B6%E8%97%8F/">
+										收藏
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/22%20%E6%94%B6%E8%97%8F/%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96%E6%A1%86%E6%9E%B6%E4%B8%BA%E4%BB%80%E4%B9%88%E6%94%BE%E5%BC%83%20Hibernate%E3%80%81JPA%E3%80%81Mybatis%EF%BC%8C%E6%9C%80%E7%BB%88%E9%80%89%E6%8B%A9%20JDBCTemplate%EF%BC%81/">
+										数据持久化框架为什么放弃 Hibernate、JPA、Mybatis，最终选择 JDBCTemplate！
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										23 梯子
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/23%20%E6%A2%AF%E5%AD%90/iphone%20%E4%BD%BF%E7%94%A8shadownrocket/">
+										iphone 使用shadownrocket
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/23%20%E6%A2%AF%E5%AD%90/mac%E4%BD%BF%E7%94%A8%20v2ray/">
+										mac使用 v2ray
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										24 维权
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/24%20%E7%BB%B4%E6%9D%83/xx/">
+										xx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										25 Hexo
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/25%20Hexo/Hexo%20%E6%A0%87%E9%A2%98%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7/">
+										Hexo 标题自动编号
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/25%20Hexo/%E5%A6%82%E4%BD%95%E8%AE%A9%20Hexo%20%E5%8D%9A%E5%AE%A2%E6%94%AF%E6%8C%81%20emoji/">
+										如何让 Hexo 博客支持 emoji
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										26 Markdown
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/26%20Markdown/%E3%80%90%E8%BD%AC%E3%80%91Markdown%20%E6%8F%92%E5%85%A5%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">
+										【转】Markdown 插入数学公式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										27 爬虫
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/08/20/27%20%E7%88%AC%E8%99%AB/Java%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5%EF%BC%9AJsoup+HttpUnit%E7%88%AC%E5%8F%96%E4%BB%8A%E6%97%A5%E5%A4%B4%E6%9D%A1%E3%80%81%E7%BD%91%E6%98%93%E3%80%81%E6%90%9C%E7%8B%90%E3%80%81%E5%87%A4%E5%87%B0%E6%96%B0%E9%97%BB/">
+										Java爬虫实践：Jsoup+HttpUnit爬取今日头条、网易、搜狐、凤凰新闻
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="file active">
+									<a href="/2021/03/03/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%8E%92%E8%A1%8C%E6%A6%9C/">
+										如何设计一个排行榜
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+		</div>
+	</div>
+</div>
+
+	<!-- 引入正文 -->
+	<div id="content">
+		<h1 id="article-title">
+
+	如何设计一个排行榜
+</h1>
+<div class="article-meta">
+	
+		<span>
+			阅读量:<span id="/2021/03/03/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%8E%92%E8%A1%8C%E6%A6%9C/" class="leancloud_visitors" data-flag-title="如何设计一个排行榜"></span>
+		</span>
+	
+	<span>今晚打老虎</span>
+	<span>2021-03-03 15:05:04</span>
+    
+		<div id="article-categories">
+            
+		</div>
+    
+</div>
+
+<div id="article-content">
+	<p>微信运动步数排行榜的截图：</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150542.png" alt="img"></p>
+<p>其实扯了这么多，这就是个常见的面试场景题：如何设计一个排行榜？</p>
+<p>这个题吧，其实就是考你面试准备范围的广度，见过就会答，没见过…就难说了。</p>
+<p>当然，如果你在实际业务中做过排行榜，那么这题正中下怀，你也不要笑出声来，场景题面试官是会给你思考时间的。</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150547.png" alt="img"></p>
+<p>所以你不要张口就来，你只需要眉头稍稍一皱，给面试官说：这题我想想啊。</p>
+<p>然后稍微组织一下语言，说出来就行。</p>
+<p>这次的文章，就带着大家分析一下“排行榜”这个场景题，到底应该怎么做。</p>
+<h1>基于数据库</h1>
+<p>这个题，如果是真的之前没有遇见过，可能最容易进入大家视野的就是平时接触的最多的数据库了。</p>
+<p>因为一想到“排行榜”，就想到了 order by。</p>
+<p>一想了 order by，就想到了数据库。</p>
+<p>一想到了数据库…</p>
+<p>兄弟，你路就走窄了。</p>
+<p>虽然我曾经就基于 MySQL 做过排行榜，因为当时是为了一个比赛临时搭建的服务，根本就没有引入 Redis。我评估了一下搭建 Redis 的时间和用 MySQL 直接开发的时间。</p>
+<p>于是选择了 MySQL。</p>
+<p>而让我选择 MySQL 的根本原因还是我已经知道进入决赛的队伍只有 10 支，也就是说我的排行榜表里面从始至终也只有 10 条数据。</p>
+<p>选手提交代码之后，系统实时算分，然后更新排行榜表。</p>
+<p>然后接口返回给前端页面下面这些数据，而下面这些数据都在一个表里面：</p>
+<blockquote>
+<ul>
+<li>队伍按照历史最高分数排名</li>
+<li>队伍名称</li>
+<li>历史最高分数</li>
+<li>最近一次提交得分</li>
+<li>最近一次提交时间</li>
+</ul>
+</blockquote>
+<p>前端每隔一分钟调用我的接口，相同分数，名次相同，所以我在接口里面用一条比较复杂的 sql 去查询数据库，上面的这些字段就都有了。</p>
+<p>你看，排行榜确实是可以用 MySQL 来做的。</p>
+<p>不一定非得上 Redis，记住一句话：<strong>脱离业务场景的方案设计，都是耍流氓。</strong></p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150553.png" alt="img"></p>
+<p>但是这玩意和“万物皆对象”一样，别对着面试官说，这一定不是面试官想要听到的答案。</p>
+<p>或者说，这只是想要听到的一部分回答。</p>
+<p>这个回答能用的原因是我给了一个具体的场景，用户量非常的小，怎么玩都可以。</p>
+<p>甚至我们不借助 MySQL 的排序，把数据查出来，在内存里面排序都可以。</p>
+<p>但是如果，这是一个游戏排行榜，随着游戏玩家的增加，达到千万用户级别的话，这个方案肯定是不行了。</p>
+<p>当然，也许你会给我扯什么查询慢就加索引，数据量大就分库分表的方案。</p>
+<p>怎么说呢，上面这句话是没有错的。</p>
+<p>但是一旦数据量大起来了，这个方案其实就不是一个特别好的方案。</p>
+<p>这问题，得从根上治理。</p>
+<h1>基于 Redis</h1>
+<p>这个场景其实就是在考察你对于 Redis 的 sorted set 数据结构的掌握。</p>
+<p>sorted set，见名知意，就是有序集合的意思。</p>
+<p>在 Redis 中它大概是长这样的：</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150558.png" alt="img"></p>
+<p>前面的 sport:ranking:20210227 是 Redis 中的 key。</p>
+<p>value 是一个集合，且可以看出这个集合是有序的。集合中的每一个 member 都有一个 score，然后按照这个 score 进行降序排序。</p>
+<p>需要注意的是，图片中的 score/member 不是我随便写的，官网上就是这样定义的：</p>
+<pre><code>https://redis.io/commands/zadd#sorted-sets-101
+</code></pre>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150603.png" alt="img"></p>
+<p>而且官网上说的是： score / member pairs。</p>
+<p>所以我画图的时候，score 在前，member 在后。这可不是随便画的，虽然谁前谁后好像也不影响什么玩意。</p>
+<p>另一个需要注意的点是，虽然我的示意图中没有体现出来，但是在有序集合中，元素即 member 是不可以重复的，但是 score 是可以重复的。</p>
+<p>这个很好理解，就比如 20210227 这一天的微信步数，我可以走 6666 步，你也可以走 6666 步，这个是不冲突：</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150606.png" alt="img"></p>
+<p>但是，问题就随之而来了：当 member 的 score 一样的时候，member 是怎么排序的呢？</p>
+<p>看一下来自官网的答案：</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150642.png" alt="img"></p>
+<p>当多个元素具有相同的分数时，它们按照 lexicographically 进行排序。</p>
+<p>哎呀，lexicographically 这个单词不认识。</p>
+<p>不慌，你知道的 why哥还兼职教英文：</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150654.png" alt="img"></p>
+<p><strong>当分数一样的时候，按照字典序排序</strong>，所以上面的示意图 jay 在 why 之前。</p>
+<p>接下来，看一下有序集合的操作函数，一共有 32 个：</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150702.png" alt="img"></p>
+<p>我这里就不一个个的做 API 教学了，官网上已经写的很清楚了，如果对于不熟悉的命令，可以去官网上查看，都是有示例代码的。</p>
+<pre><code>https://redis.io/commands/zadd#sorted-sets-101
+</code></pre>
+<p>比如这个 ZADD 方法：</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150720.png" alt="img"></p>
+<p>为了后面分享的顺利进行，我这里只讲几个需要用到的操作：</p>
+<blockquote>
+<ul>
+<li>添加 member 命令格式：zadd key score member [score member …]</li>
+<li>增加 member 的 score 命令格式：zincrby key increment member</li>
+<li>获取 member 排名命令格式：zrank/zrevrank key member</li>
+<li>返回指定排名范围内的 member 命令格式：zrange/zrevrange key start end [withscores]</li>
+</ul>
+</blockquote>
+<p><strong>先看第一个：添加 member。</strong></p>
+<p>比如我们把示意图中的数据添加到到有序集合里面去，语法是这样的：</p>
+<blockquote>
+<ul>
+<li>zadd key score member [score member …]</li>
+</ul>
+</blockquote>
+<p>意思是可以一次添加一对或者多对 score-member，比如下面这两个命令：</p>
+<blockquote>
+<ul>
+<li>zadd sport:ranking:20210227 10026 why</li>
+<li>zadd sport:ranking:20210227 10158 mx 30169 les 48858 skr 66079 jay</li>
+</ul>
+</blockquote>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150731.png" alt="img"></p>
+<p>执行之后，返回的数字代表添加成功的 member 个数。</p>
+<p>我用专门操作 Redis 的 RDM 可视化工具来查看插入的数据，和我自己画的示意图相差无几：</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150741.png" alt="img"></p>
+<p><strong>接着看第二个：增加 member 的 score</strong></p>
+<p>微信运动排行榜的数据是实时更新的。</p>
+<p>目前 member 为 why 的步数是 10268，假设我吃完晚饭出门跑步去了，又跑了 5000 步。</p>
+<p>这时得更新我的步数，就用 zincrby 命令，语法是这样的：</p>
+<blockquote>
+<ul>
+<li>zincrby key increment member</li>
+</ul>
+</blockquote>
+<p>对应上面场景的执行命令是这样的：</p>
+<blockquote>
+<ul>
+<li>zincrby sport:ranking:20210227 5000 why</li>
+</ul>
+</blockquote>
+<p>执行完成后，会返回 why 的步数，可以看到从 10026 变成了 15026 ：</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150750.png" alt="img"></p>
+<p>同时由于我的步数增加，按照 score 倒序，也导致了排序的变化：</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150800.png" alt="img"></p>
+<p>所以我们只需要更新 score 就行了，至于排名的变化，Redis 会帮忙保证的。</p>
+<p><strong>然后看第三个命令：获取 member 排名</strong></p>
+<p>语法是这样的：</p>
+<blockquote>
+<ul>
+<li>获取 member 排名：zrank key member</li>
+<li>获取 member 排名：zrevrank key member</li>
+</ul>
+</blockquote>
+<p>首先，排名都是 0 开始计算的。</p>
+<p>zrank 是按照分数从低到高返回 member 排名。</p>
+<p>zrevrank 是按照分数从高到低返回 member 排名。</p>
+<p>比如现在要获取 jay 的排名，用 zrank 返回结果就是 4。</p>
+<blockquote>
+<ul>
+<li>zrank sport:ranking:20210227 jay</li>
+</ul>
+</blockquote>
+<p>当用 zrevrank 时，jay 的排名就是 0：</p>
+<blockquote>
+<ul>
+<li>zrevrank sport:ranking:20210227 jay</li>
+</ul>
+</blockquote>
+<p><img src="https://segmentfault.com/img/remote/1460000039320543" alt="img"></p>
+<p>所以，在微信步数排行榜的这个需求中，步数越多排名越靠前，我们应该用 zrevrank。</p>
+<p><strong>第四个需要掌握的命令是：返回指定排名范围内的 member。</strong></p>
+<blockquote>
+<ul>
+<li>zrange/zrevrange key start end [withscores] 返回指定排名范围内的 member</li>
+</ul>
+</blockquote>
+<p>这个命令就很关键了。</p>
+<p>zrange 是按照 score 从低到高返回指定排名范围内的 member。</p>
+<p>zrevrange 是按照 score 从高到低返回指定排名范围内的 member。</p>
+<p>在这里，我只演示 zrevrange 的命令。</p>
+<p>比如我要获取步数排名前三的 member：</p>
+<blockquote>
+<ul>
+<li>zrevrange sport:ranking:20210227 0 2</li>
+</ul>
+</blockquote>
+<p><img src="https://segmentfault.com/img/remote/1460000039320546" alt="img"></p>
+<p>这个命令有个可选参数：withscores</p>
+<p>当带上这个参数之后，会返回对应 member 的 score：</p>
+<p><img src="https://segmentfault.com/img/remote/1460000039320550" alt="img"></p>
+<p>你想，这不就是排行榜 top N 的场景吗？</p>
+<p>假设我现在要获取所有用户的排名，怎么写呢？</p>
+<p>如下：</p>
+<blockquote>
+<ul>
+<li>zrevrange sport:ranking:20210227 0 -1</li>
+</ul>
+</blockquote>
+<p><img src="https://segmentfault.com/img/remote/1460000039320549" alt="img"></p>
+<p>这就是当前的微信步数排行榜，jay 步数最多，mx 步数最少。</p>
+<p>咦，怎么回事，排行榜好久就出来了呢？</p>
+<p>你想想，讲完几个 API 操作，好像功能就实现了呢？</p>
+<p>是的，确实是这样的，甚至我们只需要这两个 API 就能完成排行榜的需求：</p>
+<blockquote>
+<ul>
+<li>zadd key score member [score member …] 添加 member</li>
+<li>zrange/zrevrange key start end [withscores] 返回指定排名范围内的 member</li>
+</ul>
+</blockquote>
+<p>好了，如果大家喜欢的话，感谢大家一键三连。本次的文章就到这里了…</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150838.png" alt="img"></p>
+<p>那是不可能的。</p>
+<p>索然无味的 API 文章多没有意思啊。</p>
+<p>虽然前面的部分我们已经可以基于 Redis 的有序集合加上几个简单的命令，就可以实现排行榜需求了。</p>
+<p>但是前面只是铺垫，接下来，好戏才刚刚开始。</p>
+<h1>再次审视排行榜</h1>
+<p>上面的微信步数排行榜有个问题，你发现了吗？</p>
+<p>就上面这个场景而言，所有人来看，看到的都是这样的排序：</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150846.png" alt="img"></p>
+<p>而真实情况是，每个人看见的数据排行数据来源自己的微信好友，而微信好友各不相同，所以看到的排行榜也各不相同。</p>
+<p>这个特性，我们并没有体现出来。</p>
+<p>我们上面的场景更加类似于游戏排行榜，所有的人看到的全服排行榜都是一样的。</p>
+<p>那么怎么保证我们每个人看到的各不相同呢？</p>
+<p>你思考一下，该从什么角度去解决这个问题呢？</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150853.png" alt="img"></p>
+<p>有序集合的 key 不同，就获取到不同的 value 集合。</p>
+<p>我们当前的 key 是 sport:ranking:20210227，里面只包含了某一天的信息。</p>
+<p>只要我们在 key 里面加上用户的属性就可以了，假设我的微信号是 why。</p>
+<p>那么 key 可以设计为这样 sport:ranking:why:20210227。</p>
+<p>这样，由于 key 里面多了用户信息，每个人的 key 都各不相同，就像这样的：</p>
+<p><img src="https://segmentfault.com/img/remote/1460000039320553" alt="img"></p>
+<p>对应的命令如下：</p>
+<blockquote>
+<ul>
+<li>zadd sport:ranking:why:20210227 10026 why 10158 mx 30169 les 48858 skr 66079 jay</li>
+<li>zadd sport:ranking:mx:20210227 7688 赵四 9688 刘能 10026 why 10158 mx 54367 大脚</li>
+</ul>
+</blockquote>
+<p>why 和 mx 看到的都是各自好友某一天的微信步数排行榜。</p>
+<p>只要把 key 设计好了，这个问题就迎刃而解了。</p>
+<p>但是你仔细思考一下，真的就迎刃而解了吗？</p>
+<p>这个问题，我在写第一版的时候可能是被猪油蒙蔽了双眼，没发现。</p>
+<p>有种“只缘身在此山中”的味道，一心想着 Redis 了。</p>
+<p>你想，如果每个用户都有在redis有一个自己的排行榜，一个用户的分数更新的时候就需要对所有好友的zset更新，这多大的代价啊，对吧？</p>
+<p>当以用户为纬度做排行榜的时候，就会出现排行榜巨多的情况，导致维护成本升高。</p>
+<p>Redis能做，但不是最佳方案。</p>
+<p>那么用什么方案去做呢？</p>
+<p>我提个思路吧：</p>
+<p>每个用户看到的排行榜不一样，我们其实不用时时刻刻帮用户维护好排行榜。</p>
+<p>维护好了，用户还不一定来看，出力不讨好的节奏。</p>
+<p>所以还不如延迟到用户请求的阶段。</p>
+<p>当用户请求查看排行榜的时候，再去根据用户的好友关系，循环获取好友的步数，生成排行榜。</p>
+<p>具体方案，大家自己思考一下吧。</p>
+<p>另外多说一嘴，前段时间不是微信支持了修改微信号吗，赢得一大片叫好声。</p>
+<p>其实我当时认真的想了一下，从技术上的实现来说这个需求到底有多难。</p>
+<p>我不知道有没有历史技术债务在里面。</p>
+<p>但是就说当前这个场景，key 里面包含了微信号，注意是微信号，不是微信昵称。</p>
+<p>因为在设计之初，产品打包票说：放心，微信号绝对全局唯一，一旦确定，不可变更。</p>
+<p>结果呢，现在要变化了。</p>
+<p>产品屁颠屁颠的说：怎么实现我不管，这个需求用户呼吁很大，赶紧上线。</p>
+<p>你说，对这些类似场景的冲击有多大？</p>
+<p>其实冲击也不算特别大，一个字段的变化而已。</p>
+<p>但是，微信 14 亿用户啊。</p>
+<p>一个简单的需求，涉及到这个体量之后，就一句话：</p>
+<p>量变引起质变。</p>
+<p>好了，好了，扯远了。说回来。</p>
+<p><img src="https://segmentfault.com/img/remote/1460000039320552" alt="img"></p>
+<p>当我把目光再次放到微信排行榜上的时候，我发现，其实我只是给了一个阉割版的排行榜。</p>
+<p>是的，我们现在可以获取到 why 的当前步数是 1680 步，当前排名是 814 名。</p>
+<p>比如还是沿用上面的例子，假设现在要获取我的微信好友 jay 的微信步数排行榜情况。</p>
+<p>先获取 jay 的名次：</p>
+<blockquote>
+<ul>
+<li>zrevrank sport:ranking:why:20210227 jay</li>
+</ul>
+</blockquote>
+<p><img src="https://segmentfault.com/img/remote/1460000039320555" alt="img"></p>
+<p>名次为 0，程序里面可以对其进行加一操作。就是第一名了。</p>
+<p>接着获取 jay 的今日步数：</p>
+<blockquote>
+<ul>
+<li>zscore sport:ranking:why:20210227 jay</li>
+</ul>
+</blockquote>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150915.png" alt="img"></p>
+<p>66079，步数也有了。</p>
+<p>现在我们知道了：why 的好友 jay 今日运动步数 66079 步，在 why 的微信好友中排第一名。</p>
+<p>但是你仔细看，这上面我还漏了两个字段：</p>
+<blockquote>
+<ul>
+<li>微信头像</li>
+<li>朋友点赞个数</li>
+</ul>
+</blockquote>
+<p>两个字段应该怎么放呢？</p>
+<p>放数据库里面当然可以，但是我们主要还是说一下 Redis 的解决方案。</p>
+<p>这个时候其实我们想要存储的是 User 对象，对象里面有这几个字段：昵称、头像图片链接、点赞数、步数。</p>
+<p>你说，这个用 Redis 的啥数据结构来存？</p>
+<p>可不就得用 Hash 结构了吗。</p>
+<p>Hash 结构同样涉及到 key 和 value，那么它们分别是什么呢？</p>
+<p>key 就是我们的有序集合的 key 后面再加上好友昵称，比如这样的：</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303151026.png" alt="img"></p>
+<p>对应的命令是这样的：</p>
+<blockquote>
+<ul>
+<li>hmset sport:ranking:why:20210227:jay nickName jay headPhoto xxx likeNum 520 walkNum 66079</li>
+</ul>
+</blockquote>
+<p>执行完成之后，在 RDM 里面看起来是这样的：</p>
+<p><img src="https://segmentfault.com/img/remote/1460000039320561" alt="img"></p>
+<p>当后续有更多的赞的时候，需要调用更新命令更新 likeNum：</p>
+<blockquote>
+<ul>
+<li>hincrby sport:ranking:why:20210227:jay likeNum 500</li>
+</ul>
+</blockquote>
+<p>执行完成之后点赞数就会变成 1020：</p>
+<p><img src="https://segmentfault.com/img/remote/1460000039320558" alt="img"></p>
+<p>这样，排行榜上的所有字段我们都能获取到了，微信排行榜就说完了。</p>
+<p>呃…</p>
+<p>怎么感觉还是 API 教学呢？</p>
+<p>不得劲，换个其他的。</p>
+<p><img src="https://segmentfault.com/img/remote/1460000039320557" alt="img"></p>
+<h1>最近七天排行榜怎么弄？</h1>
+<p>前面我们说的都是每日排行榜。</p>
+<p>假设面试官要求我们提供一个最近七天、上一周、上一月、上个季度、这一年排行榜啥的，又该怎么搞呢？</p>
+<p>其实这还是在考察你对于 Redis 有序集合 API 的掌握程度。</p>
+<p>也就是这个 API：</p>
+<blockquote>
+<ul>
+<li>zinterstore/zunionstore destination numkeys key [key …] [weights weight [weight …]] [aggregate sum|min|max] 获取交集/并集</li>
+</ul>
+</blockquote>
+<p>这个 API 看起来有点复杂，不要怕，一个个的讲：</p>
+<blockquote>
+<ul>
+<li>zinterstore/zunionstore其实就是交集/并集</li>
+<li>destination 将交集/并集的结果保存到这个键中</li>
+<li>numkeys 需要做交集/并集的集合的个数</li>
+<li>key [key …] 具体参与交集/并集的集合</li>
+<li>weights weight [weight …] 每个参与计算的集合的权重。在做交集/并集计算时，每个集合中的 member 会把自己的 score 乘以这个权重，默认为 1。</li>
+<li>aggregate sum|min|max 对于各个集合中的相同元素是 sum(求和)、min(取最小值)还是max(取最大值)，默认为 sum。</li>
+</ul>
+</blockquote>
+<p>拿最近七天举例，我们随便搞点数据进来，你可以直接粘过去玩：</p>
+<blockquote>
+<ul>
+<li>zadd sport:ranking:why:20210222 43243 why 2341 mx 8764 les 42321 skr</li>
+<li>zadd sport:ranking:why:20210223 57632 why 24354 mx 4231 les 43512 skr 5341 jay</li>
+<li>zadd sport:ranking:why:20210224 10026 why 12344 mx 54312 les 34531 skr 43512 jay</li>
+<li>zadd sport:ranking:why:20210225 54312 why 32451 mx 23412 les 21341 skr 56321 jay</li>
+<li>zadd sport:ranking:why:20210226 3212 why 63421 mx 53652 les 45621 skr 5723 jay</li>
+<li>zadd sport:ranking:why:20210227 5462 why 10158 mx 30169 les 48858 skr 66079 jay</li>
+<li>zadd sport:ranking:why:20210228 43553 why 4451 mx 7431 les 9563 skr 8232 jay</li>
+</ul>
+</blockquote>
+<p>可以看到我们一共有 7 天的数据：</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303151041.png" alt="img"></p>
+<p>而且需要注意的是 20210222 这一天是没有 jay 的数据的。</p>
+<p>现在我们要求出最近 7 天的排行榜，就用下面这行命令，命令有点复杂，但是对着命令格式看，还是很清晰的：</p>
+<blockquote>
+<ul>
+<li>zunionstore sport:ranking:why:last_seven_day 7 sport:ranking:why:20210222 sport:ranking:why:20210223 sport:ranking:why:20210224 sport:ranking:why:20210225 sport:ranking:why:20210226 sport:ranking:why:20210227 sport:ranking:why:20210228 weights 1 1 1 1 1 1 1 aggregate sum</li>
+</ul>
+</blockquote>
+<p>这条命令后面的 weights 和 aggregate 都是可以不用写的，有默认值，我这里为了不隐藏数据，都写了出来。</p>
+<p>执行完成后，可以看到多了一个 key，里面放的就是最近 7 天的数据汇总：</p>
+<p><img src="https://segmentfault.com/img/remote/1460000039320556" alt="img"></p>
+<p>上面用的是并集，如果我们的要求是对最近 7 天，每天都上传运动数据的人进行排序，就用交集来算。</p>
+<p>命令和上面的一致，只是把 zunionstore 修改为 zinterstore 即可。</p>
+<p>另外为了有对比，合并之后的队列名称也修改一下，命令如下：</p>
+<blockquote>
+<ul>
+<li>zinterstore sport:ranking:why:last_seven_day_zinterstore 7 sport:ranking:why:20210222 sport:ranking:why:20210223 sport:ranking:why:20210224 sport:ranking:why:20210225 sport:ranking:why:20210226 sport:ranking:why:20210227 sport:ranking:why:20210228 weights 1 1 1 1 1 1 1 aggregate sum</li>
+</ul>
+</blockquote>
+<p>从执行结果可以看出来，由于 jay 同学在 20210222 这一天没有上传运动数据，所以取交集的时候没有他了：</p>
+<p><img src="https://segmentfault.com/img/remote/1460000039320570" alt="img"></p>
+<p>知道最近 7 天的做法了，我们又有每一天数据，上一周、上一月、上个季度、这一年排行榜啥的不都是这个套路吗？</p>
+<p>呃…</p>
+<p>怎么感觉还是 API 教学呢？</p>
+<p>还是不得劲，再换个其他的。</p>
+<h1>亿级用户排行榜</h1>
+<p>王者荣耀，妥妥的亿级用户吧。比如我想看看我在亿级用户中排多少名，于是我打开了游戏，二十多分钟（玩了一局）之后我终于找到排行榜的位置。</p>
+<p>结果，未上榜：</p>
+<p><img src="https://segmentfault.com/img/remote/1460000039320567" alt="img"></p>
+<p>我这个千年老夫子，当然是未上榜了。</p>
+<p>就算真的有排名了，排名好几千万，8 位数字，在页面上也不好放呀。</p>
+<p>但是假设现在的需求就是要查询用户的全服排名，怎么查？</p>
+<p>我瞎说一个我能想到的基于 Redis 的初版方案，注意是我瞎想的，实际做起来肯定是异常复杂的方案。</p>
+<p>我是怎么想的呢？</p>
+<p>我就寻思，一般面试遇到什么千万条数据、几个 G 文件、上亿的数据啥的，首先想到的方案就是分而治之。</p>
+<p>这个亿级用户排行榜的需求也得用分治的思想。</p>
+<p>王者一共 8 个段位：</p>
+<blockquote>
+<ul>
+<li>1、倔强青铜</li>
+<li>2、秩序白银</li>
+<li>3、荣耀黄金</li>
+<li>4、尊贵铂金</li>
+<li>5、永恒钻石</li>
+<li>6、至尊星耀</li>
+<li>7、最强王者</li>
+<li>8、荣耀王者</li>
+</ul>
+</blockquote>
+<p>所以我们可以有 8 个桶。</p>
+<p>这个桶可以是一个 Redis 里面的 8 个不同的 key，甚至可以是 8 个 Redis 里面各一个 key，看面试官给你的经费是多少，钱多就可劲造。</p>
+<p>如下图所示：</p>
+<p><img src="https://segmentfault.com/img/remote/1460000039320565" alt="img"></p>
+<p>解释一下上面的图片中 score 为 8588 是怎么来的。</p>
+<p>首先我们用 Redis 的有序集合，那么我们就得给每个 member 一个 score。</p>
+<p>所以，每个用户在桶里面都一个经过公式计算后得出的积分。</p>
+<p>比如why哥现在的段位就是星耀，假设计算出来的分数是 8588。</p>
+<p>那么现在要算why哥在全服的排名就很好算了：</p>
+<p>写程序的时候是可以知道我现在的段位是星耀，那么直接去星耀的桶里面，用 zrevrank 计算出当前桶里面的排名，假设为 n。</p>
+<p>然后再通过 zcard 这个 O(1) 的命令获取到，前面的桶，也就是最强王者和荣耀王者这两个桶的集合大小，分别为 y 和 x。</p>
+<p>那么why哥的全服排名就是 n+y+x。</p>
+<p>所以获取任何一个用户的全服排名，就是看他在自己的桶里面的排名加上前面桶里面的元素个数即可。</p>
+<p>而且现在要计算全服 top 100 就很容易了嘛。</p>
+<p>直接取最前面的桶，也就是荣耀王者里面的前 100 个就完事了。</p>
+<p>搞定。</p>
+<p><img src="https://segmentfault.com/img/remote/1460000039320562" alt="img"></p>
+<p>等等，真的搞定了吗？</p>
+<p>思路是对了，但是对于亿级用户只分 8 个桶未免太少了吧？</p>
+<p>那就继续分桶呗，别忘了，每个段位里面还有小段位的。</p>
+<p>比如星耀，里面就有星耀五到星耀一五个小段位，青铜三到青铜一三个小段位。</p>
+<p>全部算上就是 27 个桶。</p>
+<p>但是，27 个桶也少。</p>
+<p>那么星耀二到星耀一还需要五颗星、青铜三到青铜二要三颗星才行呢。</p>
+<p>这样算下来，就是 160 个桶。</p>
+<p>160 个桶还是不够？</p>
+<p>额。。。</p>
+<p>推翻重来，直接把段位加上各种其他条件换算成积分，然后按照积分来拆分：</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303151106.png" alt="img"></p>
+<p>这样，想怎么拆分数段都行、拆多细都行。</p>
+<p>完美。</p>
+<p>等等，真的完美吗？</p>
+<p>你看我的积分范围，都划分的非常的均匀。</p>
+<p>按照段位拆分，有些菜鸡选手，打了两把觉得没意思，骂骂咧咧的退出游戏，就一直留在了青铜段位。</p>
+<p>所以青铜段位的选手肯定是远大于荣耀王者的。</p>
+<p>所以，实际情况下，用户的落点其实并不是均匀的。</p>
+<p>怎么办？</p>
+<p>这个时候就需要进行数据分析，通过一系列的高数、概率、离散等知识去做个桶大小的预估。</p>
+<p>啊，这玩意就超纲了啊。</p>
+<p>那就告辞，收工。</p>
+<p><img src="https://segmentfault.com/img/remote/1460000039320564" alt="img"></p>
+<h1>技术之外的考虑</h1>
+<p>做一个排行榜好像是一个很简单的事情。</p>
+<p>但是其实不然，特别是推荐类的排行榜，需要避免马太效应：</p>
+<p><img src="https://segmentfault.com/img/remote/1460000039320563" alt="img"></p>
+<p>比如作者推荐榜单，被推荐到前面的作者，曝光度很高。即使输出质量下降，但是还是很容易获得更多的关注。</p>
+<p>位于榜单尾部的作者就很没有参与感。</p>
+<p>于是两极分化就出现了，马太效应就来了。</p>
+<p>对于这种情况怎么处理呢？</p>
+<p>里面就涉及到一个复杂的计算公式了，比如掘金社区的掘力值，用于消息流推荐和作者榜单：</p>
+<pre><code>https://juejin.cn/book/6844733795329900551/section/6844733795380232206
+</code></pre>
+<p><img src="https://segmentfault.com/img/remote/1460000039320569" alt="img"></p>
+<p>所以千万不要错误的以为排行榜是一个非常简单的需求，这里面涉及到一些非常复杂的算法。</p>
+
+</div>
+
+<!-- 隐藏掉上一页，下一页-->
+<!-- 
+    <div class="post-guide">
+        <div class="item left">
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2020/12/14/16%20%E7%A7%92%E6%9D%80-%E9%AB%98%E5%B9%B6%E5%8F%91/03.%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F/">
+                16 秒杀-高并发
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+ -->
+
+
+	<div id="vcomments"></div>
+
+
+<script>
+	
+		// 评论
+		new Valine({
+			av: AV,
+			el: '#vcomments',
+			notify: false,
+			verify: false,
+			path: window.location.pathname,
+			appId: 'lsX646kI8Pj43gH38o38IHEl-gzGzoHsz',
+			appKey: 'SI9zpOfgyOmEDPGK8KI8niYh',
+			placeholder: '请输入评论',
+			avatar: 'retro',
+			recordIP: false
+		})
+	
+	
+    // 显示次数
+		function showTime(Counter) {
+			var query = new AV.Query("Counter");
+			if($(".leancloud_visitors").length > 0){
+				var url = $(".leancloud_visitors").attr('id').trim();
+				// where field
+				query.equalTo("words", url);
+				// count
+				query.count().then(function (number) {
+					// There are number instances of MyClass where words equals url.
+					$(document.getElementById(url)).text(number?  number : '--');
+				}, function (error) {
+					// error is an instance of AVError.
+				});
+			}
+		}
+		// 追加pv
+		function addCount(Counter) {
+			var url = $(".leancloud_visitors").length > 0 ? $(".leancloud_visitors").attr('id').trim() : 'xzh20121116.github.io';
+			var Counter = AV.Object.extend("Counter");
+			var query = new Counter;
+			query.save({
+				words: url
+			}).then(function (object) {
+			})
+		}
+		$(function () {
+			var Counter = AV.Object.extend("Counter");
+			addCount(Counter);
+			showTime(Counter);
+		});
+	
+</script>
+	</div>
+	<div id="footer">
+	<p>
+	©2019-<span id="footerYear"></span> 
+	<a href="/">今晚打老虎</a> 
+	
+	
+		|
+		<span id="busuanzi_container_site_pv">
+			pv
+			<span id="busuanzi_value_site_pv"></span>
+		</span>
+		|
+		<span id="busuanzi_container_site_uv"> 
+			uv
+			<span id="busuanzi_value_site_uv"></span>
+		</span>
+	
+	<br>
+	Theme <a href="//github.com/wujun234/hexo-theme-tree" target="_blank">Tree</a>
+	by <a href="//github.com/wujun234" target="_blank">WuJun</a>
+	Powered by <a href="//hexo.io" target="_blank">Hexo</a>
+	</p>
+</div>
+<script type="text/javascript"> 
+	document.getElementById('footerYear').innerHTML = new Date().getFullYear() + '';
+</script>
+	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</body>
+</html>

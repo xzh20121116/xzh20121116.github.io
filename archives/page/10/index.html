@@ -1971,6 +1971,15 @@
 								
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/03/03/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%8E%92%E8%A1%8C%E6%A6%9C/">
+										如何设计一个排行榜
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 		</div>
 	</div>
 </div>
@@ -1978,6 +1987,25 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2020/07/21/05%20Springboot/springboot%20%E4%B9%8B%20Filter%20%E6%8C%87%E5%AE%9A%E8%BF%87%E6%BB%A4%20Url%20%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+				<h2 class="index-title">
+					springboot 之 Filter 指定过滤 Url 的常见问题
+				</h2>
+				<div class="index-brief">
+					在使用Filter对一些自己指定的URL进行过滤拦截时，经常会出现如下错误：
+1、 明明在@WebFilter(urlPatterns={&quot;/app/online&quot;})中过滤的是/app/online 路径，但是运行之后发现，这个WebFilter过滤器对所有的URL都进行了过滤
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2020/07/21/07%20SpringMVC/%E8%AF%B4%E8%AF%B4%20SpringMvc%20%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">
@@ -2025,6 +2053,30 @@ controller-控制器：根据视图提出的请求，判断将请求和数据交
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/07/21/04%20Spring/3%20%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
+				<h2 class="index-title">
+					3 依赖注入
+				</h2>
+				<div class="index-brief">
+					di 是相较于 ioc 的一种更具体的实现，ioc 可以理解为一个接口，di 就是他的实现
+装配方式优先级：自动装配 &gt;  java 配置文件 &gt; xml 配置文件
+自动装配
+spring 容器可以自动配置相互协作 bean 之间的关系。
+spring 从两个角度实现自动装配
+组件扫描
+
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/1%20%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/Sentinel%20%E4%B8%8E%20Hystrix%20%E5%AF%B9%E6%AF%94/">
 				<h2 class="index-title">
 					Sentinel 与 Hystrix 对比
@@ -2038,30 +2090,6 @@ Hystrix 使用的是自己创建的线程池
 Sentinel：信号量隔离（并发线程数限流）（模拟信号量）。
 Hystrix：线程池、信号量隔离。
 特别说明：Sentinel创建的线程不依赖容器的
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/04%20Spring/3%20%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
-				<h2 class="index-title">
-					3 依赖注入
-				</h2>
-				<div class="index-brief">
-					di 是相较于 ioc 的一种更具体的实现，ioc 可以理解为一个接口，di 就是他的实现
-装配方式优先级：自动装配 &gt;  java 配置文件 &gt; xml 配置文件
-自动装配
-spring 容器可以自动配置相互协作 bean 之间的关系。
-spring 从两个角度实现自动装配
-组件扫描
-
 					...
 				</div>
 			</a>
@@ -2129,25 +2157,6 @@ requi
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/04%20Spring/7%20spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
-				<h2 class="index-title">
-					7 spring 循环依赖
-				</h2>
-				<div class="index-brief">
-					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
-如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/21/04%20Spring/6%20ioc/">
 				<h2 class="index-title">
 					6 ioc
@@ -2170,12 +2179,13 @@ Inversion of controlle 控制反转
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/04%20Spring/4%20aop/">
+			<a href="/2020/07/21/04%20Spring/7%20spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
 				<h2 class="index-title">
-					4 aop
+					7 spring 循环依赖
 				</h2>
 				<div class="index-brief">
-					
+					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
+如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
 					...
 				</div>
 			</a>
@@ -2188,29 +2198,12 @@ Inversion of controlle 控制反转
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/10%20Redis/2%20%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+			<a href="/2020/07/21/04%20Spring/4%20aop/">
 				<h2 class="index-title">
-					2 常见问题
+					4 aop
 				</h2>
 				<div class="index-brief">
-					雪崩
-是什么
-多个热点 key 同时过期，导致大量访问直接落在 db
-解决方案
-
-
-设置热点 key 永不过期，有更新的时候就更新缓存
-
-
-考虑对数据库的访问加上锁或者阻塞队列的方式，保证不会有大量的线程对 db 访问
-
-
-将缓存失效的时间分散开
-
-
-穿透
-是什么
-查询一个一定不存在的 key，比如
+					
 					...
 				</div>
 			</a>
