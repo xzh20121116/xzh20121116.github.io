@@ -2033,6 +2033,23 @@ tar -xzvf logstash-7.6.1.tar.gz
 </li>
 <li>
 <p>安装 ik 分词器</p>
+<ol>
+<li>手动安装
+<ol>
+<li>手动下载安装包，安装包地址：<a href="https://github.com/medcl/elasticsearch-analysis-ik/releases%EF%BC%8C%E4%B8%8B%E8%BD%BD%E4%B8%8E" target="_blank" rel="noopener">https://github.com/medcl/elasticsearch-analysis-ik/releases，下载与</a> es 版本一致的，不一致可能会出问题</li>
+<li>在 es 的安装地址下，plugins文件夹中创建目录ik</li>
+<li>解压安装包到 ik 文件夹中</li>
+</ol>
+</li>
+<li>使用 es命令安装
+<ol>
+<li>进入 es安装目录中</li>
+<li>执行命令<code>./elasticsearch-plugin install https://github.com/medcl/elasticsearch-analysis-ik/releases/download/v6.3.0/elasticsearch-analysis-ik-6.3.0.zip</code>，同样需要注意的是，将<code>6.3.0</code>替换成自己的版本。</li>
+</ol>
+</li>
+</ol>
+<p>安装完成之后，重启 es，启动日志会有下面的东西，表示 ik 安装成功</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210406171334" alt="img"></p>
 </li>
 <li>
 <p>es 不让 root 用户启动，因此需要使用非 root 用户</p>
@@ -2088,6 +2105,8 @@ cluster.initial_master_nodes: [&quot;node-1&quot;]
 </li>
 <li>
 <p>启动，成功，但是还是无法9200</p>
+</li>
+</ol>
 <p>解决办法：</p>
 <pre><code class="language-bash">#elasticsearch.yml添加如下内容
 http.cors.enabled: true
@@ -2101,10 +2120,8 @@ http.cors.allow-origin: &quot;*&quot;
 <pre><code class="language-bash">firewall-cmd --zone=public --add-port=9200/tcp --permanent
 firewall-cmd --reload
 </code></pre>
-</li>
-<li>
-<p>启动，成功，访问，成功</p>
-</li>
+<ol start="11">
+<li>启动，成功，访问，成功</li>
 </ol>
 <h2 id="添加密码"><a class="header-anchor" href="#添加密码"></a>添加密码</h2>
 <pre><code class="language-bash">#elasticsearch.yml添加如下内容

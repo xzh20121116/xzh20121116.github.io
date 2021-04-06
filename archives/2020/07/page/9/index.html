@@ -2090,16 +2090,16 @@ redis 常用的方式有
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/10%20Redis/8%20Redisson%E4%BD%BF%E7%94%A8/">
+			<a href="/2020/07/21/10%20Redis/6%20cluster%20%E4%B8%8E%20sentinel/">
 				<h2 class="index-title">
-					8 Redisson使用
+					6 cluster 与 sentinel
 				</h2>
 				<div class="index-brief">
-					添加 pom 依赖
-    &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
-            &lt;artifactId&gt;re
+					cluster 突破单机性能瓶颈
+redis 是单线程的，如果在多核服务器上部署的话，可以部署多个实例，搭建一个redis 集群。
+也就是 redis cluster，并且是主从同步，读写分离的。
+一个 cluster 支撑多个 master，每一个 master 挂载多个 slave。
+maste
 					...
 				</div>
 			</a>
@@ -2112,16 +2112,16 @@ redis 常用的方式有
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/10%20Redis/6%20cluster%20%E4%B8%8E%20sentinel/">
+			<a href="/2020/07/21/10%20Redis/8%20Redisson%E4%BD%BF%E7%94%A8/">
 				<h2 class="index-title">
-					6 cluster 与 sentinel
+					8 Redisson使用
 				</h2>
 				<div class="index-brief">
-					cluster 突破单机性能瓶颈
-redis 是单线程的，如果在多核服务器上部署的话，可以部署多个实例，搭建一个redis 集群。
-也就是 redis cluster，并且是主从同步，读写分离的。
-一个 cluster 支撑多个 master，每一个 master 挂载多个 slave。
-maste
+					添加 pom 依赖
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
+            &lt;artifactId&gt;re
 					...
 				</div>
 			</a>
