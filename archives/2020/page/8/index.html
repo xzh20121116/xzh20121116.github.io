@@ -1989,37 +1989,47 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%A0%86%E6%8E%92%E5%BA%8F/">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
 				<h2 class="index-title">
-					堆排序
-				</h2>
-				<div class="index-brief">
-					什么是堆排序
-二叉堆的构建、删除、自我调整等基本操作正是实现堆排序的基础
-二叉堆的特性
-
-最大堆的堆顶是整个堆中最大的元素
-最小堆的堆顶是整个堆中最小的元素
-
-以最大堆为力，如果删除一个最大堆的堆顶（并不是完全删除，而是跟末尾的节点交换位置），经过自我调整，第 2 大的元素就会被交换上来，成为最大堆
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/">
-				<h2 class="index-title">
-					基数排序
+					常见排序算法
 				</h2>
 				<div class="index-brief">
 					
+
+
+中文名称
+英文名称
+平均时间复杂度
+最坏时间复杂度
+最好时间复杂度
+空间复杂度
+稳定性
+
+
+
+
+选择
+selection
+$ n^2$
+$ n^2$
+$ n^2$
+1
+不稳
+
+
+冒泡
+bubble
+$ n^2$
+$ n^2$
+$n $
+1
+稳
+
+
+插入
+insertion
+$ n^2$
+$ n
 					...
 				</div>
 			</a>
@@ -2055,21 +2065,12 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/">
 				<h2 class="index-title">
-					冒泡排序
+					基数排序
 				</h2>
 				<div class="index-brief">
-					实例代码
-public class 冒泡排序 {
-	public static void main(String[] args) {
-		int[] arr = {5, 2, 4, 3, 1, 7, 9, 8, 6};
-		sort(arr);
-		print(arr);
-
-	}
-
-	static 
+					
 					...
 				</div>
 			</a>
@@ -2119,21 +2120,21 @@ B 负责出队操作
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%97%A0%E5%BA%8F%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E5%90%8E%E6%9C%80%E5%A4%A7%E7%9B%B8%E9%82%BB%E5%B7%AE/">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">
 				<h2 class="index-title">
-					无序数组排序后最大相邻差
+					冒泡排序
 				</h2>
 				<div class="index-brief">
-					
-暴力破解
-使用任意一种 nlogn 的排序算法（例如快排）给原数组排序，然后遍历排好的数组，并对每两个相邻元素求差，最终得到最大值
-有问题？
-很有问题！
-显然这个题目不是让来排序的
-正确思路
-技术排序思想
+					实例代码
+public class 冒泡排序 {
+	public static void main(String[] args) {
+		int[] arr = {5, 2, 4, 3, 1, 7, 9, 8, 6};
+		sort(arr);
+		print(arr);
 
-求出原数组最大值、最小值的区间长度 k（k=max=min+1），以及偏移量 d -min
+	}
+
+	static 
 					...
 				</div>
 			</a>
@@ -2162,6 +2163,33 @@ B 负责出队操作
 创建一个哈希表，以 1-100 这100 个整数位 key，然后遍历数组，读到一个整数，就删除一个 key，最后表中剩下一个 key
 时间复杂度 On，空间复杂度 On
 
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%97%A0%E5%BA%8F%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E5%90%8E%E6%9C%80%E5%A4%A7%E7%9B%B8%E9%82%BB%E5%B7%AE/">
+				<h2 class="index-title">
+					无序数组排序后最大相邻差
+				</h2>
+				<div class="index-brief">
+					
+暴力破解
+使用任意一种 nlogn 的排序算法（例如快排）给原数组排序，然后遍历排好的数组，并对每两个相邻元素求差，最终得到最大值
+有问题？
+很有问题！
+显然这个题目不是让来排序的
+正确思路
+技术排序思想
+
+求出原数组最大值、最小值的区间长度 k（k=max=min+1），以及偏移量 d -min
 					...
 				</div>
 			</a>
