@@ -2059,9 +2059,8 @@
 <p>AQS还定了一个<code>FIFO（先进先出）队列</code>，用来表示等待获取锁的线程</p>
 <p>使用<code>state</code>来表示同步状态，使用内置的<code>同步队列</code>来完成获取资源线程的排队工作</p>
 <blockquote>
-<p><code>同步对列</code>是一个<code>FIFO队列</code>，它是一个由<code>Node</code>（AQS里面的静态内部类）节点组成的双向链表，每一个线程在获取同步状态时，如果获取同步状态失败，就会将当前线程封装成一个Node，然后将其加入到同步队列中</p>
+<p>`AQS的三个核心成员变量</p>
 </blockquote>
-<h2 id="AQS的三个核心成员变量"><a class="header-anchor" href="#AQS的三个核心成员变量"></a>AQS的三个核心成员变量</h2>
 <pre><code class="language-java">// 队头结点
 private transient volatile Node Head;
 // 队尾结点
@@ -2148,8 +2147,8 @@ private volatile ins state;
         </div>
         <div class="item right">
             
-              <a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/06%20%E7%BB%A7%E6%89%BF%E6%A0%91%E8%BF%BD%E6%BA%AF/">
-                06 继承树追溯
+              <a href="/2020/07/21/03%20java/Java%E5%9F%BA%E7%A1%80/09%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+                09 数据类型
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             

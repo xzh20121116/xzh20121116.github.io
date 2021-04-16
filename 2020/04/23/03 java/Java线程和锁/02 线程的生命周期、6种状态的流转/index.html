@@ -2033,13 +2033,13 @@
 </li>
 <li>
 <p><strong>Running</strong></p>
-<p>就ready绪状态的线程在获得cpu时间片后转换为运行中Running</p>
+<p>ready就绪状态的线程在获得cpu时间片后转换为运行中Running</p>
 </li>
 </ul>
 <h4 id="Blocked（阻塞）"><a class="header-anchor" href="#Blocked（阻塞）"></a>Blocked（阻塞）</h4>
-<p>在等待着获取一个排它锁（例如：synchronized），这个时间将在另外一个线程放弃这个锁的时候发生</p>
+<p>在等待着获取一个排它锁（例如：synchronized），这个事件将在另外一个线程放弃这个锁的时候发生</p>
 <h4 id="waitting（无限期等待）"><a class="header-anchor" href="#waitting（无限期等待）"></a>waitting（无限期等待）</h4>
-<p>进入该状态的线程需要等待其他线程做出一些特定动作（通知或中断），需要被显示的唤醒，否则就会处于无线等待的状态</p>
+<p>进入该状态的线程需要等待其他线程做出一些特定动作（通知或中断），需要被显示的唤醒，否则就会处于无限等待的状态</p>
 <h4 id="Timed-Waitting（限期等待）"><a class="header-anchor" href="#Timed-Waitting（限期等待）"></a>Timed Waitting（限期等待）</h4>
 <p>在达到一定时间之后他们会自动唤醒</p>
 <h4 id="终止状态"><a class="header-anchor" href="#终止状态"></a>终止状态</h4>
@@ -2057,7 +2057,7 @@
 <p><strong>yield</strong></p>
 <blockquote>
 <p><strong>Thread</strong>的方法</p>
-<p>让出cpu时间，类似sleep，但是无法指定时长，让同优先级的线程有优先执行的机会，调用<strong>yield</strong>只是一个建议：告诉线程调度器，我好了，让相同优先级的线程使用用cpu吧。如果所有正在等待的线程都是低优先级的，则高线程继续执行</p>
+<p>让出cpu时间，类似sleep，但是无法指定时长，让同优先级的线程有优先执行的机会，调用<strong>yield</strong>只是一个建议：告诉线程调度器，我好了，让相同优先级的线程使用cpu吧。如果所有正在等待的线程都是低优先级的，则高优先级线程继续执行</p>
 </blockquote>
 <p><strong>join</strong></p>
 <blockquote>
