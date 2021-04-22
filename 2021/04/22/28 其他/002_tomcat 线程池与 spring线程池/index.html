@@ -2038,7 +2038,7 @@
   tomcat:
     max-threads: 3
 </code></pre>
-<p>后台提供一个接口，内部什么都都做，仅仅 sleep30 秒</p>
+<p>后台提供一个接口，内部什么都不做，仅仅 sleep 几 秒</p>
 <pre><code class="language-java">    @GetMapping(&quot;/xx&quot;)
     public ResponseEntity xx() throws InterruptedException {
         System.out.println(&quot;主线程开始===========&gt;&quot;+Thread.currentThread().getName());
