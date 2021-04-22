@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		如何设计一个排行榜 | 
+		28 其他/002_tomcat 线程池与 spring线程池 | 
 	 
 	温故知新
 	</title>
@@ -1974,12 +1974,32 @@
 							</ul>
 			
 							<ul>
-								<li class="file active">
-									<a href="/2021/03/03/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%8E%92%E8%A1%8C%E6%A6%9C/">
-										如何设计一个排行榜
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										28 其他
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2021/03/03/28%20%E5%85%B6%E4%BB%96/001_%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%8E%92%E8%A1%8C%E6%A6%9C/">
+										001_如何设计一个排行榜
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file active">
+									<a href="/2021/04/22/28%20%E5%85%B6%E4%BB%96/002_tomcat%20%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%8E%20spring%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+										002_tomcat 线程池与 spring线程池
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
 							</ul>
 			
 		</div>
@@ -1990,16 +2010,16 @@
 	<div id="content">
 		<h1 id="article-title">
 
-	如何设计一个排行榜
+	002_tomcat 线程池与 spring线程池
 </h1>
 <div class="article-meta">
 	
 		<span>
-			阅读量:<span id="/2021/03/03/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%8E%92%E8%A1%8C%E6%A6%9C/" class="leancloud_visitors" data-flag-title="如何设计一个排行榜"></span>
+			阅读量:<span id="/2021/04/22/28%20%E5%85%B6%E4%BB%96/002_tomcat%20%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%8E%20spring%E7%BA%BF%E7%A8%8B%E6%B1%A0/" class="leancloud_visitors" data-flag-title="28 其他/002_tomcat 线程池与 spring线程池"></span>
 		</span>
 	
 	<span>今晚打老虎</span>
-	<span>2021-03-03 15:05:04</span>
+	<span>2021-04-22 15:29:05</span>
     
 		<div id="article-categories">
             
@@ -2008,441 +2028,107 @@
 </div>
 
 <div id="article-content">
-	<p>微信运动步数排行榜的截图：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150542.png" alt="img"></p>
-<p>其实扯了这么多，这就是个常见的面试场景题：如何设计一个排行榜？</p>
-<p>这个题吧，其实就是考你面试准备范围的广度，见过就会答，没见过…就难说了。</p>
-<p>当然，如果你在实际业务中做过排行榜，那么这题正中下怀，你也不要笑出声来，场景题面试官是会给你思考时间的。</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150547.png" alt="img"></p>
-<p>所以你不要张口就来，你只需要眉头稍稍一皱，给面试官说：这题我想想啊。</p>
-<p>然后稍微组织一下语言，说出来就行。</p>
-<p>这次的文章，就带着大家分析一下“排行榜”这个场景题，到底应该怎么做。</p>
-<h1>基于数据库</h1>
-<p>这个题，如果是真的之前没有遇见过，可能最容易进入大家视野的就是平时接触的最多的数据库了。</p>
-<p>因为一想到“排行榜”，就想到了 order by。</p>
-<p>一想了 order by，就想到了数据库。</p>
-<p>一想到了数据库…</p>
-<p>兄弟，你路就走窄了。</p>
-<p>虽然我曾经就基于 MySQL 做过排行榜，因为当时是为了一个比赛临时搭建的服务，根本就没有引入 Redis。我评估了一下搭建 Redis 的时间和用 MySQL 直接开发的时间。</p>
-<p>于是选择了 MySQL。</p>
-<p>而让我选择 MySQL 的根本原因还是我已经知道进入决赛的队伍只有 10 支，也就是说我的排行榜表里面从始至终也只有 10 条数据。</p>
-<p>选手提交代码之后，系统实时算分，然后更新排行榜表。</p>
-<p>然后接口返回给前端页面下面这些数据，而下面这些数据都在一个表里面：</p>
-<blockquote>
-<ul>
-<li>队伍按照历史最高分数排名</li>
-<li>队伍名称</li>
-<li>历史最高分数</li>
-<li>最近一次提交得分</li>
-<li>最近一次提交时间</li>
-</ul>
-</blockquote>
-<p>前端每隔一分钟调用我的接口，相同分数，名次相同，所以我在接口里面用一条比较复杂的 sql 去查询数据库，上面的这些字段就都有了。</p>
-<p>你看，排行榜确实是可以用 MySQL 来做的。</p>
-<p>不一定非得上 Redis，记住一句话：<strong>脱离业务场景的方案设计，都是耍流氓。</strong></p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150553.png" alt="img"></p>
-<p>但是这玩意和“万物皆对象”一样，别对着面试官说，这一定不是面试官想要听到的答案。</p>
-<p>或者说，这只是想要听到的一部分回答。</p>
-<p>这个回答能用的原因是我给了一个具体的场景，用户量非常的小，怎么玩都可以。</p>
-<p>甚至我们不借助 MySQL 的排序，把数据查出来，在内存里面排序都可以。</p>
-<p>但是如果，这是一个游戏排行榜，随着游戏玩家的增加，达到千万用户级别的话，这个方案肯定是不行了。</p>
-<p>当然，也许你会给我扯什么查询慢就加索引，数据量大就分库分表的方案。</p>
-<p>怎么说呢，上面这句话是没有错的。</p>
-<p>但是一旦数据量大起来了，这个方案其实就不是一个特别好的方案。</p>
-<p>这问题，得从根上治理。</p>
-<h1>基于 Redis</h1>
-<p>这个场景其实就是在考察你对于 Redis 的 sorted set 数据结构的掌握。</p>
-<p>sorted set，见名知意，就是有序集合的意思。</p>
-<p>在 Redis 中它大概是长这样的：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150558.png" alt="img"></p>
-<p>前面的 sport:ranking:20210227 是 Redis 中的 key。</p>
-<p>value 是一个集合，且可以看出这个集合是有序的。集合中的每一个 member 都有一个 score，然后按照这个 score 进行降序排序。</p>
-<p>需要注意的是，图片中的 score/member 不是我随便写的，官网上就是这样定义的：</p>
-<pre><code>https://redis.io/commands/zadd#sorted-sets-101
+	<h3 id="tomcat-线程池"><a class="header-anchor" href="#tomcat-线程池"></a>tomcat 线程池</h3>
+<p>众所周知，单台 tomcat 存在最大连接数和最大线程数，这意味着单台 tomcat 在单位时间内能处理的请求是有限的</p>
+<p>而且，tomcat 线程池和 spring 线程池是两个概念，不能混为一谈</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422153106.jpg" alt="img"></p>
+<p>当浏览器发来一个请求，如果后端接口没有任何的异步线程，那么这个请求被称为同步请求，此时从 tomcat 到 spring 内部的 controller、service、dao 自始至终都是同一个线程，是 tomcat 从自己的线程池分出来的。</p>
+<p>为了更好的理解 tomcat 的线程池，接下来做一个小实验，在配置文件中将 tomcat 的最大线程数限制为 3</p>
+<pre><code class="language-yaml">server:
+  tomcat:
+    max-threads: 3
 </code></pre>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150603.png" alt="img"></p>
-<p>而且官网上说的是： score / member pairs。</p>
-<p>所以我画图的时候，score 在前，member 在后。这可不是随便画的，虽然谁前谁后好像也不影响什么玩意。</p>
-<p>另一个需要注意的点是，虽然我的示意图中没有体现出来，但是在有序集合中，元素即 member 是不可以重复的，但是 score 是可以重复的。</p>
-<p>这个很好理解，就比如 20210227 这一天的微信步数，我可以走 6666 步，你也可以走 6666 步，这个是不冲突：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150606.png" alt="img"></p>
-<p>但是，问题就随之而来了：当 member 的 score 一样的时候，member 是怎么排序的呢？</p>
-<p>看一下来自官网的答案：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150642.png" alt="img"></p>
-<p>当多个元素具有相同的分数时，它们按照 lexicographically 进行排序。</p>
-<p>哎呀，lexicographically 这个单词不认识。</p>
-<p>不慌，你知道的 why哥还兼职教英文：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150654.png" alt="img"></p>
-<p><strong>当分数一样的时候，按照字典序排序</strong>，所以上面的示意图 jay 在 why 之前。</p>
-<p>接下来，看一下有序集合的操作函数，一共有 32 个：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150702.png" alt="img"></p>
-<p>我这里就不一个个的做 API 教学了，官网上已经写的很清楚了，如果对于不熟悉的命令，可以去官网上查看，都是有示例代码的。</p>
-<pre><code>https://redis.io/commands/zadd#sorted-sets-101
+<p>后台提供一个接口，内部什么都都做，仅仅 sleep30 秒</p>
+<pre><code class="language-java">    @GetMapping(&quot;/xx&quot;)
+    public ResponseEntity xx() throws InterruptedException {
+        System.out.println(&quot;主线程开始===========&gt;&quot;+Thread.currentThread().getName());
+        Thread.sleep(30000);
+        System.out.println(&quot;主线程结束===========&gt;&quot;+Thread.currentThread().getName());
+        return ResponseEntity.success();
+    }
 </code></pre>
-<p>比如这个 ZADD 方法：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150720.png" alt="img"></p>
-<p>为了后面分享的顺利进行，我这里只讲几个需要用到的操作：</p>
+<p>在 30 秒内发送 4 个请求，在控制台观察到以下输出</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422153544.png" alt="img"></p>
+<p>tomcat 的线程池大多以 “nio-端口号”命名</p>
+<p>仔细观察箭头标注出的两个线程：</p>
 <blockquote>
-<ul>
-<li>添加 member 命令格式：zadd key score member [score member …]</li>
-<li>增加 member 的 score 命令格式：zincrby key increment member</li>
-<li>获取 member 排名命令格式：zrank/zrevrank key member</li>
-<li>返回指定排名范围内的 member 命令格式：zrange/zrevrange key start end [withscores]</li>
-</ul>
+<p>一个发送了四个请求，而 tomcat 此时就 3 个线程，所以当前面 3 个请求占用了 tomcat 全部的线程之后，第四个线程会卡在那（进入 tomcat等待队列）。而当 nio-5050-exec-1处理完第一个请求之后，他终于空闲了，tomcat立马调度他去处理第4个请求</p>
 </blockquote>
-<p><strong>先看第一个：添加 member。</strong></p>
-<p>比如我们把示意图中的数据添加到到有序集合里面去，语法是这样的：</p>
-<blockquote>
-<ul>
-<li>zadd key score member [score member …]</li>
-</ul>
-</blockquote>
-<p>意思是可以一次添加一对或者多对 score-member，比如下面这两个命令：</p>
-<blockquote>
-<ul>
-<li>zadd sport:ranking:20210227 10026 why</li>
-<li>zadd sport:ranking:20210227 10158 mx 30169 les 48858 skr 66079 jay</li>
-</ul>
-</blockquote>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150731.png" alt="img"></p>
-<p>执行之后，返回的数字代表添加成功的 member 个数。</p>
-<p>我用专门操作 Redis 的 RDM 可视化工具来查看插入的数据，和我自己画的示意图相差无几：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150741.png" alt="img"></p>
-<p><strong>接着看第二个：增加 member 的 score</strong></p>
-<p>微信运动排行榜的数据是实时更新的。</p>
-<p>目前 member 为 why 的步数是 10268，假设我吃完晚饭出门跑步去了，又跑了 5000 步。</p>
-<p>这时得更新我的步数，就用 zincrby 命令，语法是这样的：</p>
-<blockquote>
-<ul>
-<li>zincrby key increment member</li>
-</ul>
-</blockquote>
-<p>对应上面场景的执行命令是这样的：</p>
-<blockquote>
-<ul>
-<li>zincrby sport:ranking:20210227 5000 why</li>
-</ul>
-</blockquote>
-<p>执行完成后，会返回 why 的步数，可以看到从 10026 变成了 15026 ：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150750.png" alt="img"></p>
-<p>同时由于我的步数增加，按照 score 倒序，也导致了排序的变化：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150800.png" alt="img"></p>
-<p>所以我们只需要更新 score 就行了，至于排名的变化，Redis 会帮忙保证的。</p>
-<p><strong>然后看第三个命令：获取 member 排名</strong></p>
-<p>语法是这样的：</p>
-<blockquote>
-<ul>
-<li>获取 member 排名：zrank key member</li>
-<li>获取 member 排名：zrevrank key member</li>
-</ul>
-</blockquote>
-<p>首先，排名都是 0 开始计算的。</p>
-<p>zrank 是按照分数从低到高返回 member 排名。</p>
-<p>zrevrank 是按照分数从高到低返回 member 排名。</p>
-<p>比如现在要获取 jay 的排名，用 zrank 返回结果就是 4。</p>
-<blockquote>
-<ul>
-<li>zrank sport:ranking:20210227 jay</li>
-</ul>
-</blockquote>
-<p>当用 zrevrank 时，jay 的排名就是 0：</p>
-<blockquote>
-<ul>
-<li>zrevrank sport:ranking:20210227 jay</li>
-</ul>
-</blockquote>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210402175627.png" alt="img"></p>
-<p>所以，在微信步数排行榜的这个需求中，步数越多排名越靠前，我们应该用 zrevrank。</p>
-<p><strong>第四个需要掌握的命令是：返回指定排名范围内的 member。</strong></p>
-<blockquote>
-<ul>
-<li>zrange/zrevrange key start end [withscores] 返回指定排名范围内的 member</li>
-</ul>
-</blockquote>
-<p>这个命令就很关键了。</p>
-<p>zrange 是按照 score 从低到高返回指定排名范围内的 member。</p>
-<p>zrevrange 是按照 score 从高到低返回指定排名范围内的 member。</p>
-<p>在这里，我只演示 zrevrange 的命令。</p>
-<p>比如我要获取步数排名前三的 member：</p>
-<blockquote>
-<ul>
-<li>zrevrange sport:ranking:20210227 0 2</li>
-</ul>
-</blockquote>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210402175631.png" alt="img"></p>
-<p>这个命令有个可选参数：withscores</p>
-<p>当带上这个参数之后，会返回对应 member 的 score：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210402175638.png" alt="img"></p>
-<p>你想，这不就是排行榜 top N 的场景吗？</p>
-<p>假设我现在要获取所有用户的排名，怎么写呢？</p>
-<p>如下：</p>
-<blockquote>
-<ul>
-<li>zrevrange sport:ranking:20210227 0 -1</li>
-</ul>
-</blockquote>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210402175654.png" alt="img"></p>
-<p>这就是当前的微信步数排行榜，jay 步数最多，mx 步数最少。</p>
-<p>咦，怎么回事，排行榜好久就出来了呢？</p>
-<p>你想想，讲完几个 API 操作，好像功能就实现了呢？</p>
-<p>是的，确实是这样的，甚至我们只需要这两个 API 就能完成排行榜的需求：</p>
-<blockquote>
-<ul>
-<li>zadd key score member [score member …] 添加 member</li>
-<li>zrange/zrevrange key start end [withscores] 返回指定排名范围内的 member</li>
-</ul>
-</blockquote>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150838.png" alt="img"></p>
-<p>那是不可能的。</p>
-<p>索然无味的 API 文章多没有意思啊。</p>
-<p>虽然前面的部分我们已经可以基于 Redis 的有序集合加上几个简单的命令，就可以实现排行榜需求了。</p>
-<p>但是前面只是铺垫，接下来，好戏才刚刚开始。</p>
-<h1>再次审视排行榜</h1>
-<p>上面的微信步数排行榜有个问题，你发现了吗？</p>
-<p>就上面这个场景而言，所有人来看，看到的都是这样的排序：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150846.png" alt="img"></p>
-<p>而真实情况是，每个人看见的数据排行数据来源自己的微信好友，而微信好友各不相同，所以看到的排行榜也各不相同。</p>
-<p>这个特性，我们并没有体现出来。</p>
-<p>我们上面的场景更加类似于游戏排行榜，所有的人看到的全服排行榜都是一样的。</p>
-<p>那么怎么保证我们每个人看到的各不相同呢？</p>
-<p>你思考一下，该从什么角度去解决这个问题呢？</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150853.png" alt="img"></p>
-<p>有序集合的 key 不同，就获取到不同的 value 集合。</p>
-<p>我们当前的 key 是 sport:ranking:20210227，里面只包含了某一天的信息。</p>
-<p>只要我们在 key 里面加上用户的属性就可以了，假设我的微信号是 why。</p>
-<p>那么 key 可以设计为这样 sport:ranking:why:20210227。</p>
-<p>这样，由于 key 里面多了用户信息，每个人的 key 都各不相同，就像这样的：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210402175721.png" alt="img"></p>
-<p>对应的命令如下：</p>
-<blockquote>
-<ul>
-<li>zadd sport:ranking:why:20210227 10026 why 10158 mx 30169 les 48858 skr 66079 jay</li>
-<li>zadd sport:ranking:mx:20210227 7688 赵四 9688 刘能 10026 why 10158 mx 54367 大脚</li>
-</ul>
-</blockquote>
-<p>why 和 mx 看到的都是各自好友某一天的微信步数排行榜。</p>
-<p>只要把 key 设计好了，这个问题就迎刃而解了。</p>
-<p>但是你仔细思考一下，真的就迎刃而解了吗？</p>
-<p>这个问题，我在写第一版的时候可能是被猪油蒙蔽了双眼，没发现。</p>
-<p>有种“只缘身在此山中”的味道，一心想着 Redis 了。</p>
-<p>你想，如果每个用户都有在redis有一个自己的排行榜，一个用户的分数更新的时候就需要对所有好友的zset更新，这多大的代价啊，对吧？</p>
-<p>当以用户为纬度做排行榜的时候，就会出现排行榜巨多的情况，导致维护成本升高。</p>
-<p>Redis能做，但不是最佳方案。</p>
-<p>那么用什么方案去做呢？</p>
-<p>我提个思路吧：</p>
-<p>每个用户看到的排行榜不一样，我们其实不用时时刻刻帮用户维护好排行榜。</p>
-<p>维护好了，用户还不一定来看，出力不讨好的节奏。</p>
-<p>所以还不如延迟到用户请求的阶段。</p>
-<p>当用户请求查看排行榜的时候，再去根据用户的好友关系，循环获取好友的步数，生成排行榜。</p>
-<p>具体方案，大家自己思考一下吧。</p>
-<p>另外多说一嘴，前段时间不是微信支持了修改微信号吗，赢得一大片叫好声。</p>
-<p>其实我当时认真的想了一下，从技术上的实现来说这个需求到底有多难。</p>
-<p>我不知道有没有历史技术债务在里面。</p>
-<p>但是就说当前这个场景，key 里面包含了微信号，注意是微信号，不是微信昵称。</p>
-<p>因为在设计之初，产品打包票说：放心，微信号绝对全局唯一，一旦确定，不可变更。</p>
-<p>结果呢，现在要变化了。</p>
-<p>产品屁颠屁颠的说：怎么实现我不管，这个需求用户呼吁很大，赶紧上线。</p>
-<p>你说，对这些类似场景的冲击有多大？</p>
-<p>其实冲击也不算特别大，一个字段的变化而已。</p>
-<p>但是，微信 14 亿用户啊。</p>
-<p>一个简单的需求，涉及到这个体量之后，就一句话：</p>
-<p>量变引起质变。</p>
-<p>好了，好了，扯远了。说回来。</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210402175741.jpeg" alt="img"></p>
-<p>当我把目光再次放到微信排行榜上的时候，我发现，其实我只是给了一个阉割版的排行榜。</p>
-<p>是的，我们现在可以获取到 why 的当前步数是 1680 步，当前排名是 814 名。</p>
-<p>比如还是沿用上面的例子，假设现在要获取我的微信好友 jay 的微信步数排行榜情况。</p>
-<p>先获取 jay 的名次：</p>
-<blockquote>
-<ul>
-<li>zrevrank sport:ranking:why:20210227 jay</li>
-</ul>
-</blockquote>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210402175755.png" alt="img"></p>
-<p>名次为 0，程序里面可以对其进行加一操作。就是第一名了。</p>
-<p>接着获取 jay 的今日步数：</p>
-<blockquote>
-<ul>
-<li>zscore sport:ranking:why:20210227 jay</li>
-</ul>
-</blockquote>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303150915.png" alt="img"></p>
-<p>66079，步数也有了。</p>
-<p>现在我们知道了：why 的好友 jay 今日运动步数 66079 步，在 why 的微信好友中排第一名。</p>
-<p>但是你仔细看，这上面我还漏了两个字段：</p>
-<blockquote>
-<ul>
-<li>微信头像</li>
-<li>朋友点赞个数</li>
-</ul>
-</blockquote>
-<p>两个字段应该怎么放呢？</p>
-<p>放数据库里面当然可以，但是我们主要还是说一下 Redis 的解决方案。</p>
-<p>这个时候其实我们想要存储的是 User 对象，对象里面有这几个字段：昵称、头像图片链接、点赞数、步数。</p>
-<p>你说，这个用 Redis 的啥数据结构来存？</p>
-<p>可不就得用 Hash 结构了吗。</p>
-<p>Hash 结构同样涉及到 key 和 value，那么它们分别是什么呢？</p>
-<p>key 就是我们的有序集合的 key 后面再加上好友昵称，比如这样的：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303151026.png" alt="img"></p>
-<p>对应的命令是这样的：</p>
-<blockquote>
-<ul>
-<li>hmset sport:ranking:why:20210227:jay nickName jay headPhoto xxx likeNum 520 walkNum 66079</li>
-</ul>
-</blockquote>
-<p>执行完成之后，在 RDM 里面看起来是这样的：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210402175807.png" alt="img"></p>
-<p>当后续有更多的赞的时候，需要调用更新命令更新 likeNum：</p>
-<blockquote>
-<ul>
-<li>hincrby sport:ranking:why:20210227:jay likeNum 500</li>
-</ul>
-</blockquote>
-<p>执行完成之后点赞数就会变成 1020：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210402175813.png" alt="img"></p>
-<p>这样，排行榜上的所有字段我们都能获取到了，微信排行榜就说完了。</p>
-<p>呃…</p>
-<p>怎么感觉还是 API 教学呢？</p>
-<p>不得劲，换个其他的。</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210402175822.png" alt="img"></p>
-<h1>最近七天排行榜怎么弄？</h1>
-<p>前面我们说的都是每日排行榜。</p>
-<p>假设面试官要求我们提供一个最近七天、上一周、上一月、上个季度、这一年排行榜啥的，又该怎么搞呢？</p>
-<p>其实这还是在考察你对于 Redis 有序集合 API 的掌握程度。</p>
-<p>也就是这个 API：</p>
-<blockquote>
-<ul>
-<li>zinterstore/zunionstore destination numkeys key [key …] [weights weight [weight …]] [aggregate sum|min|max] 获取交集/并集</li>
-</ul>
-</blockquote>
-<p>这个 API 看起来有点复杂，不要怕，一个个的讲：</p>
-<blockquote>
-<ul>
-<li>zinterstore/zunionstore其实就是交集/并集</li>
-<li>destination 将交集/并集的结果保存到这个键中</li>
-<li>numkeys 需要做交集/并集的集合的个数</li>
-<li>key [key …] 具体参与交集/并集的集合</li>
-<li>weights weight [weight …] 每个参与计算的集合的权重。在做交集/并集计算时，每个集合中的 member 会把自己的 score 乘以这个权重，默认为 1。</li>
-<li>aggregate sum|min|max 对于各个集合中的相同元素是 sum(求和)、min(取最小值)还是max(取最大值)，默认为 sum。</li>
-</ul>
-</blockquote>
-<p>拿最近七天举例，我们随便搞点数据进来，你可以直接粘过去玩：</p>
-<blockquote>
-<ul>
-<li>zadd sport:ranking:why:20210222 43243 why 2341 mx 8764 les 42321 skr</li>
-<li>zadd sport:ranking:why:20210223 57632 why 24354 mx 4231 les 43512 skr 5341 jay</li>
-<li>zadd sport:ranking:why:20210224 10026 why 12344 mx 54312 les 34531 skr 43512 jay</li>
-<li>zadd sport:ranking:why:20210225 54312 why 32451 mx 23412 les 21341 skr 56321 jay</li>
-<li>zadd sport:ranking:why:20210226 3212 why 63421 mx 53652 les 45621 skr 5723 jay</li>
-<li>zadd sport:ranking:why:20210227 5462 why 10158 mx 30169 les 48858 skr 66079 jay</li>
-<li>zadd sport:ranking:why:20210228 43553 why 4451 mx 7431 les 9563 skr 8232 jay</li>
-</ul>
-</blockquote>
-<p>可以看到我们一共有 7 天的数据：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303151041.png" alt="img"></p>
-<p>而且需要注意的是 20210222 这一天是没有 jay 的数据的。</p>
-<p>现在我们要求出最近 7 天的排行榜，就用下面这行命令，命令有点复杂，但是对着命令格式看，还是很清晰的：</p>
-<blockquote>
-<ul>
-<li>zunionstore sport:ranking:why:last_seven_day 7 sport:ranking:why:20210222 sport:ranking:why:20210223 sport:ranking:why:20210224 sport:ranking:why:20210225 sport:ranking:why:20210226 sport:ranking:why:20210227 sport:ranking:why:20210228 weights 1 1 1 1 1 1 1 aggregate sum</li>
-</ul>
-</blockquote>
-<p>这条命令后面的 weights 和 aggregate 都是可以不用写的，有默认值，我这里为了不隐藏数据，都写了出来。</p>
-<p>执行完成后，可以看到多了一个 key，里面放的就是最近 7 天的数据汇总：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210402175830.png" alt="img"></p>
-<p>上面用的是并集，如果我们的要求是对最近 7 天，每天都上传运动数据的人进行排序，就用交集来算。</p>
-<p>命令和上面的一致，只是把 zunionstore 修改为 zinterstore 即可。</p>
-<p>另外为了有对比，合并之后的队列名称也修改一下，命令如下：</p>
-<blockquote>
-<ul>
-<li>zinterstore sport:ranking:why:last_seven_day_zinterstore 7 sport:ranking:why:20210222 sport:ranking:why:20210223 sport:ranking:why:20210224 sport:ranking:why:20210225 sport:ranking:why:20210226 sport:ranking:why:20210227 sport:ranking:why:20210228 weights 1 1 1 1 1 1 1 aggregate sum</li>
-</ul>
-</blockquote>
-<p>从执行结果可以看出来，由于 jay 同学在 20210222 这一天没有上传运动数据，所以取交集的时候没有他了：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210402175836.png" alt="img"></p>
-<p>知道最近 7 天的做法了，我们又有每一天数据，上一周、上一月、上个季度、这一年排行榜啥的不都是这个套路吗？</p>
-<p>呃…</p>
-<p>怎么感觉还是 API 教学呢？</p>
-<p>还是不得劲，再换个其他的。</p>
-<h1>亿级用户排行榜</h1>
-<p>王者荣耀，妥妥的亿级用户吧。比如我想看看我在亿级用户中排多少名，于是我打开了游戏，二十多分钟（玩了一局）之后我终于找到排行榜的位置。</p>
-<p>结果，未上榜：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210402175841.jpeg" alt="img"></p>
-<p>我这个千年老夫子，当然是未上榜了。</p>
-<p>就算真的有排名了，排名好几千万，8 位数字，在页面上也不好放呀。</p>
-<p>但是假设现在的需求就是要查询用户的全服排名，怎么查？</p>
-<p>我瞎说一个我能想到的基于 Redis 的初版方案，注意是我瞎想的，实际做起来肯定是异常复杂的方案。</p>
-<p>我是怎么想的呢？</p>
-<p>我就寻思，一般面试遇到什么千万条数据、几个 G 文件、上亿的数据啥的，首先想到的方案就是分而治之。</p>
-<p>这个亿级用户排行榜的需求也得用分治的思想。</p>
-<p>王者一共 8 个段位：</p>
-<blockquote>
-<ul>
-<li>1、倔强青铜</li>
-<li>2、秩序白银</li>
-<li>3、荣耀黄金</li>
-<li>4、尊贵铂金</li>
-<li>5、永恒钻石</li>
-<li>6、至尊星耀</li>
-<li>7、最强王者</li>
-<li>8、荣耀王者</li>
-</ul>
-</blockquote>
-<p>所以我们可以有 8 个桶。</p>
-<p>这个桶可以是一个 Redis 里面的 8 个不同的 key，甚至可以是 8 个 Redis 里面各一个 key，看面试官给你的经费是多少，钱多就可劲造。</p>
-<p>如下图所示：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210402175847.png" alt="img"></p>
-<p>解释一下上面的图片中 score 为 8588 是怎么来的。</p>
-<p>首先我们用 Redis 的有序集合，那么我们就得给每个 member 一个 score。</p>
-<p>所以，每个用户在桶里面都一个经过公式计算后得出的积分。</p>
-<p>比如why哥现在的段位就是星耀，假设计算出来的分数是 8588。</p>
-<p>那么现在要算why哥在全服的排名就很好算了：</p>
-<p>写程序的时候是可以知道我现在的段位是星耀，那么直接去星耀的桶里面，用 zrevrank 计算出当前桶里面的排名，假设为 n。</p>
-<p>然后再通过 zcard 这个 O(1) 的命令获取到，前面的桶，也就是最强王者和荣耀王者这两个桶的集合大小，分别为 y 和 x。</p>
-<p>那么why哥的全服排名就是 n+y+x。</p>
-<p>所以获取任何一个用户的全服排名，就是看他在自己的桶里面的排名加上前面桶里面的元素个数即可。</p>
-<p>而且现在要计算全服 top 100 就很容易了嘛。</p>
-<p>直接取最前面的桶，也就是荣耀王者里面的前 100 个就完事了。</p>
-<p>搞定。</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210402175601.png" alt="img"></p>
-<p>等等，真的搞定了吗？</p>
-<p>思路是对了，但是对于亿级用户只分 8 个桶未免太少了吧？</p>
-<p>那就继续分桶呗，别忘了，每个段位里面还有小段位的。</p>
-<p>比如星耀，里面就有星耀五到星耀一五个小段位，青铜三到青铜一三个小段位。</p>
-<p>全部算上就是 27 个桶。</p>
-<p>但是，27 个桶也少。</p>
-<p>那么星耀二到星耀一还需要五颗星、青铜三到青铜二要三颗星才行呢。</p>
-<p>这样算下来，就是 160 个桶。</p>
-<p>160 个桶还是不够？</p>
-<p>额。。。</p>
-<p>推翻重来，直接把段位加上各种其他条件换算成积分，然后按照积分来拆分：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210303151106.png" alt="img"></p>
-<p>这样，想怎么拆分数段都行、拆多细都行。</p>
-<p>完美。</p>
-<p>等等，真的完美吗？</p>
-<p>你看我的积分范围，都划分的非常的均匀。</p>
-<p>按照段位拆分，有些菜鸡选手，打了两把觉得没意思，骂骂咧咧的退出游戏，就一直留在了青铜段位。</p>
-<p>所以青铜段位的选手肯定是远大于荣耀王者的。</p>
-<p>所以，实际情况下，用户的落点其实并不是均匀的。</p>
-<p>怎么办？</p>
-<p>这个时候就需要进行数据分析，通过一系列的高数、概率、离散等知识去做个桶大小的预估。</p>
-<p>啊，这玩意就超纲了啊。</p>
-<p>那就告辞，收工。</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210402175550.png" alt="img"></p>
-<h1>技术之外的考虑</h1>
-<p>做一个排行榜好像是一个很简单的事情。</p>
-<p>但是其实不然，特别是推荐类的排行榜，需要避免马太效应：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210402175543.png" alt="img"></p>
-<p>比如作者推荐榜单，被推荐到前面的作者，曝光度很高。即使输出质量下降，但是还是很容易获得更多的关注。</p>
-<p>位于榜单尾部的作者就很没有参与感。</p>
-<p>于是两极分化就出现了，马太效应就来了。</p>
-<p>对于这种情况怎么处理呢？</p>
-<p>里面就涉及到一个复杂的计算公式了，比如掘金社区的掘力值，用于消息流推荐和作者榜单：</p>
-<pre><code>https://juejin.cn/book/6844733795329900551/section/6844733795380232206
+<p>也就是说，如果spring 使用异步线程，那么 tomcat 的最大线程数直接决定了请求的并发数</p>
+<h3 id="spring-线程池为什么能提高吞吐量"><a class="header-anchor" href="#spring-线程池为什么能提高吞吐量"></a>spring 线程池为什么能提高吞吐量</h3>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422154021.jpg" alt="img" style="zoom:50%;" />
+<p>想象一下，如果不适用 spring 线程池，那么每一个 tomcat 的线程千里迢迢从自己的线程池跑出来访问 spring 的 A 接口，结果这个接口就像一个黑洞，把每个线程牢牢吸住（耗时操作），最终 tomcat 的线程池枯竭了。此时即使想访问 B 接口，也要经过 tomcat 这一关， 可惜已经没有线程能帮忙跑腿了。此时虽然已经突破最大线程数，但还不会立即报错，而是每个请求都把自己挂在 tomcat 上，这使得 tomcat 的等待队列开始积累，知道突破最大队列数终于撑不住了，服务崩了。</p>
+<p>也就是，如果使用 spring 的线程池，那么一个耗时接口的存在可能会拖累其他接口，最终导致全部接口不可用（有点类似于微服务中的雪崩效应）</p>
+<h6 id="如果使用了-spring-的线程池就大不同了"><a class="header-anchor" href="#如果使用了-spring-的线程池就大不同了"></a>如果使用了 spring 的线程池就大不同了</h6>
+<p>假设 a 接口使用了线程池，而 b 接口没有：</p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422160615.png" alt="image-20210422160615797" style="zoom:33%;" />
+<p>绿色线表示这两个 spring 的线程被卡在那了，而 tomcat 线程发送完之后就直接返回了。</p>
+<p>假设只有 A、B 两个接口，A 接口特别耗时，B 接口正常返回。</p>
+<p>随着单位时间内对 A 接口的请求越来越多，可以预计 Spring 的线程池最终会枯竭，但是 tomcat 的线程池还是充裕的，因为每一个线程都正常返回了，没有被 A 接口卡住。既然 tomcat 的线程池还是充裕的，就可以处理其他接口的请求啦。</p>
+<p>当然，增加 spring 线程池无法完全解决问题，否则也就不需要集群部署了。每个接口即使不是耗时操作也需要花费几百毫秒甚至几秒，而如果qps 达到 100，tomcat 线程池仍然会枯竭。</p>
+<p>站在更高的角度看，使用 spring 线程池的做法可以归纳为<strong>线程隔离</strong>的一种方式。这种做法是的 Tomcat 线程和 spring 线程相互独立，不至于互相拖累</p>
+<h3 id="同步-or-异步？"><a class="header-anchor" href="#同步-or-异步？"></a>同步 or 异步？</h3>
+<p>绝大部分时候我们对于异步的理解就像上面那幅图中对A 接口的访问那样，tomcat 把请求转交给 spring 线程池后就完事了，后面接口什么时候完成、耗时多久和它没什么关系。</p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422161411.jpg" alt="img" style="zoom:50%;" />
+<p>但是如果这个异步方法有返回值，且前端需要得到这个返回值呢？</p>
+<p>异步还要返回值，是要等待的，不是tomcat 等，而是 spring 线程池的线程在等。</p>
+<p>可以理解为：tomcat 的 nio-thread-1 在把请求送到接口并转交给 spring 线程池后，它就去做别的事了，而 Sprig 异步线程得出结果后再返回响应。对于前端来说这个请求是同步的，而对于后端来说这个请求是异步的。</p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422161628.jpg" alt="img" style="zoom:33%;" />
+<p>有一点需要明白，无论是我们最常理解的异步（tomcat 转交请求后直接返回 success）还是上面这种异步（能够得到异步结果返回），理论上时间开销是一样的。</p>
+<p>如果你觉得前者快，起始是站在前端的角度观察的，因为结果被立即返回了。但那有什么用呢？那个“结果”不是异步计算得到的结果，它的意义充其量只是告诉前端：“嘿，请求已经被我成功送到接口那了”，而不是“嘿，本次请求已经处理完毕，得到的结果是 xxx”。</p>
+<p>至于实际编程使用哪种，完全取决于前端是否需要返回结果。</p>
+<p>那么spring 线程池会不会枯竭呢？当然会了，但是 spring 线程池的目的是为了尽可能保护 tomcat 线程池不枯竭。</p>
+<h3 id="如何获取异步结果"><a class="header-anchor" href="#如何获取异步结果"></a>如何获取异步结果</h3>
+<p>只需要把接口的返回值设置为 Callable 类型就能自动实现神奇的异步处理</p>
+<pre><code class="language-java">@GetMapping(&quot;/x2&quot;)
+    @UnLogin
+    public Callable&lt;String&gt; x2() throws InterruptedException {
+        System.out.println(&quot;+++++主线程开始&quot;+Thread.currentThread().getName());
+        Callable&lt;String&gt; callable=()-&gt;{
+            System.out.println(&quot;异步线程开始&quot;+Thread.currentThread().getName());
+            Thread.sleep(3000);
+            System.out.println(&quot;异步线程结束&quot;+Thread.currentThread().getName());
+            return &quot;异步线程结果&quot;;
+        };
+        System.out.println(&quot;--------主线程结束&quot;+Thread.currentThread().getName());
+        return callable;
+    }
 </code></pre>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210402175534.png" alt="img"></p>
-<p>所以千万不要错误的以为排行榜是一个非常简单的需求，这里面涉及到一些非常复杂的算法。</p>
-
+<h3 id="线程隔离与服务雪崩"><a class="header-anchor" href="#线程隔离与服务雪崩"></a>线程隔离与服务雪崩</h3>
+<p>之前学习 springCloud 时，听到了服务雪崩的概念。</p>
+<p>原本每个请求经过 tomcat，tomcat 从自己的线程池中拿出一个线程把请求送到各个微服务的接口处。</p>
+<p>突然有一天其中一个微服务接口因为某些原因导致迟迟不返回结果，随着越来越多的请求都挂在这个服务上，tomcat 的线程池枯竭了，最终整个服务的入口 Tomcat 挂了， 所有服务都不可访问。</p>
+<p>一片雪花（单个接口挂掉）导致整个雪崩（服务不可用）</p>
+<p>解决办法很简单，和上面 spring 的做法一样，每个服务搞一个自己的线程池并设置服务降级机制：</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422170530.jpg" alt="img" style="zoom:33%;" /><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422170554.jpg" alt="img"></p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422170530.jpg" alt="img" style="zoom:33%;" /><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422170554.jpg" alt="img"><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422170609.jpg" alt="img"></p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422170530.jpg" alt="img" style="zoom:33%;" /><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422170554.jpg" alt="img"><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422170609.jpg" alt="img"></p>
+<h3 id="生产环境如何合理配置线程池呢？"><a class="header-anchor" href="#生产环境如何合理配置线程池呢？"></a>生产环境如何合理配置线程池呢？</h3>
+<p>主要看业务类型配置线程池</p>
+<ul>
+<li>cpu 密集型</li>
+<li>io 密集型</li>
+</ul>
+<p>cpu 密集型</p>
+<blockquote>
+<p>密集的意思是该任务需要大量的运算，而没有阻塞，cpu 一直全速运行</p>
+<p>cpu 密集任务只有在真正的多核cpu 上才可能得到加速（通过多线程），而在单核 cpu 上，无论你开几个模拟的多线程该任务都不可能得到加速，因为 cpu 总的运算能力就那些。</p>
+<p>cpu 密集型任务配置尽可能少的线程数量：</p>
+<p>一般公式：cpu 核数+1 线程的线程池</p>
+</blockquote>
+<p>io 密集型</p>
+<blockquote>
+<p>这种类型并不是一直在执行任务，应配置尽可能多的线程，如 cpu 核数*2</p>
+<p>io 密集型，即该任务需要大量的 io，即大量的阻塞。</p>
+<p>在单线程上运行 io 密集型的任务会导致浪费大量的 cpu 运算能力浪费在等待。</p>
+<p>所以在 io密集型任务中使用多线程可以大大的加速程序运行，即使在单核 cpu 上，这种加速主要是利用被浪费掉的阻塞时间</p>
+<p>比如 8 核 cpu：80 或者 160，十倍到二十倍核心数</p>
+</blockquote>
+<h3 id="从-CompletableFuture-看线程池的配置策略"><a class="header-anchor" href="#从-CompletableFuture-看线程池的配置策略"></a>从 CompletableFuture 看线程池的配置策略</h3>
+<p>有个 io 密集型与 cpu 密集型的概念后，接下来借助CompletableFuture 来稍微感受一下线程池的配置策略</p>
+<p>我的 mac 核心数是 6，同事的核心数是 4，我执行代码的最大线程是 11，同事的是 7，由于CompletableFuture是JDK提供的，所以默认情况下线程池的分配策略肯定只和机器本身有关。几乎可以断定，CompletableFuture对于线程池的配置策略和CPU核数有关：最大线程数 = 核数 * 2 - 1</p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422171330.jpg" alt="img" style="zoom:50%;" />
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422171527.jpg" alt="img" style="zoom:50%;" />
 </div>
 
 <!-- 隐藏掉上一页，下一页-->
@@ -2453,8 +2139,8 @@
         </div>
         <div class="item right">
             
-              <a href="/2020/12/14/16%20%E7%A7%92%E6%9D%80-%E9%AB%98%E5%B9%B6%E5%8F%91/03.%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F/">
-                16 秒杀-高并发
+              <a href="/2021/03/03/28%20%E5%85%B6%E4%BB%96/001_%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%8E%92%E8%A1%8C%E6%A6%9C/">
+                001_如何设计一个排行榜
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
