@@ -2093,11 +2093,11 @@
 </table>
 <h1>公平锁和非公平锁的区别</h1>
 <h2 id="获取锁"><a class="header-anchor" href="#获取锁"></a>获取锁</h2>
-<p><strong>公平锁</strong>：相当于排队买票，后来大人需要到队尾排队，不能插队</p>
+<p><strong>公平锁</strong>：相当于排队买票，后来的人需要到队尾排队，不能插队</p>
 <blockquote>
 <p>线程来了，先检查state是否被持有，如果被持有，当前线程就去同步队列排队</p>
 </blockquote>
-<p><strong>非公平锁</strong>：就是抢占模式，每来一个人不回去管队列如何，直接尝试获取锁</p>
+<p><strong>非公平锁</strong>：就是抢占模式，每来一个人不去管队列如何，直接尝试获取锁</p>
 <blockquote>
 <p>线程来了，先用cas的方式修改state，修改成功就获得锁，修改失败就去同步队列排队</p>
 </blockquote>
