@@ -2031,7 +2031,7 @@
 	<p>Synchronized的实现原理、锁的存储、以及锁是如何升级的</p>
 <a id="more"></a>
 <h1>实现原理</h1>
-<p>**结论：**无论是代码块，还是方法，都是通过持有对象的锁来实现同步的</p>
+<p>结论：无论是代码块，还是方法，都是通过持有对象的锁来实现同步的</p>
 <h1>什么是对象的锁？</h1>
 <p>对象在内存中存储的布局分为三个区域：</p>
 <ol>
@@ -2094,7 +2094,7 @@
 </blockquote>
 </li>
 <li>
-<p>自旋一致失败，进入重量级锁，此时，自旋的线程阻塞，等待之前线程执行完并唤醒自己</p>
+<p>自旋一直失败，进入重量级锁，此时，自旋的线程阻塞，等待之前线程执行完并唤醒自己</p>
 </li>
 </ol>
 <h1>monitor</h1>
@@ -2107,7 +2107,7 @@
 </ol>
 </blockquote>
 <ol>
-<li>当多个线程访问被 <code>synchronized</code>的方法或代码块时，这些线程会被放入<code>EntryList</code>队列，此时处于 blocking 状态</li>
+<li>当多个线程访问被 <code>synchronized</code>修饰的方法或代码块时，这些线程会被放入<code>EntryList</code>队列，此时处于 blocking 状态</li>
 <li>当一个线程获取到实例的 monitor 锁时，那么该线程就进入 running 状态，执行方法，monitor 的 Owner 指向当前线程，count+1表示被一个线程持有</li>
 <li>running 状态的线程调用 wait 方法，那么当前线程释放 monitor，owner 为 null，count-1，进入 waiting 状态，并进去 WaitSet 队列，直到被 notify 唤醒</li>
 </ol>
