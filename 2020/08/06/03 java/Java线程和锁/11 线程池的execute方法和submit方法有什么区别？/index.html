@@ -2029,7 +2029,6 @@
 
 <div id="article-content">
 	<h2 id="线程池的execute方法和submit方法有什么区别？"><a class="header-anchor" href="#线程池的execute方法和submit方法有什么区别？"></a>线程池的execute方法和submit方法有什么区别？</h2>
-<p>章内容很聚焦，但干货十足。不注意的话你可能会落入陷阱。</p>
 <p>concurrent包里的<code>ExecutorService</code>，是一个接口，继承的是<code>Executor</code>，而<code>Executor</code>里只有一个方法。</p>
 <pre><code>publicinterface Executor {
     void execute(Runnable command);
@@ -2058,7 +2057,7 @@ service.shutdown();
 </code></pre>
 <p>但它也仅仅是输出而已，我们无法使用<code>logback</code>之类的日志框架对其进行记录，因为它这个打印动作我们是不可控的。</p>
 <h2 id="解决方法"><a class="header-anchor" href="#解决方法"></a>解决方法</h2>
-<p>首先看下<code>submit</code> 方式的解决方法。通过返回的Future，执行它的get方法，即可获取完成的错误堆栈。</p>
+<p>首先看下<code>submit</code> 方式的解决方法。通过返回的Future，执行它的get方法，即可获取完整的错误堆栈。</p>
 <pre><code>ExecutorService service = Executors.newFixedThreadPool(1);
 Runnable r = () -&gt; System.out.println(1 / 0);
 Future f = service.submit(r);

@@ -2082,15 +2082,15 @@
 </ul>
 <p>这两个问题通常是在线程池的线程中使用ThreadLocal引发的，因为线程池由<strong>线程复用</strong>和<strong>内存常驻</strong>两个特点</p>
 <h2 id="脏数据"><a class="header-anchor" href="#脏数据"></a>脏数据</h2>
-<p>线程复用会产生仓数据，由于线程池会重用Thread对象，那么与Thread绑定的类的静态属性ThreadLocal变量也会被重用。</p>
-<p>如果实现的线程<code>run()</code>方法但不显式的调用<code>remove()</code>清理与线程相关的ThreadLocal信息，下一个线程也不调用<code>set()</code>社会初始值，就可能<code>get()</code>到重用的线程信息，包括ThreadLocal所关联的线程对象的value值。</p>
+<p>线程复用会产生脏数据，由于线程池会复用Thread对象，那么与Thread绑定的类的静态属性ThreadLocal变量也会被复用。</p>
+<p>如果实现的线程<code>run()</code>方法但不显式的调用<code>remove()</code>清理与线程相关的ThreadLocal信息，下一个线程也不调用<code>set()</code>设置初始值，就可能<code>get()</code>到重用的线程信息，包括ThreadLocal所关联的线程对象的value值。</p>
 <p><strong>举个例子</strong></p>
 <blockquote>
 <p>高并发场景下，线程池中的线程可能会读取到上一个线程缓存的用户信息</p>
 </blockquote>
 <h2 id="内存泄漏"><a class="header-anchor" href="#内存泄漏"></a>内存泄漏</h2>
 <p>源码注释中提示使用static关键字来修饰ThreadLocal。在此场景下，寄希望于ThreadLocal对象失去引用后，触发弱引用机制来回收Entry的value就不现实了。</p>
-<p>如果不进行remove操作，那么这个线程执行完成之后，通过THreadLocal对象持有的对象是不会被释放的</p>
+<p>如果不进行remove操作，那么这个线程执行完成之后，通过ThreadLocal对象持有的对象是不会被释放的</p>
 <h2 id="解决办法"><a class="header-anchor" href="#解决办法"></a>解决办法</h2>
 <p>每次用完ThreadLocal之后，都及时调用remove清理</p>
 
