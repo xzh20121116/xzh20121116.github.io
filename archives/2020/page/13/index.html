@@ -645,7 +645,7 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/11/18/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/14%20notify()%20%E4%BC%9A%E7%AB%8B%E5%88%BB%E9%87%8A%E6%94%BE%E9%94%81%E5%90%97/">
+									<a href="/2021/04/28/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/14%20notify()%20%E4%BC%9A%E7%AB%8B%E5%88%BB%E9%87%8A%E6%94%BE%E9%94%81%E5%90%97/">
 										14 notify() 会立刻释放锁吗
 									</a>
 								</li>
@@ -2009,33 +2009,6 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
-				<h2 class="index-title">
-					07 排查堆内存溢出
-				</h2>
-				<div class="index-brief">
-					模拟堆内存溢出
-
-
-新建一个 Oom.java 文件，内容如下
-import java.util.ArrayList;
-import java.util.List;
-
-public class Oom {
-    public static void main(String[] args) {
-  
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Jvm/04%20%E5%AF%B9%E8%B1%A1%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%B8%83%E5%B1%80/">
 				<h2 class="index-title">
 					04 对象在内存中的布局
@@ -2263,6 +2236,27 @@ monitor 锁
 给 count+1 来获取锁
 通过给 count+1，来重入锁
 等到获
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Java%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/06%20MDC/">
+				<h2 class="index-title">
+					06 MDC
+				</h2>
+				<div class="index-brief">
+					MDC：Mapped Diagnostic Context，映射调试上下文
+是 log4j 和 logback 提供一种方便在多线程下记录日志的功能
+可以将 MDC 看成是一个与当前线程绑定的哈希表，MDC 中的内容可以被同一线程中执行的代码所访问，当前线程的子线程会继承父线程中的 MDCD 内容
+
 					...
 				</div>
 			</a>
