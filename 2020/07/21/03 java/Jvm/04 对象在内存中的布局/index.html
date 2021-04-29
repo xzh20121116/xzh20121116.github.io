@@ -2062,7 +2062,7 @@
 <li>
 <p>instance data</p>
 <blockquote>
-<p>对象真正存储的有孝心，即代码中定义的各种类型的字段内容</p>
+<p>对象真正存储的有效信息，即代码中定义的各种类型的字段内容</p>
 </blockquote>
 </li>
 <li>
@@ -2072,6 +2072,8 @@
 </blockquote>
 </li>
 </ul>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210429161322.png" alt="img"></p>
+<p>对象头中的Class Pointer默认占8个字节，开启-XX:+UseCompressedOops后，为了节省空间压缩为4个字节，4*8=32位表示可寻址4G个对象，在内存空间小于32G时，可以通过编码、解码方式进行优化，使得jvm可以支持更大的内存配置。当堆内存大于32G时，压缩指针参数会失效，会强制使用64位(即8字节)来对java对象寻址。</p>
 
 </div>
 
@@ -2080,16 +2082,16 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2020/07/21/03%20java/Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
+              <a href="/2020/07/21/03%20java/Jvm/03%20%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  07 排查堆内存溢出
+                  03 对象实例化过程
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2020/07/21/03%20java/Jvm/03%20%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
-                03 对象实例化过程
+              <a href="/2020/07/21/03%20java/Jvm/08%20%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8E%8B%E7%BC%A9%E6%8C%87%E9%92%88%E8%B6%85%E8%BF%87%2032g%20%E5%A4%B1%E6%95%88/">
+                08 为什么压缩指针超过 32g 失效
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             

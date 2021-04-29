@@ -2009,6 +2009,26 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Jvm/03%20%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
+				<h2 class="index-title">
+					03 对象实例化过程
+				</h2>
+				<div class="index-brief">
+					java是面向对象的静态类型语言，声明并创建兑现改动代码很常见，根据某个类声明一个引用变量指向被创建的对象，并使用此引用变量操作该对象。在实例化对象的过程中，jvm中发生什么化学反应呢？
+字节码角度
+从下面最简单的 Object obj = new Object();代码进行分析，利用 javap 
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Jvm/04%20%E5%AF%B9%E8%B1%A1%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%B8%83%E5%B1%80/">
 				<h2 class="index-title">
 					04 对象在内存中的布局
@@ -2051,34 +2071,21 @@ klass point
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Jvm/03%20%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
-				<h2 class="index-title">
-					03 对象实例化过程
-				</h2>
-				<div class="index-brief">
-					java是面向对象的静态请类型语言，声明并创建兑现改动代码很常见，根据某个类声明一个引用变量指向被创建的对象，并使用此引用变量操作该对象。在实例化对象的过程中，jvm中发生什么化学反应呢？
-字节码角度
-从下面最简单的 Object obj = new Object();代码进行分析，利用 javap
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Jvm/08%20%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8E%8B%E7%BC%A9%E6%8C%87%E9%92%88%E8%B6%85%E8%BF%87%2032g%20%E5%A4%B1%E6%95%88/">
 				<h2 class="index-title">
 					08 为什么压缩指针超过 32g 失效
 				</h2>
 				<div class="index-brief">
-					在 Java 虚拟机中，每个 java 对象都有一个对象头，它由mark word和klass point构成。
-mark word 用来存储这个对象的运行时数据
+					为什么要引入压缩指针？
 
+先要明白：32 位操作系统可以寻址到多大内存？
+
+答：4g，因为2^32=4 * 1024 * 1024*1024=4g；
+64 位呢？近似无穷大
+
+为什么要用 64位操作系统？
+
+答：家里电脑都不止 4g 了，把 8g 内存装在 32 位电脑上，还是只有 4g有效，而 4
 					...
 				</div>
 			</a>

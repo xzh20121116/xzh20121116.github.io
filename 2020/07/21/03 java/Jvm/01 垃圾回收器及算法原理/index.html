@@ -2156,7 +2156,7 @@
 <p>从名字就可以看出，这种回收器基于“<strong>标记-清除</strong>”算法的，它的运作过程相对于串行的垃圾回收器有点复杂，分为以下四个步骤</p>
 <ol>
 <li>初始标记：很短，很快，仅仅只是标记下 GC Root 能直接关联的对象，速度极快。</li>
-<li>并发标记：和用户应用同时践行，进行 GC Root 跟踪的过程，标记 GC Root 关联的所有对象，开始遍历整个可达分析的路径对象，这个时间较长，所以并发</li>
+<li>并发标记：和用户应用同时进行，进行 GC Root 跟踪的过程，标记 GC Root 关联的所有对象，开始遍历整个可达分析的路径对象，这个时间较长，所以并发</li>
 <li>重新标记：很短，为了修正并发标记期间因程序继续运行而导致标记发生了变化的那一部分对象的标记记录，这个阶段的停顿时间一般会比初始标记阶段稍长一些，但远比并发标记的时间短。</li>
 <li>并发清除：由于整个过程中耗时最长的并发标记和并发清除都是可以与用户线程一起工作，所以一般来说，CMS 的内存回收过程是与用户线程一起执行的。-XX:+UseConcMarkSweepGC means that the new generation uses ParNew and the old generation uses CMS.</li>
 </ol>
@@ -2175,13 +2175,13 @@
 <p>Region：Region 可能是 Eden，也有可能是 Survivor，也有可能是 old，另外 Region 中还有一类特殊的 Humongous 区域，专门用来存储大对象。G1 认为只要大小超过了一个 Region 容量一半的对象即可判定为大对象。每个 Region 的大小可以通过 -XX：G1HeapRegionSize 设定，取值范围为 1MB 至 32MB，且应为 2 的 N 次幂。而对于那些超过了整个 Region 容量的超级大对象，将会被存放在 N 个连续的 HumongousRegion 之中，G1 进行回收时，大多数情况下都把 Humongous Region 作为老年代的一部分来进行看待。</p>
 <p><strong>开启参数：</strong>-XX:+UserG1GC</p>
 <p><strong>分区大小</strong>：-XX:+G1HeapRegionSize</p>
-<p>一半建议逐渐增大该值，随着 size 增加，垃圾的存活时间更长，GC 间隔更长，但每次 GC 的时间也会更长。</p>
+<p>一般建议逐渐增大该值，随着 size 增加，垃圾的存活时间更长，GC 间隔更长，但每次 GC 的时间也会更长。</p>
 <p><strong>最大 GC 暂停时间</strong>：-XX:MaxGCPauseMillis</p>
 <p>设置最大GC 暂停时间的目标 （单位：毫秒），这是个软目标，JVM 会尽最大可能实现它。</p>
 <p>运行过程如下图：</p>
 <p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20201209172918.png" alt="image-20201209172918110"></p>
 <p><strong>初始标记</strong>：仅仅只是标记一下 GC Roots 能直接关联到的对象，并且修改 TAMS 指针的值，让下一阶段用户线程并发运行时，能正确的在可用的 Region 中分配新对象。这个阶段需要停顿线程，但耗时很短，而且是借用进行 Minor GC 的时候同步完成的，所以 G1 收集器在这个阶段实际并没有额外的停顿。要达到 GC 与用户线程并发运行，必须要解决回收过程中新对象的分配，所以 G1 为每一个 Region 区域设计了两个名为 TAMS(Top at Mark Start)的指针，从 Region 区域划出一部分空间用于记录并发回收过程中的新对象。这样的对象认为它们是存活的，不纳入垃圾回收范围。</p>
-<p><strong>并发标记</strong>：从 GC Root 开始对堆中对象进行可达性分析，递归扫描整个堆里的对象图，找出要回收的对象，这阶段耗时较长，但可与用户程序并发执行。当对象图扫描完成以后，并发时有引用变动的对象，这些对象会漏标，漏标的对象会被一个叫做 SATB（snapshot at the beginning）算法来解决。</p>
+<p><strong>并发标记</strong>：从 GC Root 开始对堆 中对象进行可达性分析，递归扫描整个堆里的对象图，找出要回收的对象，这阶段耗时较长，但可与用户程序并发执行。当对象图扫描完成以后，并发时有引用变动的对象，这些对象会漏标，漏标的对象会被一个叫做 SATB（snapshot at the beginning）算法来解决。</p>
 <p><strong>最终标记</strong>：对用户线程做另一个短暂的暂停，用于处理并发标记后仍遗留下来的最后少量的 SATB 记录（漏标对象）。</p>
 <p><strong>筛选回收</strong>：负责更新 Region 的统计数据，对各个 Region 的回收价值和成本进行排序，根据用户所期望的停顿时间来指定回收计划，可以自由选择任意多个 Region 构成回收集，然后把决定回收的那一部分 Region 的存活对象复制到空的 Region 中，再清理掉整个旧 Region 的全部空间。这里的操作设计存活对象的移动，是必须暂停用户线程，由多条收集器线程并行完成的。</p>
 <p><strong>总结</strong>：并行与并发：G1 能充分利用多 CPU、多核环境下的硬件优势，使用多个 CPU（CPU或者 CPU 核心）来缩短 STW 的时间，部分其他收集器原本需要停顿 Java 线程执行的 GC动作，G1 收集器仍然可以通过并发的方式让 JAVA 程序继续执行。</p>
@@ -2262,16 +2262,16 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2020/07/21/03%20java/Jvm/05%20%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
+              <a href="/2020/07/21/03%20java/Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  05 类加载过程
+                  07 排查堆内存溢出
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2020/07/21/03%20java/Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
-                07 排查堆内存溢出
+              <a href="/2020/07/21/03%20java/Jvm/03%20%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
+                03 对象实例化过程
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             

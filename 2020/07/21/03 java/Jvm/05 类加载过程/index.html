@@ -2030,7 +2030,7 @@
 <div id="article-content">
 	<p>在冯。诺依曼的计算机模型中，任何程序都需要加载到内存才能与cpu进行交流。</p>
 <p>字节码.class文件同样需要加载到内存中，才可以实例化。“兵马未动，粮草先行”。ClassLoader 就是准备粮草的先行军，他的使命就是「提前加载.class类文件到内存中」，在加载类时，使用的是『Parents Delegation Model』，“双亲委派模型”，更合适的叫法是&quot;溯源委派加载模型&quot;</p>
-<h1>类的过程分为三步走：</h1>
+<h1>类的加载过程分为三步走：</h1>
 <h2 id="load（加载）"><a class="header-anchor" href="#load（加载）"></a>load（加载）</h2>
 <p>读取类文件，产生二进制流，并转化为特定的数据结构（字节流所代表的静态存储结构转换为方法区的运行时数据结构），初步校验cafe babe魔法数、常量池、文件长度、是否有父类等，然后创建对应类的java.lang.Class实例</p>
 <h2 id="link（连接）"><a class="header-anchor" href="#link（连接）"></a>link（连接）</h2>
@@ -2044,7 +2044,7 @@
 <p>类加载是一个将.class字节码文件实例化成java.lang.Class对象并进行相关初始化的过程。这个过程中，jvm会初始化继承树上还没有被初始化过的所有父类，并且执行这个链路上所有未执行过的静态代码块、静态变量赋值语句等。</p>
 <p>全小写的<strong>class</strong>是关键字，用来定义类</p>
 <p>首字母大写的<strong>CLass</strong>，他是所有class的类，就像数值型的数据类型都是number，所有的类都是CLass</p>
-<p>类加载器类似于原始部落结构，存在权利等级制度。最高的一层是家族中威望最高的<strong>bootstracp</strong>。他是在jvm启动时创建的，通常由于操作系统相关的本地代码实现，是最根基的类加载器，负责装在最核心的java类，比如Object、System、String等；</p>
+<p>类加载器类似于原始部落结构，存在权利等级制度。最高的一层是家族中威望最高的<strong>bootstracp</strong>。他是在jvm启动时创建的，通常由于操作系统相关的本地代码实现，是最根基的类加载器，负责装载最核心的java类，比如Object、System、String等；</p>
 <p>第二层是在jdk9中，称为<strong>Platform ClassLoader</strong>，即平台类加载器，用来加载一些扩展的系统类，比如xml，加密、压缩相关的功能类等，jdk9之前的加载器是<strong>Extension CLassLoader</strong>；</p>
 <p>第三层是Application ClassLoader 应用类加载器，主要是加载用户自定义的CLassPath路径下的类</p>
 <p>第二三层的由java语言实现的，用户也可以自定义类加载器。</p>
@@ -2077,8 +2077,8 @@
         </div>
         <div class="item right">
             
-              <a href="/2020/07/21/03%20java/Jvm/01%20%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E5%8F%8A%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/">
-                01 垃圾回收器及算法原理
+              <a href="/2020/07/21/03%20java/Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
+                07 排查堆内存溢出
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
