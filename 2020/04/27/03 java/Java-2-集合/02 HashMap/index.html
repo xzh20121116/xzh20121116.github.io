@@ -1,0 +1,2441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	
+	<!-- title -->
+	
+	<title>
+	
+		HashMap底层、1.7与1.8区别 | 
+	 
+	温故知新
+	</title>
+	
+	<!-- keywords,description -->
+	 
+
+	<!-- favicon -->
+	
+	<link rel="shortcut icon" href="/favicon.ico">
+	
+  
+
+	
+<link rel="stylesheet" href="/css/main.css">
+
+	
+<link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/styles/darcula.min.css">
+
+
+	
+<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@9.17.1/build/highlight.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+
+	
+<script src="https://cdn.jsdelivr.net/npm/jquery-pjax@2.0.1/jquery.pjax.min.js"></script>
+
+	
+<script src="/js/main.js"></script>
+
+	
+		
+<script src="https://cdn.jsdelivr.net/npm/leancloud-storage/dist/av-min.js"></script>
+
+		
+<script src="https://cdn.jsdelivr.net/npm/valine@1.3.10/dist/Valine.min.js"></script>
+
+	
+	
+		<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+	<header id="header">
+    <a id="title" href="/" class="logo">温故知新</a>
+
+	<ul id="menu">
+		<!-- <li class="menu-item">
+			<a href="/about" class="menu-item-link">ABOUT</a>
+		</li> -->
+		
+		<!-- <li class="menu-item">
+			<a href="https://github.com/wujun234/uid-generator-spring-boot-starter" class="menu-item-link" target="_blank">
+				UidGenerator
+			</a>
+		</li> -->
+		<!-- <li class="menu-item">
+			<a href="https://github.com/wujun234" class="menu-item-link" target="_blank">
+				<i class="fa fa-github fa-2x"></i>
+			</a>
+		</li> -->
+	</ul>
+</header>
+
+	
+<div id="sidebar">
+	<button id="sidebar-toggle" class="toggle" ><i class="fa fa-arrow-right " aria-hidden="true"></i></button>
+	
+	<div id="site-toc">
+		<input id="search-input" class="search-input" type="text" placeholder="search...">
+		<div id="tree">
+			
+
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										01 算法与数据结构
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										1常见面试题
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/Topk%E9%97%AE%E9%A2%98/">
+										Topk问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%88%A0%E5%8E%BBk%E4%B8%AA%E6%95%B0%E5%AD%97%E5%90%8E%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC/">
+										删去k个数字后的最小值
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E5%90%A6%E4%B8%BA2%E6%95%B4%E6%95%B0%E6%AC%A1%E5%B9%82/">
+										如何判断一个数否为2整数次幂
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E9%93%BE%E8%A1%A8%E6%9C%89%E7%8E%AF/">
+										如何判断链表有环
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%A7%E6%95%B4%E6%95%B0%E7%9B%B8%E5%8A%A0/">
+										如何实现大整数相加
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E6%B1%82%E5%87%BA%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/">
+										如何求出最大公约数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%AF%BB%E6%89%BE%E5%85%A8%E6%8E%92%E5%88%97%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%95%B0/">
+										寻找全排列的下一个数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%AF%BB%E6%89%BE%E7%BC%BA%E5%A4%B1%E7%9A%84%E6%95%B4%E6%95%B0/">
+										寻找缺失的整数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%97%A0%E5%BA%8F%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E5%90%8E%E6%9C%80%E5%A4%A7%E7%9B%B8%E9%82%BB%E5%B7%AE/">
+										无序数组排序后最大相邻差
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9C%80%E5%B0%8F%E6%A0%88%E7%9A%84%E5%AE%9E%E7%8E%B0/">
+										最小栈的实现
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9C%AA%E5%AE%8C%E6%88%90--%E5%A6%82%E4%BD%95%E6%B1%82%E8%A7%A3%E9%87%91%E7%9F%BF%E9%97%AE%E9%A2%98%EF%BC%88%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%89/">
+										未完成--如何求解金矿问题（背包问题）
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/">
+										用栈实现队列
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										2排序算法
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">
+										冒泡排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/">
+										基数排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%A0%86%E6%8E%92%E5%BA%8F/">
+										堆排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%B8%B8%E8%A7%81%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/">
+										常见排序算法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
+										归并排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
+										快速排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E6%89%8B%E5%86%99Lru/">
+										手写Lru
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
+										插入排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F%E5%92%8C%E6%A1%B6%E6%8E%92%E5%BA%8F/">
+										计数排序和桶排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F/">
+										选择排序
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/3%E4%BD%8D%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93/">
+										3位操作总结
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										02 计算机基础
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/1%20%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E5%AE%B9%E9%87%8F/">
+										1 存储单位容量
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/2%20%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5url%20%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">
+										2 在浏览器中输入url 发生了什么
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/3%20Http%20%E7%8A%B6%E6%80%81%E7%A0%81/">
+										3 Http 状态码
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										03 java
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Java-1-基础
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/01%20%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%86%E7%B1%BB/">
+										01 变量的分类
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/02%20%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E5%80%BC%E6%9C%BA%E5%88%B6/">
+										02 参数的传值机制
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/03%20%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
+										03 抽象方法和抽象类
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/04%20%E5%A4%9A%E6%80%81/">
+										04 多态
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/05%20%E5%B0%81%E8%A3%85/">
+										05 封装
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/06%20%E7%BB%A7%E6%89%BF%E6%A0%91%E8%BF%BD%E6%BA%AF/">
+										06 继承树追溯
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/07%20%E6%8E%A5%E5%8F%A3/">
+										07 接口
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/08%20%E5%86%85%E9%83%A8%E7%B1%BB/">
+										08 内部类
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/09%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+										09 数据类型
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/08/04/03%20java/Java-1-%E5%9F%BA%E7%A1%80/10%20%E4%B8%80%E4%B8%AA%20java%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%88%B0%E5%BA%95%E6%9C%89%E5%87%A0%E4%B8%AA%E5%AD%97%E8%8A%82/">
+										10 一个 java 字符串到底有几个字节
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/08/03/03%20java/Java-1-%E5%9F%BA%E7%A1%80/11%E9%87%8D%E6%9E%84%E3%80%81%E9%87%8D%E5%86%99%E3%80%81%E9%87%8D%E8%BD%BD%E7%9A%84%E5%8C%BA%E5%88%AB/">
+										11重构、重写、重载的区别
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/12%20final/">
+										12 final
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/13%20this%20%E7%9A%84%E6%9C%AC%E8%B4%A8/">
+										13 this 的本质
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Java-2-集合
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/04/28/03%20java/Java-2-%E9%9B%86%E5%90%88/01%20ArrayList/">
+										01 ArrayList
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file active">
+									<a href="/2020/04/27/03%20java/Java-2-%E9%9B%86%E5%90%88/02%20HashMap/">
+										02 HashMap
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/28/03%20java/Java-2-%E9%9B%86%E5%90%88/03%20ConcurrentHashMap/">
+										03 ConcurrentHashMap
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Java-3-线程和锁
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/01%20%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%A5%BD%E5%A4%84/">
+										01 线程池的好处
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/23/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/02%20%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E3%80%816%E7%A7%8D%E7%8A%B6%E6%80%81%E7%9A%84%E6%B5%81%E8%BD%AC/">
+										02 线程的生命周期、6种状态的流转
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/03%20%E6%80%BB%E7%BB%93%E4%B8%80%E4%B8%8B%E5%87%A0%E7%A7%8D%E9%94%81/">
+										03 总结一下几种锁
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/04%20Aqs%E7%9A%84%E6%A0%B8%E5%BF%83%E6%88%90%E5%91%98%E3%80%81%E6%95%B0%E6%8D%AE%E6%A8%A1%E5%9E%8B%E3%80%81%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+										04 Aqs的核心成员、数据模型、锁的实现原理
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/24/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/05%20java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E3%80%81volatile%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+										05 java内存模型、volatile的实现原理
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/06%20MDC/">
+										06 MDC
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/24/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/07%20Reentrantlock%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E3%80%81%E4%BB%A5%E5%8F%8A%E5%85%AC%E5%B9%B3%E9%94%81%E5%92%8C%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81%E7%9A%84%E5%8C%BA%E5%88%AB/">
+										07 Reentrantlock的实现原理、以及公平锁和非公平锁的区别
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/23/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/08%20sleep%E3%80%81wait%E3%80%81notify%E3%80%81yield%E3%80%81join%E7%9A%84%E5%8C%BA%E5%88%AB/">
+										08 sleep、wait、notify、yield、join的区别
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/23/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/09%20synchronized/">
+										09 synchronized
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/28/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/10%20ThreadLocal/">
+										10 ThreadLocal
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/08/06/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/11%20%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84execute%E6%96%B9%E6%B3%95%E5%92%8Csubmit%E6%96%B9%E6%B3%95%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F/">
+										11 线程池的execute方法和submit方法有什么区别？
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/18/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/12%20java%20%E9%94%81%E4%BA%8B/">
+										12 java 锁事
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/18/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/13%20%E4%BB%8E%20Reentrantlock%20%E6%9D%A5%E7%9C%8B%20AQS%20%E7%9A%84%E5%8E%9F%E7%90%86/">
+										13 从 Reentrantlock 来看 AQS 的原理
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2021/04/28/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/14%20notify()%20%E4%BC%9A%E7%AB%8B%E5%88%BB%E9%87%8A%E6%94%BE%E9%94%81%E5%90%97/">
+										14 notify() 会立刻释放锁吗
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Java-4-Jvm
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-4-Jvm/01%20%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E5%8F%8A%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/">
+										01 垃圾回收器及算法原理
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/08/03/03%20java/Java-4-Jvm/02%20%E5%B8%B8%E9%87%8F%E6%B1%A0/">
+										02 常量池
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-4-Jvm/03%20%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
+										03 对象实例化过程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-4-Jvm/04%20%E5%AF%B9%E8%B1%A1%E5%9C%A8%E5%86%85%E5%AD%98%E4%B8%AD%E7%9A%84%E5%B8%83%E5%B1%80/">
+										04 对象在内存中的布局
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-4-Jvm/05%20%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
+										05 类加载过程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-4-Jvm/06%20%E9%9D%A2%E8%AF%95%E8%A2%AB%E9%97%AE%E7%83%82%E7%9A%84JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%EF%BC%8C%E6%88%91%E4%BB%8A%E5%A4%A9%E5%86%8D%E6%9D%A5%E7%BB%99%E5%A4%A7%E5%AE%B6%E5%A4%8D%E4%B9%A0%E4%B8%80%E9%81%8D/">
+										06 面试被问烂的JVM内存区域，我今天再来给大家复习一遍
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-4-Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
+										07 排查堆内存溢出
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-4-Jvm/08%20%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8E%8B%E7%BC%A9%E6%8C%87%E9%92%88%E8%B6%85%E8%BF%87%2032g%20%E5%A4%B1%E6%95%88/">
+										08 为什么压缩指针超过 32g 失效
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-4-Jvm/09%20%E4%B8%BA%E4%BB%80%E4%B9%88CMS%E4%B8%A4%E6%AC%A1%E6%A0%87%E8%AE%B0%E8%A6%81STW/">
+										09 为什么CMS两次标记要STW
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-4-Jvm/10%20jvm%20%E8%B0%83%E4%BC%98/">
+										10 jvm 调优
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-4-Jvm/11%20jvm%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%92%E5%88%86/">
+										11 jvm内存区域划分
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/03%20java/Java-4-Jvm/12%20Monitor/">
+										12 Monitor
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/08/19/03%20java/Java-4-Jvm/13%20%E6%96%B0%E4%B8%80%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8ZGC%E7%9A%84%E6%8E%A2%E7%B4%A2%E4%B8%8E%E5%AE%9E%E8%B7%B5/">
+										13 新一代垃圾回收器ZGC的探索与实践
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Java-5
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/12/02/03%20java/Java-5/BIO%E4%B8%8ENIO%E4%B8%8EAIO/">
+										BIO与NIO与AIO
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/16/03%20java/Java-5/Java8%20Stream/">
+										Java8 Stream
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										04 Spring
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/28/04%20Spring/1%20spring%20%E7%94%A8%E5%88%B0%E4%BA%86%E5%93%AA%E4%BA%9B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
+										1 spring 用到了哪些设计模式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/04%20Spring/2%20%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+										2 事务实现原理
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/04%20Spring/3%20%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
+										3 依赖注入
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/04%20Spring/4%20aop/">
+										4 aop
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/05/07/04%20Spring/5%20BeanFactory-%E5%92%8C-ApplicationContext-%E5%8C%BA%E5%88%AB/">
+										5 BeanFactory-和-ApplicationContext-区别
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/04%20Spring/6%20ioc/">
+										6 ioc
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/04%20Spring/7%20spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+										7 spring 循环依赖
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/04%20Spring/%E3%80%90%E8%BD%AC%E3%80%91springJdbc%20%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">
+										【转】springJdbc 源码学习
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										05 Springboot
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/05%20Springboot/springboot%20%E4%B9%8B%20Filter%20%E6%8C%87%E5%AE%9A%E8%BF%87%E6%BB%A4%20Url%20%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+										springboot 之 Filter 指定过滤 Url 的常见问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										06 微服务
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										0 服务注册与发现
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										Zookeeper
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
+										mac 安装启动
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+										分布式锁
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
+										客户端ZooInspector
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										1 服务调用
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/1%20%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/Sentinel%20%E4%B8%8E%20Hystrix%20%E5%AF%B9%E6%AF%94/">
+										Sentinel 与 Hystrix 对比
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										07 SpringMVC
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/07%20SpringMVC/%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
+										工作原理
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/07%20SpringMVC/%E8%AF%B4%E8%AF%B4%20SpringMvc%20%E7%9A%84%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B/">
+										说说 SpringMvc 的执行流程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										08 Mysql
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/08%20Mysql/01%20%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95/">
+										01 聚簇索引和非聚簇索引
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/08%20Mysql/02%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B0%83%E4%BC%98/">
+										02 数据库调优
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/08%20Mysql/03%20%E7%B4%A2%E5%BC%95/">
+										03 索引
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/23/08%20Mysql/04%20%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%A0%E4%BA%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%A1%A8%E7%9A%84%E5%A4%A7%E5%B0%8F%E4%B8%8D%E5%8F%98%EF%BC%9F/">
+										04 为什么删了数据，表的大小不变？
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/22/08%20Mysql/05%20count(*)%E3%80%81count(%E4%B8%BB%E9%94%AE%20id)%E3%80%81count(%E5%AD%97%E6%AE%B5)%E5%92%8Ccount(1)%E7%AD%89%E4%B8%8D%E5%90%8C%E7%94%A8%E6%B3%95%E7%9A%84%E6%80%A7%E8%83%BD/">
+										05 count(*)、count(主键 id)、count(字段)和count(1)等不同用法的性能
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/22/08%20Mysql/06%20mysql%20%E7%9A%84%E5%87%A0%E4%B8%AA%E6%97%A5%E5%BF%97/">
+										06 mysql 的几个日志
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/22/08%20Mysql/07%20mysql%20%E5%A6%82%E4%BD%95%E4%B8%BB%E5%A4%87%E4%B8%80%E8%87%B4+%E5%8F%8Cm%E5%BE%AA%E7%8E%AF%E5%A4%8D%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+										07 mysql 如何主备一致+双m循环复制解决方案
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/04/21/08%20Mysql/08%20mysql%E4%B9%8B%E9%94%81/">
+										08 mysql之锁
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/30/08%20Mysql/09%20InnoDB%20%E7%9A%84%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E9%94%81%E7%9A%84%E5%85%B3%E7%B3%BB/">
+										09 InnoDB 的事务隔离级别和锁的关系
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/12/01/08%20Mysql/10%20mysql%20%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/">
+										10 mysql 索引原理及慢查询优化
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										09 Mybatis
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/09%20Mybatis/1%20%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/">
+										1 常见面试题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/09%20Mybatis/2%20MyBatis%E5%8A%A8%E6%80%81SQL%20foreach%E6%A0%87%E7%AD%BE%E5%AE%9E%E7%8E%B0%E6%89%B9%E9%87%8F%E6%8F%92%E5%85%A5/">
+										2 MyBatis动态SQL foreach标签实现批量插入
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										10 Redis
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/1%20%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%9C%BA%E6%99%AF/">
+										1 常见数据类型及场景
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/2%20%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+										2 常见问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/3%20%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+										3 分布式锁
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/28/10%20Redis/4%20%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8C%E5%86%99%E6%97%B6%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7/">
+										4 如何保证缓存与数据库双写时的数据一致性
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/5%20%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%94%A8Memcached/">
+										5 为什么不用Memcached
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/6%20cluster%20%E4%B8%8E%20sentinel/">
+										6 cluster 与 sentinel
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/7%20redis%E4%B9%8B%E7%BA%A2%E9%94%81(Redlock)/">
+										7 redis之红锁(Redlock)
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/8%20Redisson%E4%BD%BF%E7%94%A8/">
+										8 Redisson使用
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/09/10%20Redis/9%20redis%E5%B8%B8%E8%A7%81%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BA%95%E5%B1%82%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+										9 redis常见对象的底层数据结构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										11 ELk
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/11%20ELk/1%20es%E5%AE%89%E8%A3%85/">
+										1 es安装
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/23/11%20ELk/2%20kibana%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
+										2 kibana 安装启动
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/11%20ELk/ElasticSearch/">
+										ElasticSearch
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/11%20ELk/springboot%20%E6%B7%BB%E5%8A%A0%20es%20%E4%BE%9D%E8%B5%96%E7%89%88%E6%9C%AC%E9%97%AE%E9%A2%98/">
+										springboot 添加 es 依赖版本问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/11%20ELk/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%20kibana%EF%BC%8C%E5%A4%96%E7%BD%91%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE/">
+										阿里云部署 kibana，外网无法访问
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										12 Linux
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/12%20Linux/1%20linux%20%E5%AE%89%E8%A3%85%20jdk/">
+										1 linux 安装 jdk
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/12%20Linux/2%20linux%20%E5%AE%89%E8%A3%85%20nginx/">
+										2 linux 安装 nginx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/12%20Linux/3%20linux%E5%AE%89%E8%A3%85yapi/">
+										3 linux安装yapi
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/12%20Linux/4%20showdoc%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
+										4 showdoc 安装教程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/20/12%20Linux/5%20CentOS%20%E5%B8%B8%E7%94%A8%E6%96%87%E4%BB%B6%E5%91%BD%E4%BB%A4%E6%80%BB%E7%BB%93/">
+										5 CentOS 常用文件命令总结
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/12%20Linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+										【转】Linux查看内存使用情况方法
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										13 分布式相关
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/1%20%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+										1 分布式事务
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/28/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/2%20%E5%88%86%E5%B8%83%E5%BC%8F%E9%99%90%E6%B5%81/">
+										2 分布式限流
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/08/04/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/3%20%E6%94%AF%E4%BB%98%E5%AE%9D%E7%9A%84%E6%9E%B6%E6%9E%84%E5%88%B0%E5%BA%95%E6%9C%89%E5%A4%9A%E7%89%9B%E9%80%BC/">
+										3 支付宝的架构到底有多牛逼
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										15 Nginx
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/15%20Nginx/1%20%E9%85%8D%E7%BD%AE%20nginx/">
+										1 配置 nginx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										16 秒杀-高并发
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/16%20%E7%A7%92%E6%9D%80-%E9%AB%98%E5%B9%B6%E5%8F%91/01.%20%E9%AB%98%E5%B9%B6%E5%8F%91%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%E7%BA%BF%E7%A8%8B%E6%95%B0/">
+										01. 高并发如何设置线程数
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/16%20%E7%A7%92%E6%9D%80-%E9%AB%98%E5%B9%B6%E5%8F%91/02.%20%E7%A7%92%E6%9D%80/">
+										02. 秒杀
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/12/14/16%20%E7%A7%92%E6%9D%80-%E9%AB%98%E5%B9%B6%E5%8F%91/03.%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F/">
+										03.如何设计秒杀系统
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										17 LeetCode
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/17%20LeetCode/README/">
+										README
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										18 线上问题排查
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/18%20%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/1%20CPU100%25%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D/">
+										1 CPU100%问题如何快速定位
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										19 为什么这么设计【转】
+									</a>
+									
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										数据库
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%B8%BA%E4%BB%80%E4%B9%88%20MongoDB%20%E4%BD%BF%E7%94%A8%20B%20%E6%A0%91/">
+										为什么 MongoDB 使用 B 树
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%B8%BA%E4%BB%80%E4%B9%88%20MySQL%20%E4%BD%BF%E7%94%A8%20B+%20%E6%A0%91/">
+										为什么 MySQL 使用 B+ 树
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%B8%BA%E4%BB%80%E4%B9%88%20Redis%20%E5%BF%AB%E7%85%A7%E4%BD%BF%E7%94%A8%E5%AD%90%E8%BF%9B%E7%A8%8B/">
+										为什么 Redis 快照使用子进程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E6%95%B0%E6%8D%AE%E5%BA%93/%E4%B8%BA%E4%BB%80%E4%B9%88%20Redis%20%E9%80%89%E6%8B%A9%E5%8D%95%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B/">
+										为什么 Redis 选择单线程模型
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										网络
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%20DNS%20%E4%BD%BF%E7%94%A8%20UDP%20%E5%8D%8F%E8%AE%AE/">
+										为什么 DNS 使用 UDP 协议
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%20HTTPS%20%E9%9C%80%E8%A6%81%207%20%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%BB%A5%E5%8F%8A%209%20%E5%80%8D%E6%97%B6%E5%BB%B6/">
+										为什么 HTTPS 需要 7 次握手以及 9 倍时延
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%20TCP%20%E5%8D%8F%E8%AE%AE%E6%9C%89%E7%B2%98%E5%8C%85%E9%97%AE%E9%A2%98/">
+										为什么 TCP 协议有粘包问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%20TCP%20%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E9%9C%80%E8%A6%81%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B/">
+										为什么 TCP 建立连接需要三次握手
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%20TCPIP%20%E5%8D%8F%E8%AE%AE%E4%BC%9A%E6%8B%86%E5%88%86%E6%95%B0%E6%8D%AE/">
+										为什么 TCPIP 协议会拆分数据
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%20UDP%20%E5%A4%B4%E5%8F%AA%E6%9C%89%208%20%E4%B8%AA%E5%AD%97%E8%8A%82/">
+										为什么 UDP 头只有 8 个字节
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%20tcp%20%E5%8D%8F%E8%AE%AE%E6%9C%89%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98/">
+										为什么 tcp 协议有性能问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/19%20%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E4%B9%88%E8%AE%BE%E8%AE%A1%E3%80%90%E8%BD%AC%E3%80%91/%E7%BD%91%E7%BB%9C/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%B5%81%E5%AA%92%E4%BD%93%E7%9B%B4%E6%92%AD%E7%9A%84%E5%BB%B6%E8%BF%9F%E5%BE%88%E9%AB%98/">
+										为什么流媒体直播的延迟很高
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										20 记错
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/20%20%E8%AE%B0%E9%94%99/01%E5%A4%84%E7%90%86%20mybatis-plus%20%E4%B8%8E%20pageHelper%20%E5%86%B2%E7%AA%81/">
+										01处理 mybatis-plus 与 pageHelper 冲突
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/20%20%E8%AE%B0%E9%94%99/02%E8%AE%B0%E4%B8%80%E6%AC%A1%20git%20%E6%97%A0%E6%B3%95%20pull%E3%80%81push/">
+										02记一次 git 无法 pull、push
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/31/20%20%E8%AE%B0%E9%94%99/03%E8%AE%B0%E4%B8%80%E6%AC%A1%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98/">
+										03记一次跨域问题
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/20%20%E8%AE%B0%E9%94%99/04%E6%8E%A5%E5%8F%A3%E7%9A%84%20aop%20%E6%97%A5%E5%BF%97%E5%A4%B1%E6%95%88%E4%BA%86/">
+										04接口的 aop 日志失效了
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/08/17/20%20%E8%AE%B0%E9%94%99/05%E5%89%8D%E7%AB%AF%E6%97%A0%E6%B3%95%E6%8E%A5%E6%94%B6%20Long%20%E7%B1%BB%E5%9E%8B/">
+										05前端无法接收 Long 类型
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/09/17/20%20%E8%AE%B0%E9%94%99/06%E8%AE%B0%E4%B8%80%E6%AC%A1%E2%80%9C%E9%AB%98%E5%B9%B6%E5%8F%91%E2%80%9Dmd/">
+										06记一次“高并发”md
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/19/20%20%E8%AE%B0%E9%94%99/07Could%20not%20extract%20response:%20no%20suitable%20HttpMessageConverter%20found%20for%20response%20type/">
+										07Could not extract response: no suitable HttpMessageConverter found for response type
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										21 黑苹果
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/21%20%E9%BB%91%E8%8B%B9%E6%9E%9C/%E3%80%90%E8%BD%AC%E3%80%91NUC8%E4%BD%BF%E7%94%A8%E8%8B%B9%E6%9E%9C%E5%8E%9F%E8%A3%85%E6%97%A0%E7%BA%BF%E7%BD%91%E5%8D%A1%E5%85%8D%E9%A9%B1%E5%8A%A8WiFi%E8%93%9D%E7%89%99AirDorpHandoff/">
+										【转】NUC8使用苹果原装无线网卡免驱动WiFi蓝牙AirDorpHandoff
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/21%20%E9%BB%91%E8%8B%B9%E6%9E%9C/%E5%B1%8F%E8%94%BD%E7%83%A6%E4%BA%BA%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%9B%B4%E6%96%B0%E6%8F%90%E7%A4%BA/">
+										屏蔽烦人的系统更新提示
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										22 收藏
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/22%20%E6%94%B6%E8%97%8F/Sourcetree%20%E8%AE%BE%E7%BD%AE%E9%BB%98%E8%AE%A4%E5%B7%A5%E4%BD%9C%E7%9B%AE%E5%BD%95/">
+										Sourcetree 设置默认工作目录
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/20/22%20%E6%94%B6%E8%97%8F/mac%E7%94%B5%E8%84%91iTerm2%E9%93%BE%E6%8E%A5linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%AD%E7%BA%BF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+										mac电脑iTerm2链接linux服务器断线解决方案
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/22%20%E6%94%B6%E8%97%8F/v2ray%E6%90%AD%E5%BB%BA%E6%95%99%E7%A8%8B/">
+										v2ray搭建教程
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/22%20%E6%94%B6%E8%97%8F/%E3%80%90%E8%BD%AC%E3%80%91%E3%80%90%E9%98%BF%E9%87%8C%E4%BA%91%E5%AE%98%E7%BD%91%E3%80%91oss%20%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%20Content-Type/">
+										【转】【阿里云官网】oss 如何设置 Content-Type
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/22%20%E6%94%B6%E8%97%8F/%E3%80%90%E8%BD%AC%E3%80%91%E6%90%AD%E5%BB%BA%20gitlab/">
+										【转】搭建 gitlab
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/22%20%E6%94%B6%E8%97%8F/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%93%AA%E5%AE%B6%E4%BE%BF%E5%AE%9C/">
+										云服务哪家便宜
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/22%20%E6%94%B6%E8%97%8F/%E6%8E%A8%E8%8D%90%E7%BD%91%E5%9D%80/">
+										推荐网址
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/22%20%E6%94%B6%E8%97%8F/%E6%94%B6%E8%97%8F/">
+										收藏
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/22%20%E6%94%B6%E8%97%8F/%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96%E6%A1%86%E6%9E%B6%E4%B8%BA%E4%BB%80%E4%B9%88%E6%94%BE%E5%BC%83%20Hibernate%E3%80%81JPA%E3%80%81Mybatis%EF%BC%8C%E6%9C%80%E7%BB%88%E9%80%89%E6%8B%A9%20JDBCTemplate%EF%BC%81/">
+										数据持久化框架为什么放弃 Hibernate、JPA、Mybatis，最终选择 JDBCTemplate！
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										23 梯子
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/23%20%E6%A2%AF%E5%AD%90/iphone%20%E4%BD%BF%E7%94%A8shadownrocket/">
+										iphone 使用shadownrocket
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/23%20%E6%A2%AF%E5%AD%90/mac%E4%BD%BF%E7%94%A8%20v2ray/">
+										mac使用 v2ray
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										24 维权
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/24%20%E7%BB%B4%E6%9D%83/xx/">
+										xx
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										25 Hexo
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/25%20Hexo/Hexo%20%E6%A0%87%E9%A2%98%E8%87%AA%E5%8A%A8%E7%BC%96%E5%8F%B7/">
+										Hexo 标题自动编号
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/25%20Hexo/%E5%A6%82%E4%BD%95%E8%AE%A9%20Hexo%20%E5%8D%9A%E5%AE%A2%E6%94%AF%E6%8C%81%20emoji/">
+										如何让 Hexo 博客支持 emoji
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										26 Markdown
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/07/22/26%20Markdown/%E3%80%90%E8%BD%AC%E3%80%91Markdown%20%E6%8F%92%E5%85%A5%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F/">
+										【转】Markdown 插入数学公式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										27 爬虫
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2020/08/20/27%20%E7%88%AC%E8%99%AB/Java%E7%88%AC%E8%99%AB%E5%AE%9E%E8%B7%B5%EF%BC%9AJsoup+HttpUnit%E7%88%AC%E5%8F%96%E4%BB%8A%E6%97%A5%E5%A4%B4%E6%9D%A1%E3%80%81%E7%BD%91%E6%98%93%E3%80%81%E6%90%9C%E7%8B%90%E3%80%81%E5%87%A4%E5%87%B0%E6%96%B0%E9%97%BB/">
+										Java爬虫实践：Jsoup+HttpUnit爬取今日头条、网易、搜狐、凤凰新闻
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
+										28 其他
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2021/03/03/28%20%E5%85%B6%E4%BB%96/001_%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E4%B8%80%E4%B8%AA%E6%8E%92%E8%A1%8C%E6%A6%9C/">
+										001_如何设计一个排行榜
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2021/04/22/28%20%E5%85%B6%E4%BB%96/002_tomcat%20%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%8E%20spring%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
+										002_tomcat 线程池与 spring线程池
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+		</div>
+	</div>
+</div>
+
+	<!-- 引入正文 -->
+	<div id="content">
+		<h1 id="article-title">
+
+	02 HashMap
+</h1>
+<div class="article-meta">
+	
+		<span>
+			阅读量:<span id="/2020/04/27/03%20java/Java-2-%E9%9B%86%E5%90%88/02%20HashMap/" class="leancloud_visitors" data-flag-title="HashMap底层、1.7与1.8区别"></span>
+		</span>
+	
+	<span>今晚打老虎</span>
+	<span>2020-04-27 13:11:29</span>
+    
+		<div id="article-categories">
+            
+		</div>
+    
+</div>
+
+<div id="article-content">
+	<h2 id="数据结构"><a class="header-anchor" href="#数据结构"></a>数据结构</h2>
+<p>1.7版本</p>
+<ul>
+<li>
+<p>数组+链表</p>
+</li>
+<li>
+<p><code>Entry</code>节点是他的内部类，实现了<code>Map.ENTRY()</code></p>
+</li>
+<li>
+<p>插入过程使用<code>头插法</code>：扩容时死循环</p>
+</li>
+</ul>
+<p>1.8版本</p>
+<ul>
+<li>数组+链表+红黑树</li>
+<li><code>Node</code>节点是他的内部类，实现了<code>Map.ENTRY()</code></li>
+<li>使用<code>尾插法</code>：避免扩容时死循环</li>
+</ul>
+<h2 id="底层实现"><a class="header-anchor" href="#底层实现"></a>底层实现</h2>
+<p>从三个方面说：<code>put()</code>、 <code>get()</code>、 <code>resize()</code>，对比1.7版本与1.8版本。</p>
+<h3 id="1-7-版本"><a class="header-anchor" href="#1-7-版本"></a>1.7 版本</h3>
+<h4 id="put"><a class="header-anchor" href="#put"></a>put()</h4>
+<p>是有返回值的，</p>
+<p>如果是key已存在，覆盖旧值，则返回旧值</p>
+<p>如果新key不存在，则返回null</p>
+<p><strong>源码</strong></p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427113334.png" alt="image-20200427113334153" style="zoom:50%;" />
+<p>如图所示，整个流程可以大致分为四步处理</p>
+<ol>
+<li>key为null的处理</li>
+<li>计算目标bucket的下标：即数组中的位置</li>
+<li>找到指定bucket，遍历Entry节点链表，若找到相同key相同的Entry节点，则做替换</li>
+<li>未没有找到目标Entry节点时，则新增一个Entry节点</li>
+</ol>
+<p><strong><code>putForNllKey（value）</code>：key为null的处理说明</strong></p>
+<p>说明1：HashMap中，可以存在null的kv</p>
+<p>说明2：key为null的，固定是放在table[0]的位置：即下标为0的bucket</p>
+<ul>
+<li>首先选择**table[0]**位置的链表</li>
+<li>对链表做遍历操作</li>
+<li>如果有节点的key为null，则将新value替换掉旧value</li>
+<li>如果没有key为null的节点，则新增一个key为null的Entry节点</li>
+</ul>
+<p><code>void addEntry(int hash, K key, V value, int bucketIndex)</code></p>
+<blockquote>
+<p>这是一个通用方法</p>
+<p>给定四个参数，新增一个Entry节点，另外还担负了扩容职责。</p>
+<p>如果哈希表中存放的<strong>kv数量</strong>超过了当前<strong>阈值threshold</strong>，且当前的bucket下标有链表存在，那么就进行<strong>扩容resize</strong>处理</p>
+<p>扩容后，<strong>重新计算hash</strong>，得到新的bucket下标，然后使用<strong>头插法</strong>新增节点</p>
+</blockquote>
+<h4 id="resize"><a class="header-anchor" href="#resize"></a>resize()</h4>
+<p><strong>扩容的流程如下</strong>：</p>
+<ol>
+<li>
+<p>插入kv时，发现容量不足</p>
+</li>
+<li>
+<p>保存旧的数组（old table）</p>
+</li>
+<li>
+<p>根据新容量（2倍）新建数组（new table）</p>
+</li>
+<li>
+<p>将old table上的kv 转移到 new table 中</p>
+<ol>
+<li>遍历旧数组的每个数据</li>
+<li>重新计算每个<code>旧kv</code>在新数组的位置（<code>不含新kv</code>）</li>
+<li>将旧数组上的每个<code>旧kv</code>,逐个转移到新数组中（头插法，<code>不含新kv</code>）</li>
+</ol>
+</li>
+<li>
+<p>新数组引用到HashMap的table属性上</p>
+</li>
+<li>
+<p>重新设置扩容阈值（threshold）</p>
+</li>
+<li>
+<p>扩容结束</p>
+<p>此时table = 扩容后（2倍）+ 旧数据</p>
+</li>
+<li>
+<p>处理第一步要插入的kv</p>
+<ol>
+<li>计算新kv的hash值</li>
+<li>计算出新kv在table中的位置</li>
+<li>将数据插入到对应的位置</li>
+</ol>
+</li>
+</ol>
+<p><strong>扩容的源码如下</strong></p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427115545.png" alt="image-20200427115545105" style="zoom:50%;" />
+<p><strong>核心点1</strong>：扩容后大小是扩容前的<strong>2倍</strong></p>
+<pre><code class="language-java">oldCapacity = table.length;
+newCapacity = 2 * oldCapacity;
+</code></pre>
+<p><strong>核心点2</strong>：<strong>数据搬迁</strong>：从旧table（即数组）迁到扩容后的新table</p>
+<ol>
+<li>
+<p>先决策是否需要对每个Entry链表节点重新hash</p>
+</li>
+<li>
+<p>然后根据hash值计算得到bucket下标</p>
+</li>
+<li>
+<p>使用头插法做接点迁移</p>
+</li>
+</ol>
+<h4 id="get-方法"><a class="header-anchor" href="#get-方法"></a>get()方法</h4>
+<p>相对于put（）方法，get（）方法的实现就简单多了，主要分为两步</p>
+<ol>
+<li>通过key的hash值计算出在table中的下标</li>
+<li>遍历对应table的链表，逐个对比，得到结果。</li>
+</ol>
+<h4 id="fail-fast策略"><a class="header-anchor" href="#fail-fast策略"></a>fail-fast策略</h4>
+<p>hashmap中有一个变量<code>modcount</code>，用于实现Hashmap中的快速失败</p>
+<p>在对Map的做迭代(Iterator)操作时，会将**<code>modCount</code><strong>域变量赋值给</strong><code>expectedModCount</code>**局部变量。</p>
+<p>在迭代过程中，用于做内容修改次数的一致性校验。</p>
+<p>如果两个对比不一致，则会抛出异常**<code>ConcurrentModificationException</code>**</p>
+<h3 id="1-8-版本"><a class="header-anchor" href="#1-8-版本"></a>1.8 版本</h3>
+<p>与jdk1.7的核心差异</p>
+<ol>
+<li>
+<p>数据结构不同，1.8为数组+链表+红黑树</p>
+</li>
+<li>
+<p>resize时数据迁移的方式不同，1.8为尾插法</p>
+</li>
+<li>
+<p>链表节点的定义不同（内核没有变，不影响理解）：Entry–&gt;Node类，都实现了Map.Entry()</p>
+</li>
+</ol>
+<h4 id="put-方法"><a class="header-anchor" href="#put-方法"></a>put()方法</h4>
+<p>与1.7类似，多了转换红黑树的步骤，头插法变尾插法，具体流程可以看下图</p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427105750.png" alt="image-20200427105750336" style="zoom:50%;" />
+<p><strong>put()方法源码</strong></p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427132313.png" alt="image-20200427132313825" style="zoom:50%;" />
+<h4 id="resize-v2"><a class="header-anchor" href="#resize-v2"></a>resize()</h4>
+<p><strong>流程</strong></p>
+<ol>
+<li>
+<p>插入新kv，发现容量不足</p>
+</li>
+<li>
+<p>异常情况判断</p>
+<ol>
+<li>是否需要初始化</li>
+<li>若当前容量  &gt; 最大值，则不扩容</li>
+</ol>
+</li>
+<li>
+<p>根据新容量（2倍）新建数组（new table）</p>
+</li>
+<li>
+<p>保存旧数组(old table)</p>
+</li>
+<li>
+<p>将旧数组上的数据转移到新数组中（old table -&gt; new table）</p>
+<ol>
+<li>
+<p>遍历数组的每个数据</p>
+</li>
+<li>
+<p>重新计算每个数据在新数组中的存储位置（<code>含新数据</code>）</p>
+<p>原位置  or  原位置+旧容量</p>
+</li>
+<li>
+<p>将旧数组上的每个主句逐个转移到新数组中（<code>含新数据</code>）</p>
+<p>尾插法</p>
+</li>
+</ol>
+</li>
+<li>
+<p>将新数组table引用到HashMap的table属性上</p>
+</li>
+<li>
+<p>重新设置扩容阈值（threshold）</p>
+</li>
+<li>
+<p>扩容结束</p>
+</li>
+</ol>
+<h4 id="get"><a class="header-anchor" href="#get"></a>get()</h4>
+<p>比较简单</p>
+<ol>
+<li>根据key计算出hash值，进一步计算得到table的下标，若bucket上为红黑树，则再进行红黑树查找，若不是红黑树，遍历链表</li>
+</ol>
+<p>map家族的关系</p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427105258.png" alt="image-20200427105258224" style="zoom:50%;" />
+<h2 id="HashMap、HashTable对比"><a class="header-anchor" href="#HashMap、HashTable对比"></a>HashMap、HashTable对比</h2>
+<h3 id="共同点"><a class="header-anchor" href="#共同点"></a>共同点</h3>
+<p>底层都是使用哈希表+链表的实现方式</p>
+<h3 id="不同点"><a class="header-anchor" href="#不同点"></a>不同点</h3>
+<ul>
+<li>
+<p>Hashtable线程安全，所有的操作都添加了Synchronized关键字修饰，效率低下</p>
+</li>
+<li>
+<p>很少使用hashtable了，太旧了</p>
+</li>
+<li>
+<p>HashTable  的 kv 都不能为null，否则直接npe</p>
+</li>
+</ul>
+<h2 id="HashMap线程不安全的原因"><a class="header-anchor" href="#HashMap线程不安全的原因"></a>HashMap线程不安全的原因</h2>
+<h3 id="数据覆盖问题"><a class="header-anchor" href="#数据覆盖问题"></a>数据覆盖问题</h3>
+<p>情景描述：</p>
+<blockquote>
+<p>两个线程执行<code>put（）</code>操作时，可能导致数据覆盖，1.7、1.8都存在此问题</p>
+<p>a、b两个线程同时执行put操作，且两个key都指向同一个bucket，那么此时两个结点都会做头插法</p>
+<pre><code class="language-java">public V put(K key, V value) {
+    ...
+    addEntry(hash, key, value, i);
+}
+
+void addEntry(int hash, K key, V value, int bucketIndex) {
+    ...
+    createEntry(hash, key, value, bucketIndex);
+}
+
+void createEntry(int hash, K key, V value, int bucketIndex) {
+    Entry&lt;K,V&gt; e = table[bucketIndex];
+    table[bucketIndex] = new Entry&lt;&gt;(hash, key, value, e);
+    size++;
+}
+
+</code></pre>
+<p>看下最后的<code>createEntry()</code>方法，首先获取到了bucket上的头结点，然后再将新结点作为bucket的头部，并指向旧的头结点，完成一次头插法的操作。<br>
+当线程A和线程B都获取到了bucket的头结点后，若此时线程A的时间片用完，线程B将其新数据完成了头插法操作，此时轮到线程A操作，但这时线程A所据有的旧头结点已经过时了（并未包含线程B刚插入的新结点），线程A再做头插法操作，就会抹掉B刚刚新增的结点，导致数据丢失。</p>
+<p>其实不光是<code>put()</code>操作，删除操作、修改操作，同样都会有覆盖问题。</p>
+</blockquote>
+<h3 id="扩容时导致死循环"><a class="header-anchor" href="#扩容时导致死循环"></a>扩容时导致死循环</h3>
+<p>1.7多线程会出现，因为扩容使用头插法，将原本的顺序做了翻转</p>
+<p>1.8就没有了，因为用了尾插法。</p>
+<h2 id="如何规避HashMap的线程不安全"><a class="header-anchor" href="#如何规避HashMap的线程不安全"></a>如何规避HashMap的线程不安全</h2>
+<h3 id="将Map转为包装类"><a class="header-anchor" href="#将Map转为包装类"></a>将Map转为包装类</h3>
+<p>**<code>Collections.SynchronizedMap()</code>**方法，实例代码：</p>
+<pre><code class="language-java">Map&lt;String, Integer&gt; testMap = new HashMap&lt;&gt;();
+...
+ // 转为线程安全的map
+Map&lt;String, Integer&gt; map = Collections.synchronizedMap(testMap);
+</code></pre>
+<p>内部实现很简单，等同于Hashtable，只是对当前传入的map对象，新增对象锁（synchronized）</p>
+<h3 id="使用ConcurrentHashMap"><a class="header-anchor" href="#使用ConcurrentHashMap"></a>使用ConcurrentHashMap</h3>
+<h2 id="链表转红黑树的阈值是8，而不是7或者20？"><a class="header-anchor" href="#链表转红黑树的阈值是8，而不是7或者20？"></a>链表转红黑树的阈值是8，而不是7或者20？</h2>
+<p>由于treenode（红黑树节点）的大小约是常规节点(HashMap的node节点？)的两倍，</p>
+<p>因此我们仅在容器包含足够的节点以保证使用时，才才使用他们</p>
+<blockquote>
+<p>这句话是什么意思呢？就是因为红黑树节点占用空间，不到万不得已不用他</p>
+</blockquote>
+<p>当他们（红黑树）变得太小（由于移除或调整大小）时，会转换成普通节点</p>
+<blockquote>
+<p>如果红黑树&lt;=6退化成链表</p>
+<p>如果链表长度&gt;=8转变为红黑树</p>
+<p>中间有个<code>差值7</code>可以有效防止链表和树的频繁转换</p>
+<p>如果没有这个<code>差值7</code>的话，一个HashMap不听的插入删除，长度一会7一会8，就会发生频发的转变</p>
+</blockquote>
+<p>容器中节点分布在hash桶中的频率符合泊松分布，桶的长度超过8的概率非常小，约百万分之1？</p>
+<h2 id="哈希表如何解决Hash冲突？"><a class="header-anchor" href="#哈希表如何解决Hash冲突？"></a>哈希表如何解决Hash冲突？</h2>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427152811.png" alt="image-20200427152811036"></p>
+<h2 id="为什么HashMap使用String、Integer这样的包装类做为key"><a class="header-anchor" href="#为什么HashMap使用String、Integer这样的包装类做为key"></a>为什么HashMap使用String、Integer这样的包装类做为key</h2>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427152956.png" alt="image-20200427152956728"></p>
+<h2 id="如果key为Object类型，需要如何处理"><a class="header-anchor" href="#如果key为Object类型，需要如何处理"></a>如果key为Object类型，需要如何处理?</h2>
+<p>重写<code>HashCode（）</code>、<code>equals()</code></p>
+<p><code>HashCode（）</code></p>
+<blockquote>
+<p>计算数据的存储位置</p>
+<p>实现不恰当，可能会导致严重的hash碰撞</p>
+</blockquote>
+<p><code>equals()</code></p>
+<blockquote>
+<p>用于比较是否存在相同key，用于新增或更新</p>
+<p>保证键key在哈希表中的唯一性</p>
+</blockquote>
+<h2 id="为什么每次扩容是-2的幂次"><a class="header-anchor" href="#为什么每次扩容是-2的幂次"></a>为什么每次扩容是 2的幂次</h2>
+<ol>
+<li>方便位运算</li>
+<li>均匀分布</li>
+</ol>
+<h2 id="如何计算在数组中的位置"><a class="header-anchor" href="#如何计算在数组中的位置"></a>如何计算在数组中的位置</h2>
+<p>用 hash 值对数组的长度取余(取模)</p>
+<p>在 java 中是通过位运算来优化性能的，可以简单的理解成取模操作</p>
+<p>通过 hash 函数，将字符串或者其他类型的 key 转化成数组的下标 index</p>
+<p>给出一个长度为 8 的数组，当 key=001121 时</p>
+<pre><code class="language-java">index = hashCode(&quot;001121&quot;) % Array.length = 1420036703 % 8 = 7
+</code></pre>
+<h2 id="扩容的条件"><a class="header-anchor" href="#扩容的条件"></a>扩容的条件</h2>
+<pre><code class="language-java">// Capacity 即 HashMap 当前的长度
+// LoadFactor 负载因子，默认是 0.75
+HashMap.size() &gt;= Capacity X LoadFactor
+</code></pre>
+
+</div>
+
+<!-- 隐藏掉上一页，下一页-->
+<!-- 
+    <div class="post-guide">
+        <div class="item left">
+            
+              <a href="/2020/04/28/03%20java/Java-2-%E9%9B%86%E5%90%88/03%20ConcurrentHashMap/">
+                  <i class="fa fa-angle-left" aria-hidden="true"></i>
+                  03 ConcurrentHashMap
+              </a>
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2020/04/24/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/05%20java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B%E3%80%81volatile%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
+                05 java内存模型、volatile的实现原理
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+ -->
+
+
+	<div id="vcomments"></div>
+
+
+<script>
+	
+		// 评论
+		new Valine({
+			av: AV,
+			el: '#vcomments',
+			notify: false,
+			verify: false,
+			path: window.location.pathname,
+			appId: 'lsX646kI8Pj43gH38o38IHEl-gzGzoHsz',
+			appKey: 'SI9zpOfgyOmEDPGK8KI8niYh',
+			placeholder: '请输入评论',
+			avatar: 'retro',
+			recordIP: false
+		})
+	
+	
+    // 显示次数
+		function showTime(Counter) {
+			var query = new AV.Query("Counter");
+			if($(".leancloud_visitors").length > 0){
+				var url = $(".leancloud_visitors").attr('id').trim();
+				// where field
+				query.equalTo("words", url);
+				// count
+				query.count().then(function (number) {
+					// There are number instances of MyClass where words equals url.
+					$(document.getElementById(url)).text(number?  number : '--');
+				}, function (error) {
+					// error is an instance of AVError.
+				});
+			}
+		}
+		// 追加pv
+		function addCount(Counter) {
+			var url = $(".leancloud_visitors").length > 0 ? $(".leancloud_visitors").attr('id').trim() : 'xzh20121116.github.io';
+			var Counter = AV.Object.extend("Counter");
+			var query = new Counter;
+			query.save({
+				words: url
+			}).then(function (object) {
+			})
+		}
+		$(function () {
+			var Counter = AV.Object.extend("Counter");
+			addCount(Counter);
+			showTime(Counter);
+		});
+	
+</script>
+	</div>
+	<div id="footer">
+	<p>
+	©2019-<span id="footerYear"></span> 
+	<a href="/">今晚打老虎</a> 
+	
+	
+		|
+		<span id="busuanzi_container_site_pv">
+			pv
+			<span id="busuanzi_value_site_pv"></span>
+		</span>
+		|
+		<span id="busuanzi_container_site_uv"> 
+			uv
+			<span id="busuanzi_value_site_uv"></span>
+		</span>
+	
+	<br>
+	Theme <a href="//github.com/wujun234/hexo-theme-tree" target="_blank">Tree</a>
+	by <a href="//github.com/wujun234" target="_blank">WuJun</a>
+	Powered by <a href="//hexo.io" target="_blank">Hexo</a>
+	</p>
+</div>
+<script type="text/javascript"> 
+	document.getElementById('footerYear').innerHTML = new Date().getFullYear() + '';
+</script>
+	<button id="totop-toggle" class="toggle"><i class="fa fa-angle-double-up" aria-hidden="true"></i></button>
+</body>
+</html>
