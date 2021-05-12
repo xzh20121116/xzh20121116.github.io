@@ -1058,6 +1058,15 @@
 									
 							<ul>
 								<li class="file">
+									<a href="/2020/12/01/08%20Mysql/00%20mysql%20%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/">
+										00 mysql 索引原理及慢查询优化
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/07/21/08%20Mysql/01%20%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95/">
 										01 聚簇索引和非聚簇索引
 									</a>
@@ -1132,15 +1141,6 @@
 								<li class="file">
 									<a href="/2020/11/30/08%20Mysql/09%20InnoDB%20%E7%9A%84%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB%E7%BA%A7%E5%88%AB%E5%92%8C%E9%94%81%E7%9A%84%E5%85%B3%E7%B3%BB/">
 										09 InnoDB 的事务隔离级别和锁的关系
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2020/12/01/08%20Mysql/10%20mysql%20%E7%B4%A2%E5%BC%95%E5%8E%9F%E7%90%86%E5%8F%8A%E6%85%A2%E6%9F%A5%E8%AF%A2%E4%BC%98%E5%8C%96/">
-										10 mysql 索引原理及慢查询优化
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -2121,16 +2121,16 @@ redis 常用的方式有
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/10%20Redis/6%20cluster%20%E4%B8%8E%20sentinel/">
+			<a href="/2020/07/21/10%20Redis/8%20Redisson%E4%BD%BF%E7%94%A8/">
 				<h2 class="index-title">
-					6 cluster 与 sentinel
+					8 Redisson使用
 				</h2>
 				<div class="index-brief">
-					cluster 突破单机性能瓶颈
-redis 是单线程的，如果在多核服务器上部署的话，可以部署多个实例，搭建一个redis 集群。
-也就是 redis cluster，并且是主从同步，读写分离的。
-一个 cluster 支撑多个 master，每一个 master 挂载多个 slave。
-maste
+					添加 pom 依赖
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
+            &lt;artifactId&gt;re
 					...
 				</div>
 			</a>
@@ -2143,16 +2143,16 @@ maste
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/10%20Redis/8%20Redisson%E4%BD%BF%E7%94%A8/">
+			<a href="/2020/07/21/10%20Redis/6%20cluster%20%E4%B8%8E%20sentinel/">
 				<h2 class="index-title">
-					8 Redisson使用
+					6 cluster 与 sentinel
 				</h2>
 				<div class="index-brief">
-					添加 pom 依赖
-    &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
-            &lt;artifactId&gt;re
+					cluster 突破单机性能瓶颈
+redis 是单线程的，如果在多核服务器上部署的话，可以部署多个实例，搭建一个redis 集群。
+也就是 redis cluster，并且是主从同步，读写分离的。
+一个 cluster 支撑多个 master，每一个 master 挂载多个 slave。
+maste
 					...
 				</div>
 			</a>
