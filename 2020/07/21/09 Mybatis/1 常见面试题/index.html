@@ -2080,14 +2080,14 @@
 <p>mybatis 使用 RowBounds 对象进行 分页，它是针对 ResultSet 结果集执行的内存分页，而非物理分页。</p>
 <p>可以在 sql 内直接写带有物理分页逻辑的参数来完成物理分页功能，也可以使用分页插件来完成物理分页</p>
 <h1>分页插件的原理是什么？</h1>
-<p>基本原理是使用 Mybatis 提供的插件接口，实现自定义插件，在插件的拦截方法内拦截待执行的 sql，然后重写 sql，根据 dialect 方法，添加对应的屋里分页语句和屋里分页参数</p>
+<p>基本原理是使用 Mybatis 提供的插件接口，实现自定义插件，在插件的拦截方法内拦截待执行的 sql，然后重写 sql，根据 dialect 方法，添加对应的物理分页语句和物理分页参数</p>
 <p>举例：</p>
 <pre><code class="language-sql">select	xx from	user
 </code></pre>
 <p>拦截sql 后重写为</p>
 <pre><code class="language-sql"> select t.xx from (select \* from student ) t limit 0,10
 </code></pre>
-<p>Mybatis 值可以编写针对 <code>ParameterHandler</code>、<code>ResultSetHandler</code>、<code>StatementHandler</code>、<code>Executor</code>这 4种接口的插件</p>
+<p>Mybatis 只可以编写针对 <code>ParameterHandler</code>、<code>ResultSetHandler</code>、<code>StatementHandler</code>、<code>Executor</code>这 4种接口的插件</p>
 <p>Mybatis 使用 jdk 的动态代理，为需要拦截的接口生成代理对象以实现接口方法拦截功能，每当执行这 4 中接口对象的方法是，就会进入拦截方法，具体就是<code> InvocationHandler 的 invoke()</code>方法，当然只会拦截你指定的要拦截的方法</p>
 <h1>mybatis 执行批量插入，能返回数据库主键列表吗？</h1>
 <p>能，jdbc 都能，mybatis 当然也能</p>
@@ -2107,7 +2107,7 @@
 <p>使用 sql 列的别名，将列名别名书写为对象的属性名，mybatis 会自动忽略列名的大小写</p>
 </blockquote>
 <p>有了 列名与属性的映射关系后，mybatis 通过反射创建对象，同时使用反射个对象的属性逐一赋值并返回，哪些招不到映射关系的属性，是无法完成赋值的</p>
-<h1>mybatis 能执行一对多，多对多的关联查询？有哪些实现方式？一区他们直接的区别</h1>
+<h1>mybatis 能执行一对多，多对多的关联查询？有哪些实现方式？以及他们直接的区别</h1>
 <p>能，支持一对一、一对多、多对一、多堆多</p>
 <p>多对一查询，其实就是一对一查询，只要把 selectOne()修改为 selectList()即可。</p>
 <p>多对多查询，其实就是一对多查询，只要把 selectOne()修改为 selectList()即可。</p>

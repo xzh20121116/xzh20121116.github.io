@@ -2058,7 +2058,7 @@
 <p><strong>rdb 的缺点：</strong> 都是快照文件，每隔五分钟，或者一个小时才会生成一次，这意味这两次同步之间的数据可能会丢失。生成快照的时候如果文件很大，可能会导致客户端暂停几毫秒或者几秒。</p>
 </li>
 <li>
-<p><strong>aof 的优点</strong> ：每条追加写一次，那么最多只丢失这一秒的数据；</p>
+<p><strong>aof 的优点</strong> ：每秒追加写一次，那么最多只丢失这一秒的数据；</p>
 <p>因为是追加写的方式，自然就少了很多的磁盘寻址的开销，写入性能惊人。</p>
 <p>aof 里面存储的一条条的操作指令。</p>
 </li>
@@ -2106,16 +2106,16 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2020/07/21/10%20Redis/7%20redis%E4%B9%8B%E7%BA%A2%E9%94%81(Redlock)/">
+              <a href="/2020/07/21/10%20Redis/8%20Redisson%E4%BD%BF%E7%94%A8/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  7 redis之红锁(Redlock)
+                  8 Redisson使用
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2020/07/21/10%20Redis/8%20Redisson%E4%BD%BF%E7%94%A8/">
-                8 Redisson使用
+              <a href="/2020/07/21/15%20Nginx/1%20%E9%85%8D%E7%BD%AE%20nginx/">
+                1 配置 nginx
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
