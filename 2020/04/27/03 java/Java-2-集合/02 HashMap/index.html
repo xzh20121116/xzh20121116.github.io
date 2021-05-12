@@ -2063,7 +2063,7 @@
 <h3 id="1-7-版本"><a class="header-anchor" href="#1-7-版本"></a>1.7 版本</h3>
 <h4 id="put"><a class="header-anchor" href="#put"></a>put()</h4>
 <p>是有返回值的，</p>
-<p>如果是key已存在，覆盖旧值，则返回旧值</p>
+<p>如果是key已存在，覆盖旧值，并返回旧值</p>
 <p>如果新key不存在，则返回null</p>
 <p><strong>源码</strong></p>
 <img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427113334.png" alt="image-20200427113334153" style="zoom:50%;" />
@@ -2072,7 +2072,7 @@
 <li>key为null的处理</li>
 <li>计算目标bucket的下标：即数组中的位置</li>
 <li>找到指定bucket，遍历Entry节点链表，若找到相同key相同的Entry节点，则做替换</li>
-<li>未没有找到目标Entry节点时，则新增一个Entry节点</li>
+<li>没有找到目标Entry节点时，则新增一个Entry节点</li>
 </ol>
 <p><strong><code>putForNllKey（value）</code>：key为null的处理说明</strong></p>
 <p>说明1：HashMap中，可以存在null的kv</p>
@@ -2206,7 +2206,7 @@ newCapacity = 2 * oldCapacity;
 <p>原位置  or  原位置+旧容量</p>
 </li>
 <li>
-<p>将旧数组上的每个主句逐个转移到新数组中（<code>含新数据</code>）</p>
+<p>将旧数组上的每个数据逐个转移到新数组中（<code>含新数据</code>）</p>
 <p>尾插法</p>
 </li>
 </ol>
