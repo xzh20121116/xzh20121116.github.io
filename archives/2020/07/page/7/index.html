@@ -2053,23 +2053,21 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%A4%A7%E6%95%B4%E6%95%B0%E7%9B%B8%E5%8A%A0/">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E6%B1%82%E5%87%BA%E6%9C%80%E5%A4%A7%E5%85%AC%E7%BA%A6%E6%95%B0/">
 				<h2 class="index-title">
-					如何实现大整数相加
+					如何求出最大公约数
 				</h2>
 				<div class="index-brief">
-					菜鸡第一想法
-两个大数相加，直接整俩 long 字符串不行吗
-答案是：不行滴，100 位的大字符串，超过 long 的范围了
-正确解决姿势
-想列竖式一样，算出来就行
+					欧几里得算法
+原理
+该算法的目的：求出两个正整数的最大公约数
+这条算法基于一个定理：
 
+两个正整数 a 和 b（a&gt;b）,他们的最大公约数等于 a 除以 b 的余数 c 和 b 之间的最大公约数
 
+举例子：
 
-创建两个整型数组，数组的长度是较大整数的位数+1（+1是为了最高位预留的进一位）
-
-
-遍历两个数组，对应的 index 上的数相
+10 和 25 ，25 除以 10 商 2 余 5，那么 10 和 25 的最大公约
 					...
 				</div>
 			</a>
@@ -2185,31 +2183,6 @@ java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
-				<h2 class="index-title">
-					mac 安装启动
-				</h2>
-				<div class="index-brief">
-					下载
-启动
-~/zookeeper-3.4.14/bin 
-./zkServer.sh start
-
-zookeeper 客户端
-./zkCli.sh -timeout 0 -r -server ip:port
-./zkCli.sh -timeout 5000 -server 192.9.200.2
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
 				<h2 class="index-title">
 					分布式锁
@@ -2225,6 +2198,31 @@ zookeeper 客户端
 有序节点
 
 假如 当前有一个父节点为 /lock，我们可以在这个父节点下面创建子节点，使用有序节点，我创建子节点 /lock/node- ，并且指明有序，那么 zookeeper 在生成子节点的时候会自动的添加整数序号
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
+				<h2 class="index-title">
+					mac 安装启动
+				</h2>
+				<div class="index-brief">
+					下载
+启动
+~/zookeeper-3.4.14/bin 
+./zkServer.sh start
+
+zookeeper 客户端
+./zkCli.sh -timeout 0 -r -server ip:port
+./zkCli.sh -timeout 5000 -server 192.9.200.2
 					...
 				</div>
 			</a>
