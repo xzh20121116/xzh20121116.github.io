@@ -800,6 +800,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/05/17/03%20java/Java-4-Jvm/14_%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96JVM%E7%9A%84dump%E6%96%87%E4%BB%B6/">
+										14_如何获取JVM的dump文件
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2020,40 +2029,70 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/2%20%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5url%20%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">
+			<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/3%20Http%20%E7%8A%B6%E6%80%81%E7%A0%81/">
 				<h2 class="index-title">
-					2 在浏览器中输入url 发生了什么
+					3 Http 状态码
 				</h2>
 				<div class="index-brief">
 					
 
-DNS 域名解析
-把域名转换成 ip 地址
 
 
-建立 TCP 连接
-
-三次握手
-
-
-快递员：家里有人吗，京东快递
-
-
-买家：有人，你来吧
-
-
-快递员：好的，马上到
+类别
+原因
 
 
 
 
+1xx
+信息行状态码
+接收的请求正在处理
 
-发送 HTTP 请求
-与服务器建立连接后，就可以向服务器发起请求了
+
+2xx
+成功状态码
+请求正常处理完毕
 
 
-服务器处理请求
-web 服务器解析用户请求，经过处
+3xx
+重定向状态码
+需要进行附加造作以完成请求
+
+
+4xx
+客户端错误状态码
+服务器无法处理请求
+
+
+5xx
+服务器错误状态码
+服务器出错了
+
+
+
+
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-06-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/1%20%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E5%AE%B9%E9%87%8F/">
+				<h2 class="index-title">
+					1 存储单位容量
+				</h2>
+				<div class="index-brief">
+					1 Byte = 8 Bits.
+1 Kilobyte (KB) = 1024 Bytes.
+1 Megabyte (MB) = 1024 KB.
+1 Gigabyte (GB) = 1024 MB
+
 					...
 				</div>
 			</a>
@@ -2288,30 +2327,6 @@ mark word
 
 
 klass point（类型指针）
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-04-23</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/04/23/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/08%20sleep%E3%80%81wait%E3%80%81notify%E3%80%81yield%E3%80%81join%E7%9A%84%E5%8C%BA%E5%88%AB/">
-				<h2 class="index-title">
-					08 sleep、wait、notify、yield、join的区别
-				</h2>
-				<div class="index-brief">
-					
-线程间通过共享数据来实现通信，即:多个线程主动读取一个共享数据。
-举例：共享资源 int a；A、B两个线程轮询a的值，来确定自己做什么，浪费了cpu资源
-靠共享变量来做控制
-wait/notify机制（配合Synchronized）
-适用范围
-Synchronized代码中才能使用，因为这几个都
 					...
 				</div>
 			</a>

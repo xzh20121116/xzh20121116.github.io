@@ -800,6 +800,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/05/17/03%20java/Java-4-Jvm/14_%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96JVM%E7%9A%84dump%E6%96%87%E4%BB%B6/">
+										14_如何获取JVM的dump文件
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2020,6 +2029,35 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2021/05/17/03%20java/Java-4-Jvm/14_%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96JVM%E7%9A%84dump%E6%96%87%E4%BB%B6/">
+				<h2 class="index-title">
+					14_如何获取JVM的dump文件
+				</h2>
+				<div class="index-brief">
+					有两种方式
+
+
+jvm 启动时添加参数
+#出现 OOME 时生成堆 dump: 
+-XX:+HeapDumpOnOutOfMemoryError
+#生成堆文件地址：
+-XX:HeapDumpPath=/home/liuke/jvmlogs/
+
+
+
+发现程序异常前通过执行指令，直接生成当前JVM的dm
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2021-05-17</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2021/04/28/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/14%20notify()%20%E4%BC%9A%E7%AB%8B%E5%88%BB%E9%87%8A%E6%94%BE%E9%94%81%E5%90%97/">
 				<h2 class="index-title">
 					14 notify() 会立刻释放锁吗
@@ -2223,25 +2261,6 @@ Write failed: Broken pipe
 			</a>
                 <div class="article-meta">
 				    <span>2020-11-20</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/11/19/20%20%E8%AE%B0%E9%94%99/07Could%20not%20extract%20response:%20no%20suitable%20HttpMessageConverter%20found%20for%20response%20type/">
-				<h2 class="index-title">
-					07Could not extract response: no suitable HttpMessageConverter found for response type
-				</h2>
-				<div class="index-brief">
-					使用 feign 请求微信的 access_token 接口，报错
-Could not extract response: no suitable HttpMessageConverter found for response type *** and content type [text/json
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-11-19</span>
                     
                             
                     
