@@ -2051,30 +2051,6 @@ controller-控制器：根据视图提出的请求，判断将请求和数据交
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/04%20Spring/3%20DI_%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
-				<h2 class="index-title">
-					3 DI_依赖注入
-				</h2>
-				<div class="index-brief">
-					di 是相较于 ioc 的一种更具体的实现，ioc 可以理解为一个接口，di 就是他的实现
-装配方式优先级：自动装配 &gt;  java 配置文件 &gt; xml 配置文件
-自动装配
-spring 容器可以自动配置相互协作 bean 之间的关系。
-spring 从两个角度实现自动装配
-组件扫描
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/1%20%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/Sentinel%20%E4%B8%8E%20Hystrix%20%E5%AF%B9%E6%AF%94/">
 				<h2 class="index-title">
 					Sentinel 与 Hystrix 对比
@@ -2088,6 +2064,30 @@ Hystrix 使用的是自己创建的线程池
 Sentinel：信号量隔离（并发线程数限流）（模拟信号量）。
 Hystrix：线程池、信号量隔离。
 特别说明：Sentinel创建的线程不依赖容器的
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/04%20Spring/3%20DI_%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
+				<h2 class="index-title">
+					3 DI_依赖注入
+				</h2>
+				<div class="index-brief">
+					di 是相较于 ioc 的一种更具体的实现，ioc 可以理解为一个接口，di 就是他的实现
+装配方式优先级：自动装配 &gt;  java 配置文件 &gt; xml 配置文件
+自动装配
+spring 容器可以自动配置相互协作 bean 之间的关系。
+spring 从两个角度实现自动装配
+组件扫描
+
 					...
 				</div>
 			</a>
@@ -2249,28 +2249,31 @@ Inversion of controlle 控制反转
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/10%20Redis/3%20%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+			<a href="/2020/07/21/10%20Redis/1%20%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%9C%BA%E6%99%AF/">
 				<h2 class="index-title">
-					3 分布式锁
+					1 常见数据类型及场景
 				</h2>
 				<div class="index-brief">
-					SETNX key value
+					string
 
-set if not exists
-如果不存在，则 set 一个
-set 成功返回 1，如果 key 存在了返回0；
-SETNX key seconds value
+kv 缓存
+计数器
+共享用户 session
 
-给一个过期时间，这是一个原子操作
-入门版
-此版本是最最基础的版本
-加锁
+Hash
 
 
-for(；；)
+类似 map 的结构，k 还是 key，v 就变成的一个对象，每次读写缓存，可以操作对象中的某个字段。
 
 
-s
+如果对象里面嵌套的其他的对象，就不太适合用 hash 了。
+
+
+list
+这是一个有序列表
+
+
+可以存储一些列表型
 					...
 				</div>
 			</a>
