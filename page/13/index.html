@@ -1164,6 +1164,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/05/18/08%20Mysql/11_%E6%95%B0%E6%8D%AE%E5%88%86%E7%89%87/">
+										11_数据分片
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2063,6 +2072,29 @@ yum install java-1.8.0-openj
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/07/21/12%20Linux/2%20linux%20%E5%AE%89%E8%A3%85%20nginx/">
+				<h2 class="index-title">
+					2 linux 安装 nginx
+				</h2>
+				<div class="index-brief">
+					yum 安装
+
+
+添加 yum 源
+Nginx 不在默认的 yum 源中，可以使用 epel 或者官网的 yum 源，本例使用官网的 yum 源。
+sudo rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-c
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Java-4-Jvm/06%20%E9%9D%A2%E8%AF%95%E8%A2%AB%E9%97%AE%E7%83%82%E7%9A%84JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%EF%BC%8C%E6%88%91%E4%BB%8A%E5%A4%A9%E5%86%8D%E6%9D%A5%E7%BB%99%E5%A4%A7%E5%AE%B6%E5%A4%8D%E4%B9%A0%E4%B8%80%E9%81%8D/">
 				<h2 class="index-title">
 					06 面试被问烂的JVM内存区域，我今天再来给大家复习一遍
@@ -2104,6 +2136,27 @@ yum install java-1.8.0-openj
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Java-4-Jvm/01%20%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E5%8F%8A%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/">
+				<h2 class="index-title">
+					01 垃圾回收器及算法原理
+				</h2>
+				<div class="index-brief">
+					垃圾回收算法
+垃圾回收算法的实现涉及到大量的程序细节，并且每一个平台的虚拟机操作内存的方式都不同，所以不需要去了解算法的具体实现
+复制算法
+将可用内存按容量划分为大小相等的两块，每次只使用其中的一块。当这一块的内存用完了，就将还存活的对象复制到另一块上面。然后再把已使用过的内存空间一次性清理掉。这样
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Java-4-Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
 				<h2 class="index-title">
 					07 排查堆内存溢出
@@ -2119,27 +2172,6 @@ import java.util.List;
 public class Oom {
     public static void main(String[] args) {
   
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-4-Jvm/01%20%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E5%8F%8A%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/">
-				<h2 class="index-title">
-					01 垃圾回收器及算法原理
-				</h2>
-				<div class="index-brief">
-					垃圾回收算法
-垃圾回收算法的实现涉及到大量的程序细节，并且每一个平台的虚拟机操作内存的方式都不同，所以不需要去了解算法的具体实现
-复制算法
-将可用内存按容量划分为大小相等的两块，每次只使用其中的一块。当这一块的内存用完了，就将还存活的对象复制到另一块上面。然后再把已使用过的内存空间一次性清理掉。这样
 					...
 				</div>
 			</a>
@@ -2254,30 +2286,6 @@ cms 用于对老年代进行回收，目标是尽量减少应用的暂停时间�
 
 标记 gc root 可达的老年代对象
 遍历新生代对
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-4-Jvm/11%20jvm%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%92%E5%88%86/">
-				<h2 class="index-title">
-					11 jvm内存区域划分
-				</h2>
-				<div class="index-brief">
-					典型回答
-程序计数器
-每个线程都有自己的程序计数器，并且任何一个线程都只有一个方法在执行，也就是所谓的当前方法。
-程序计数器会存储当前线程正在执行的 java 方法的 jvm 指令地址；
-或者：如果执行本地方法，则是未指定值（undefined）
-虚拟机栈
-每个线程在创建时都会创建一个虚拟机栈，内部
 					...
 				</div>
 			</a>
