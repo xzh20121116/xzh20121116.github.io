@@ -1155,6 +1155,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/05/18/08%20Mysql/10_%E4%B8%BB%E4%BB%8E%E3%80%81%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/">
+										10_主从、读写分离
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2029,6 +2038,28 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2021/05/18/08%20Mysql/10_%E4%B8%BB%E4%BB%8E%E3%80%81%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/">
+				<h2 class="index-title">
+					10_主从、读写分离
+				</h2>
+				<div class="index-brief">
+					主从复制的原理
+
+当master 节点进行insert、delete、update，会按顺序写入到 binlog 中
+从库连接主库，Master 有多少个salve 就会创建多少个binlog dump 线程
+当主节点的 binlog 发生变化大时候，binlog dump 线程会通知所有slave
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2021-05-18</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2021/05/17/03%20java/Java-4-Jvm/14_%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96JVM%E7%9A%84dump%E6%96%87%E4%BB%B6/">
 				<h2 class="index-title">
 					14_如何获取JVM的dump文件
@@ -2230,31 +2261,6 @@ where
 2014年9月9日 56740次浏览
 我可以说是linux操作新手，有些命令经常忘记，特别是对文件的某些操作，经常要翻阅之前的笔记，今天把之前在百度上整理的“CentOS常用的文件操作命令”转载到我的新博客上面，以供后面查阅！
 博客后面还会总结一下linux下面大
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-11-20</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/11/20/22%20%E6%94%B6%E8%97%8F/mac%E7%94%B5%E8%84%91iTerm2%E9%93%BE%E6%8E%A5linux%E6%9C%8D%E5%8A%A1%E5%99%A8%E6%96%AD%E7%BA%BF%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
-				<h2 class="index-title">
-					mac电脑iTerm2链接linux服务器断线解决方案
-				</h2>
-				<div class="index-brief">
-					链接服务器方式
-通过如下命令：
-ssh -t root@公网ip地址  -p 22
-
-输入用户名和密码，就可以登录到你的linux服务器了。 但是如果一段时间不操作，再次进入 Terminal 时会有一段时间没有响应，然后就出现错误提示：
-Write failed: Broken pipe
-
-这是因
 					...
 				</div>
 			</a>
