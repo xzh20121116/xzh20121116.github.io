@@ -2085,11 +2085,11 @@
 <pre><code class="language-bash">mysql -u root -p
 </code></pre>
 <p>然后创建用户,创建的这两个用户在配置slave时要用到。</p>
-<pre><code class="language-mysql">//192.168.0.2是slave从机的IP
+<pre><code class="language-mysql">#192.168.0.2是slave从机的IP
 GRANT REPLICATION SLAVE ON *.* to 'root'@'192.168.0.2' identified by 'Java@1234';
-//192.168.0.3是slave从机的IP
+#192.168.0.3是slave从机的IP
 GRANT REPLICATION SLAVE ON *.* to 'root'@'192.168.0.3' identified by 'Java@1234';
-//刷新系统权限表的配置
+#刷新系统权限表的配置
 FLUSH PRIVILEGES;
 </code></pre>
 <p>接下来在找到mysql的配置文件/etc/my.cnf，增加以下配置：</p>
