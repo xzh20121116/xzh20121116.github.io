@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		10 Redis/8 Redisson使用 | 
+		10 Redis/04_如何保证缓存与数据库双写时的数据一致性 | 
 	 
 	温故知新
 	</title>
@@ -1175,6 +1175,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/06/02/08%20Mysql/12_sql%20joins%20%E5%9B%BE/">
+										12_sql joins 图
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -1217,8 +1226,8 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/07/21/10%20Redis/1%20%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%9C%BA%E6%99%AF/">
-										1 常见数据类型及场景
+									<a href="/2020/07/21/10%20Redis/01_%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%9C%BA%E6%99%AF/">
+										01_常见数据类型及场景
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1226,8 +1235,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/07/21/10%20Redis/2%20%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
-										2 常见问题
+									<a href="/2020/07/21/10%20Redis/02_%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+										02_常见问题
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1235,44 +1244,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/07/21/10%20Redis/3%20%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
-										3 分布式锁
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2020/07/28/10%20Redis/4%20%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8C%E5%86%99%E6%97%B6%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7/">
-										4 如何保证缓存与数据库双写时的数据一致性
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2020/07/21/10%20Redis/5%20%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%94%A8Memcached/">
-										5 为什么不用Memcached
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2020/07/21/10%20Redis/6%20cluster%20%E4%B8%8E%20sentinel/">
-										6 cluster 与 sentinel
-									</a>
-								</li>
-								<div class="article-toc" style="display: none;"></div>
-							</ul>
-			
-							<ul>
-								<li class="file">
-									<a href="/2020/07/21/10%20Redis/7%20redis%E4%B9%8B%E7%BA%A2%E9%94%81(Redlock)/">
-										7 redis之红锁(Redlock)
+									<a href="/2020/07/21/10%20Redis/03_%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+										03_分布式锁
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1280,8 +1253,8 @@
 			
 							<ul>
 								<li class="file active">
-									<a href="/2020/07/21/10%20Redis/8%20Redisson%E4%BD%BF%E7%94%A8/">
-										8 Redisson使用
+									<a href="/2020/07/28/10%20Redis/04_%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8C%E5%86%99%E6%97%B6%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7/">
+										04_如何保证缓存与数据库双写时的数据一致性
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -1289,8 +1262,53 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/11/09/10%20Redis/9%20redis%E5%B8%B8%E8%A7%81%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BA%95%E5%B1%82%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-										9 redis常见对象的底层数据结构
+									<a href="/2020/07/21/10%20Redis/05_%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%94%A8Memcached/">
+										05_为什么不用Memcached
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/06_cluster%20%E4%B8%8E%20sentinel/">
+										06_cluster 与 sentinel
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/07_redis%E4%B9%8B%E7%BA%A2%E9%94%81(Redlock)/">
+										07_redis之红锁(Redlock)
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/07/21/10%20Redis/08_Redisson%E4%BD%BF%E7%94%A8/">
+										08_Redisson使用
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2020/11/09/10%20Redis/09_redis%E5%B8%B8%E8%A7%81%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%BA%95%E5%B1%82%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+										09_redis常见对象的底层数据结构
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2021/06/07/10%20Redis/10_%E9%AB%98%E6%80%A7%E8%83%BD%E7%BC%93%E5%AD%98%E6%9E%B6%E6%9E%84/">
+										10_高性能缓存架构
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -2048,16 +2066,16 @@
 	<div id="content">
 		<h1 id="article-title">
 
-	8 Redisson使用
+	04_如何保证缓存与数据库双写时的数据一致性
 </h1>
 <div class="article-meta">
 	
 		<span>
-			阅读量:<span id="/2020/07/21/10%20Redis/8%20Redisson%E4%BD%BF%E7%94%A8/" class="leancloud_visitors" data-flag-title="10 Redis/8 Redisson使用"></span>
+			阅读量:<span id="/2020/07/28/10%20Redis/04_%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E7%BC%93%E5%AD%98%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E5%8F%8C%E5%86%99%E6%97%B6%E7%9A%84%E6%95%B0%E6%8D%AE%E4%B8%80%E8%87%B4%E6%80%A7/" class="leancloud_visitors" data-flag-title="10 Redis/04_如何保证缓存与数据库双写时的数据一致性"></span>
 		</span>
 	
 	<span>今晚打老虎</span>
-	<span>2020-07-21 18:49:54</span>
+	<span>2020-07-28 13:13:11</span>
     
 		<div id="article-categories">
             
@@ -2066,49 +2084,64 @@
 </div>
 
 <div id="article-content">
-	<h1>添加 pom 依赖</h1>
-<pre><code class="language-xml">    &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
-            &lt;artifactId&gt;redisson&lt;/artifactId&gt;
-            &lt;version&gt;3.10.1&lt;/version&gt;
-        &lt;/dependency&gt;
-    &lt;/dependencies&gt;
-</code></pre>
-<h1>编写实例代码</h1>
-<pre><code class="language-java">	public static void main(String[] args) throws InterruptedException {
-		Config config = new Config();
-		config.setTransportMode(TransportMode.EPOLL);
-		config.useClusterServers()
-				//可以用&quot;rediss://&quot;来启用SSL连接
-				.addNodeAddress(&quot;redis://127.0.0.1:6379&quot;);
-		final RedissonClient client1 = Redisson.create(config);
-		RLock lock1 = client1.getLock(&quot;lock1&quot;);
-		Thread.sleep(100000);
-
-		try{
-			lock1.lock();
-		}finally{
-			lock1.unlock();
-		}
-
-	}
-</code></pre>
-<h1>运行代码</h1>
-<h2 id="报错了"><a class="header-anchor" href="#报错了"></a>报错了</h2>
-<pre><code>Caused by: java.lang.ClassNotFoundException: io.netty.channel.epoll.EpollEventLoopGroup
-</code></pre>
-<p>在 github 搜到 issues：<a href="https://github.com/redisson/redisson/issues/600" target="_blank" rel="noopener">https://github.com/redisson/redisson/issues/600</a></p>
-<blockquote>
-<p>epoll is optional dependency. You should add it to classpath. Here is dependency:</p>
-<p>epoll是可选的依赖。你应该将它添加到类路径中。这是依赖:</p>
-<pre><code class="language-xml">&lt;dependency&gt;
-  &lt;groupId&gt;io.netty&lt;/groupId&gt;
-  &lt;artifactId&gt;netty-transport-native-epoll&lt;/artifactId&gt;
-  &lt;version&gt;4.0.40.Final&lt;/version&gt;
-&lt;/dependency&gt;
-</code></pre>
-</blockquote>
+	<h1>如何保证缓存与数据库双写时的数据一致性？</h1>
+<p>在做系统优化时，想到了将数据进行分级存储的思路。因为在系统中会存在一些数据，有些数据的实时性要求不高，比如一些配置信息。基本上配置了很久才会变一次。而有一些数据实时性要求非常高，比如订单和流水的数据。所以这里根据数据要求实时性不同将数据分为三级。</p>
+<ul>
+<li>第1级：订单数据和支付流水数据；这两块数据对实时性和精确性要求很高，所以不添加任何缓存，读写操作将直接操作数据库。</li>
+<li>第2级：用户相关数据；这些数据和用户相关，具有读多写少的特征，所以我们使用redis进行缓存。</li>
+<li>第3级：支付配置信息；这些数据和用户无关，具有数据量小，频繁读，几乎不修改的特征，所以我们使用本地内存进行缓存。</li>
+</ul>
+<p>但是只要使用到缓存，无论是本地内存做缓存还是使用 redis 做缓存，那么就会存在数据同步的问题，因为配置信息缓存在内存中，而内存时无法感知到数据在数据库的修改。这样就会造成数据库中的数据与缓存中数据不一致的问题。接下来就讨论一下关于保证缓存和数据库双写时的数据一致性。</p>
+<h3 id="解决方案"><a class="header-anchor" href="#解决方案"></a>解决方案</h3>
+<p>那么我们这里列出来所有策略，并且讨论他们优劣性。</p>
+<ol>
+<li>先更新数据库，后更新缓存</li>
+<li>先更新数据库，后删除缓存</li>
+<li>先更新缓存，后更新数据库</li>
+<li>先删除缓存，后更新数据库</li>
+</ol>
+<h4 id="先更新数据库，后更新缓存"><a class="header-anchor" href="#先更新数据库，后更新缓存"></a>先更新数据库，后更新缓存</h4>
+<p>这种场景一般是没有人使用的，主要原因是在更新缓存那一步，为什么呢？因为有的业务需求缓存中存在的值并不是直接从数据库中查出来的，有的是需要经过一系列计算来的缓存值，那么这时候后你要更新缓存的话其实代价是很高的。如果此时有大量的对数据库进行写数据的请求，但是读请求并不多，那么此时如果每次写请求都更新一下缓存，那么性能损耗是非常大的。</p>
+<p>举个例子比如在数据库中有一个值为 1 的值，此时我们有 10 个请求对其每次加一的操作，但是这期间并没有读操作进来，如果用了先更新数据库的办法，那么此时就会有十个请求对缓存进行更新，会有大量的冷数据产生，如果我们不更新缓存而是删除缓存，那么在有读请求来的时候那么就会只更新缓存一次。</p>
+<h4 id="先更新缓存，后更新数据库"><a class="header-anchor" href="#先更新缓存，后更新数据库"></a>先更新缓存，后更新数据库</h4>
+<p>这一种情况应该不需要我们考虑了吧，和第一种情况是一样的。</p>
+<h4 id="先删除缓存，后更新数据库"><a class="header-anchor" href="#先删除缓存，后更新数据库"></a>先删除缓存，后更新数据库</h4>
+<p>该方案也会出问题，具体出现的原因如下。</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20200728131324.jpg" alt="先删除缓存，后更新数据库"></p>
+<p>此时来了两个请求，请求 A（更新操作） 和请求 B（查询操作）</p>
+<ol>
+<li>请求 A 会先删除 Redis 中的数据，然后去数据库进行更新操作</li>
+<li>此时请求 B 看到 Redis 中的数据时空的，会去数据库中查询该值，补录到 Redis 中</li>
+<li>但是此时请求 A 并没有更新成功，或者事务还未提交</li>
+</ol>
+<p>那么这时候就会产生数据库和 Redis 数据不一致的问题。如何解决呢？其实最简单的解决办法就是延时双删的策略。</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20200728131329.jpg" alt="延时双删"></p>
+<p>但是上述的保证事务提交完以后再进行删除缓存还有一个问题，就是如果你使用的是 Mysql 的读写分离的架构的话，那么其实主从同步之间也会有时间差。</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20200728131332.jpg" alt="主从同步时间差"></p>
+<p>此时来了两个请求，请求 A（更新操作） 和请求 B（查询操作）</p>
+<ol>
+<li>请求 A 更新操作，删除了 Redis</li>
+<li>请求主库进行更新操作，主库与从库进行同步数据的操作</li>
+<li>请 B 查询操作，发现 Redis 中没有数据</li>
+<li>去从库中拿去数据</li>
+<li>此时同步数据还未完成，拿到的数据是旧数据</li>
+</ol>
+<p>此时的解决办法就是如果是对 Redis 进行填充数据的查询数据库操作，那么就强制将其指向主库进行查询。</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20200728131336.jpg" alt="从主库中拿数据"></p>
+<h4 id="先更新数据库，后删除缓存"><a class="header-anchor" href="#先更新数据库，后删除缓存"></a>先更新数据库，后删除缓存</h4>
+<p>问题：这一种情况也会出现问题，比如更新数据库成功了，但是在删除缓存的阶段出错了没有删除成功，那么此时再读取缓存的时候每次都是错误的数据了。</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20200728131340.jpg" alt="先更新数据库，后删除缓存"></p>
+<p>此时解决方案就是利用消息队列进行删除的补偿。具体的业务逻辑用语言描述如下：</p>
+<ol>
+<li>请求 A 先对数据库进行更新操作</li>
+<li>在对 Redis 进行删除操作的时候发现报错，删除失败</li>
+<li>此时将Redis 的 key 作为消息体发送到消息队列中</li>
+<li>系统接收到消息队列发送的消息后再次对 Redis 进行删除操作</li>
+</ol>
+<p>但是这个方案会有一个缺点就是会对业务代码造成大量的侵入，深深的耦合在一起，所以这时会有一个优化的方案，我们知道对 Mysql 数据库更新操作后再 binlog 日志中我们都能够找到相应的操作，那么我们可以订阅 Mysql 数据库的 binlog 日志对缓存进行操作。</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20200728131344.jpg" alt="利用订阅 binlog 删除缓存"></p>
+<h3 id="总结"><a class="header-anchor" href="#总结"></a>总结</h3>
+<p>每种方案各有利弊，比如在第二种先删除缓存，后更新数据库这个方案我们最后讨论了要更新 Redis 的时候强制走主库查询就能解决问题，那么这样的操作会对业务代码进行大量的侵入，但是不需要增加的系统，不需要增加整体的服务的复杂度。最后一种方案我们最后讨论了利用订阅 binlog 日志进行搭建独立系统操作 Redis，这样的缺点其实就是增加了系统复杂度。其实每一次的选择都需要我们对于我们的业务进行评估来选择，没有一种技术是对于所有业务都通用的。没有最好的，只有最适合我们的。</p>
 
 </div>
 
@@ -2117,16 +2150,16 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2020/07/21/10%20Redis/6%20cluster%20%E4%B8%8E%20sentinel/">
+              <a href="/2020/07/28/04%20Spring/1%20spring%20%E7%94%A8%E5%88%B0%E4%BA%86%E5%93%AA%E4%BA%9B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  6 cluster 与 sentinel
+                  1 spring 用到了哪些设计模式
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2020/07/21/15%20Nginx/1%20%E9%85%8D%E7%BD%AE%20nginx/">
-                1 配置 nginx
+              <a href="/2020/07/23/11%20ELk/2%20kibana%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
+                2 kibana 安装启动
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
