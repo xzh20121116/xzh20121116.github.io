@@ -957,10 +957,19 @@
 									</a>
 									
 							<ul>
+								<li class="file">
+									<a href="/2021/06/07/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/00_%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/">
+										00_微服务基础设施
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
-										0 服务注册与发现
+										01_服务注册与发现
 									</a>
 									
 							<ul>
@@ -972,7 +981,7 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
+									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/01_%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
 										mac 安装启动
 									</a>
 								</li>
@@ -981,7 +990,7 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/01_%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
 										分布式锁
 									</a>
 								</li>
@@ -990,7 +999,7 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
+									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/01_%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
 										客户端ZooInspector
 									</a>
 								</li>
@@ -1009,12 +1018,12 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
-										1 服务调用
+										02_服务调用
 									</a>
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/1%20%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/Sentinel%20%E4%B8%8E%20Hystrix%20%E5%AF%B9%E6%AF%94/">
+									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/02_%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/Sentinel%20%E4%B8%8E%20Hystrix%20%E5%AF%B9%E6%AF%94/">
 										Sentinel 与 Hystrix 对比
 									</a>
 								</li>
@@ -2065,6 +2074,33 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E5%90%A6%E4%B8%BA2%E6%95%B4%E6%95%B0%E6%AC%A1%E5%B9%82/">
+				<h2 class="index-title">
+					如何判断一个数否为2整数次幂
+				</h2>
+				<div class="index-brief">
+					logn 版本
+原理
+创建一个中间变量，初始值是 1，开始循环，每次循环都让 temp 和目标数对比
+如果相等，说明目标数是 2 的整数次幂
+如果不相等，则让 temp增大 1 倍，继续循环进行比较
+当 temp 大于目标整数时，说明目标数不是 2 的整数次幂
+举个例子
+
+目标数 19：
+1x2 =
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%88%A0%E5%8E%BBk%E4%B8%AA%E6%95%B0%E5%AD%97%E5%90%8E%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC/">
 				<h2 class="index-title">
 					删去k个数字后的最小值
@@ -2144,7 +2180,7 @@ HashMap 中的就是不重
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
+			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/01_%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
 				<h2 class="index-title">
 					客户端ZooInspector
 				</h2>
@@ -2168,7 +2204,7 @@ java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
+			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/01_%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
 				<h2 class="index-title">
 					mac 安装启动
 				</h2>
@@ -2193,7 +2229,7 @@ zookeeper 客户端
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/01_%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
 				<h2 class="index-title">
 					分布式锁
 				</h2>
@@ -2272,31 +2308,6 @@ mvc 是 model、view、controller 的缩写，分别代表 web 应用程序中�
 model-模型：用于存储数据以及能处理用户请求的业务逻辑
 view-视图：向控制器提交数据，显示模型中的数据
 controller-控制器：根据视图提出的请求，判断将请求和数据交
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/1%20%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/Sentinel%20%E4%B8%8E%20Hystrix%20%E5%AF%B9%E6%AF%94/">
-				<h2 class="index-title">
-					Sentinel 与 Hystrix 对比
-				</h2>
-				<div class="index-brief">
-					线程模型对比
-
-Sentinel 使用的是 tomcat/jetty/other 本身的线程池。
-Hystrix 使用的是自己创建的线程池
-隔离策略
-Sentinel：信号量隔离（并发线程数限流）（模拟信号量）。
-Hystrix：线程池、信号量隔离。
-特别说明：Sentinel创建的线程不依赖容器的
 					...
 				</div>
 			</a>

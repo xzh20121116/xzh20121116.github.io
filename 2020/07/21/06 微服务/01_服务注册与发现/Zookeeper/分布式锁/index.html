@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		06 微服务/1 服务调用/Sentinel 与 Hystrix 对比 | 
+		06 微服务/01_服务注册与发现/Zookeeper/分布式锁 | 
 	 
 	温故知新
 	</title>
@@ -959,10 +959,19 @@
 									</a>
 									
 							<ul>
+								<li class="file">
+									<a href="/2021/06/07/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/00_%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%9F%BA%E7%A1%80%E8%AE%BE%E6%96%BD/">
+										00_微服务基础设施
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
-										0 服务注册与发现
+										01_服务注册与发现
 									</a>
 									
 							<ul>
@@ -974,7 +983,7 @@
 									
 							<ul>
 								<li class="file">
-									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
+									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/01_%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
 										mac 安装启动
 									</a>
 								</li>
@@ -982,8 +991,8 @@
 							</ul>
 			
 							<ul>
-								<li class="file">
-									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+								<li class="file active">
+									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/01_%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
 										分布式锁
 									</a>
 								</li>
@@ -992,7 +1001,7 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/0%20%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
+									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/01_%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
 										客户端ZooInspector
 									</a>
 								</li>
@@ -1011,12 +1020,12 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
-										1 服务调用
+										02_服务调用
 									</a>
 									
 							<ul>
-								<li class="file active">
-									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/1%20%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/Sentinel%20%E4%B8%8E%20Hystrix%20%E5%AF%B9%E6%AF%94/">
+								<li class="file">
+									<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/02_%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/Sentinel%20%E4%B8%8E%20Hystrix%20%E5%AF%B9%E6%AF%94/">
 										Sentinel 与 Hystrix 对比
 									</a>
 								</li>
@@ -2066,12 +2075,12 @@
 	<div id="content">
 		<h1 id="article-title">
 
-	Sentinel 与 Hystrix 对比
+	分布式锁
 </h1>
 <div class="article-meta">
 	
 		<span>
-			阅读量:<span id="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/1%20%E6%9C%8D%E5%8A%A1%E8%B0%83%E7%94%A8/Sentinel%20%E4%B8%8E%20Hystrix%20%E5%AF%B9%E6%AF%94/" class="leancloud_visitors" data-flag-title="06 微服务/1 服务调用/Sentinel 与 Hystrix 对比"></span>
+			阅读量:<span id="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/01_%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/" class="leancloud_visitors" data-flag-title="06 微服务/01_服务注册与发现/Zookeeper/分布式锁"></span>
 		</span>
 	
 	<span>今晚打老虎</span>
@@ -2084,44 +2093,134 @@
 </div>
 
 <div id="article-content">
-	<p>线程模型对比</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200720213158.png" alt="image-20200720213157940"></p>
-<p>Sentinel 使用的是 tomcat/jetty/other 本身的线程池。</p>
-<p>Hystrix 使用的是自己创建的线程池</p>
-<p><strong>隔离策略</strong></p>
-<p>Sentinel：信号量隔离（并发线程数限流）（模拟信号量）。</p>
-<p>Hystrix：线程池、信号量隔离。</p>
-<p>特别说明：Sentinel创建的线程不依赖容器的线程池，存在的问题就是容器的线程数量限制了 Sentinel 设置值的上限，可能设置不准。</p>
-<p>比如 tomcat 的线程池 为 10，Sentinel 设置 100 是没有意义的，同时隔离性不好。</p>
-<p>Hystrix 使用自己创建的线程池，隔离性会更好。</p>
-<p><strong>熔断降级策略</strong></p>
-<p>Sentinel：基于响应时间、异常比率、异常数。</p>
-<p>Hystrix：基于异常比率。</p>
-<p>特别说明：快速失败的本质功能。</p>
-<p><strong>限流</strong></p>
-<p>Sentinel：基于 qps，支持基于调用关系的限流。</p>
-<p>Hystrix：有限的支持(并发线程数或信号量大小)。</p>
-<p>特别说明：快速失败的本质功能。</p>
-<p><strong>实时统计的实现</strong></p>
-<p>Sentinel：滑动窗口（LeapArray）。</p>
-<p>Hystrix：滑动窗口（基于 RxJava）。</p>
-<p><strong>动态规则配置</strong></p>
-<p>两者都支持多种数据源。</p>
-<p><strong>扩展性</strong></p>
-<p>Sentinel 有多个扩展点。</p>
-<p>Hystrix 以插件的形式扩展。</p>
-<p><strong>控制台</strong></p>
-<p>Sentinel：提供开箱即用的控制台，可配置规则，查看秒级监控，机器发现等。</p>
-<p>Hystrix：简单的监控查看接近实时数据。</p>
-<p>特别说明：控制台是非常有竞争力的功能，操作更方便，但是展示数据和实时性没有 Hystrix 直观</p>
-<p><strong>配置持久化</strong></p>
-<p>Sentinel：zookeeper、nacos、apollo，直接连接持久化存储，应用客户端引用了更多的依赖，同样的存储连接可能有多个配置。</p>
-<p>Hystrix：git、svn、本地文件</p>
-<p><strong>动态配置</strong>（不太清楚，存疑）</p>
-<p>两者都支持，Sentinel 增加了额外的端口进行配置文件控制，应该也支持 Springboot 动态配置。</p>
-<p>Hystrix 好像需要手动触发</p>
-<p><strong>对比总结</strong></p>
-<p>集中配置可能更有吸引力，但是配置值是多少以及让谁控制依然是很头疼的事情。运维控制可能不知道哪个应该优先哪个不优先，应该调整到多大。什么时候更适合使用sentinel？个人认为docker容器化部署之后sentinel可能更会发挥作用，但是会有另外的竞品出现做选型。</p>
+	<h1>zk是啥？</h1>
+<blockquote>
+<p>数据库、文件存储系统，并且有监听通知机制（观察者模式）</p>
+</blockquote>
+<h1>特性</h1>
+<ol>
+<li>
+<p>有序节点</p>
+<blockquote>
+<p>假如 当前有一个父节点为 /lock，我们可以在这个父节点下面创建子节点，使用<code>有序节点</code>，我创建子节点 /lock/node- ，并且指明有序，那么 zookeeper 在生成子节点的时候会自动的添加整数序号</p>
+</blockquote>
+</li>
+<li>
+<p>临时节点</p>
+<blockquote>
+<p>客户端可以建立临时节点，会话超时，或者客户端断开连接之后，zk 会自动删除该节点</p>
+</blockquote>
+</li>
+<li>
+<p>时间监听</p>
+<blockquote>
+<p>在读取数据时，可以同时对节点设置事件监听，当节点数据或结构发生变化是，zk 会通知客户端</p>
+<p>四种事件</p>
+<ol>
+<li>节点创建</li>
+<li>节点删除</li>
+<li>节点数据修改</li>
+<li>子节点变更</li>
+</ol>
+</blockquote>
+</li>
+</ol>
+<h1>应用场景</h1>
+<ul>
+<li>服务注册与订阅（共用节点）</li>
+<li>分布式通知(监听 znode)</li>
+<li>服务命名（znode 特性）</li>
+<li>数据订阅、发布（watcher）</li>
+<li>分布式锁（临时节点）</li>
+</ul>
+<h1>文件系统存了什么？</h1>
+<p>节点，节点名称都是唯一的</p>
+<p>zk 的节点有四大类型</p>
+<ul>
+<li>
+<p>持久化节点（zk 断开节点还在）</p>
+</li>
+<li>
+<p>持久化顺序编号目录节点</p>
+</li>
+<li>
+<p>临时目录节点（客户端断开连接后节点就删除了）</p>
+</li>
+<li>
+<p>临时目录编号目录节点</p>
+</li>
+</ul>
+<h1>节点怎么创建？</h1>
+<h2 id="创建永久节点"><a class="header-anchor" href="#创建永久节点"></a>创建永久节点</h2>
+<pre><code>create /test node
+</code></pre>
+<h2 id="创建临时节点"><a class="header-anchor" href="#创建临时节点"></a>创建临时节点</h2>
+<pre><code>create -e /linshi node
+</code></pre>
+<p>如果断开这次连接，这个节点就消失了</p>
+<h2 id="创建顺序节点"><a class="header-anchor" href="#创建顺序节点"></a>创建顺序节点</h2>
+<pre><code>create -s /shunxu node
+</code></pre>
+<h2 id="临时顺序节点"><a class="header-anchor" href="#临时顺序节点"></a>临时顺序节点</h2>
+<pre><code>create -e -s /linshishunxu  node
+</code></pre>
+<h1>分布式锁</h1>
+<h2 id="算法流程–未优化版"><a class="header-anchor" href="#算法流程–未优化版"></a>算法流程–未优化版</h2>
+<ol>
+<li>
+<p>客户端连接 zk，并在<code>/lock</code> 下创建 <code>临时有序节点</code>，第一个为/lock/lock-0000000000，第二个为/lock/lock-0000000001，以此类推。</p>
+</li>
+<li>
+<p>客户端获取 <code>/lock</code>下的子节点列表，判断自己创建的节点是否为当前子节点列表中序号最小的子节点</p>
+<ul>
+<li>序号最好—则认为获得锁</li>
+<li>非最小—监听<code>/lock</code>的子节点变更消息，获得变更通知后重复此步骤，直到获得锁</li>
+</ul>
+</li>
+<li>
+<p>获得锁的执行业务代码</p>
+</li>
+<li>
+<p>完成业务代码，删除对应的子节点释放锁</p>
+</li>
+</ol>
+<h2 id="为什么用临时节点"><a class="header-anchor" href="#为什么用临时节点"></a>为什么用临时节点</h2>
+<p>临时节点保证客户端获取锁后，宕机了，zk 会自动删除这个临时节点，相当于自动释放锁了</p>
+<h2 id="在【算法流程–未优化版】的第二步获取列表与监听不是原子操作？"><a class="header-anchor" href="#在【算法流程–未优化版】的第二步获取列表与监听不是原子操作？"></a>在【算法流程–未优化版】的第二步获取列表与监听不是原子操作？</h2>
+<p>这个问题不会出现，下面的流程是不会发生的</p>
+<blockquote>
+<p>客户端 A 创建序号 1 的节点，客户端 B 创建序号 2 的节点。</p>
+<ol>
+<li>A 获取 列表，发现自己最小，开始执行业务代码</li>
+<li>B 获取列表，发现自己不是最小，准备设置监听（此时b让出了 cpu 时间，并未设置）</li>
+<li>A 执行完毕，删除列表</li>
+<li>B 设置监听（因为 A 在第3 步就删除了 ，此时 B 监听不到变化了，永远等待？）</li>
+</ol>
+</blockquote>
+<p>因为 zk 提供的 API 中设置监听器的操作和读操作是原子操作，为的就是保证不丢失事件</p>
+<h2 id="算法流程–终极"><a class="header-anchor" href="#算法流程–终极"></a>算法流程–终极</h2>
+<h3 id="为什么需要优化"><a class="header-anchor" href="#为什么需要优化"></a>为什么需要优化</h3>
+<blockquote>
+<p>假如当前有 1000 个节点在等待锁，如果获得锁的客户端释放锁，那么这 1000 个客户端都会被唤醒，</p>
+<p>这被称为羊群效应，在这种羊群效应中，zk 需要通知 1000 个客户端，会阻塞其他操作</p>
+<p>最好的情况是，只唤醒新的最小节点对应的客户端</p>
+</blockquote>
+<h3 id="应该怎么做呢？"><a class="header-anchor" href="#应该怎么做呢？"></a>应该怎么做呢？</h3>
+<blockquote>
+<p>在设置监听事件时，每个客户端应该监听他前面的一个节点，2 监听 1，1 监听 0</p>
+</blockquote>
+<h3 id="算法流程–终极版"><a class="header-anchor" href="#算法流程–终极版"></a>算法流程–终极版</h3>
+<ol>
+<li>客户端连接 zk，并在<code>/lock</code> 下创建 <code>临时有序节点</code>，第一个为/lock/lock-0000000000，第二个为/lock/lock-0000000001，以此类推。</li>
+<li>客户端获取 <code>/lock</code>下的子节点列表，判断自己创建的节点是否为当前子节点列表中序号最小的子节点
+<ul>
+<li>序号最小—则认为获得锁</li>
+<li>非最小—监听<code>自己前面的</code>子节点变更消息，获得变更通知后重复此步骤，直到获得锁</li>
+</ul>
+</li>
+<li>获得锁的执行业务代码</li>
+<li>完成业务代码，删除对应的子节点释放锁</li>
+</ol>
 
 </div>
 
@@ -2130,15 +2229,15 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2020/07/21/07%20SpringMVC/%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86/">
+              <a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/01_%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/mac%20%E5%AE%89%E8%A3%85%E5%90%AF%E5%8A%A8/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  
+                  mac 安装启动
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2020/07/21/04%20Spring/3%20DI_%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
+              <a href="/2020/07/21/05%20Springboot/springboot%20%E4%B9%8B%20Filter%20%E6%8C%87%E5%AE%9A%E8%BF%87%E6%BB%A4%20Url%20%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
                 
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
