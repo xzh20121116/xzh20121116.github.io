@@ -2223,7 +2223,7 @@ public class Singleton {
 <li>此时B使用instance，因为该对象未初始化，因此报错</li>
 </ol>
 <p>为了处理这个问题（指令重排导致的 doublecheck 线程不安全问题），加上了 volatile</p>
-<pre><code class="language-java">	public class Singleton {
+<pre><code class="language-java">public class Singleton {
     private volatile static Singleton instance = null;
     private Singleton(){}
     public static Singleton getInstance(){
@@ -2242,7 +2242,30 @@ public class Singleton {
 }
 </code></pre>
 <p>截止目前（加上 volatile 的 doublecheck），其实还要可以优化的空间，因为 volatile 会屏蔽一些 jvm 必要的代码优化，因此并不能达到完美</p>
-<p>使用<strong>内部类来维护单例</strong>的实现，jvm 内部的机制能够保证当一个类被加载的时候，这个类的加载过程是线程互斥的。</p>
+<p>使用<strong>内部类来维护单例</strong>的实现，</p>
+<pre><code class="language-java">public class Singleton {  
+  
+    /* 私有构造方法，防止被实例化 */  
+    private Singleton() {  
+    }  
+  
+    /* 此处使用一个内部类来维护单例 */  
+    private static class SingletonFactory {  
+        private static Singleton instance = new Singleton();  
+    }  
+  
+    /* 获取实例 */  
+    public static Singleton getInstance() {  
+        return SingletonFactory.instance;  
+    }  
+  
+    /* 如果该对象被用于序列化，可以保证对象在序列化前后保持一致 */  
+    public Object readResolve() {  
+        return getInstance();  
+    }  
+}  
+</code></pre>
+<p>jvm 内部的机制能够保证当一个类被加载的时候，这个类的加载过程是线程互斥的。</p>
 <p>这样当第一次调动get 的时候，JVM 能够保证instance 只被创建一次，并且会保证把复制给instance的内存初始化完毕。</p>
 <p>该方法也只会在第一次调用的时候使用互斥机制，这样就解决了低性能问题</p>
 <p><strong>终结写法</strong></p>
