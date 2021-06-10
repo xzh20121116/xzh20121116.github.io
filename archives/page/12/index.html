@@ -860,6 +860,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2021/06/10/03%20java/java-6-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/">
+										建造者模式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2021/06/09/03%20java/java-6-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">
 										策略模式
 									</a>
@@ -2103,6 +2112,41 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/07/21/10%20Redis/02_%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
+				<h2 class="index-title">
+					02_常见问题
+				</h2>
+				<div class="index-brief">
+					雪崩
+是什么
+多个热点 key 同时过期，导致大量访问直接落在 db
+解决方案
+
+
+设置热点 key 永不过期，有更新的时候就更新缓存
+
+
+考虑对数据库的访问加上锁或者阻塞队列的方式，保证不会有大量的线程对 db 访问
+
+
+将缓存失效的时间分散开
+
+
+穿透
+是什么
+查询一个一定不存在的 key，比如
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/10%20Redis/01_%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%9C%BA%E6%99%AF/">
 				<h2 class="index-title">
 					01_常见数据类型及场景
@@ -2351,30 +2395,6 @@ myIsam使用的是非聚簇索引（不论是主键索引还是二级索引）
 面试官：数据库有几千万的数据，查询又很慢我们怎么办？
 面试者：加索引。
 面试官：那索引有哪些数据类型？索
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/08%20Mysql/02%20%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B0%83%E4%BC%98/">
-				<h2 class="index-title">
-					02 数据库调优
-				</h2>
-				<div class="index-brief">
-					原文地址
-面试官：王大锤你简历上写了你会数据库调优，你都是怎么调优的？
-王大锤：加索引。
-面试官：还有么？
-王大锤：没了。
-面试官：我们公司的门你知道在哪里吧，自己走还是我送你？
-哈哈开头这个场景是我臆想的一个面试场景，但是大家是不是觉得很真实，每个人的简历上但凡写到了数据库，都会在后面顺便写一句，
 					...
 				</div>
 			</a>

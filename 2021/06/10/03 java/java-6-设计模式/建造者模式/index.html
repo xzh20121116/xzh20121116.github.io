@@ -8,6 +8,8 @@
 	<!-- title -->
 	
 	<title>
+	
+		03 java/java-6-设计模式/建造者模式 | 
 	 
 	温故知新
 	</title>
@@ -859,7 +861,7 @@
 							</ul>
 			
 							<ul>
-								<li class="file">
+								<li class="file active">
 									<a href="/2021/06/10/03%20java/java-6-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/">
 										建造者模式
 									</a>
@@ -2109,300 +2111,223 @@
 
 	<!-- 引入正文 -->
 	<div id="content">
-		<div id="index">
+		<h1 id="article-title">
+
+	建造者模式
+</h1>
+<div class="article-meta">
 	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/02%20%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E5%80%BC%E6%9C%BA%E5%88%B6/">
-				<h2 class="index-title">
-					02 参数的传值机制
-				</h2>
-				<div class="index-brief">
-					java中，方法中所有参数传递都是值传递，也就是「传递的是值的副本」。
-我们得到的是『原参数的复印件』，因此，修改传入的参数，不会影响原件。
-基本数据类型
-传递是值的副本，副本改变不会影响原件
-引用类类型
-传递的是值的「副本」，但是引用类型指的是『对象的地址』，因此，副本和原参数都指向了同一个「地址
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
+		<span>
+			阅读量:<span id="/2021/06/10/03%20java/java-6-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/" class="leancloud_visitors" data-flag-title="03 java/java-6-设计模式/建造者模式"></span>
+		</span>
 	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/08%20%E5%86%85%E9%83%A8%E7%B1%BB/">
-				<h2 class="index-title">
-					08 内部类
-				</h2>
-				<div class="index-brief">
-					内部类只是一个编译时概念，一旦编译成功，就会成为完全不同的两个类。对于一个名为Outer的外部类和其内部定义的名为Inner的内部类。编译完成会会出现Outer.class和Outer$Inner.class两个类的字节码文件。所以内部类是相对独立的一种存在，其成员变量、方法名可以和外部类的相同。
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/12%20final/">
-				<h2 class="index-title">
-					12 final
-				</h2>
-				<div class="index-brief">
-					final 关键字
-作用：
-修饰变量：
-被他修饰的变量不可改变，一旦赋值，就不能被重新赋值。
-修饰方法：
-该方法不可被子类重写，但是可以被重载！
-修饰类:
-被修饰类不能被继承。比如Math、String等
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/13%20this%20%E7%9A%84%E6%9C%AC%E8%B4%A8/">
-				<h2 class="index-title">
-					13 this 的本质
-				</h2>
-				<div class="index-brief">
-					创建一个对象分为四步：
-
-分配对象空间，并将对象成员变量初始化为0或空或false
-执行属性值的显式初始化
-执行构造方法
-返回对象的地址给相关的变量
-
-this的本质是“创建好的对象的地址”！由于在构造方法调用前，对象已经创建。因此，在构造方法中也可以使用this代表“当前对象”  ，
-不能在静态方
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/11%20ELk/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%20kibana%EF%BC%8C%E5%A4%96%E7%BD%91%E6%97%A0%E6%B3%95%E8%AE%BF%E9%97%AE/">
-				<h2 class="index-title">
-					阿里云部署 kibana，外网无法访问
-				</h2>
-				<div class="index-brief">
-					无法通过ip+端口号访问
-解决办法
-修改 kibana 目录下的 config 下的 kibana.yml
-host 由 localhost 改为 0.0.0.0
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/11%20ELk/springboot%20%E6%B7%BB%E5%8A%A0%20es%20%E4%BE%9D%E8%B5%96%E7%89%88%E6%9C%AC%E9%97%AE%E9%A2%98/">
-				<h2 class="index-title">
-					springboot 添加 es 依赖版本问题
-				</h2>
-				<div class="index-brief">
-					springboot 中默认指定了es 的版本
-此时如果添加如下依赖，就会导致es 的版本使用的是 springboot 默认的
-        &lt;!-- es --&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.e
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/11%20ELk/ElasticSearch/">
-				<h2 class="index-title">
-					ElasticSearch
-				</h2>
-				<div class="index-brief">
-					dadasd大数据量下的使用 es
-Lucene 是一套信息检索工具包，是 jar 包，不包括搜索引擎系统
-包含了：索引结构、读写索引的工具、排序、搜索规则、过滤、、、工具类
-
-Lucene 和 ElasticSearch 关系：
-
-ElasticSearch是基于 Lucene 做了一些封装和增强
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/3%20Http%20%E7%8A%B6%E6%80%81%E7%A0%81/">
-				<h2 class="index-title">
-					3 Http 状态码
-				</h2>
-				<div class="index-brief">
-					
-
-
-
-类别
-原因
-
-
-
-
-1xx
-信息行状态码
-接收的请求正在处理
-
-
-2xx
-成功状态码
-请求正常处理完毕
-
-
-3xx
-重定向状态码
-需要进行附加造作以完成请求
-
-
-4xx
-客户端错误状态码
-服务器无法处理请求
-
-
-5xx
-服务器错误状态码
-服务器出错了
-
-
-
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/1%20%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E5%AE%B9%E9%87%8F/">
-				<h2 class="index-title">
-					1 存储单位容量
-				</h2>
-				<div class="index-brief">
-					1 Byte = 8 Bits.
-1 Kilobyte (KB) = 1024 Bytes.
-1 Megabyte (MB) = 1024 KB.
-1 Gigabyte (GB) = 1024 MB
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/2%20%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5url%20%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">
-				<h2 class="index-title">
-					2 在浏览器中输入url 发生了什么
-				</h2>
-				<div class="index-brief">
-					
-
-DNS 域名解析
-把域名转换成 ip 地址
-
-
-建立 TCP 连接
-
-三次握手
-
-
-快递员：家里有人吗，京东快递
-
-
-买家：有人，你来吧
-
-
-快递员：好的，马上到
-
-
-
-
-
-发送 HTTP 请求
-与服务器建立连接后，就可以向服务器发起请求了
-
-
-服务器处理请求
-web 服务器解析用户请求，经过处
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-	
-	<div id="index-paginator">
-		
-			<a class="extend prev" rel="prev" href="/page/15/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><a class="extend next" rel="next" href="/page/17/">&gt;</a>
-		
-	</div>
+	<span>今晚打老虎</span>
+	<span>2021-06-10 14:10:39</span>
+    
+		<div id="article-categories">
+            
+		</div>
+    
 </div>
 
+<div id="article-content">
+	<p>什么是建造者模式？应用场景什么？</p>
+<p>当需要实例化一个复杂的类，以得到不同结构类型和不同的内部状态的对象时，我们可以用不同的类对它们的实例化操作逻辑分别进行封装，这些类我们就称之为建造者。</p>
+<p>当我们需要来自同一个类，但是要有不同的结构对象时，就可以通过构造另一个建造者来进行实例化</p>
+<p>流程图如下：</p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210610141438" alt="图片" style="zoom:100%;" />
+<p>建造者主要分为四种角色：</p>
+<ol>
+<li>Product（产品类）：具体需要生成的类对象</li>
+<li>Builder（抽象建造者类）：为我们需要生成的类对象，构建不同的属性模块，即：公开构建类产品类的属性，隐藏产品类的其他功能</li>
+<li>ConcreteBuilder（具体建造者类）：实现我们要生成的类对象</li>
+<li>Director（导演类）：确定构建我们的类对象具体有哪些模块属性，在实际应用中可以不需要这个角色，直接通过 client 处理</li>
+</ol>
+<p><strong>举例</strong></p>
+<p>商品中有普通实物商品、电子卡全商品、虚拟视频学习商品等多种不同的商品，他们都是商品但他们的属性却不一样，电子卡券：独有券码；学习视频：独有视频链接等等；</p>
+<p>实现这种商品创建 之 最普通的创建方式</p>
+<p>第一步：先创建一个基础商品类 item 类</p>
+<pre><code class="language-java">public class Item{
+    /** 必填 */
+    private String itemName;
+    /** 必填 */
+    private Integer type;
+    /** 卡券必填 */
+    private String code;
+    /** 视频必填 */
+    private String url;
+}
+</code></pre>
+<p>第二步：根据请求不同，创建对应类型的商品，一个商品属性不可能只有这么一点属性，以后扩展更多的话，每个判断都要处理，代码看起来跟臃肿</p>
+<pre><code class="language-java">public static void main(String[] args) {
+        Item item = new Item();
+        if (视频商品){
+            item.setItemName();
+            item.setType();
+            item.setUrl();
+        }
+        if (电子卡券){
+            item.setItemName();
+            item.setType();
+            item.setCode();
+        }
+        if (普通商品){
+            item.setItemName();
+            item.setType();
+        }
+}
+</code></pre>
+<p>实现这种商品创建 之 建造者模式</p>
+<p>第一步：创建抽象建造者类，三个不同的抽象方法，对应不同的商品类型，调用不同的方法达到解耦的思想</p>
+<pre><code class="language-java">public abstract  class ItermBuilder{
+    /** 创建商品对象 */
+    protected Item item = new Item();
+    public abstract  void buildNormal();
+    public abstract  void buildCard();
+    public abstract  void buildVideo();
+    public Item getResult(){
+        return item;
+    }
+}
+</code></pre>
+<p>第二步：创建具体构造者类，对抽象建造者的抽象方法进行实现赋值，达到我们所需要的结果。</p>
+<pre><code class="language-java">public class ItemConcreteBuilder extends ItemBuilder{
+
+    @Override
+    public void buildNormal() {
+        item.setItemName(&quot;普通商品&quot;);
+        item.setType(1);
+    }
+
+    @Override
+    public void buildCard() {
+        item.setItemName(&quot;卡券商品&quot;);
+        item.setType(2);
+        item.setCode(&quot;123456&quot;);
+    }
+
+    @Override
+    public void buildVideo() {
+        item.setItemName(&quot;视频啊商品&quot;);
+        item.setType(3);
+        item.setUrl(&quot;www.ww.www&quot;);
+    }
+}
+</code></pre>
+<p>第三步：创建导演类。知道如何去创建对象，这里可简化，视具体场景而定</p>
+<pre><code class="language-java">public class ItemDirector{
+    private ItemBuilder itemBuilder;
+    public ItemDirector(ItemBuilder itemBuilder){
+        this.itemBuilder=itemBuilder;
+    }
+    public Item normalConstruct(){
+        itemBuilder.buildNormal();
+        return itemBuilder.getResult();
+    }
+    public Item cardConstruct(){
+        itemBuilder.buildCard();
+        return itemBuilder.getResult();
+    }
+    public Item videoConstruct(){
+        itemBuilder.buildVideo();
+        return itemBuilder.getResult();
+    }
+}
+</code></pre>
+<p>第四步：应用</p>
+<pre><code class="language-java">public static void main(String[] args) {
+        /** 使用导演类 */
+        ItemBuilder builder = new ItemConcreteBuilder();
+        ItemDirector director  = new ItemDirector(builder);
+        director.normalConstruct();
+        director.cardConstruct();
+        director.videoConstruct();
+        /** 不使用导演类 */
+        ItemBuilder b2 = new ItemConcreteBuilder();
+        b2.buildNormal();
+        b2.getResult();
+        
+        b2.buildVideo();
+        b2.getResult();
+        
+        b2.buildCard();
+        b2.getResult();
+}
+</code></pre>
+
+</div>
+
+<!-- 隐藏掉上一页，下一页-->
+<!-- 
+    <div class="post-guide">
+        <div class="item left">
+            
+        </div>
+        <div class="item right">
+            
+              <a href="/2021/06/10/03%20java/java-6-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">
+                单例模式
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+              </a>
+            
+        </div>
+    </div>
+ -->
+
+
+	<div id="vcomments"></div>
+
+
+<script>
+	
+		// 评论
+		new Valine({
+			av: AV,
+			el: '#vcomments',
+			notify: false,
+			verify: false,
+			path: window.location.pathname,
+			appId: 'lsX646kI8Pj43gH38o38IHEl-gzGzoHsz',
+			appKey: 'SI9zpOfgyOmEDPGK8KI8niYh',
+			placeholder: '请输入评论',
+			avatar: 'retro',
+			recordIP: false
+		})
+	
+	
+    // 显示次数
+		function showTime(Counter) {
+			var query = new AV.Query("Counter");
+			if($(".leancloud_visitors").length > 0){
+				var url = $(".leancloud_visitors").attr('id').trim();
+				// where field
+				query.equalTo("words", url);
+				// count
+				query.count().then(function (number) {
+					// There are number instances of MyClass where words equals url.
+					$(document.getElementById(url)).text(number?  number : '--');
+				}, function (error) {
+					// error is an instance of AVError.
+				});
+			}
+		}
+		// 追加pv
+		function addCount(Counter) {
+			var url = $(".leancloud_visitors").length > 0 ? $(".leancloud_visitors").attr('id').trim() : 'xzh20121116.github.io';
+			var Counter = AV.Object.extend("Counter");
+			var query = new Counter;
+			query.save({
+				words: url
+			}).then(function (object) {
+			})
+		}
+		$(function () {
+			var Counter = AV.Object.extend("Counter");
+			addCount(Counter);
+			showTime(Counter);
+		});
+	
+</script>
 	</div>
 	<div id="footer">
 	<p>

@@ -860,6 +860,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2021/06/10/03%20java/java-6-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%BB%BA%E9%80%A0%E8%80%85%E6%A8%A1%E5%BC%8F/">
+										建造者模式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2021/06/09/03%20java/java-6-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">
 										策略模式
 									</a>
@@ -2101,6 +2110,28 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2020/04/23/08%20Mysql/04%20%E4%B8%BA%E4%BB%80%E4%B9%88%E5%88%A0%E4%BA%86%E6%95%B0%E6%8D%AE%EF%BC%8C%E8%A1%A8%E7%9A%84%E5%A4%A7%E5%B0%8F%E4%B8%8D%E5%8F%98%EF%BC%9F/">
+				<h2 class="index-title">
+					04 为什么删了数据，表的大小不变？
+				</h2>
+				<div class="index-brief">
+					背景
+InnoDB表包含两部分：表结构、表数据
+InnoDB的数据是按页存储的，删除数据的时候，该数据的位置会被标记为可复用。同理，删除一个数据页，该页就被标记为可复用了。
+当整个页被从B+树上摘掉之后，可以复用到任何位置。
+如果用delete删除整个表的数据，那么整个表会被标记为可复用，但大小不变
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-04-23</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2020/04/22/08%20Mysql/07%20mysql%20%E5%A6%82%E4%BD%95%E4%B8%BB%E5%A4%87%E4%B8%80%E8%87%B4+%E5%8F%8Cm%E5%BE%AA%E7%8E%AF%E5%A4%8D%E5%88%B6%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
