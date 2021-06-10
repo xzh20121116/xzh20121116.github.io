@@ -851,6 +851,15 @@
 									
 							<ul>
 								<li class="file">
+									<a href="/2021/06/10/03%20java/java-6-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">
+										单例模式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2021/06/09/03%20java/java-6-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/">
 										策略模式
 									</a>
@@ -2192,16 +2201,16 @@ redis 常用的方式有
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/10%20Redis/06_cluster%20%E4%B8%8E%20sentinel/">
+			<a href="/2020/07/21/10%20Redis/08_Redisson%E4%BD%BF%E7%94%A8/">
 				<h2 class="index-title">
-					06_cluster 与 sentinel
+					08_Redisson使用
 				</h2>
 				<div class="index-brief">
-					cluster 突破单机性能瓶颈
-redis 是单线程的，如果在多核服务器上部署的话，可以部署多个实例，搭建一个redis 集群。
-也就是 redis cluster，并且是主从同步，读写分离的。
-一个 cluster 支撑多个 master，每一个 master 挂载多个 slave。
-maste
+					添加 pom 依赖
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
+            &lt;artifactId&gt;re
 					...
 				</div>
 			</a>
@@ -2214,16 +2223,16 @@ maste
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/10%20Redis/08_Redisson%E4%BD%BF%E7%94%A8/">
+			<a href="/2020/07/21/10%20Redis/06_cluster%20%E4%B8%8E%20sentinel/">
 				<h2 class="index-title">
-					08_Redisson使用
+					06_cluster 与 sentinel
 				</h2>
 				<div class="index-brief">
-					添加 pom 依赖
-    &lt;dependencies&gt;
-        &lt;dependency&gt;
-            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
-            &lt;artifactId&gt;re
+					cluster 突破单机性能瓶颈
+redis 是单线程的，如果在多核服务器上部署的话，可以部署多个实例，搭建一个redis 集群。
+也就是 redis cluster，并且是主从同步，读写分离的。
+一个 cluster 支撑多个 master，每一个 master 挂载多个 slave。
+maste
 					...
 				</div>
 			</a>
