@@ -2108,6 +2108,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/06/17/28%20%E5%85%B6%E4%BB%96/003_%E9%9C%87%E6%83%8A%EF%BC%9A%E8%8F%9C%E9%B8%A1%E9%9D%A2%E8%AF%95%E5%AE%9E%E4%B9%A0%E7%94%9F/">
+										003_震惊：菜鸡面试实习生
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2119,6 +2128,26 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Java-4-Jvm/12%20Monitor/">
+				<h2 class="index-title">
+					12 Monitor
+				</h2>
+				<div class="index-brief">
+					任何对象都有一个 monitor 与之关联，当一个 monitor被持有后，它将处于锁定状态。
+Synchronized 在 jvm 里面的实现都是基于 进入和退出Monitor 来实现同步的
+一切接对象，所有的 java 对象也是天生的 monitor，每个 java 对象都有成为 Monitor
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/01%20%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%A5%BD%E5%A4%84/">
@@ -2228,6 +2257,26 @@ CyclicBarrier
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/06%20%E7%BB%A7%E6%89%BF%E6%A0%91%E8%BF%BD%E6%BA%AF/">
+				<h2 class="index-title">
+					06 继承树追溯
+				</h2>
+				<div class="index-brief">
+					子类的构造方法，无论写与不写，第一句都是super(…)；即调用父类的构造方法;
+流程是这样的：先向上追溯到Object，然后再依次向下执行类的初始化块和构造方法，知道当前子类为止
+
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/09%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
 				<h2 class="index-title">
 					09 数据类型
@@ -2258,14 +2307,15 @@ CyclicBarrier
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/06%20%E7%BB%A7%E6%89%BF%E6%A0%91%E8%BF%BD%E6%BA%AF/">
+			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/07%20%E6%8E%A5%E5%8F%A3/">
 				<h2 class="index-title">
-					06 继承树追溯
+					07 接口
 				</h2>
 				<div class="index-brief">
-					子类的构造方法，无论写与不写，第一句都是super(…)；即调用父类的构造方法;
-流程是这样的：先向上追溯到Object，然后再依次向下执行类的初始化块和构造方法，知道当前子类为止
-
+					为什么需要接口？接口和抽象类的区别？
+接口就是比“抽象类”还“抽象”的“抽象类”，可以更加规范的对子类进行约束，全面地专业的实现了：规范和具体实现的分离。
+抽象类还提供某些具体实现，接口不提供任何实现，接口中所有方法都是抽象方法。接口是完全面向规范的，规定了一批类具有的公共方法规范。
+从接口的实现者
 					...
 				</div>
 			</a>
@@ -2278,15 +2328,17 @@ CyclicBarrier
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/07%20%E6%8E%A5%E5%8F%A3/">
+			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/03%20%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
 				<h2 class="index-title">
-					07 接口
+					03 抽象方法和抽象类
 				</h2>
 				<div class="index-brief">
-					为什么需要接口？接口和抽象类的区别？
-接口就是比“抽象类”还“抽象”的“抽象类”，可以更加规范的对子类进行约束，全面地专业的实现了：规范和具体实现的分离。
-抽象类还提供某些具体实现，接口不提供任何实现，接口中所有方法都是抽象方法。接口是完全面向规范的，规定了一批类具有的公共方法规范。
-从接口的实现者
+					抽象方法
+使用abstract修饰的方法，没有方法体，只有声明。定义的是一种“规范”，就是告诉子类必须要给抽象方法提供具体实现。
+抽象类
+包含抽象方法的类就是抽象类。通过abstract方法定义规范，然后要求子类必须定义具体实现。
+通过抽象类，我们就可以做到严格限制子类的设计，使子类之间更加通用。
+
 					...
 				</div>
 			</a>
@@ -2334,54 +2386,6 @@ private
 default
 *
 *
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/03%20%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
-				<h2 class="index-title">
-					03 抽象方法和抽象类
-				</h2>
-				<div class="index-brief">
-					抽象方法
-使用abstract修饰的方法，没有方法体，只有声明。定义的是一种“规范”，就是告诉子类必须要给抽象方法提供具体实现。
-抽象类
-包含抽象方法的类就是抽象类。通过abstract方法定义规范，然后要求子类必须定义具体实现。
-通过抽象类，我们就可以做到严格限制子类的设计，使子类之间更加通用。
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/04%20%E5%A4%9A%E6%80%81/">
-				<h2 class="index-title">
-					04 多态
-				</h2>
-				<div class="index-brief">
-					多态（polymorphism）
-多态的三个必要条件：
-
-多态是方法的多态，不是属性的多态（多态与属性无关）
-多态的存在要有3个必要条件：继承，方法重写，父类引用指向子类对象。
-父类引用指向子类对象后，用该父类引用调用子类重写的方法，此时多态就出现了。
-
-示例：最为多见的的一种用法，即：父类引用做方
 					...
 				</div>
 			</a>

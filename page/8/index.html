@@ -2108,6 +2108,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/06/17/28%20%E5%85%B6%E4%BB%96/003_%E9%9C%87%E6%83%8A%EF%BC%9A%E8%8F%9C%E9%B8%A1%E9%9D%A2%E8%AF%95%E5%AE%9E%E4%B9%A0%E7%94%9F/">
+										003_震惊：菜鸡面试实习生
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2127,6 +2136,36 @@
 				</h2>
 				<div class="index-brief">
 					我们在这一系列前面的文章曾经分析过 为什么 MySQL 使用 B+ 树，有读者在文章下面留言，希望能出一个为什么 MongoDB 使用 B 树的对比文章，这是一个比较好的问题，MySQL 和 MongoDB 两种不同类型的数据库使用了相似却不同的数据结构，为什么 MySQL 选择使用 B+ 树而 M
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/22/18%20%E7%BA%BF%E4%B8%8A%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5/1%20CPU100%25%E9%97%AE%E9%A2%98%E5%A6%82%E4%BD%95%E5%BF%AB%E9%80%9F%E5%AE%9A%E4%BD%8D/">
+				<h2 class="index-title">
+					1 CPU100%问题如何快速定位
+				</h2>
+				<div class="index-brief">
+					简要步骤如下：
+（1）找到最耗CPU的进程；
+（2）找到最耗CPU的线程；
+（3）查看堆栈，定位线程在干嘛，定位对应代码；
+步骤一、找到最耗CPU的进程
+工具：top方法：
+
+执行top -c ，显示进程运行信息列表
+键入P (大写p)，进程按照CPU使用率排序
+
+图示：
+
+如上图，最耗CPU的进程
 					...
 				</div>
 			</a>
@@ -2331,28 +2370,6 @@ mq 削峰填谷
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E6%89%8B%E5%86%99Lru/">
-				<h2 class="index-title">
-					手写Lru
-				</h2>
-				<div class="index-brief">
-					public class Lru {
-   public static void main(String[] args) {
-      Lru l = new Lru(5);
-      l.put(&quot;1&quot;,&quot;1&quot;);
-      l.put(&quot;2
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
 				<h2 class="index-title">
 					插入排序
@@ -2378,15 +2395,16 @@ index i 的数与 index i-1的数 比较大小，如果 index i 更小 ，两者
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E6%89%8B%E5%86%99Lru/">
 				<h2 class="index-title">
-					快速排序
+					手写Lru
 				</h2>
 				<div class="index-brief">
-					基于冒泡排序演变而来的
-快的原因是使用了分治法。
-跟冒泡一样，都是属于交换排序，通过元素之间的比较和交换位置来达到排序的目的
-跟冒泡不同的是：冒泡在每一轮中只把1 个元素冒泡到数列的一端，而快排则是每一轮挑选一个基准元素，并让其他比他大的元素移动到数列一遍，比他小的元素移动到数列的另一边，从而把数列
+					public class Lru {
+   public static void main(String[] args) {
+      Lru l = new Lru(5);
+      l.put(&quot;1&quot;,&quot;1&quot;);
+      l.put(&quot;2
 					...
 				</div>
 			</a>
