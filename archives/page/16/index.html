@@ -497,6 +497,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/06/22/03%20java/Java-1-%E5%9F%BA%E7%A1%80/14_%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/">
+										14_反射机制
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2112,13 +2121,29 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/08%20%E5%86%85%E9%83%A8%E7%B1%BB/">
+			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/01%20%E5%8F%98%E9%87%8F%E7%9A%84%E5%88%86%E7%B1%BB/">
 				<h2 class="index-title">
-					08 内部类
+					01 变量的分类
 				</h2>
 				<div class="index-brief">
-					内部类只是一个编译时概念，一旦编译成功，就会成为完全不同的两个类。对于一个名为Outer的外部类和其内部定义的名为Inner的内部类。编译完成会会出现Outer.class和Outer$Inner.class两个类的字节码文件。所以内部类是相对独立的一种存在，其成员变量、方法名可以和外部类的相同。
+					局部变量（local variable）
+从属于方法
+成员变量（也叫实例变量，member variable）
+从属于对象
+静态变量（类变量 static variable）
+使用static 定义。从属于类，生命周期伴随类始终，从类加载到卸载。
 
+
+
+
+局部变量
+成员变量
+静态变量
+
+
+
+
+定义的
 					...
 				</div>
 			</a>
@@ -2142,6 +2167,25 @@
 传递是值的副本，副本改变不会影响原件
 引用类类型
 传递的是值的「副本」，但是引用类型指的是『对象的地址』，因此，副本和原参数都指向了同一个「地址
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/08%20%E5%86%85%E9%83%A8%E7%B1%BB/">
+				<h2 class="index-title">
+					08 内部类
+				</h2>
+				<div class="index-brief">
+					内部类只是一个编译时概念，一旦编译成功，就会成为完全不同的两个类。对于一个名为Outer的外部类和其内部定义的名为Inner的内部类。编译完成会会出现Outer.class和Outer$Inner.class两个类的字节码文件。所以内部类是相对独立的一种存在，其成员变量、方法名可以和外部类的相同。
+
 					...
 				</div>
 			</a>
@@ -2361,28 +2405,6 @@ web 服务器解析用户请求，经过处
 
 
 
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-06-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80/1%20%E5%AD%98%E5%82%A8%E5%8D%95%E4%BD%8D%E5%AE%B9%E9%87%8F/">
-				<h2 class="index-title">
-					1 存储单位容量
-				</h2>
-				<div class="index-brief">
-					1 Byte = 8 Bits.
-1 Kilobyte (KB) = 1024 Bytes.
-1 Megabyte (MB) = 1024 KB.
-1 Gigabyte (GB) = 1024 MB
 
 					...
 				</div>

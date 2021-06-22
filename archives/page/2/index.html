@@ -497,6 +497,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/06/22/03%20java/Java-1-%E5%9F%BA%E7%A1%80/14_%E5%8F%8D%E5%B0%84%E6%9C%BA%E5%88%B6/">
+										14_反射机制
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2112,6 +2121,30 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2021/04/28/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/14%20notify()%20%E4%BC%9A%E7%AB%8B%E5%88%BB%E9%87%8A%E6%94%BE%E9%94%81%E5%90%97/">
+				<h2 class="index-title">
+					14 notify() 会立刻释放锁吗
+				</h2>
+				<div class="index-brief">
+					​    notify()会立刻释放锁么?   不会
+问题的根本原来在于 “立刻”这个描述词!
+如果你和咸鱼君一样懵逼, 不妨往下看!
+技术大佬可以告辞了!!
+接下来, 我们深入的分析分析wait和notify
+前言
+前面介绍了Synchronized关键词的原理与优化分析，Synchronized
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2021-04-28</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2021/04/22/28%20%E5%85%B6%E4%BB%96/002_tomcat%20%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%B8%8E%20spring%E7%BA%BF%E7%A8%8B%E6%B1%A0/">
 				<h2 class="index-title">
 					002_tomcat 线程池与 spring线程池
@@ -2310,24 +2343,6 @@ Could not extract response: no suitable HttpMessageConverter found for response 
 			</a>
                 <div class="article-meta">
 				    <span>2020-11-19</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/11/18/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/13%20%E4%BB%8E%20Reentrantlock%20%E6%9D%A5%E7%9C%8B%20AQS%20%E7%9A%84%E5%8E%9F%E7%90%86/">
-				<h2 class="index-title">
-					13 从 Reentrantlock 来看 AQS 的原理
-				</h2>
-				<div class="index-brief">
-					Java中的大部分同步类（Lock、Semaphore、ReentrantLock等）都是基于AbstractQueuedSynchronizer（简称为AQS）实现的。AQS是一种提供了原子式管理同步状态、阻塞和唤醒线程功能以及队列模型的简单框架。本文会从应用层逐渐深入到原理层，并通过Reentr
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-11-18</span>
                     
                             
                     
