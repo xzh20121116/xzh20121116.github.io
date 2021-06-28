@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		HashMap底层、1.7与1.8区别 | 
+		1.7与1.8对比：HashMap | 
 	 
 	温故知新
 	</title>
@@ -2136,7 +2136,7 @@
 <div class="article-meta">
 	
 		<span>
-			阅读量:<span id="/2020/04/27/03%20java/Java-2-%E9%9B%86%E5%90%88/02%20HashMap/" class="leancloud_visitors" data-flag-title="HashMap底层、1.7与1.8区别"></span>
+			阅读量:<span id="/2020/04/27/03%20java/Java-2-%E9%9B%86%E5%90%88/02%20HashMap/" class="leancloud_visitors" data-flag-title="1.7与1.8对比：HashMap"></span>
 		</span>
 	
 	<span>今晚打老虎</span>
@@ -2149,7 +2149,7 @@
 </div>
 
 <div id="article-content">
-	<h2 id="数据结构"><a class="header-anchor" href="#数据结构"></a>数据结构</h2>
+	<h2 id="1-7-对比-1-8-版本：底层结构的区别"><a class="header-anchor" href="#1-7-对比-1-8-版本：底层结构的区别"></a>1.7 对比 1.8 版本：底层结构的区别</h2>
 <p>1.7版本</p>
 <ul>
 <li>
@@ -2168,10 +2168,10 @@
 <li><code>Node</code>节点是他的内部类，实现了<code>Map.ENTRY()</code></li>
 <li>使用<code>尾插法</code>：避免扩容时死循环</li>
 </ul>
-<h2 id="底层实现"><a class="header-anchor" href="#底层实现"></a>底层实现</h2>
+<h2 id="1-7-对比-1-8-版本：put-、-get-、-resize-底层实现"><a class="header-anchor" href="#1-7-对比-1-8-版本：put-、-get-、-resize-底层实现"></a>1.7 对比 1.8 版本：put()、 get()、 resize()底层实现</h2>
 <p>从三个方面说：<code>put()</code>、 <code>get()</code>、 <code>resize()</code>，对比1.7版本与1.8版本。</p>
-<h3 id="1-7-版本"><a class="header-anchor" href="#1-7-版本"></a>1.7 版本</h3>
-<h4 id="put"><a class="header-anchor" href="#put"></a>put()</h4>
+<p><strong>1.7</strong> 版本</p>
+<p><strong>put</strong>()</p>
 <p>是有返回值的，</p>
 <p>如果是key已存在，覆盖旧值，并返回旧值</p>
 <p>如果新key不存在，则返回null</p>
@@ -2200,7 +2200,7 @@
 <p>如果哈希表中存放的<strong>kv数量</strong>超过了当前<strong>阈值threshold</strong>，且当前的bucket下标有链表存在，那么就进行<strong>扩容resize</strong>处理</p>
 <p>扩容后，<strong>重新计算hash</strong>，得到新的bucket下标，然后使用<strong>头插法</strong>新增节点</p>
 </blockquote>
-<h4 id="resize"><a class="header-anchor" href="#resize"></a>resize()</h4>
+<p><strong>resize()</strong></p>
 <p><strong>扩容的流程如下</strong>：</p>
 <ol>
 <li>
@@ -2257,18 +2257,18 @@ newCapacity = 2 * oldCapacity;
 <p>使用头插法做接点迁移</p>
 </li>
 </ol>
-<h4 id="get-方法"><a class="header-anchor" href="#get-方法"></a>get()方法</h4>
+<p><strong>get()方法</strong></p>
 <p>相对于put（）方法，get（）方法的实现就简单多了，主要分为两步</p>
 <ol>
 <li>通过key的hash值计算出在table中的下标</li>
 <li>遍历对应table的链表，逐个对比，得到结果。</li>
 </ol>
-<h4 id="fail-fast策略"><a class="header-anchor" href="#fail-fast策略"></a>fail-fast策略</h4>
+<p><strong>fail-fast策略</strong></p>
 <p>hashmap中有一个变量<code>modcount</code>，用于实现Hashmap中的快速失败</p>
 <p>在对Map的做迭代(Iterator)操作时，会将**<code>modCount</code><strong>域变量赋值给</strong><code>expectedModCount</code>**局部变量。</p>
 <p>在迭代过程中，用于做内容修改次数的一致性校验。</p>
 <p>如果两个对比不一致，则会抛出异常**<code>ConcurrentModificationException</code>**</p>
-<h3 id="1-8-版本"><a class="header-anchor" href="#1-8-版本"></a>1.8 版本</h3>
+<p><strong>1.8 版本</strong></p>
 <p>与jdk1.7的核心差异</p>
 <ol>
 <li>
@@ -2281,12 +2281,12 @@ newCapacity = 2 * oldCapacity;
 <p>链表节点的定义不同（内核没有变，不影响理解）：Entry–&gt;Node类，都实现了Map.Entry()</p>
 </li>
 </ol>
-<h4 id="put-方法"><a class="header-anchor" href="#put-方法"></a>put()方法</h4>
+<p><strong>put()方法</strong></p>
 <p>与1.7类似，多了转换红黑树的步骤，头插法变尾插法，具体流程可以看下图</p>
 <img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427105750.png" alt="image-20200427105750336" style="zoom:50%;" />
 <p><strong>put()方法源码</strong></p>
 <img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427132313.png" alt="image-20200427132313825" style="zoom:50%;" />
-<h4 id="resize-v2"><a class="header-anchor" href="#resize-v2"></a>resize()</h4>
+<h4 id="resize"><a class="header-anchor" href="#resize"></a><strong>resize()</strong></h4>
 <p><strong>流程</strong></p>
 <ol>
 <li>
@@ -2339,9 +2339,9 @@ newCapacity = 2 * oldCapacity;
 <p>map家族的关系</p>
 <img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427105258.png" alt="image-20200427105258224" style="zoom:50%;" />
 <h2 id="HashMap、HashTable对比"><a class="header-anchor" href="#HashMap、HashTable对比"></a>HashMap、HashTable对比</h2>
-<h3 id="共同点"><a class="header-anchor" href="#共同点"></a>共同点</h3>
+<p><strong>共同点</strong></p>
 <p>底层都是使用哈希表+链表的实现方式</p>
-<h3 id="不同点"><a class="header-anchor" href="#不同点"></a>不同点</h3>
+<p><strong>不同点</strong></p>
 <ul>
 <li>
 <p>Hashtable线程安全，所有的操作都添加了Synchronized关键字修饰，效率低下</p>
@@ -2354,7 +2354,7 @@ newCapacity = 2 * oldCapacity;
 </li>
 </ul>
 <h2 id="HashMap线程不安全的原因"><a class="header-anchor" href="#HashMap线程不安全的原因"></a>HashMap线程不安全的原因</h2>
-<h3 id="数据覆盖问题"><a class="header-anchor" href="#数据覆盖问题"></a>数据覆盖问题</h3>
+<p><strong>数据覆盖问题</strong></p>
 <p>情景描述：</p>
 <blockquote>
 <p>两个线程执行<code>put（）</code>操作时，可能导致数据覆盖，1.7、1.8都存在此问题</p>
@@ -2380,11 +2380,11 @@ void createEntry(int hash, K key, V value, int bucketIndex) {
 当线程A和线程B都获取到了bucket的头结点后，若此时线程A的时间片用完，线程B将其新数据完成了头插法操作，此时轮到线程A操作，但这时线程A所据有的旧头结点已经过时了（并未包含线程B刚插入的新结点），线程A再做头插法操作，就会抹掉B刚刚新增的结点，导致数据丢失。</p>
 <p>其实不光是<code>put()</code>操作，删除操作、修改操作，同样都会有覆盖问题。</p>
 </blockquote>
-<h3 id="扩容时导致死循环"><a class="header-anchor" href="#扩容时导致死循环"></a>扩容时导致死循环</h3>
+<p><strong>扩容时导致死循环</strong></p>
 <p>1.7多线程会出现，因为扩容使用头插法，将原本的顺序做了翻转</p>
 <p>1.8就没有了，因为用了尾插法。</p>
 <h2 id="如何规避HashMap的线程不安全"><a class="header-anchor" href="#如何规避HashMap的线程不安全"></a>如何规避HashMap的线程不安全</h2>
-<h3 id="将Map转为包装类"><a class="header-anchor" href="#将Map转为包装类"></a>将Map转为包装类</h3>
+<p><strong>将Map转为包装类</strong></p>
 <p>**<code>Collections.SynchronizedMap()</code>**方法，实例代码：</p>
 <pre><code class="language-java">Map&lt;String, Integer&gt; testMap = new HashMap&lt;&gt;();
 ...
@@ -2392,7 +2392,7 @@ void createEntry(int hash, K key, V value, int bucketIndex) {
 Map&lt;String, Integer&gt; map = Collections.synchronizedMap(testMap);
 </code></pre>
 <p>内部实现很简单，等同于Hashtable，只是对当前传入的map对象，新增对象锁（synchronized）</p>
-<h3 id="使用ConcurrentHashMap"><a class="header-anchor" href="#使用ConcurrentHashMap"></a>使用ConcurrentHashMap</h3>
+<p><strong>使用ConcurrentHashMap</strong></p>
 <h2 id="链表转红黑树的阈值是8，而不是7或者20？"><a class="header-anchor" href="#链表转红黑树的阈值是8，而不是7或者20？"></a>链表转红黑树的阈值是8，而不是7或者20？</h2>
 <p>由于treenode（红黑树节点）的大小约是常规节点(HashMap的node节点？)的两倍，</p>
 <p>因此我们仅在容器包含足够的节点以保证使用时，才才使用他们</p>
