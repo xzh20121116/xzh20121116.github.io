@@ -2169,7 +2169,6 @@
 <li>使用<code>尾插法</code>：避免扩容时死循环</li>
 </ul>
 <h2 id="1-7-对比-1-8-版本：put-、-get-、-resize-底层实现"><a class="header-anchor" href="#1-7-对比-1-8-版本：put-、-get-、-resize-底层实现"></a>1.7 对比 1.8 版本：put()、 get()、 resize()底层实现</h2>
-<p>从三个方面说：<code>put()</code>、 <code>get()</code>、 <code>resize()</code>，对比1.7版本与1.8版本。</p>
 <p><strong>1.7</strong> 版本</p>
 <p><strong>put</strong>()</p>
 <p>是有返回值的，</p>
@@ -2201,7 +2200,7 @@
 <p>扩容后，<strong>重新计算hash</strong>，得到新的bucket下标，然后使用<strong>头插法</strong>新增节点</p>
 </blockquote>
 <p><strong>resize()</strong></p>
-<p><strong>扩容的流程如下</strong>：</p>
+<p>扩容的流程如下：</p>
 <ol>
 <li>
 <p>插入kv时，发现容量不足</p>
@@ -2239,13 +2238,13 @@
 </ol>
 </li>
 </ol>
-<p><strong>扩容的源码如下</strong></p>
+<p>扩容的源码如下</p>
 <img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427115545.png" alt="image-20200427115545105" style="zoom:50%;" />
-<p><strong>核心点1</strong>：扩容后大小是扩容前的<strong>2倍</strong></p>
+<p>核心点1：扩容后大小是扩容前的2倍</p>
 <pre><code class="language-java">oldCapacity = table.length;
 newCapacity = 2 * oldCapacity;
 </code></pre>
-<p><strong>核心点2</strong>：<strong>数据搬迁</strong>：从旧table（即数组）迁到扩容后的新table</p>
+<p>核心点2：数据搬迁：从旧table（即数组）迁到扩容后的新table</p>
 <ol>
 <li>
 <p>先决策是否需要对每个Entry链表节点重新hash</p>
@@ -2284,7 +2283,7 @@ newCapacity = 2 * oldCapacity;
 <p><strong>put()方法</strong></p>
 <p>与1.7类似，多了转换红黑树的步骤，头插法变尾插法，具体流程可以看下图</p>
 <img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427105750.png" alt="image-20200427105750336" style="zoom:50%;" />
-<p><strong>put()方法源码</strong></p>
+<p>put()方法源码</p>
 <img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427132313.png" alt="image-20200427132313825" style="zoom:50%;" />
 <h4 id="resize"><a class="header-anchor" href="#resize"></a><strong>resize()</strong></h4>
 <p><strong>流程</strong></p>
