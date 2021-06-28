@@ -2177,7 +2177,7 @@
 <img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427113334.png" alt="image-20200427113334153" style="zoom:50%;" />
 <p>如图所示，整个流程可以大致分为四步处理</p>
 <ol>
-<li>key为null的处理</li>
+<li>key为null的处理<code>putForNllKey（value）</code></li>
 <li>计算目标bucket的下标：即数组中的位置</li>
 <li>找到指定bucket，遍历Entry节点链表，若找到相同key相同的Entry节点，则做替换</li>
 <li>没有找到目标Entry节点时，则新增一个Entry节点</li>
