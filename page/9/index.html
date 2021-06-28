@@ -2130,6 +2130,32 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
+				<h2 class="index-title">
+					归并排序
+				</h2>
+				<div class="index-brief">
+					merge sort
+java 对象排序算法-timsort
+思想
+该算法是采用分治法的一个典型的应用，将有序的子集合并，得到完全有序的序列
+工作原理
+
+申请空间，大小为两个已经排序序列之和，该空间用来存放合并后的序列
+设定两个指针，最初的位置分别为两个有序序列的起始位置
+比较两个指针所指向的元素，
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
 				<h2 class="index-title">
 					快速排序
@@ -2151,20 +2177,19 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%A0%86%E6%8E%92%E5%BA%8F/">
 				<h2 class="index-title">
-					归并排序
+					堆排序
 				</h2>
 				<div class="index-brief">
-					merge sort
-java 对象排序算法-timsort
-思想
-该算法是采用分治法的一个典型的应用，将有序的子集合并，得到完全有序的序列
-工作原理
+					什么是堆排序
+二叉堆的构建、删除、自我调整等基本操作正是实现堆排序的基础
+二叉堆的特性
 
-申请空间，大小为两个已经排序序列之和，该空间用来存放合并后的序列
-设定两个指针，最初的位置分别为两个有序序列的起始位置
-比较两个指针所指向的元素，
+最大堆的堆顶是整个堆中最大的元素
+最小堆的堆顶是整个堆中最小的元素
+
+以最大堆为力，如果删除一个最大堆的堆顶（并不是完全删除，而是跟末尾的节点交换位置），经过自我调整，第 2 大的元素就会被交换上来，成为最大堆
 					...
 				</div>
 			</a>
@@ -2230,19 +2255,44 @@ $ n
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%A0%86%E6%8E%92%E5%BA%8F/">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">
 				<h2 class="index-title">
-					堆排序
+					冒泡排序
 				</h2>
 				<div class="index-brief">
-					什么是堆排序
-二叉堆的构建、删除、自我调整等基本操作正是实现堆排序的基础
-二叉堆的特性
+					实例代码
+public class 冒泡排序 {
+	public static void main(String[] args) {
+		int[] arr = {5, 2, 4, 3, 1, 7, 9, 8, 6};
+		sort(arr);
+		print(arr);
 
-最大堆的堆顶是整个堆中最大的元素
-最小堆的堆顶是整个堆中最小的元素
+	}
 
-以最大堆为力，如果删除一个最大堆的堆顶（并不是完全删除，而是跟末尾的节点交换位置），经过自我调整，第 2 大的元素就会被交换上来，成为最大堆
+	static 
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9C%AA%E5%AE%8C%E6%88%90--%E5%A6%82%E4%BD%95%E6%B1%82%E8%A7%A3%E9%87%91%E7%9F%BF%E9%97%AE%E9%A2%98%EF%BC%88%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%89/">
+				<h2 class="index-title">
+					未完成--如何求解金矿问题（背包问题）
+				</h2>
+				<div class="index-brief">
+					典型的动态规划
+什么是动态规划
+就是把复杂的问题简化成较小的子问题，再从简单的子问题自底向上一步一步递推，最终得到复杂问题的最优解
+题目
+有 10 个人（矿工），五个大小不一的金矿，每个金矿需要的人数不同，
+如果参与挖矿的工人的总数是 10。每座金矿要么全挖，要么不挖，不能部分人挖部分金矿。要求用程
 					...
 				</div>
 			</a>
@@ -2292,62 +2342,39 @@ B 负责出队操作
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9C%AA%E5%AE%8C%E6%88%90--%E5%A6%82%E4%BD%95%E6%B1%82%E8%A7%A3%E9%87%91%E7%9F%BF%E9%97%AE%E9%A2%98%EF%BC%88%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%89/">
-				<h2 class="index-title">
-					未完成--如何求解金矿问题（背包问题）
-				</h2>
-				<div class="index-brief">
-					典型的动态规划
-什么是动态规划
-就是把复杂的问题简化成较小的子问题，再从简单的子问题自底向上一步一步递推，最终得到复杂问题的最优解
-题目
-有 10 个人（矿工），五个大小不一的金矿，每个金矿需要的人数不同，
-如果参与挖矿的工人的总数是 10。每座金矿要么全挖，要么不挖，不能部分人挖部分金矿。要求用程
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">
-				<h2 class="index-title">
-					冒泡排序
-				</h2>
-				<div class="index-brief">
-					实例代码
-public class 冒泡排序 {
-	public static void main(String[] args) {
-		int[] arr = {5, 2, 4, 3, 1, 7, 9, 8, 6};
-		sort(arr);
-		print(arr);
-
-	}
-
-	static 
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/">
 				<h2 class="index-title">
 					基数排序
 				</h2>
 				<div class="index-brief">
 					
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%97%A0%E5%BA%8F%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E5%90%8E%E6%9C%80%E5%A4%A7%E7%9B%B8%E9%82%BB%E5%B7%AE/">
+				<h2 class="index-title">
+					无序数组排序后最大相邻差
+				</h2>
+				<div class="index-brief">
+					
+暴力破解
+使用任意一种 nlogn 的排序算法（例如快排）给原数组排序，然后遍历排好的数组，并对每两个相邻元素求差，最终得到最大值
+有问题？
+很有问题！
+显然这个题目不是让来排序的
+正确思路
+技术排序思想
+
+求出原数组最大值、最小值的区间长度 k（k=max=min+1），以及偏移量 d -min
 					...
 				</div>
 			</a>
@@ -2375,38 +2402,6 @@ public class 冒泡排序 {
 思路
 先思考一个问题：给出几个数字，怎样排列最大，怎样排列最小？
 
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/1%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%9C%80%E5%B0%8F%E6%A0%88%E7%9A%84%E5%AE%9E%E7%8E%B0/">
-				<h2 class="index-title">
-					最小栈的实现
-				</h2>
-				<div class="index-brief">
-					题目
-实现一个栈，带有出栈 pop、入栈push、取最小元素 getMin，三个方法，要保证三个方法的时间复杂度都是 o1
-
-步骤
-
-
-设原来的栈叫 A，此时创建一个额外的备胎 B，用于辅助A
-
-
-
-当第一个元素入栈时，让新元素也既进入栈 B，此时唯一的元素即为最小值
-
-
-
-只有，每当有新元素进入 
 					...
 				</div>
 			</a>
