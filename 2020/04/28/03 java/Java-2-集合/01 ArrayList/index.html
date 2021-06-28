@@ -2147,7 +2147,7 @@
                 
                     <span>
                         <i class="fa fa-folder" aria-hidden="true"></i>
-                        <a href="/categories/程序员/">程序员</a>
+                        <a href="/categories/java常用容器/">java常用容器</a>
 						
                     </span>
                 
@@ -2160,15 +2160,15 @@
 	<hr>
 <a id="more"></a>
 <h1>ArrayList</h1>
-<h2 id="底层存储"><a class="header-anchor" href="#底层存储"></a>底层存储</h2>
+<p><strong>底层存储</strong></p>
 <p>数组列表</p>
 <p>如果存储的是基本类型，只能存包装类</p>
-<h2 id="特点："><a class="header-anchor" href="#特点："></a>特点：</h2>
+<p><strong>特点：</strong></p>
 <p>查询快，增删慢，线程不安全</p>
-<h2 id="为什么不安全还用他呢？"><a class="header-anchor" href="#为什么不安全还用他呢？"></a>为什么不安全还用他呢？</h2>
+<p><strong>为什么不安全还用他呢？</strong></p>
 <p>因为，正常的场景，一般都是用来查询的，不会太频繁的增删（增删可以使用 LinkedList），线程安全使用 Vector</p>
 <p>不存在查询快，增删快，安全的结构</p>
-<h2 id="数组是定长的，如果不断的往-Arraylist-里添加数据，会有问题吗"><a class="header-anchor" href="#数组是定长的，如果不断的往-Arraylist-里添加数据，会有问题吗"></a>数组是定长的，如果不断的往 Arraylist 里添加数据，会有问题吗</h2>
+<p><strong>数组是定长的，如果不断的往 Arraylist 里添加数据，会有问题吗</strong></p>
 <p>无参构造，初始化默认空数组，第一次 <code>add</code> 的时候才会制定 10 的初始容量</p>
 <p>结论：不会有问题</p>
 <p>实现比较简单，通过数组扩容的方式去实现的。</p>
@@ -2178,10 +2178,10 @@
 <li>把原来的数据原封不动的<code>复制</code>到新数组中</li>
 <li>把指向原数组的地址，指向新数组</li>
 </ol>
-<h2 id="1-7-与-1-8-在初始化时的区别"><a class="header-anchor" href="#1-7-与-1-8-在初始化时的区别"></a>1.7 与 1.8 在初始化时的区别</h2>
+<p><strong>1.7 与 1.8 在初始化时的区别</strong></p>
 <p>1.7以前，调动 <code>this(10)</code>才是真正的容量为 10</p>
 <p>1.7 即本身以后默认是走空数组，只有第一次 add 的时候容量才变为 10</p>
-<h2 id="为什么增删效率低"><a class="header-anchor" href="#为什么增删效率低"></a>为什么增删效率低</h2>
+<p><strong>为什么增删效率低</strong></p>
 <p>因为底层结构是数组，增删都设计到对指定索引后面数据的复制修改</p>
 <p>流程</p>
 <blockquote>
@@ -2192,7 +2192,7 @@
 <p>插入新的元素</p>
 </blockquote>
 <p>10 个长度的 Arraylist，如果要插入的数据在 index5，那么需要将 index5 后面的所有数据都往后挪一下，空出这个 5 来给新插入的数据用</p>
-<h2 id="是线程安全的吗？"><a class="header-anchor" href="#是线程安全的吗？"></a>是线程安全的吗？</h2>
+<p><strong>是线程安全的吗？</strong></p>
 <p>不是</p>
 <p>线程安全可以使用Vector</p>
 <p>就是线程安全版本的 ArrayList，所有的方法的都加上了 Synchronized</p>
