@@ -1482,6 +1482,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2021/06/29/12%20Linux/6_/">
+										6_
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/07/21/12%20Linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
 										【转】Linux查看内存使用情况方法
 									</a>
@@ -2128,6 +2137,28 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2021/05/18/08%20Mysql/10_%E4%B8%BB%E4%BB%8E%E3%80%81%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/">
+				<h2 class="index-title">
+					10_主从、读写分离
+				</h2>
+				<div class="index-brief">
+					主从复制的原理
+
+当master 节点进行insert、delete、update，会按顺序写入到 binlog 中
+从库连接主库，Master 有多少个salve 就会创建多少个binlog dump 线程
+当主节点的 binlog 发生变化大时候，binlog dump 线程会通知所有slave
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2021-05-18</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2021/05/17/03%20java/Java-4-Jvm/14_%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96JVM%E7%9A%84dump%E6%96%87%E4%BB%B6/">

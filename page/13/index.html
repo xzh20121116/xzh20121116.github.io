@@ -1482,6 +1482,15 @@
 			
 							<ul>
 								<li class="file">
+									<a href="/2021/06/29/12%20Linux/6_/">
+										6_
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
 									<a href="/2020/07/21/12%20Linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
 										【转】Linux查看内存使用情况方法
 									</a>
@@ -2130,6 +2139,36 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2020/07/21/15%20Nginx/1%20%E9%85%8D%E7%BD%AE%20nginx/">
+				<h2 class="index-title">
+					1 配置 nginx
+				</h2>
+				<div class="index-brief">
+					
+
+Nginx默认目录
+输入命令：
+whereis nginx
+
+即可看到类似于如下的内容：
+nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx
+
+
+
+以下是Nginx的默认路径：
+(1) Nginx配置路径：/et
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/08%20Mysql/01%20%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95/">
 				<h2 class="index-title">
 					01 聚簇索引和非聚簇索引
@@ -2247,6 +2286,36 @@ ${}
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/07/21/12%20Linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+				<h2 class="index-title">
+					【转】Linux查看内存使用情况方法
+				</h2>
+				<div class="index-brief">
+					top命令：
+输入命令：
+top
+输出内容展示：
+
+内容分析：
+PID：进程的ID
+USER：进程所有者
+​    PR：进程的优先级别，越小越优先被执行
+​    NI：进程Nice值，代表这个进程的优先值
+​    VIRT：进程占用的虚拟内存
+​    RES：进程占用的物理内存
+​    S
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/12%20Linux/4%20showdoc%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
 				<h2 class="index-title">
 					4 showdoc 安装教程
@@ -2267,36 +2336,6 @@ github
  
  #下载脚本并赋予权限
  wget https://www.showdoc.cc/script/
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/12%20Linux/%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
-				<h2 class="index-title">
-					【转】Linux查看内存使用情况方法
-				</h2>
-				<div class="index-brief">
-					top命令：
-输入命令：
-top
-输出内容展示：
-
-内容分析：
-PID：进程的ID
-USER：进程所有者
-​    PR：进程的优先级别，越小越优先被执行
-​    NI：进程Nice值，代表这个进程的优先值
-​    VIRT：进程占用的虚拟内存
-​    RES：进程占用的物理内存
-​    S
 					...
 				</div>
 			</a>
@@ -2350,31 +2389,6 @@ yapi 地址
 添加 yum 源
 Nginx 不在默认的 yum 源中，可以使用 epel 或者官网的 yum 源，本例使用官网的 yum 源。
 sudo rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-c
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/12%20Linux/1%20linux%20%E5%AE%89%E8%A3%85%20jdk/">
-				<h2 class="index-title">
-					1 linux 安装 jdk
-				</h2>
-				<div class="index-brief">
-					yum安装
-yum源
-这里需要注意yum源的配置
-1、查看yum库中都有哪些jdk版本
-yum search java|grep jdk
-
-2、选择指定的版本安装，注意最后的 * 以及yum源安装的是openjdk，注意openjdk的区别。
-yum install java-1.8.0-openj
 					...
 				</div>
 			</a>
