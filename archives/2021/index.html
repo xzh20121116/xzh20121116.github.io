@@ -355,8 +355,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%9F%BA%E7%A1%80/003-%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5url%20%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/">
-										003-在浏览器中输入url 发生了什么
+									<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%9F%BA%E7%A1%80/003-%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%AD%E8%BE%93%E5%85%A5url%20%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%EF%BC%88%E7%AE%80%E7%95%A5%E7%89%88%EF%BC%89/">
+										003-在浏览器中输入url 发生了什么（简略版）
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -364,8 +364,17 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%9F%BA%E7%A1%80/004-Http%20%E7%8A%B6%E6%80%81%E7%A0%81/">
-										004-Http 状态码
+									<a href="/2020/06/22/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%9F%BA%E7%A1%80/005-Http%20%E7%8A%B6%E6%80%81%E7%A0%81/">
+										005-Http 状态码
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+							<ul>
+								<li class="file">
+									<a href="/2021/06/30/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%9F%BA%E7%A1%80/006-HTTP%20S/">
+										006-HTTP S
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -2157,6 +2166,31 @@
 		<div id="index">
 	
 		<div class="index-li">
+			<a href="/2021/06/30/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%9F%BA%E7%A1%80/006-HTTP%20S/">
+				<h2 class="index-title">
+					006-HTTP S
+				</h2>
+				<div class="index-brief">
+					实现原理
+HTTPS 起始就是将 HTTP 的数据包再通过 SSL/TLS 加密后传输
+SSL/TLS 加密是什么
+SSl（Secure Sockets Layer）安全套阶层和 TLS（Transport Layer Security）传输层安全协议其实是一套东西。
+工作流程
+
+
+用户在浏览器发起
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2021-06-30</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2021/06/30/02%20%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%9F%BA%E7%A1%80/001-%E4%BB%80%E4%B9%88%E6%98%AF%E5%8D%95%E7%82%B9%E7%99%BB%E5%BD%95%20SSO/">
 				<h2 class="index-title">
 					001-什么是单点登录 SSO
@@ -2358,29 +2392,6 @@ enum ShareType {
 
 依据简单原则和演化原则以及“三个火枪手”的人员分配原则，首先可以做API 网关、配置中心、服务发现、服务路由这4部分，经过一个月的开发+半个月的联调的先让基础框架搭建起来，业务能够运行起来。
 业务上线后，为了保证用户体验和问题跟踪，在保留一两个留守同学的情况下，开始服务容错、服务监
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2021-06-07</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2021/06/07/10%20Redis/10_%E9%AB%98%E6%80%A7%E8%83%BD%E7%BC%93%E5%AD%98%E6%9E%B6%E6%9E%84/">
-				<h2 class="index-title">
-					10_高性能缓存架构
-				</h2>
-				<div class="index-brief">
-					缓存穿透
-缓存穿透是指缓存没有发挥作用，业务系统虽然去缓存查询数据，但缓存中没有数据，业务系统需要再次去存储系统查询数据。通常情况下有两种情况：
-
-
-存储数据不存在第一种情况是被访问的数据确实不存在。
-一般情况下，如果存储系统中没有某个数据，则不会在缓存中存储相应的数据，这样就导致用户查询的时候，在
 					...
 				</div>
 			</a>
