@@ -2126,6 +2126,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/06/30/28%20%E5%85%B6%E4%BB%96/004-%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F/">
+										004-进程间的通讯方式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2137,6 +2146,30 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Java-4-Jvm/11%20jvm%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%92%E5%88%86/">
+				<h2 class="index-title">
+					11 jvm内存区域划分
+				</h2>
+				<div class="index-brief">
+					典型回答
+程序计数器
+每个线程都有自己的程序计数器，并且任何一个线程都只有一个方法在执行，也就是所谓的当前方法。
+程序计数器会存储当前线程正在执行的 java 方法的 jvm 指令地址；
+或者：如果执行本地方法，则是未指定值（undefined）
+虚拟机栈
+每个线程在创建时都会创建一个虚拟机栈，内部
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Java-4-Jvm/10%20jvm%20%E8%B0%83%E4%BC%98/">
@@ -2293,26 +2326,6 @@ CyclicBarrier
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/06%20%E7%BB%A7%E6%89%BF%E6%A0%91%E8%BF%BD%E6%BA%AF/">
-				<h2 class="index-title">
-					06 继承树追溯
-				</h2>
-				<div class="index-brief">
-					子类的构造方法，无论写与不写，第一句都是super(…)；即调用父类的构造方法;
-流程是这样的：先向上追溯到Object，然后再依次向下执行类的初始化块和构造方法，直到当前子类为止
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/09%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
 				<h2 class="index-title">
 					09 数据类型
@@ -2343,15 +2356,14 @@ CyclicBarrier
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/07%20%E6%8E%A5%E5%8F%A3/">
+			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/06%20%E7%BB%A7%E6%89%BF%E6%A0%91%E8%BF%BD%E6%BA%AF/">
 				<h2 class="index-title">
-					07 接口
+					06 继承树追溯
 				</h2>
 				<div class="index-brief">
-					为什么需要接口？接口和抽象类的区别？
-接口就是比“抽象类”还“抽象”的“抽象类”，可以更加规范的对子类进行约束，全面地专业的实现了：规范和具体实现的分离。
-抽象类还提供某些具体实现，接口不提供任何实现，接口中所有方法都是抽象方法。接口是完全面向规范的，规定了一批类具有的公共方法规范。
-从接口的实现者
+					子类的构造方法，无论写与不写，第一句都是super(…)；即调用父类的构造方法;
+流程是这样的：先向上追溯到Object，然后再依次向下执行类的初始化块和构造方法，直到当前子类为止
+
 					...
 				</div>
 			</a>
@@ -2364,41 +2376,15 @@ CyclicBarrier
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/05%20%E5%B0%81%E8%A3%85/">
+			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/07%20%E6%8E%A5%E5%8F%A3/">
 				<h2 class="index-title">
-					05 封装
+					07 接口
 				</h2>
 				<div class="index-brief">
-					封装的作用
-
-提高代码安全性
-提高代码的复用性
-“高内聚”：封装细节，便于修改内部代码，提高可维护性
-“低耦合”：简化外部调用，便于调用者使用，便于扩展和写作
-
-封装的实现–使用访问控制符
-
-
-
-修饰符
-同一个类
-同一个包中
-子类
-所有类
-
-
-
-
-private
-*
-
-
-
-
-
-default
-*
-*
+					为什么需要接口？接口和抽象类的区别？
+接口就是比“抽象类”还“抽象”的“抽象类”，可以更加规范的对子类进行约束，全面地专业的实现了：规范和具体实现的分离。
+抽象类还提供某些具体实现，接口不提供任何实现，接口中所有方法都是抽象方法。接口是完全面向规范的，规定了一批类具有的公共方法规范。
+从接口的实现者
 					...
 				</div>
 			</a>

@@ -2126,6 +2126,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/06/30/28%20%E5%85%B6%E4%BB%96/004-%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F/">
+										004-进程间的通讯方式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2137,6 +2146,29 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2021/06/30/28%20%E5%85%B6%E4%BB%96/004-%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F/">
+				<h2 class="index-title">
+					004-进程间的通讯方式
+				</h2>
+				<div class="index-brief">
+					通讯方式有：管道、消息队列、共享内存、信号量、信号、socket
+1、管道
+我们来看一条 Linux 的语句
+netstat -tulnp | grep 8080
+
+学过 Linux 命名的估计都懂这条语句的含义，其中”|“是管道的意思，它的作用就是把前一条命令的输出作为后一条命令的输入。在这里就是
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2021-06-30</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2021/06/29/12%20Linux/6-CPU%20%E8%B4%9F%E8%BD%BD%E4%B8%8E%E5%88%A9%E7%94%A8%E7%8E%87/">
@@ -2343,26 +2375,6 @@ enum ShareType {
 			</a>
                 <div class="article-meta">
 				    <span>2021-06-02</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2021/05/18/08%20Mysql/11_%E6%95%B0%E6%8D%AE%E5%88%86%E7%89%87/">
-				<h2 class="index-title">
-					11_数据分片
-				</h2>
-				<div class="index-brief">
-					背景
-传统的将数据集中存储至单一数据节点的解决方案，在性能、可用性和运维成本这三方面已经难于满足互联网的海量数据场景。
-从性能方面来说，由于关系型数据库大多采用 B+ 树类型的索引，在数据量超过阈值的情况下，索引深度的增加也将使得磁盘访问的 IO 次数增加，进而导致查询性能的下降；同时，高并发访问请
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2021-05-18</span>
                     
                             
                     

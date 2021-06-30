@@ -2126,6 +2126,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/06/30/28%20%E5%85%B6%E4%BB%96/004-%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F/">
+										004-进程间的通讯方式
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2137,6 +2146,53 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/05%20%E5%B0%81%E8%A3%85/">
+				<h2 class="index-title">
+					05 封装
+				</h2>
+				<div class="index-brief">
+					封装的作用
+
+提高代码安全性
+提高代码的复用性
+“高内聚”：封装细节，便于修改内部代码，提高可维护性
+“低耦合”：简化外部调用，便于调用者使用，便于扩展和写作
+
+封装的实现–使用访问控制符
+
+
+
+修饰符
+同一个类
+同一个包中
+子类
+所有类
+
+
+
+
+private
+*
+
+
+
+
+
+default
+*
+*
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/03%20%E6%8A%BD%E8%B1%A1%E6%96%B9%E6%B3%95%E5%92%8C%E6%8A%BD%E8%B1%A1%E7%B1%BB/">
@@ -2222,25 +2278,6 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/08%20%E5%86%85%E9%83%A8%E7%B1%BB/">
-				<h2 class="index-title">
-					08 内部类
-				</h2>
-				<div class="index-brief">
-					内部类只是一个编译时概念，一旦编译成功，就会成为完全不同的两个类。对于一个名为Outer的外部类和其内部定义的名为Inner的内部类。编译完成会会出现Outer.class和Outer$Inner.class两个类的字节码文件。所以内部类是相对独立的一种存在，其成员变量、方法名可以和外部类的相同。
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/02%20%E5%8F%82%E6%95%B0%E7%9A%84%E4%BC%A0%E5%80%BC%E6%9C%BA%E5%88%B6/">
 				<h2 class="index-title">
 					02 参数的传值机制
@@ -2264,19 +2301,12 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/12%20final/">
+			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/08%20%E5%86%85%E9%83%A8%E7%B1%BB/">
 				<h2 class="index-title">
-					12 final
+					08 内部类
 				</h2>
 				<div class="index-brief">
-					final 关键字
-作用：
-修饰变量：
-被他修饰的变量不可改变，一旦赋值，就不能被重新赋值。
-修饰方法：
-该方法不可被子类重写，但是可以被重载！
-修饰类:
-被修饰类不能被继承。比如Math、String等
+					内部类只是一个编译时概念，一旦编译成功，就会成为完全不同的两个类。对于一个名为Outer的外部类和其内部定义的名为Inner的内部类。编译完成会会出现Outer.class和Outer$Inner.class两个类的字节码文件。所以内部类是相对独立的一种存在，其成员变量、方法名可以和外部类的相同。
 
 					...
 				</div>
@@ -2304,6 +2334,32 @@
 
 this的本质是“创建好的对象的地址”！由于在构造方法调用前，对象已经创建。因此，在构造方法中也可以使用this代表“当前对象”  ，
 不能在静态方
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Java-1-%E5%9F%BA%E7%A1%80/12%20final/">
+				<h2 class="index-title">
+					12 final
+				</h2>
+				<div class="index-brief">
+					final 关键字
+作用：
+修饰变量：
+被他修饰的变量不可改变，一旦赋值，就不能被重新赋值。
+修饰方法：
+该方法不可被子类重写，但是可以被重载！
+修饰类:
+被修饰类不能被继承。比如Math、String等
+
 					...
 				</div>
 			</a>
@@ -2348,30 +2404,6 @@ host 由 localhost 改为 0.0.0.0
         &lt;!-- es --&gt;
         &lt;dependency&gt;
             &lt;groupId&gt;org.e
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/11%20ELk/ElasticSearch/">
-				<h2 class="index-title">
-					ElasticSearch
-				</h2>
-				<div class="index-brief">
-					dadasd大数据量下的使用 es
-Lucene 是一套信息检索工具包，是 jar 包，不包括搜索引擎系统
-包含了：索引结构、读写索引的工具、排序、搜索规则、过滤、、、工具类
-
-Lucene 和 ElasticSearch 关系：
-
-ElasticSearch是基于 Lucene 做了一些封装和增强
 					...
 				</div>
 			</a>
