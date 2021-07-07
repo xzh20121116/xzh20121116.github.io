@@ -2132,6 +2132,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										27 消息队列
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2021/07/07/27%20%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/001-%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E4%B8%8D%E4%B8%A2%E5%A4%B1%EF%BC%9F%E5%A4%84%E7%90%86%E9%87%8D%E5%A4%8D%E6%B6%88%E6%81%AF%EF%BC%9F%E6%B6%88%E6%81%AF%E6%9C%89%E5%BA%8F%E6%80%A7%EF%BC%9F%E6%B6%88%E6%81%AF%E5%A0%86%E7%A7%AF%E5%A4%84%E7%90%86%EF%BC%9F/">
+										001-如何保证消息不丢失？处理重复消息？消息有序性？消息堆积处理？
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										28 其他
 									</a>
 									
@@ -2173,6 +2193,35 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2020/04/28/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/10%20ThreadLocal/">
+				<h2 class="index-title">
+					10 ThreadLocal
+				</h2>
+				<div class="index-brief">
+					不能称之为本地线程，而应该是CopyValueIntoEveryThread
+是什么？
+ThreadLocal 是一个本地线程副本变量工具类。主要用于将私有线程和该线程存放的副本对象做一个映射，各个线程之间的变量互不干扰，在高并发场景下，可以实现无状态的调用，适用于各个线程不共享变量值的操作。
+工作
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-04-28</span>
+                    
+                            
+                                
+                                    <span>
+                                        <i class="fa fa-folder" aria-hidden="true"></i>
+                                        <a href="/categories/程序员/">程序员</a>
+										
+                                    </span>
+                                
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2020/04/28/03%20java/Java-2-%E9%9B%86%E5%90%88/03%20ConcurrentHashMap/">
@@ -2406,25 +2455,6 @@ InnoDB的数据是按页存储的，删除数据的时候，该数据的位置�
 
 在备库上通过 change master命令，设置主库的ip、端口、用户名、密码，以及从哪个位置开始请求binlog
 在备库上执行 start slave  命令，这
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-04-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/04/22/08%20Mysql/05%20count(*)%E3%80%81count(%E4%B8%BB%E9%94%AE%20id)%E3%80%81count(%E5%AD%97%E6%AE%B5)%E5%92%8Ccount(1)%E7%AD%89%E4%B8%8D%E5%90%8C%E7%94%A8%E6%B3%95%E7%9A%84%E6%80%A7%E8%83%BD/">
-				<h2 class="index-title">
-					05 count(*)、count(主键 id)、count(字段)和count(1)等不同用法的性能
-				</h2>
-				<div class="index-brief">
-					count() 是一个聚合函数，对于返回的结果集，一行行地判断，如果 count 函数的参数不是 NULL，累计值就加 1，否则不加。最后返回累计值。
-所以，count(*)、count(主键 id) 和 count(1) 都表示返回满足条件的结果集的总行数；而 count(字段），则表示返回满足条
 					...
 				</div>
 			</a>

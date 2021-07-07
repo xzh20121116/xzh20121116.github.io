@@ -2132,6 +2132,26 @@
 								<li class="directory">
 									<a href="#" class="directory">
 										<i class="fa fa-plus-square-o"></i>
+										27 消息队列
+									</a>
+									
+							<ul>
+								<li class="file">
+									<a href="/2021/07/07/27%20%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/001-%E5%A6%82%E4%BD%95%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E4%B8%8D%E4%B8%A2%E5%A4%B1%EF%BC%9F%E5%A4%84%E7%90%86%E9%87%8D%E5%A4%8D%E6%B6%88%E6%81%AF%EF%BC%9F%E6%B6%88%E6%81%AF%E6%9C%89%E5%BA%8F%E6%80%A7%EF%BC%9F%E6%B6%88%E6%81%AF%E5%A0%86%E7%A7%AF%E5%A4%84%E7%90%86%EF%BC%9F/">
+										001-如何保证消息不丢失？处理重复消息？消息有序性？消息堆积处理？
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
+								</li>
+								
+							</ul>
+			
+							<ul>
+								<li class="directory">
+									<a href="#" class="directory">
+										<i class="fa fa-plus-square-o"></i>
 										28 其他
 									</a>
 									
@@ -2173,6 +2193,33 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2020/07/22/16%20%E7%A7%92%E6%9D%80-%E9%AB%98%E5%B9%B6%E5%8F%91/02.%20%E7%A7%92%E6%9D%80/">
+				<h2 class="index-title">
+					02. 秒杀
+				</h2>
+				<div class="index-brief">
+					
+秒杀业务场景说明
+
+上游发起下单
+下游完成秒杀业务逻辑（库存检查、库存冻结、余额检查、余额冻结、订单生成、余额扣减、库存扣减、生成流水、余额解冻、库存解冻）。
+上游下单业务简单，每秒 1w 个请求，下游业务复杂，每秒只能处理 2k 个请求，上游不限流，下游被压垮，引起雪崩。
+
+mq 削峰填谷
+
+消
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/3%E4%BD%8D%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93/">
@@ -2265,6 +2312,28 @@
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E6%89%8B%E5%86%99Lru/">
+				<h2 class="index-title">
+					手写Lru
+				</h2>
+				<div class="index-brief">
+					public class Lru {
+   public static void main(String[] args) {
+      Lru l = new Lru(5);
+      l.put(&quot;1&quot;,&quot;1&quot;);
+      l.put(&quot;2
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F/">
 				<h2 class="index-title">
 					插入排序
@@ -2290,16 +2359,20 @@ index i 的数与 index i-1的数 比较大小，如果 index i 更小 ，两者
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E6%89%8B%E5%86%99Lru/">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
 				<h2 class="index-title">
-					手写Lru
+					归并排序
 				</h2>
 				<div class="index-brief">
-					public class Lru {
-   public static void main(String[] args) {
-      Lru l = new Lru(5);
-      l.put(&quot;1&quot;,&quot;1&quot;);
-      l.put(&quot;2
+					merge sort
+java 对象排序算法-timsort
+思想
+该算法是采用分治法的一个典型的应用，将有序的子集合并，得到完全有序的序列
+工作原理
+
+申请空间，大小为两个已经排序序列之和，该空间用来存放合并后的序列
+设定两个指针，最初的位置分别为两个有序序列的起始位置
+比较两个指针所指向的元素，
 					...
 				</div>
 			</a>
@@ -2333,20 +2406,19 @@ index i 的数与 index i-1的数 比较大小，如果 index i 更小 ，两者
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%A0%86%E6%8E%92%E5%BA%8F/">
 				<h2 class="index-title">
-					归并排序
+					堆排序
 				</h2>
 				<div class="index-brief">
-					merge sort
-java 对象排序算法-timsort
-思想
-该算法是采用分治法的一个典型的应用，将有序的子集合并，得到完全有序的序列
-工作原理
+					什么是堆排序
+二叉堆的构建、删除、自我调整等基本操作正是实现堆排序的基础
+二叉堆的特性
 
-申请空间，大小为两个已经排序序列之和，该空间用来存放合并后的序列
-设定两个指针，最初的位置分别为两个有序序列的起始位置
-比较两个指针所指向的元素，
+最大堆的堆顶是整个堆中最大的元素
+最小堆的堆顶是整个堆中最小的元素
+
+以最大堆为力，如果删除一个最大堆的堆顶（并不是完全删除，而是跟末尾的节点交换位置），经过自我调整，第 2 大的元素就会被交换上来，成为最大堆
 					...
 				</div>
 			</a>
@@ -2400,58 +2472,6 @@ $n $
 insertion
 $ n^2$
 $ n
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%A0%86%E6%8E%92%E5%BA%8F/">
-				<h2 class="index-title">
-					堆排序
-				</h2>
-				<div class="index-brief">
-					什么是堆排序
-二叉堆的构建、删除、自我调整等基本操作正是实现堆排序的基础
-二叉堆的特性
-
-最大堆的堆顶是整个堆中最大的元素
-最小堆的堆顶是整个堆中最小的元素
-
-以最大堆为力，如果删除一个最大堆的堆顶（并不是完全删除，而是跟末尾的节点交换位置），经过自我调整，第 2 大的元素就会被交换上来，成为最大堆
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/2%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">
-				<h2 class="index-title">
-					冒泡排序
-				</h2>
-				<div class="index-brief">
-					实例代码
-public class 冒泡排序 {
-	public static void main(String[] args) {
-		int[] arr = {5, 2, 4, 3, 1, 7, 9, 8, 6};
-		sort(arr);
-		print(arr);
-
-	}
-
-	static 
 					...
 				</div>
 			</a>
