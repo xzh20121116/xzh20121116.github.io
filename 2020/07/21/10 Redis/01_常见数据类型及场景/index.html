@@ -2247,15 +2247,22 @@
 <li>计数器</li>
 <li>共享用户 session</li>
 </ul>
+<p>String 的数据结构是最简单的 k-v类型，value 其实不仅是 string，也可以是数字。Redis 中的 string可以表示很多语义：<strong>字符串、整数、浮点数</strong>，这三种类型，redis 会根据具体场景自动完成转换，并且根据需要选择底层承载的方式。</p>
+<p>存储用户信息的时候，将用户信息使用 Json 序列化成字符串，然后将序列化后的字符串存入 Redis。</p>
+<p>由于redis 的字符串是动态字符串，可以修改，内部结构类似于 Java 的 ArrayList，采用预分配冗余空间的方式来减少内存的频繁分配。内部我当前字符串分配的长度，一般高于字符串的实际长度。</p>
+<p>假设我们要存储的结构是</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;xiaowang&quot;,
+  &quot;age&quot;: &quot;35&quot;
+}
+</code></pre>
+<p>如果此时将用户信息的 name的 value改为:”fugui”，再存储到redis 中，redis 是不需要重新分配空间的。而且我们在<strong>读取和存储数据的时候只需要做 Json 的序列化和反序列化</strong>，比较方便</p>
 <h3 id="Hash"><a class="header-anchor" href="#Hash"></a>Hash</h3>
 <ul>
-<li>
-<p>类似 map 的结构，k 还是 key，v 就变成的一个对象，每次读写缓存，可以操作对象中的某个字段。</p>
-</li>
-<li>
-<p>如果对象里面嵌套的其他的对象，就不太适合用 hash 了。</p>
-</li>
+<li>类似 map 的结构，k 还是 key，v 就变成的一个对象，每次读写缓存，可以操作对象中的某个字段。</li>
+<li>如果对象里面嵌套的其他的对象，就不太适合用 hash 了。</li>
 </ul>
+<p>底层使用的是 Hashtable实现，一个 Hashtable里面可以有多个哈希表节点，而每个哈希表节点保存了字典中的一个键值对。实际上redis 底层数据库也是使用Hash table来存储键值对的</p>
 <h3 id="list"><a class="header-anchor" href="#list"></a>list</h3>
 <p>这是一个有序列表</p>
 <ul>
@@ -2268,7 +2275,7 @@
 <p>比如：lpush从左边插入数据，brpop抢列表尾部的数据</p>
 </li>
 </ul>
-<h2 id="set"><a class="header-anchor" href="#set"></a>set</h2>
+<h3 id="set"><a class="header-anchor" href="#set"></a>set</h3>
 <p>无序集合，自动去重的那种</p>
 <ul>
 <li>分布式的 set，如果需要对一个数据进行全局的去重，单机的 hashset 无法满足集群的去重要求。</li>
@@ -2284,6 +2291,48 @@
 <p>带权重的队列，重要的任务score为 2，不重要的 score为 1，然后工作线程按照倒序来获取工作任务，优先处理高优先级的任务。</p>
 </li>
 </ul>
+<h3 id="String-和-hash-占用内存比较"><a class="header-anchor" href="#String-和-hash-占用内存比较"></a>String 和 hash 占用内存比较</h3>
+<p>既然两种数据结构都可以存储结构体信息。到底哪种更加合适呢？</p>
+<p>首先我们用代码先插入 10000 条数据，然后用可视化工具来看看内存的占用情况。</p>
+<pre><code class="language-python">const Redis = require(&quot;ioRedis&quot;);
+const Redis0 = new Redis({port: 6370});
+const Redis1 = new Redis({port: 6371});
+
+
+const user = {
+  name: 'name12345',
+  age: 16,
+  avatar: 'https://dss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=256767015,24101428&amp;fm=26&amp;gp=0.jpg',
+  phone: '13111111111',
+  email: '1111111@11.email',
+  lastLogon: '2021-04-28 10:00:00',
+}
+
+
+async function main() {
+  for (let i = 0; i &lt; 10000; i++) {
+    await Redis0.set(`String:user:${i}`, Json.Stringify(user));
+    await Redis1.hmset(`Hash:user:${i}`, user);
+  }
+}
+
+main().then(process.exit);
+</code></pre>
+<p>先看 redis0</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210713144239.png" alt="img"></p>
+<p>在看 redis1</p>
+<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210713144315.png" alt="img"></p>
+<p>可以看到有差距，但是不明显</p>
+<p><strong>适合用 String 存储的情况</strong></p>
+<ul>
+<li>每次需要访问大量的字段</li>
+<li>存储的结构具有多层嵌套</li>
+</ul>
+<p><strong>适合Hash 存储的情况</strong></p>
+<ul>
+<li>在大多数情况中只需要访问少量字段</li>
+<li>自己始终知道哪些字段可用，防止 mget 的时候获取到不想要的数据</li>
+</ul>
 
 </div>
 
@@ -2292,16 +2341,16 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2020/07/21/10%20Redis/03_%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+              <a href="/2020/07/21/10%20Redis/02_%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  03_分布式锁
+                  02_常见问题
               </a>
             
         </div>
         <div class="item right">
             
-              <a href="/2020/07/21/10%20Redis/05_%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E7%94%A8Memcached/">
-                05_为什么不用Memcached
+              <a href="/2020/07/21/10%20Redis/03_%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
+                03_分布式锁
                 <i class="fa fa-angle-right" aria-hidden="true"></i>
               </a>
             
