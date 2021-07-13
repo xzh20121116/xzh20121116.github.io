@@ -2209,6 +2209,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/07/13/28%20%E5%85%B6%E4%BB%96/005-%E5%85%B3%E6%B3%A8%E6%B5%81%E8%AE%BE%E8%AE%A1/">
+										005-关注流设计
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2222,13 +2231,16 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-4-Jvm/05%20%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
+			<a href="/2020/07/21/03%20java/Java-4-Jvm/06%20%E9%9D%A2%E8%AF%95%E8%A2%AB%E9%97%AE%E7%83%82%E7%9A%84JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%EF%BC%8C%E6%88%91%E4%BB%8A%E5%A4%A9%E5%86%8D%E6%9D%A5%E7%BB%99%E5%A4%A7%E5%AE%B6%E5%A4%8D%E4%B9%A0%E4%B8%80%E9%81%8D/">
 				<h2 class="index-title">
-					05 类加载过程
+					06 面试被问烂的JVM内存区域，我今天再来给大家复习一遍
 				</h2>
 				<div class="index-brief">
-					在冯。诺依曼的计算机模型中，任何程序都需要加载到内存才能与cpu进行交流。
-字节码.class文件同样需要加载到内存中，才可以实例化。“兵马未动，粮草先行”。ClassLoader 就是准备粮草的先行军，他的使命就是「提前加载.class类文件到内存中」，在加载类时，使用的是『Parents Del
+					我们将类加载入方法区的时候,就已经开始使用运行时数据区了: 每个部分各司其职经典的运行时数据区,一共包含五个部分:
+
+生命周期
+程序启动产生进程,一个虚拟机对应一个进程, 其中(绿色):方法区和堆跟进程的生命周期是一致的。随着虚拟机启动而创建，随着虚拟机退出而销毁 。
+另外(蓝色):程序计数器，本地
 					...
 				</div>
 			</a>
@@ -2241,21 +2253,13 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-4-Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
+			<a href="/2020/07/21/03%20java/Java-4-Jvm/05%20%E7%B1%BB%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B/">
 				<h2 class="index-title">
-					07 排查堆内存溢出
+					05 类加载过程
 				</h2>
 				<div class="index-brief">
-					模拟堆内存溢出
-
-
-新建一个 Oom.java 文件，内容如下
-import java.util.ArrayList;
-import java.util.List;
-
-public class Oom {
-    public static void main(String[] args) {
-  
+					在冯。诺依曼的计算机模型中，任何程序都需要加载到内存才能与cpu进行交流。
+字节码.class文件同样需要加载到内存中，才可以实例化。“兵马未动，粮草先行”。ClassLoader 就是准备粮草的先行军，他的使命就是「提前加载.class类文件到内存中」，在加载类时，使用的是『Parents Del
 					...
 				</div>
 			</a>
@@ -2289,14 +2293,21 @@ public class Oom {
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-4-Jvm/03%20%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
+			<a href="/2020/07/21/03%20java/Java-4-Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
 				<h2 class="index-title">
-					03 对象实例化过程
+					07 排查堆内存溢出
 				</h2>
 				<div class="index-brief">
-					java是面向对象的静态类型语言，声明并创建兑现改动代码很常见，根据某个类声明一个引用变量指向被创建的对象，并使用此引用变量操作该对象。在实例化对象的过程中，jvm中发生什么化学反应呢？
-字节码角度
-从下面最简单的 Object obj = new Object();代码进行分析，利用 javap 
+					模拟堆内存溢出
+
+
+新建一个 Oom.java 文件，内容如下
+import java.util.ArrayList;
+import java.util.List;
+
+public class Oom {
+    public static void main(String[] args) {
+  
 					...
 				</div>
 			</a>
@@ -2339,6 +2350,26 @@ klass point
 
 指针指向对象的类元数据，vm 通过这个指针来确定该对象是哪个类的实例
 
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Java-4-Jvm/03%20%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
+				<h2 class="index-title">
+					03 对象实例化过程
+				</h2>
+				<div class="index-brief">
+					java是面向对象的静态类型语言，声明并创建兑现改动代码很常见，根据某个类声明一个引用变量指向被创建的对象，并使用此引用变量操作该对象。在实例化对象的过程中，jvm中发生什么化学反应呢？
+字节码角度
+从下面最简单的 Object obj = new Object();代码进行分析，利用 javap 
 					...
 				</div>
 			</a>
@@ -2442,26 +2473,6 @@ cms 用于对老年代进行回收，目标是尽量减少应用的暂停时间�
 
 
 JVM的命令行参数参考：https://docs.oracle.c
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-4-Jvm/12%20Monitor/">
-				<h2 class="index-title">
-					12 Monitor
-				</h2>
-				<div class="index-brief">
-					任何对象都有一个 monitor 与之关联，当一个 monitor被持有后，它将处于锁定状态。
-Synchronized 在 jvm 里面的实现都是基于 进入和退出Monitor 来实现同步的
-一切接对象，所有的 java 对象也是天生的 monitor，每个 java 对象都有成为 Monitor
 					...
 				</div>
 			</a>

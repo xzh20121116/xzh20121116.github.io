@@ -2209,6 +2209,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/07/13/28%20%E5%85%B6%E4%BB%96/005-%E5%85%B3%E6%B3%A8%E6%B5%81%E8%AE%BE%E8%AE%A1/">
+										005-关注流设计
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2220,6 +2229,33 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2020/07/21/08%20Mysql/01%20%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95/">
+				<h2 class="index-title">
+					01 聚簇索引和非聚簇索引
+				</h2>
+				<div class="index-brief">
+					区别
+聚簇索引和非聚簇索引的区别是：叶节点是否存放一整行数据。
+
+InnoDB 使用的是聚簇索引
+myIsam使用的是非聚簇索引（不论是主键索引还是二级索引）
+
+下图形象说明了聚簇索引表(InnoDB)和非聚簇索引(MyISAM)的区别：
+
+
+聚簇索引（左图）：表数据和主键是一起存储的，主键索引的叶
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2020/07/21/08%20Mysql/03%20%E7%B4%A2%E5%BC%95/">
@@ -2312,36 +2348,6 @@ ${}
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/12-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8ELinux/000-%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
-				<h2 class="index-title">
-					000-【转】Linux查看内存使用情况方法
-				</h2>
-				<div class="index-brief">
-					top命令：
-输入命令：
-top
-输出内容展示：
-
-内容分析：
-PID：进程的ID
-USER：进程所有者
-​    PR：进程的优先级别，越小越优先被执行
-​    NI：进程Nice值，代表这个进程的优先值
-​    VIRT：进程占用的虚拟内存
-​    RES：进程占用的物理内存
-​    S
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/21/12-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8ELinux/007-showdoc%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
 				<h2 class="index-title">
 					007-showdoc 安装教程
@@ -2362,6 +2368,36 @@ github
  
  #下载脚本并赋予权限
  wget https://www.showdoc.cc/script/
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/12-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8ELinux/000-%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+				<h2 class="index-title">
+					000-【转】Linux查看内存使用情况方法
+				</h2>
+				<div class="index-brief">
+					top命令：
+输入命令：
+top
+输出内容展示：
+
+内容分析：
+PID：进程的ID
+USER：进程所有者
+​    PR：进程的优先级别，越小越优先被执行
+​    NI：进程Nice值，代表这个进程的优先值
+​    VIRT：进程占用的虚拟内存
+​    RES：进程占用的物理内存
+​    S
 					...
 				</div>
 			</a>
@@ -2440,28 +2476,6 @@ yum search java|grep jdk
 
 2、选择指定的版本安装，注意最后的 * 以及yum源安装的是openjdk，注意openjdk的区别。
 yum install java-1.8.0-openj
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-4-Jvm/06%20%E9%9D%A2%E8%AF%95%E8%A2%AB%E9%97%AE%E7%83%82%E7%9A%84JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%EF%BC%8C%E6%88%91%E4%BB%8A%E5%A4%A9%E5%86%8D%E6%9D%A5%E7%BB%99%E5%A4%A7%E5%AE%B6%E5%A4%8D%E4%B9%A0%E4%B8%80%E9%81%8D/">
-				<h2 class="index-title">
-					06 面试被问烂的JVM内存区域，我今天再来给大家复习一遍
-				</h2>
-				<div class="index-brief">
-					我们将类加载入方法区的时候,就已经开始使用运行时数据区了: 每个部分各司其职经典的运行时数据区,一共包含五个部分:
-
-生命周期
-程序启动产生进程,一个虚拟机对应一个进程, 其中(绿色):方法区和堆跟进程的生命周期是一致的。随着虚拟机启动而创建，随着虚拟机退出而销毁 。
-另外(蓝色):程序计数器，本地
 					...
 				</div>
 			</a>
