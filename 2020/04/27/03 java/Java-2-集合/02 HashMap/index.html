@@ -2364,9 +2364,9 @@ newCapacity = 2 * oldCapacity;
 </ol>
 <p><strong>1.7  fail-fast策略</strong></p>
 <p>hashmap中有一个变量<code>modcount</code>，用于实现Hashmap中的快速失败</p>
-<p>在对Map的做迭代(Iterator)操作时，会将**<code>modCount</code><strong>域变量赋值给</strong><code>expectedModCount</code>**局部变量。</p>
+<p>在对Map的做迭代(Iterator)操作时，会将<code>modCount</code>域变量赋值给<code>expectedModCount</code>局部变量。</p>
 <p>在迭代过程中，用于做内容修改次数的一致性校验。</p>
-<p>如果两个对比不一致，则会抛出异常**<code>ConcurrentModificationException</code>**</p>
+<p>如果两个对比不一致，则会抛出异常<code>ConcurrentModificationException</code></p>
 <p><strong>1.8 版本</strong></p>
 <p>与jdk1.7的核心差异</p>
 <ol>
@@ -2436,7 +2436,7 @@ newCapacity = 2 * oldCapacity;
 </ol>
 <p>map家族的关系</p>
 <img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200427105258.png" alt="image-20200427105258224" style="zoom:50%;" />
-<h2 id="HashMap、HashTable对比"><a class="header-anchor" href="#HashMap、HashTable对比"></a>HashMap、HashTable对比</h2>
+<h2 id="HashMap、Hashtable对比"><a class="header-anchor" href="#HashMap、Hashtable对比"></a>HashMap、Hashtable对比</h2>
 <p><strong>共同点</strong></p>
 <p>底层都是使用哈希表+链表的实现方式</p>
 <p><strong>不同点</strong></p>
