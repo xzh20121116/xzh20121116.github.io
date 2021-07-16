@@ -1433,6 +1433,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/07/16/10%20Redis/11-Redis%20%E8%B6%85%E6%97%B6%E5%A4%B1%E6%95%88%20Key%20%E7%9B%91%E5%90%AC%E4%B8%8D%E5%8F%8A%E6%97%B6%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+										11-Redis 超时失效 Key 监听不及时原因分析及解决方案
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2218,6 +2227,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/07/16/28%20%E5%85%B6%E4%BB%96/006-%E5%BB%B6%E6%97%B6%E6%B6%88%E6%81%AF/">
+										006-延时消息
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2229,6 +2247,54 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2020/07/21/12-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8ELinux/001-linux%20%E5%AE%89%E8%A3%85%20jdk/">
+				<h2 class="index-title">
+					001-linux 安装 jdk
+				</h2>
+				<div class="index-brief">
+					yum安装
+yum源
+这里需要注意yum源的配置
+1、查看yum库中都有哪些jdk版本
+yum search java|grep jdk
+
+2、选择指定的版本安装，注意最后的 * 以及yum源安装的是openjdk，注意openjdk的区别。
+yum install java-1.8.0-openj
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/12-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8ELinux/002-linux%20%E5%AE%89%E8%A3%85%20nginx/">
+				<h2 class="index-title">
+					002-linux 安装 nginx
+				</h2>
+				<div class="index-brief">
+					yum 安装
+
+
+添加 yum 源
+Nginx 不在默认的 yum 源中，可以使用 epel 或者官网的 yum 源，本例使用官网的 yum 源。
+sudo rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-c
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Java-4-Jvm/06%20%E9%9D%A2%E8%AF%95%E8%A2%AB%E9%97%AE%E7%83%82%E7%9A%84JVM%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%EF%BC%8C%E6%88%91%E4%BB%8A%E5%A4%A9%E5%86%8D%E6%9D%A5%E7%BB%99%E5%A4%A7%E5%AE%B6%E5%A4%8D%E4%B9%A0%E4%B8%80%E9%81%8D/">
@@ -2272,33 +2338,6 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-4-Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
-				<h2 class="index-title">
-					07 排查堆内存溢出
-				</h2>
-				<div class="index-brief">
-					模拟堆内存溢出
-
-
-新建一个 Oom.java 文件，内容如下
-import java.util.ArrayList;
-import java.util.List;
-
-public class Oom {
-    public static void main(String[] args) {
-  
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Java-4-Jvm/01%20%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E5%8F%8A%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/">
 				<h2 class="index-title">
 					01 垃圾回收器及算法原理
@@ -2320,14 +2359,21 @@ public class Oom {
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-4-Jvm/03%20%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
+			<a href="/2020/07/21/03%20java/Java-4-Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
 				<h2 class="index-title">
-					03 对象实例化过程
+					07 排查堆内存溢出
 				</h2>
 				<div class="index-brief">
-					java是面向对象的静态类型语言，声明并创建兑现改动代码很常见，根据某个类声明一个引用变量指向被创建的对象，并使用此引用变量操作该对象。在实例化对象的过程中，jvm中发生什么化学反应呢？
-字节码角度
-从下面最简单的 Object obj = new Object();代码进行分析，利用 javap 
+					模拟堆内存溢出
+
+
+新建一个 Oom.java 文件，内容如下
+import java.util.ArrayList;
+import java.util.List;
+
+public class Oom {
+    public static void main(String[] args) {
+  
 					...
 				</div>
 			</a>
@@ -2382,6 +2428,26 @@ klass point
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Java-4-Jvm/03%20%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
+				<h2 class="index-title">
+					03 对象实例化过程
+				</h2>
+				<div class="index-brief">
+					java是面向对象的静态类型语言，声明并创建兑现改动代码很常见，根据某个类声明一个引用变量指向被创建的对象，并使用此引用变量操作该对象。在实例化对象的过程中，jvm中发生什么化学反应呢？
+字节码角度
+从下面最简单的 Object obj = new Object();代码进行分析，利用 javap 
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Java-4-Jvm/08%20%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8E%8B%E7%BC%A9%E6%8C%87%E9%92%88%E8%B6%85%E8%BF%87%2032g%20%E5%A4%B1%E6%95%88/">
 				<h2 class="index-title">
 					08 为什么压缩指针超过 32g 失效
@@ -2422,57 +2488,6 @@ cms 用于对老年代进行回收，目标是尽量减少应用的暂停时间�
 
 标记 gc root 可达的老年代对象
 遍历新生代对
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-4-Jvm/11%20jvm%E5%86%85%E5%AD%98%E5%8C%BA%E5%9F%9F%E5%88%92%E5%88%86/">
-				<h2 class="index-title">
-					11 jvm内存区域划分
-				</h2>
-				<div class="index-brief">
-					典型回答
-程序计数器
-每个线程都有自己的程序计数器，并且任何一个线程都只有一个方法在执行，也就是所谓的当前方法。
-程序计数器会存储当前线程正在执行的 java 方法的 jvm 指令地址；
-或者：如果执行本地方法，则是未指定值（undefined）
-虚拟机栈
-每个线程在创建时都会创建一个虚拟机栈，内部
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-4-Jvm/10%20jvm%20%E8%B0%83%E4%BC%98/">
-				<h2 class="index-title">
-					10 jvm 调优
-				</h2>
-				<div class="index-brief">
-					典型回答
-
-可以使用图形化工具，jconsole，visualvm 等
-使用命令行工具进行运行时查询，例如 jstat，jmap 等都可以查看堆、方法区的使用情况
-或者生成 dump 文件，分析等
-
-了解 jvm 常用命令行参数
-
-
-JVM的命令行参数参考：https://docs.oracle.c
 					...
 				</div>
 			</a>

@@ -1433,6 +1433,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/07/16/10%20Redis/11-Redis%20%E8%B6%85%E6%97%B6%E5%A4%B1%E6%95%88%20Key%20%E7%9B%91%E5%90%AC%E4%B8%8D%E5%8F%8A%E6%97%B6%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+										11-Redis 超时失效 Key 监听不及时原因分析及解决方案
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2218,6 +2227,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/07/16/28%20%E5%85%B6%E4%BB%96/006-%E5%BB%B6%E6%97%B6%E6%B6%88%E6%81%AF/">
+										006-延时消息
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2229,6 +2247,54 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2020/07/21/13%20%E5%88%86%E5%B8%83%E5%BC%8F%E7%9B%B8%E5%85%B3/1%20%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/">
+				<h2 class="index-title">
+					1 分布式事务
+				</h2>
+				<div class="index-brief">
+					参考文章https://juejin.im/post/5aa3c7736fb9a028bb189bca
+参考文章https://juejin.im/post/5b5a0bf9f265da0f6523913b#heading-3
+事务四大特性-ACID
+
+
+原子性-atomic
+一个事务操作不可分割，
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/01_%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%AE%A2%E6%88%B7%E7%AB%AFZooInspector/">
+				<h2 class="index-title">
+					客户端ZooInspector
+				</h2>
+				<div class="index-brief">
+					下载
+https://issues.apache.org/jira/secure/attachment/12436620/ZooInspector.zip；
+使用
+下载后，解压，如下图
+
+启动
+java -jar ~/tools/ZooInspector/build/zookeeper-dev-Zo
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2020/07/21/06%20%E5%BE%AE%E6%9C%8D%E5%8A%A1/01_%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%8E%E5%8F%91%E7%8E%B0/Zookeeper/%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
@@ -2415,52 +2481,6 @@ required：最常用，支持当前事务，如果没有，就新建
 supports：支持当前事务，如果没有，就没有
 mandatory：支持当前事务，如果没有，抛异常
 requi
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/04%20Spring/%E3%80%90%E8%BD%AC%E3%80%91springJdbc%20%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/">
-				<h2 class="index-title">
-					【转】springJdbc 源码学习
-				</h2>
-				<div class="index-brief">
-					Spring JDBC 源码学习
-15 Jan 2018
-@ffutop
-概览
-在学习 Spring-JDBC 之前，我们有必要从 Java 原生提供的 JDBC 开始，对 JDBC 操作的一整套完整的流程有一个清晰的概念。
-/**
- * copied from https://www.tutori
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/04%20Spring/6%20IOC_%E6%8E%A7%E5%88%B6%E7%BF%BB%E8%BD%AC/">
-				<h2 class="index-title">
-					6 IOC_控制翻转
-				</h2>
-				<div class="index-brief">
-					ioc 既是一种思想，又是一种容器
-Ioc 思想
-Inversion of controlle 控制反转
-比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
-而 ioc 是，
 					...
 				</div>
 			</a>

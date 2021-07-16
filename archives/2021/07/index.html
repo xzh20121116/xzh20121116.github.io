@@ -1433,6 +1433,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/07/16/10%20Redis/11-Redis%20%E8%B6%85%E6%97%B6%E5%A4%B1%E6%95%88%20Key%20%E7%9B%91%E5%90%AC%E4%B8%8D%E5%8F%8A%E6%97%B6%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+										11-Redis 超时失效 Key 监听不及时原因分析及解决方案
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2218,6 +2227,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/07/16/28%20%E5%85%B6%E4%BB%96/006-%E5%BB%B6%E6%97%B6%E6%B6%88%E6%81%AF/">
+										006-延时消息
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2229,6 +2247,60 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2021/07/16/28%20%E5%85%B6%E4%BB%96/006-%E5%BB%B6%E6%97%B6%E6%B6%88%E6%81%AF/">
+				<h2 class="index-title">
+					006-延时消息
+				</h2>
+				<div class="index-brief">
+					延迟消息
+生产者把消息发送到消息队列中以后，并不期望被立即消费，而是等待指定时间后才可以被消费者消费，这类消息通常被称为延迟消息。
+在RocketMQ中，支持延迟消息，但是不支持任意时间精度的延迟消息，只支持特定级别的延迟消息。如果要支持任意时间精度，不能避免在Broker层面做消息排序，再涉及到持
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2021-07-16</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2021/07/16/10%20Redis/11-Redis%20%E8%B6%85%E6%97%B6%E5%A4%B1%E6%95%88%20Key%20%E7%9B%91%E5%90%AC%E4%B8%8D%E5%8F%8A%E6%97%B6%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+				<h2 class="index-title">
+					11-Redis 超时失效 Key 监听不及时原因分析及解决方案
+				</h2>
+				<div class="index-brief">
+					Redis 共有 3 种过期策略：定时删除、惰性删除、定期删除；
+三者对比如下：
+
+
+
+
+说明
+优点
+缺点
+
+
+
+
+定时删除
+在设置 Key 过期时间的同时创建定时器，让定时器在 Key 过期时执行删除操作
+保证过期数据能被及时删除
+耗 CPU，尤其当存在大量非永久 Key 时，对 CPU 影响更严
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2021-07-16</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2021/07/13/28%20%E5%85%B6%E4%BB%96/005-%E5%85%B3%E6%B3%A8%E6%B5%81%E8%AE%BE%E8%AE%A1/">

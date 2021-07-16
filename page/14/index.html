@@ -1433,6 +1433,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/07/16/10%20Redis/11-Redis%20%E8%B6%85%E6%97%B6%E5%A4%B1%E6%95%88%20Key%20%E7%9B%91%E5%90%AC%E4%B8%8D%E5%8F%8A%E6%97%B6%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+										11-Redis 超时失效 Key 监听不及时原因分析及解决方案
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2218,6 +2227,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/07/16/28%20%E5%85%B6%E4%BB%96/006-%E5%BB%B6%E6%97%B6%E6%B6%88%E6%81%AF/">
+										006-延时消息
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2229,6 +2247,58 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2020/07/21/10%20Redis/06_cluster%20%E4%B8%8E%20sentinel/">
+				<h2 class="index-title">
+					06_cluster 与 sentinel
+				</h2>
+				<div class="index-brief">
+					cluster 突破单机性能瓶颈
+redis 是单线程的，如果在多核服务器上部署的话，可以部署多个实例，搭建一个redis 集群。
+也就是 redis cluster，并且是主从同步，读写分离的。
+一个 cluster 支撑多个 master，每一个 master 挂载多个 slave。
+maste
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/15%20Nginx/1%20%E9%85%8D%E7%BD%AE%20nginx/">
+				<h2 class="index-title">
+					1 配置 nginx
+				</h2>
+				<div class="index-brief">
+					
+
+Nginx默认目录
+输入命令：
+whereis nginx
+
+即可看到类似于如下的内容：
+nginx: /usr/sbin/nginx /usr/lib64/nginx /etc/nginx /usr/share/nginx
+
+
+
+以下是Nginx的默认路径：
+(1) Nginx配置路径：/et
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2020/07/21/08%20Mysql/01%20%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95%E5%92%8C%E9%9D%9E%E8%81%9A%E7%B0%87%E7%B4%A2%E5%BC%95/">
@@ -2428,54 +2498,6 @@ yapi 地址
 
 示例站点：yapi.demo.qunar.com
 文档：hellosean1025.github.io/yapi
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/12-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8ELinux/001-linux%20%E5%AE%89%E8%A3%85%20jdk/">
-				<h2 class="index-title">
-					001-linux 安装 jdk
-				</h2>
-				<div class="index-brief">
-					yum安装
-yum源
-这里需要注意yum源的配置
-1、查看yum库中都有哪些jdk版本
-yum search java|grep jdk
-
-2、选择指定的版本安装，注意最后的 * 以及yum源安装的是openjdk，注意openjdk的区别。
-yum install java-1.8.0-openj
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/12-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8ELinux/002-linux%20%E5%AE%89%E8%A3%85%20nginx/">
-				<h2 class="index-title">
-					002-linux 安装 nginx
-				</h2>
-				<div class="index-brief">
-					yum 安装
-
-
-添加 yum 源
-Nginx 不在默认的 yum 源中，可以使用 epel 或者官网的 yum 源，本例使用官网的 yum 源。
-sudo rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-c
 					...
 				</div>
 			</a>

@@ -1433,6 +1433,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/07/16/10%20Redis/11-Redis%20%E8%B6%85%E6%97%B6%E5%A4%B1%E6%95%88%20Key%20%E7%9B%91%E5%90%AC%E4%B8%8D%E5%8F%8A%E6%97%B6%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+										11-Redis 超时失效 Key 监听不及时原因分析及解决方案
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2218,6 +2227,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/07/16/28%20%E5%85%B6%E4%BB%96/006-%E5%BB%B6%E6%97%B6%E6%B6%88%E6%81%AF/">
+										006-延时消息
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2229,6 +2247,60 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2021/07/16/28%20%E5%85%B6%E4%BB%96/006-%E5%BB%B6%E6%97%B6%E6%B6%88%E6%81%AF/">
+				<h2 class="index-title">
+					006-延时消息
+				</h2>
+				<div class="index-brief">
+					延迟消息
+生产者把消息发送到消息队列中以后，并不期望被立即消费，而是等待指定时间后才可以被消费者消费，这类消息通常被称为延迟消息。
+在RocketMQ中，支持延迟消息，但是不支持任意时间精度的延迟消息，只支持特定级别的延迟消息。如果要支持任意时间精度，不能避免在Broker层面做消息排序，再涉及到持
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2021-07-16</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2021/07/16/10%20Redis/11-Redis%20%E8%B6%85%E6%97%B6%E5%A4%B1%E6%95%88%20Key%20%E7%9B%91%E5%90%AC%E4%B8%8D%E5%8F%8A%E6%97%B6%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+				<h2 class="index-title">
+					11-Redis 超时失效 Key 监听不及时原因分析及解决方案
+				</h2>
+				<div class="index-brief">
+					Redis 共有 3 种过期策略：定时删除、惰性删除、定期删除；
+三者对比如下：
+
+
+
+
+说明
+优点
+缺点
+
+
+
+
+定时删除
+在设置 Key 过期时间的同时创建定时器，让定时器在 Key 过期时执行删除操作
+保证过期数据能被及时删除
+耗 CPU，尤其当存在大量非永久 Key 时，对 CPU 影响更严
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2021-07-16</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2021/07/13/28%20%E5%85%B6%E4%BB%96/005-%E5%85%B3%E6%B3%A8%E6%B5%81%E8%AE%BE%E8%AE%A1/">
@@ -2417,54 +2489,6 @@ Single sign On 简称 SSO
 			</a>
                 <div class="article-meta">
 				    <span>2021-06-30</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2021/06/30/12-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8ELinux/004-%E8%BF%9B%E7%A8%8B%E9%97%B4%E7%9A%84%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F/">
-				<h2 class="index-title">
-					004-进程间的通讯方式
-				</h2>
-				<div class="index-brief">
-					通讯方式有：管道、消息队列、共享内存、信号量、信号、socket
-1、管道
-我们来看一条 Linux 的语句
-netstat -tulnp | grep 8080
-
-学过 Linux 命名的估计都懂这条语句的含义，其中”|“是管道的意思，它的作用就是把前一条命令的输出作为后一条命令的输入。在这里就是
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2021-06-30</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2021/06/29/12-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8ELinux/006-CPU%20%E8%B4%9F%E8%BD%BD%E4%B8%8E%E5%88%A9%E7%94%A8%E7%8E%87/">
-				<h2 class="index-title">
-					006-CPU 负载与利用率
-				</h2>
-				<div class="index-brief">
-					1、cpu 负载率与 cpu利用率的区别
-cpu 负载
-
-上图 1 个电话亭可以理解为 1 个核心，从上图的过程可以看到 load 的概念，而使用率始终是 100%。
-可以通过uptime，w 或者 top 命令看到 cpu 的平均负载
-
-
-Load Average ：负载的三个数字，比如上图的 0
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2021-06-29</span>
                     
                             
                     

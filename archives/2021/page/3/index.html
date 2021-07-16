@@ -1433,6 +1433,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/07/16/10%20Redis/11-Redis%20%E8%B6%85%E6%97%B6%E5%A4%B1%E6%95%88%20Key%20%E7%9B%91%E5%90%AC%E4%B8%8D%E5%8F%8A%E6%97%B6%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%90%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+										11-Redis 超时失效 Key 监听不及时原因分析及解决方案
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2218,6 +2227,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/07/16/28%20%E5%85%B6%E4%BB%96/006-%E5%BB%B6%E6%97%B6%E6%B6%88%E6%81%AF/">
+										006-延时消息
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2229,6 +2247,48 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2021/05/18/08%20Mysql/11_%E6%95%B0%E6%8D%AE%E5%88%86%E7%89%87/">
+				<h2 class="index-title">
+					11_数据分片
+				</h2>
+				<div class="index-brief">
+					背景
+传统的将数据集中存储至单一数据节点的解决方案，在性能、可用性和运维成本这三方面已经难于满足互联网的海量数据场景。
+从性能方面来说，由于关系型数据库大多采用 B+ 树类型的索引，在数据量超过阈值的情况下，索引深度的增加也将使得磁盘访问的 IO 次数增加，进而导致查询性能的下降；同时，高并发访问请
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2021-05-18</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2021/05/18/08%20Mysql/10_%E4%B8%BB%E4%BB%8E%E3%80%81%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB/">
+				<h2 class="index-title">
+					10_主从、读写分离
+				</h2>
+				<div class="index-brief">
+					主从复制的原理
+
+当master 节点进行insert、delete、update，会按顺序写入到 binlog 中
+从库连接主库，Master 有多少个salve 就会创建多少个binlog dump 线程
+当主节点的 binlog 发生变化大时候，binlog dump 线程会通知所有slave
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2021-05-18</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2021/05/17/03%20java/Java-4-Jvm/14_%E5%A6%82%E4%BD%95%E8%8E%B7%E5%8F%96JVM%E7%9A%84dump%E6%96%87%E4%BB%B6/">
