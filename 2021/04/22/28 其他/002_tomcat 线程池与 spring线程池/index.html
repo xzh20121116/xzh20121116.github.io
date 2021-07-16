@@ -2309,8 +2309,6 @@
 <p>突然有一天其中一个微服务接口因为某些原因导致迟迟不返回结果，随着越来越多的请求都挂在这个服务上，tomcat 的线程池枯竭了，最终整个服务的入口 Tomcat 挂了， 所有服务都不可访问。</p>
 <p>一片雪花（单个接口挂掉）导致整个雪崩（服务不可用）</p>
 <p>解决办法很简单，和上面 spring 的做法一样，每个服务搞一个自己的线程池并设置服务降级机制：</p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422170530.jpg" alt="img" style="zoom:33%;" /><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422170554.jpg" alt="img"></p>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422170530.jpg" alt="img" style="zoom:33%;" /><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422170554.jpg" alt="img"><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422170609.jpg" alt="img"></p>
 <p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422170530.jpg" alt="img" style="zoom:33%;" /><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422170554.jpg" alt="img"><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422170609.jpg" alt="img"></p>
 <h3 id="生产环境如何合理配置线程池呢？"><a class="header-anchor" href="#生产环境如何合理配置线程池呢？"></a>生产环境如何合理配置线程池呢？</h3>
 <p>主要看业务类型配置线程池</p>
