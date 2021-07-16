@@ -2297,25 +2297,12 @@
 <p>可以理解为：tomcat 的 nio-thread-1 在把请求送到接口并转交给 spring 线程池后，它就去做别的事了，而 Sprig 异步线程得出结果后再返回响应。对于前端来说这个请求是同步的，而对于后端来说这个请求是异步的。</p>
 <img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/pic-go20210422161628.jpg" alt="img" style="zoom:33%;" />
 <p>有一点需要明白，无论是我们最常理解的异步（tomcat 转交请求后直接返回 success）还是上面这种异步（能够得到异步结果返回），理论上时间开销是一样的。</p>
-<p>如果你觉得前者快，起始是站在前端的角度观察的，因为结果被立即返回了。但那有什么用呢？那个“结果”不是异步计算得到的结果，它的意义充其量只是告诉前端：“嘿，请求已经被我成功送到接口那了”，而不是“嘿，本次请求已经处理完毕，得到的结果是 xxx”。</p>
+<p>如果你觉得前者快，其实是站在前端的角度观察的，因为结果被立即返回了。但那有什么用呢？那个“结果”不是异步计算得到的结果，它的意义充其量只是告诉前端：“嘿，请求已经被我成功送到接口那了”，而不是“嘿，本次请求已经处理完毕，得到的结果是 xxx”。</p>
 <p>至于实际编程使用哪种，完全取决于前端是否需要返回结果。</p>
 <p>那么spring 线程池会不会枯竭呢？当然会了，但是 spring 线程池的目的是为了尽可能保护 tomcat 线程池不枯竭。</p>
 <h3 id="如何获取异步结果"><a class="header-anchor" href="#如何获取异步结果"></a>如何获取异步结果</h3>
 <p>只需要把接口的返回值设置为 Callable 类型就能自动实现神奇的异步处理</p>
-<pre><code class="language-java">@GetMapping(&quot;/x2&quot;)
-    @UnLogin
-    public Callable&lt;String&gt; x2() throws InterruptedException {
-        System.out.println(&quot;+++++主线程开始&quot;+Thread.currentThread().getName());
-        Callable&lt;String&gt; callable=()-&gt;{
-            System.out.println(&quot;异步线程开始&quot;+Thread.currentThread().getName());
-            Thread.sleep(3000);
-            System.out.println(&quot;异步线程结束&quot;+Thread.currentThread().getName());
-            return &quot;异步线程结果&quot;;
-        };
-        System.out.println(&quot;--------主线程结束&quot;+Thread.currentThread().getName());
-        return callable;
-    }
-</code></pre>
+<p><a href="https://github.com/xzh20121116/demo/blob/master/src/main/java/com/example/demo/controller/TestAsync.java" target="_blank" rel="noopener">示例代码</a></p>
 <h3 id="线程隔离与服务雪崩"><a class="header-anchor" href="#线程隔离与服务雪崩"></a>线程隔离与服务雪崩</h3>
 <p>之前学习 springCloud 时，听到了服务雪崩的概念。</p>
 <p>原本每个请求经过 tomcat，tomcat 从自己的线程池中拿出一个线程把请求送到各个微服务的接口处。</p>
