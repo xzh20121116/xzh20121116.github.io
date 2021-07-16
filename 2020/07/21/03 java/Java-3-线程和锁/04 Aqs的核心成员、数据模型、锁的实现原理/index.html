@@ -2270,7 +2270,7 @@
 <div id="article-content">
 	<p>AQS（AbstractQueuedSynchronizer）就是一个抽象的队列同步器，AQS定义了一套多线程访问共享资源的同步器框架，许多同步类的实现都依赖于他</p>
 <a id="more"></a>
-<h1>什么是AQS</h1>
+<p><strong>什么是AQS</strong></p>
 <p>AQS（AbstractQueuedSynchronizer）就是一个抽象的队列同步器，AQS定义了一套多线程访问共享资源的同步器框架，许多同步类的实现都依赖于他，比如下面四个</p>
 <ul>
 <li>ReentrantLock</li>
@@ -2279,7 +2279,7 @@
 <li>CyclicBarrier</li>
 </ul>
 <p><strong>JUC包下所有的锁都是基于它来实现的</strong></p>
-<h1>AQS提供的方法</h1>
+<p><strong>AQS提供的方法</strong></p>
 <p>抽象类，就会有方法需要子类去重写，有以下几个需要子类重写</p>
 <p>这几个方法<code>获取、释放锁</code>时都会<code>尝试</code>去修改同步状态state的值，因为<code>尝试</code>所以不一定成功。</p>
 <table>
@@ -2313,7 +2313,7 @@
 </tbody>
 </table>
 <p>实际上只需要弄明白<code>acquire（）</code>和<code>release（）</code>方法即可，其他的方法与这两个方法的实现几乎一模一样。</p>
-<h1>数据模型</h1>
+<p><strong>数据模型</strong></p>
 <p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200424102713.png" alt="image-20200424102713581"></p>
 <p>在AQS中定义了一个int类型的变量：<code>state</code>用它来表示<code>同步状态</code>：哪个线程成功对state变量进行了<code>加1</code>的操作，那么这个线程就持有了锁</p>
 <p>AQS还定了一个<code>FIFO（先进先出）队列</code>，用来表示等待获取锁的线程</p>
@@ -2334,7 +2334,7 @@ private volatile ins state;
 <li>队尾节点：tail尾节点</li>
 </ul>
 <p>head、tail、state三个变量都是volatile的，通过volatile来保证共享变量的可见性。</p>
-<h2 id="State状态的变更是基于CAS实现的"><a class="header-anchor" href="#State状态的变更是基于CAS实现的"></a>State状态的变更是基于CAS实现的</h2>
+<p><strong>State状态的变更是基于CAS实现的</strong></p>
 <p>主要有三个方法</p>
 <ul>
 <li>getState()</li>
@@ -2354,7 +2354,7 @@ private volatile ins state;
         return unsafe.compareAndSwapInt(this, stateOffset, expect, update);
     }
 </code></pre>
-<h2 id="AQS资源共享方式"><a class="header-anchor" href="#AQS资源共享方式"></a>AQS资源共享方式</h2>
+<p><strong>AQS资源共享方式</strong></p>
 <p>两种：独占模式、共享模式</p>
 <p><code>独占锁</code>：独占模式下，其他线程试图获取该锁将无法取得成功，只有一个线程能执行，如ReentrantLock采用独占模式</p>
 <blockquote>
@@ -2365,9 +2365,9 @@ private volatile ins state;
 </ul>
 </blockquote>
 <p><code>共享锁</code>多个线程获取某个锁可能会获得成功，多个线程可同时执行，如：Semaphore、CountDownLatch。</p>
-<h1>AQS的锁释放与获取原理</h1>
-<p><img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200424103517.png" alt="image-20200424103517468"></p>
-<h2 id="线程获取流程"><a class="header-anchor" href="#线程获取流程"></a>线程获取流程</h2>
+<p><strong>AQS的锁释放与获取原理</strong></p>
+<img src="https://picgo-xzh.oss-cn-beijing.aliyuncs.com/picgo20200424103517.png" alt="image-20200424103517468" style="zoom:33%;" />
+<p><strong>线程获取流程</strong></p>
 <ol>
 <li>
 <p>线程A获取锁，state将0置为1，线程A占用</p>
@@ -2379,7 +2379,7 @@ private volatile ins state;
 <p>同理线程C获取state为1，表示线程被占用，线程C创建Node节点，放入队尾，且阻塞线程</p>
 </li>
 </ol>
-<h2 id="线程释放锁流程："><a class="header-anchor" href="#线程释放锁流程："></a>线程释放锁流程：</h2>
+<p><strong>线程释放锁流程：</strong></p>
 <ol>
 <li>
 <p>线程A执行完，将state从1置为0</p>

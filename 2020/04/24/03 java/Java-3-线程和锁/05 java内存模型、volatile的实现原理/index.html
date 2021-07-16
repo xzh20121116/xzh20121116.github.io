@@ -2270,7 +2270,7 @@
 <div id="article-content">
 	<p>java内存模型、volatile的实现原理</p>
 <a id="more"></a>
-<h1>Java内存模型 jmm</h1>
+<p><strong>Java内存模型 jmm</strong></p>
 <p>是一个抽象的概念，他描述了一组规则，定义了程序中各个变量的访问方式</p>
 <p>JMM同步规定</p>
 <ol>
@@ -2279,7 +2279,7 @@
 <li>加锁、解锁是同一把锁</li>
 </ol>
 <p>jvm运行程序的实体是线程，每个线程创建的时候，jvm都会给他创建一个工作内存（栈空间），是每个线程的私有数据区域。而jmm规定，所有变量都存储在主内存，主内存是共享内存的，所有线程都可以访问，但<code>线程对变量的操作（读取赋值）</code>不能直接操作主内存中的变量，各个线程的工作内存中存储着主内存中变量的副本。</p>
-<h1>主内存与工作内存之间操作有8种</h1>
+<p><strong>主内存与工作内存之间操作有8种</strong></p>
 <p><code>lock（锁定）</code>：</p>
 <blockquote>
 <p>作用于<code>主内存</code>的变量，把一个变量标识为一条线程独占的状态。</p>
@@ -2312,7 +2312,7 @@
 <blockquote>
 <p>作用于<code>主内存</code>的变量，把store操作从工作内存中得到的变量的值放入主内存的变量中。</p>
 </blockquote>
-<h1>内存模型三大特性</h1>
+<p><strong>内存模型三大特性</strong></p>
 <p>原子性、可见性、有序性</p>
 <p><code>原子性：</code></p>
 <blockquote>
@@ -2327,15 +2327,15 @@
 <blockquote>
 <p>对一个一个程序的执行代码，总是习惯的认为代码的执行从前往后，依次执行，其实不是，因为会有指令重排</p>
 </blockquote>
-<h1>volatile两大特性</h1>
+<p><strong>volatile两大特性</strong></p>
 <p>可见性、有序性</p>
-<h1>volatile–可见性的实现原理</h1>
+<p><strong>volatile–可见性的实现原理</strong></p>
 <p>操作volatile修饰的变量时，jvm会向处理器发送一条<code>lock</code>前缀的指令，将当前变量的数据写回到系统内存，这个写回操作会导致其他工作内存的里对应的备份数据无效</p>
-<h1>volatile–有序性的实现原理</h1>
+<p><strong>volatile–有序性的实现原理</strong></p>
 <p>防止指令重排</p>
 <p>lock前缀指令实际上相当于一个内存屏障，确保指令重排序时，不会把屏障后指令放到屏障前，也不会把屏障前的指令放到屏障后</p>
 <p>即：在执行到内存屏障这句指令的时候，前面的操作已经全部完成</p>
-<h1>哪些指令不能重排：Happen-Before 规则</h1>
+<p><strong>哪些指令不能重排：Happen-Before 规则</strong></p>
 <p>- 程序顺序原则：一个线程内保证语义的串行性</p>
 <p>- volatile规则：volatile 变量的写，先发生于读，这保证了volatile变量的可见性</p>
 <p>- 锁规则：解锁（unlock）必然发生在随后的加锁（lock）前</p>
