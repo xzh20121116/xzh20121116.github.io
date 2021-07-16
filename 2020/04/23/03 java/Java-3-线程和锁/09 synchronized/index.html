@@ -649,8 +649,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/04/24/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/07%20Reentrantlock%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E3%80%81%E4%BB%A5%E5%8F%8A%E5%85%AC%E5%B9%B3%E9%94%81%E5%92%8C%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81%E7%9A%84%E5%8C%BA%E5%88%AB/">
-										07 Reentrantlock的实现原理、以及公平锁和非公平锁的区别
+									<a href="/2020/04/24/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/07-%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F/">
+										07-线程间通讯方式
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -2270,7 +2270,7 @@
 <div id="article-content">
 	<p>Synchronized的实现原理、锁的存储、以及锁是如何升级的</p>
 <a id="more"></a>
-<h1>实现原理</h1>
+<p><strong>实现原理</strong></p>
 <p>结论：无论是代码块，还是方法，都是通过持有对象的锁来实现同步的</p>
 <h1>什么是对象的锁？</h1>
 <p>对象在内存中存储的布局分为三个区域：</p>
@@ -2302,7 +2302,7 @@
 </blockquote>
 </li>
 <li>
-<p>对其填充（padding）</p>
+<p>对齐填充（padding）</p>
 <blockquote>
 <p>vm要求对象字节必须是8的倍数，凑数用的</p>
 </blockquote>
@@ -2315,14 +2315,14 @@
 <p>每个线程在准备获取共享资源时：</p>
 <ol>
 <li>
-<p>检查<strong>markword</strong>里是不是存放自己的threadID，如果是，当前为<strong>偏向锁</strong></p>
+<p>检查<strong>markword</strong>里存放的是不是自己的threadID，如果是，当前为<strong>偏向锁</strong></p>
 </li>
 <li>
 <p>如果不是，锁升级为<strong>轻量级锁</strong>，这时，用<strong>CAS</strong>来执行切换，新的线程根据<strong>markword</strong>里现有的<strong>threadId</strong>，通知之前的线程暂停，之前线程将<strong>markWord</strong>置为空</p>
 </li>
 <li>
 <p>两个线程都把锁对象的<strong>hashcode</strong>复制一份到各自新建的用于存储锁的记录空间；</p>
-<p>接着开始cas操作：把锁对象的<strong>markword</strong>的内容修改为各自新建的记录空间的地址</p>
+<p>接着开始cas操作：尝试把锁对象的<strong>markword</strong>的内容修改为各自新建的记录空间的地址</p>
 </li>
 <li>
 <p>在上一步中修改成功获得资源，失败的开始自旋</p>
@@ -2359,9 +2359,9 @@
     <div class="post-guide">
         <div class="item left">
             
-              <a href="/2020/04/24/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/07%20Reentrantlock%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E3%80%81%E4%BB%A5%E5%8F%8A%E5%85%AC%E5%B9%B3%E9%94%81%E5%92%8C%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81%E7%9A%84%E5%8C%BA%E5%88%AB/">
+              <a href="/2020/04/24/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/07-%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F/">
                   <i class="fa fa-angle-left" aria-hidden="true"></i>
-                  07 Reentrantlock的实现原理、以及公平锁和非公平锁的区别
+                  07-线程间通讯方式
               </a>
             
         </div>

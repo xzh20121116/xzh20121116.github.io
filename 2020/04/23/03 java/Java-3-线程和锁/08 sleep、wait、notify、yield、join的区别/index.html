@@ -9,7 +9,7 @@
 	
 	<title>
 	
-		谈谈线程的通信与协作：sleep、wait、notify、yield、join的区别 | 
+		‘线程间通讯方式&#39; | 
 	 
 	温故知新
 	</title>
@@ -649,8 +649,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/04/24/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/07%20Reentrantlock%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E3%80%81%E4%BB%A5%E5%8F%8A%E5%85%AC%E5%B9%B3%E9%94%81%E5%92%8C%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81%E7%9A%84%E5%8C%BA%E5%88%AB/">
-										07 Reentrantlock的实现原理、以及公平锁和非公平锁的区别
+									<a href="/2020/04/24/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/07-%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F/">
+										07-线程间通讯方式
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -2255,7 +2255,7 @@
 <div class="article-meta">
 	
 		<span>
-			阅读量:<span id="/2020/04/23/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/08%20sleep%E3%80%81wait%E3%80%81notify%E3%80%81yield%E3%80%81join%E7%9A%84%E5%8C%BA%E5%88%AB/" class="leancloud_visitors" data-flag-title="谈谈线程的通信与协作：sleep、wait、notify、yield、join的区别"></span>
+			阅读量:<span id="/2020/04/23/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/08%20sleep%E3%80%81wait%E3%80%81notify%E3%80%81yield%E3%80%81join%E7%9A%84%E5%8C%BA%E5%88%AB/" class="leancloud_visitors" data-flag-title="‘线程间通讯方式'"></span>
 		</span>
 	
 	<span>今晚打老虎</span>
@@ -2274,38 +2274,41 @@
 <p>线程间通过共享数据来实现通信，即:多个线程主动读取一个共享数据。</p>
 <p>举例：共享资源 int a；A、B两个线程轮询a的值，来确定自己做什么，浪费了cpu资源</p>
 <h1>靠共享变量来做控制</h1>
-<h2 id="wait-notify机制（配合Synchronized）"><a class="header-anchor" href="#wait-notify机制（配合Synchronized）"></a>wait/notify机制（配合Synchronized）</h2>
-<h3 id="适用范围"><a class="header-anchor" href="#适用范围"></a>适用范围</h3>
+<h2 id="1、wait-notify机制（配合Synchronized）"><a class="header-anchor" href="#1、wait-notify机制（配合Synchronized）"></a>1、wait/notify机制（配合Synchronized）</h2>
+<p><strong>适用范围</strong></p>
 <p>Synchronized代码中才能使用，因为这几个都是obj的方法</p>
 <p>即<strong>等待通知机制</strong>，主要由<strong>object</strong>类中的以下三个方法保证：wait、notify、notifyAll</p>
 <p>这三个方法<strong>不是Thread</strong>中的方法，而<strong>是Object</strong>中的方法。原因是：每个对象都有monitor（锁），所以让当前某个线程等待某个对象锁，应该通过这个对象来操作，而不是让当前的线程来操作，因为当前线程可能会等待多个线程的锁。</p>
-<h3 id="sleep"><a class="header-anchor" href="#sleep"></a><strong>sleep</strong></h3>
+<p><strong>sleep</strong></p>
 <blockquote>
 <p><strong>Thread</strong>的方法</p>
 <p>让出cpu资源，不让锁</p>
 <p>当前线程进入阻塞，并释放cpu资源，无优先级、无法被<strong>notify</strong>唤醒</p>
 </blockquote>
-<h3 id="yield"><a class="header-anchor" href="#yield"></a><strong>yield</strong></h3>
+<p><strong>yield</strong></p>
 <blockquote>
 <p><strong>Thread</strong>的方法</p>
-<p>让出cpu时间，类似sleep，但是无法指定时长，让同优先级的线程有优先执行的机会，调用<strong>yield</strong>只是一个建议：告诉线程调度器，我好了，让相同优先级的线程使用用cpu吧。如果所有正在等待的线程都是低优先级的，则高线程继续执行</p>
+<p>让出cpu时间，类似sleep，但是无法指定时长，让同优先级的线程有优先执行的机会，调用<strong>yield</strong>只是一个建议：告诉线程调度器，我好了，让相同优先级的线程使用cpu吧。如果所有正在等待的线程都是低优先级的，则高线程继续执行</p>
 </blockquote>
-<h3 id="join"><a class="header-anchor" href="#join"></a><strong>join</strong></h3>
+<p><strong>join</strong></p>
 <blockquote>
 <p><strong>Thread</strong>的方法</p>
 <p>不让锁</p>
 <p>当前运行的线程调用另一个线程的join方法，等对方执行完之后再执行自己</p>
+<p>线程的终结</p>
+<p>join 的使用场景：在很多情况下，主线程创建并启动子线程，如果子线程中要进行大量的耗时运算，主线程将可能早于子线程结束。如果主线程需要知道子线程的执行结果时，就需要等待子线程执行结束了。主线程可以sleep(xx),但这样的xx时间不好确定，因为子线程的执行时间不确定，join()方法比较合适这个场景。</p>
+<p>解释一下，是主线程等待子线程的终止。也就是说主线程的代码块中，如果碰到了t.join()方法，此时主线程需要等待（阻塞），等待子线程结束了(Waits for this thread to die.),才能继续执行t.join()之后的代码块。</p>
 </blockquote>
 <p>wait、notify、notifyall都是obj的方法，必须用在synchronized中</p>
-<h3 id="wait"><a class="header-anchor" href="#wait"></a><strong>wait</strong></h3>
+<p><strong>wait</strong></p>
 <blockquote>
 <p>让出cpu和锁，等待notify唤醒</p>
 </blockquote>
-<h3 id="notify"><a class="header-anchor" href="#notify"></a>notify</h3>
+<p><strong>notify</strong></p>
 <blockquote>
-<p><strong>随机唤醒</strong>一个正在等待这个对象锁的线程</p>
+<p><strong>随机唤醒</strong>一个正在等待这个对象锁的线程，无法指定</p>
 </blockquote>
-<h3 id="notifyall"><a class="header-anchor" href="#notifyall"></a>notifyall</h3>
+<p><strong>notifyall</strong></p>
 <blockquote>
 <p><strong>唤醒全部</strong>正在等待这个对象锁的线程</p>
 </blockquote>

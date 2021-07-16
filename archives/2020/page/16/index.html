@@ -647,8 +647,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/04/24/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/07%20Reentrantlock%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E3%80%81%E4%BB%A5%E5%8F%8A%E5%85%AC%E5%B9%B3%E9%94%81%E5%92%8C%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81%E7%9A%84%E5%8C%BA%E5%88%AB/">
-										07 Reentrantlock的实现原理、以及公平锁和非公平锁的区别
+									<a href="/2020/04/24/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/07-%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F/">
+										07-线程间通讯方式
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -2369,15 +2369,15 @@ jvm运行程序的实体是线程，每个线程创建的时候，jvm都会给�
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/04/24/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/07%20Reentrantlock%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E3%80%81%E4%BB%A5%E5%8F%8A%E5%85%AC%E5%B9%B3%E9%94%81%E5%92%8C%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81%E7%9A%84%E5%8C%BA%E5%88%AB/">
+			<a href="/2020/04/24/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/07-%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F/">
 				<h2 class="index-title">
-					07 Reentrantlock的实现原理、以及公平锁和非公平锁的区别
+					07-线程间通讯方式
 				</h2>
 				<div class="index-brief">
-					Reentrantlock 结构
+					Reentrantlock 结构图
 
 首先ReentrantLock实现了自父类Lock，然后有3个内部类，其中Sync内部类继承自AQS，另外的两个内部类继承自Sync，这两个类分别是用来公平锁和非公平锁的。
-通过Sync重写的方法tryAcquire、tryRelease可以知道，Reentran
+通过Sync重写的方法tryAcquire、tryRelease可以知道，Reentra
 					...
 				</div>
 			</a>
@@ -2432,9 +2432,9 @@ klass point（类型指针）
 线程间通过共享数据来实现通信，即:多个线程主动读取一个共享数据。
 举例：共享资源 int a；A、B两个线程轮询a的值，来确定自己做什么，浪费了cpu资源
 靠共享变量来做控制
-wait/notify机制（配合Synchronized）
+1、wait/notify机制（配合Synchronized）
 适用范围
-Synchronized代码中才能使用，因为这几个都
+Synchronized代码中才能使用，因为这几
 					...
 				</div>
 			</a>

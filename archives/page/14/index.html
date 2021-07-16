@@ -647,8 +647,8 @@
 			
 							<ul>
 								<li class="file">
-									<a href="/2020/04/24/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/07%20Reentrantlock%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E3%80%81%E4%BB%A5%E5%8F%8A%E5%85%AC%E5%B9%B3%E9%94%81%E5%92%8C%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81%E7%9A%84%E5%8C%BA%E5%88%AB/">
-										07 Reentrantlock的实现原理、以及公平锁和非公平锁的区别
+									<a href="/2020/04/24/03%20java/Java-3-%E7%BA%BF%E7%A8%8B%E5%92%8C%E9%94%81/07-%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F/">
+										07-线程间通讯方式
 									</a>
 								</li>
 								<div class="article-toc" style="display: none;"></div>
@@ -2249,16 +2249,16 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/07/21/10%20Redis/06_cluster%20%E4%B8%8E%20sentinel/">
+			<a href="/2020/07/21/10%20Redis/08_Redisson%E4%BD%BF%E7%94%A8/">
 				<h2 class="index-title">
-					06_cluster 与 sentinel
+					08_Redisson使用
 				</h2>
 				<div class="index-brief">
-					cluster 突破单机性能瓶颈
-redis 是单线程的，如果在多核服务器上部署的话，可以部署多个实例，搭建一个redis 集群。
-也就是 redis cluster，并且是主从同步，读写分离的。
-一个 cluster 支撑多个 master，每一个 master 挂载多个 slave。
-maste
+					添加 pom 依赖
+    &lt;dependencies&gt;
+        &lt;dependency&gt;
+            &lt;groupId&gt;org.redisson&lt;/groupId&gt;
+            &lt;artifactId&gt;re
 					...
 				</div>
 			</a>
@@ -2418,36 +2418,6 @@ ${}
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/12-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8ELinux/000-%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
-				<h2 class="index-title">
-					000-【转】Linux查看内存使用情况方法
-				</h2>
-				<div class="index-brief">
-					top命令：
-输入命令：
-top
-输出内容展示：
-
-内容分析：
-PID：进程的ID
-USER：进程所有者
-​    PR：进程的优先级别，越小越优先被执行
-​    NI：进程Nice值，代表这个进程的优先值
-​    VIRT：进程占用的虚拟内存
-​    RES：进程占用的物理内存
-​    S
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/21/12-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8ELinux/007-showdoc%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
 				<h2 class="index-title">
 					007-showdoc 安装教程
@@ -2468,6 +2438,36 @@ github
  
  #下载脚本并赋予权限
  wget https://www.showdoc.cc/script/
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/12-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8ELinux/000-%E3%80%90%E8%BD%AC%E3%80%91Linux%E6%9F%A5%E7%9C%8B%E5%86%85%E5%AD%98%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5%E6%96%B9%E6%B3%95/">
+				<h2 class="index-title">
+					000-【转】Linux查看内存使用情况方法
+				</h2>
+				<div class="index-brief">
+					top命令：
+输入命令：
+top
+输出内容展示：
+
+内容分析：
+PID：进程的ID
+USER：进程所有者
+​    PR：进程的优先级别，越小越优先被执行
+​    NI：进程Nice值，代表这个进程的优先值
+​    VIRT：进程占用的虚拟内存
+​    RES：进程占用的物理内存
+​    S
 					...
 				</div>
 			</a>
