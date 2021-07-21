@@ -2236,6 +2236,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/07/21/28%20%E5%85%B6%E4%BB%96/007-%E9%98%BF%E9%87%8C%E4%BA%91%20ecs%20%E5%8F%91%E7%8E%B0%20xmrig/">
+										007-阿里云 ecs 发现 xmrig
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2249,19 +2258,24 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/07/21/12-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8ELinux/001-linux%20%E5%AE%89%E8%A3%85%20jdk/">
+			<a href="/2020/07/21/12-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8ELinux/003-linux%E5%AE%89%E8%A3%85yapi/">
 				<h2 class="index-title">
-					001-linux 安装 jdk
+					003-linux安装yapi
 				</h2>
 				<div class="index-brief">
-					yum安装
-yum源
-这里需要注意yum源的配置
-1、查看yum库中都有哪些jdk版本
-yum search java|grep jdk
+					api管理工具-Yapi的搭建-linux篇(完)
+一、环境要求
 
-2、选择指定的版本安装，注意最后的 * 以及yum源安装的是openjdk，注意openjdk的区别。
-yum install java-1.8.0-openj
+操作系统：centos 7
+nodejs（7.6+)
+mongodb（2.6+）
+git
+
+二、资料
+yapi 地址
+
+示例站点：yapi.demo.qunar.com
+文档：hellosean1025.github.io/yapi
 					...
 				</div>
 			</a>
@@ -2285,6 +2299,31 @@ yum install java-1.8.0-openj
 添加 yum 源
 Nginx 不在默认的 yum 源中，可以使用 epel 或者官网的 yum 源，本例使用官网的 yum 源。
 sudo rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-c
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/21/12-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8ELinux/001-linux%20%E5%AE%89%E8%A3%85%20jdk/">
+				<h2 class="index-title">
+					001-linux 安装 jdk
+				</h2>
+				<div class="index-brief">
+					yum安装
+yum源
+这里需要注意yum源的配置
+1、查看yum库中都有哪些jdk版本
+yum search java|grep jdk
+
+2、选择指定的版本安装，注意最后的 * 以及yum源安装的是openjdk，注意openjdk的区别。
+yum install java-1.8.0-openj
 					...
 				</div>
 			</a>
@@ -2338,33 +2377,6 @@ sudo rpm -ivh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-c
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-4-Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
-				<h2 class="index-title">
-					07 排查堆内存溢出
-				</h2>
-				<div class="index-brief">
-					模拟堆内存溢出
-
-
-新建一个 Oom.java 文件，内容如下
-import java.util.ArrayList;
-import java.util.List;
-
-public class Oom {
-    public static void main(String[] args) {
-  
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Java-4-Jvm/01%20%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E5%8F%8A%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86/">
 				<h2 class="index-title">
 					01 垃圾回收器及算法原理
@@ -2386,14 +2398,21 @@ public class Oom {
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-4-Jvm/03%20%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
+			<a href="/2020/07/21/03%20java/Java-4-Jvm/07%20%E6%8E%92%E6%9F%A5%E5%A0%86%E5%86%85%E5%AD%98%E6%BA%A2%E5%87%BA/">
 				<h2 class="index-title">
-					03 对象实例化过程
+					07 排查堆内存溢出
 				</h2>
 				<div class="index-brief">
-					java是面向对象的静态类型语言，声明并创建兑现改动代码很常见，根据某个类声明一个引用变量指向被创建的对象，并使用此引用变量操作该对象。在实例化对象的过程中，jvm中发生什么化学反应呢？
-字节码角度
-从下面最简单的 Object obj = new Object();代码进行分析，利用 javap 
+					模拟堆内存溢出
+
+
+新建一个 Oom.java 文件，内容如下
+import java.util.ArrayList;
+import java.util.List;
+
+public class Oom {
+    public static void main(String[] args) {
+  
 					...
 				</div>
 			</a>
@@ -2448,6 +2467,26 @@ klass point
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/07/21/03%20java/Java-4-Jvm/03%20%E5%AF%B9%E8%B1%A1%E5%AE%9E%E4%BE%8B%E5%8C%96%E8%BF%87%E7%A8%8B/">
+				<h2 class="index-title">
+					03 对象实例化过程
+				</h2>
+				<div class="index-brief">
+					java是面向对象的静态类型语言，声明并创建兑现改动代码很常见，根据某个类声明一个引用变量指向被创建的对象，并使用此引用变量操作该对象。在实例化对象的过程中，jvm中发生什么化学反应呢？
+字节码角度
+从下面最简单的 Object obj = new Object();代码进行分析，利用 javap 
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/03%20java/Java-4-Jvm/08%20%E4%B8%BA%E4%BB%80%E4%B9%88%E5%8E%8B%E7%BC%A9%E6%8C%87%E9%92%88%E8%B6%85%E8%BF%87%2032g%20%E5%A4%B1%E6%95%88/">
 				<h2 class="index-title">
 					08 为什么压缩指针超过 32g 失效
@@ -2463,31 +2502,6 @@ klass point
 为什么要用 64位操作系统？
 
 答：家里电脑都不止 4g 了，把 8g 内存装在 32 位电脑上，还是只有 4g有效，而 4
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/03%20java/Java-4-Jvm/09%20%E4%B8%BA%E4%BB%80%E4%B9%88CMS%E4%B8%A4%E6%AC%A1%E6%A0%87%E8%AE%B0%E8%A6%81STW/">
-				<h2 class="index-title">
-					09 为什么CMS两次标记要STW
-				</h2>
-				<div class="index-brief">
-					cms 执行过程
-cms 用于对老年代进行回收，目标是尽量减少应用的暂停时间，减少 fgc 的频率，利用和应用程序线程并发的gc 线程来标记清除老年代。cms 并非没有暂停，而是用两次短暂停来替代串行标记整理算法的长暂停
-
-
-初始标记- stw
-
-标记 gc root 可达的老年代对象
-遍历新生代对
 					...
 				</div>
 			</a>
