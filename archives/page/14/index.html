@@ -2245,6 +2245,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/07/22/28%20%E5%85%B6%E4%BB%96/008-Mac%20%E6%97%A0%E5%AF%86%E7%A0%81%20SSH%20%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+										008-Mac 无密码 SSH 登录服务器
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2256,6 +2265,38 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2020/07/21/10%20Redis/07_redis%E4%B9%8B%E7%BA%A2%E9%94%81(Redlock)/">
+				<h2 class="index-title">
+					07_redis之红锁(Redlock)
+				</h2>
+				<div class="index-brief">
+					背景
+redis 常用的方式有
+
+单节点
+主从
+哨兵
+集群
+
+单节点不会在生产环境使用，因为达不到高可用，且连 RDB 和 AOF 都只能放在 master 上，所以基本不会使用
+剩下的几种模式都无法避免两个问题
+
+异步数据丢失
+脑裂问题
+
+针对这两个问题，redis 官方提出了红锁(RedLock
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2020/07/21/10%20Redis/06_cluster%20%E4%B8%8E%20sentinel/">
@@ -2478,42 +2519,10 @@ USER：进程所有者
                 </div>
 		</div>	
 	
-		<div class="index-li">
-			<a href="/2020/07/21/12-%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E4%B8%8ELinux/007-showdoc%20%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B/">
-				<h2 class="index-title">
-					007-showdoc 安装教程
-				</h2>
-				<div class="index-brief">
-					showDoc官网
-首页
-文档
-github
-安装步骤
- cd /usr/local/huifan
- 
- # 创建安装目录
- mkdir showdoc
- 
- # 切换目录
- cd showdoc/
- 
- #下载脚本并赋予权限
- wget https://www.showdoc.cc/script/
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
 	
 	<div id="index-paginator">
 		
-			<a class="extend prev" rel="prev" href="/archives/page/13/">&lt;</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/12/">12</a><a class="page-number" href="/archives/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/archives/page/15/">15</a><a class="page-number" href="/archives/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/19/">19</a><a class="extend next" rel="next" href="/archives/page/15/">&gt;</a>
+			<a class="extend prev" rel="prev" href="/archives/page/13/">&lt;</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/12/">12</a><a class="page-number" href="/archives/page/13/">13</a><span class="page-number current">14</span><a class="page-number" href="/archives/page/15/">15</a><a class="page-number" href="/archives/page/16/">16</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/20/">20</a><a class="extend next" rel="next" href="/archives/page/15/">&gt;</a>
 		
 	</div>
 </div>

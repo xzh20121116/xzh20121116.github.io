@@ -2245,6 +2245,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/07/22/28%20%E5%85%B6%E4%BB%96/008-Mac%20%E6%97%A0%E5%AF%86%E7%A0%81%20SSH%20%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+										008-Mac 无密码 SSH 登录服务器
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2256,6 +2265,30 @@
 	<!-- 引入正文 -->
 	<div id="content">
 		<div id="index">
+	
+		<div class="index-li">
+			<a href="/2020/07/21/04%20Spring/3%20DI_%E4%BE%9D%E8%B5%96%E6%B3%A8%E5%85%A5/">
+				<h2 class="index-title">
+					3 DI_依赖注入
+				</h2>
+				<div class="index-brief">
+					di 是相较于 ioc 的一种更具体的实现，ioc 可以理解为一个接口，di 就是他的实现
+装配方式优先级：自动装配 &gt;  java 配置文件 &gt; xml 配置文件
+自动装配
+spring 容器可以自动配置相互协作 bean 之间的关系。
+spring 从两个角度实现自动装配
+组件扫描
+
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
 	
 		<div class="index-li">
 			<a href="/2020/07/21/04%20Spring/2%20%E4%BA%8B%E5%8A%A1%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/">
@@ -2313,16 +2346,13 @@ requi
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/04%20Spring/6%20IOC_%E6%8E%A7%E5%88%B6%E7%BF%BB%E8%BD%AC/">
+			<a href="/2020/07/21/04%20Spring/7%20spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
 				<h2 class="index-title">
-					6 IOC_控制翻转
+					7 spring 循环依赖
 				</h2>
 				<div class="index-brief">
-					ioc 既是一种思想，又是一种容器
-Ioc 思想
-Inversion of controlle 控制反转
-比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
-而 ioc 是，
+					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
+如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
 					...
 				</div>
 			</a>
@@ -2335,13 +2365,16 @@ Inversion of controlle 控制反转
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/21/04%20Spring/7%20spring%20%E5%BE%AA%E7%8E%AF%E4%BE%9D%E8%B5%96/">
+			<a href="/2020/07/21/04%20Spring/6%20IOC_%E6%8E%A7%E5%88%B6%E7%BF%BB%E8%BD%AC/">
 				<h2 class="index-title">
-					7 spring 循环依赖
+					6 IOC_控制翻转
 				</h2>
 				<div class="index-brief">
-					写在前面：Spring实例化bean是通过ApplicationContext.getBean()方法来进行的。
-如果要获取的对象依赖了另一个对象，那么会首先创建当前对象，然后通过递归的调用 ApplicationContext.getBean()方法来获取所依赖的对象，最后将获取到的对象注入到当前
+					ioc 既是一种思想，又是一种容器
+Ioc 思想
+Inversion of controlle 控制反转
+比如你要使用一个bean，不用 ioc 的话，你需要手动创建这个 bean，如果这个bean 里用到其他 bean，那么你还要去维护两者之间的关系，还要手动的管理他们的生命周期
+而 ioc 是，
 					...
 				</div>
 			</a>
@@ -2407,6 +2440,30 @@ Inversion of controlle 控制反转
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/07/21/10%20Redis/01_%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%9C%BA%E6%99%AF/">
+				<h2 class="index-title">
+					01_常见数据类型及场景
+				</h2>
+				<div class="index-brief">
+					string
+
+kv 缓存
+计数器
+共享用户 session
+
+String 的数据结构是最简单的 k-v类型，value 其实不仅是 string，也可以是数字。Redis 中的 string可以表示很多语义：字符串、整数、浮点数，这三种类型，redis 会根据具体场景自动完成转换，并且根据需要选
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-21</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/21/10%20Redis/03_%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81/">
 				<h2 class="index-title">
 					03_分布式锁
@@ -2429,30 +2486,6 @@ for(；；)
 
 
 s
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/21/10%20Redis/01_%E5%B8%B8%E8%A7%81%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%8F%8A%E5%9C%BA%E6%99%AF/">
-				<h2 class="index-title">
-					01_常见数据类型及场景
-				</h2>
-				<div class="index-brief">
-					string
-
-kv 缓存
-计数器
-共享用户 session
-
-String 的数据结构是最简单的 k-v类型，value 其实不仅是 string，也可以是数字。Redis 中的 string可以表示很多语义：字符串、整数、浮点数，这三种类型，redis 会根据具体场景自动完成转换，并且根据需要选
 					...
 				</div>
 			</a>
@@ -2496,42 +2529,10 @@ memcached使用多核，单核时 redis 性能高
                 </div>
 		</div>	
 	
-		<div class="index-li">
-			<a href="/2020/07/21/10%20Redis/07_redis%E4%B9%8B%E7%BA%A2%E9%94%81(Redlock)/">
-				<h2 class="index-title">
-					07_redis之红锁(Redlock)
-				</h2>
-				<div class="index-brief">
-					背景
-redis 常用的方式有
-
-单节点
-主从
-哨兵
-集群
-
-单节点不会在生产环境使用，因为达不到高可用，且连 RDB 和 AOF 都只能放在 master 上，所以基本不会使用
-剩下的几种模式都无法避免两个问题
-
-异步数据丢失
-脑裂问题
-
-针对这两个问题，redis 官方提出了红锁(RedLock
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-21</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
 	
 	<div id="index-paginator">
 		
-			<a class="extend prev" rel="prev" href="/archives/page/12/">&lt;</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/11/">11</a><a class="page-number" href="/archives/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/archives/page/14/">14</a><a class="page-number" href="/archives/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/19/">19</a><a class="extend next" rel="next" href="/archives/page/14/">&gt;</a>
+			<a class="extend prev" rel="prev" href="/archives/page/12/">&lt;</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/11/">11</a><a class="page-number" href="/archives/page/12/">12</a><span class="page-number current">13</span><a class="page-number" href="/archives/page/14/">14</a><a class="page-number" href="/archives/page/15/">15</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/20/">20</a><a class="extend next" rel="next" href="/archives/page/14/">&gt;</a>
 		
 	</div>
 </div>

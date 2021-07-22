@@ -2245,6 +2245,15 @@
 								<div class="article-toc" style="display: none;"></div>
 							</ul>
 			
+							<ul>
+								<li class="file">
+									<a href="/2021/07/22/28%20%E5%85%B6%E4%BB%96/008-Mac%20%E6%97%A0%E5%AF%86%E7%A0%81%20SSH%20%E7%99%BB%E5%BD%95%E6%9C%8D%E5%8A%A1%E5%99%A8/">
+										008-Mac 无密码 SSH 登录服务器
+									</a>
+								</li>
+								<div class="article-toc" style="display: none;"></div>
+							</ul>
+			
 								</li>
 								
 							</ul>
@@ -2258,12 +2267,113 @@
 		<div id="index">
 	
 		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/002-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/002-%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">
 				<h2 class="index-title">
-					基数排序
+					冒泡排序
 				</h2>
 				<div class="index-brief">
-					
+					实例代码
+public class 冒泡排序 {
+	public static void main(String[] args) {
+		int[] arr = {5, 2, 4, 3, 1, 7, 9, 8, 6};
+		sort(arr);
+		print(arr);
+
+	}
+
+	static 
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/001-%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E7%94%A8%E6%A0%88%E5%AE%9E%E7%8E%B0%E9%98%9F%E5%88%97/">
+				<h2 class="index-title">
+					用栈实现队列
+				</h2>
+				<div class="index-brief">
+					用栈来模拟一个队列，要求实现队列的两个基本操作：入队和出队
+栈的特点
+
+出入元素都是在栈顶
+
+队列的特点
+
+先入先出，队头和队尾
+
+提示
+
+一个栈不行，需要使用两个栈来实现队列
+
+思路
+有两个栈，AB
+A 负责入队操作
+B 负责出队操作
+
+可是两个栈是独立的，如何关联起来呢
+入队时，每个新元素都被压
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/001-%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%AF%BB%E6%89%BE%E7%BC%BA%E5%A4%B1%E7%9A%84%E6%95%B4%E6%95%B0/">
+				<h2 class="index-title">
+					寻找缺失的整数
+				</h2>
+				<div class="index-brief">
+					题目
+数组
+无序
+99 个不重复的正整数
+范围是 1-100
+找出这个缺失的整数
+解决办法
+解决办法 1-哈希表（空间复杂度高）
+创建一个哈希表，以 1-100 这100 个整数位 key，然后遍历数组，读到一个整数，就删除一个 key，最后表中剩下一个 key
+时间复杂度 On，空间复杂度 On
+
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/001-%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%AF%BB%E6%89%BE%E5%85%A8%E6%8E%92%E5%88%97%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%95%B0/">
+				<h2 class="index-title">
+					寻找全排列的下一个数
+				</h2>
+				<div class="index-brief">
+					题目
+给出一个正整数，找出这个正整数所有数组全排列的下一个数
+翻译成人话：
+在一个整数所包含数组的全部组合中，找到一个大于且仅大于原数的新整数
+举个例子
+给出 12345，应该返回 12354
+给出 12354，应该返回 12435
+思路
+先思考一个问题：给出几个数字，怎样排列最大，怎样排列最小？
+
 					...
 				</div>
 			</a>
@@ -2308,33 +2418,6 @@
 		</div>	
 	
 		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/001-%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%AF%BB%E6%89%BE%E5%85%A8%E6%8E%92%E5%88%97%E7%9A%84%E4%B8%8B%E4%B8%80%E4%B8%AA%E6%95%B0/">
-				<h2 class="index-title">
-					寻找全排列的下一个数
-				</h2>
-				<div class="index-brief">
-					题目
-给出一个正整数，找出这个正整数所有数组全排列的下一个数
-翻译成人话：
-在一个整数所包含数组的全部组合中，找到一个大于且仅大于原数的新整数
-举个例子
-给出 12345，应该返回 12354
-给出 12354，应该返回 12435
-思路
-先思考一个问题：给出几个数字，怎样排列最大，怎样排列最小？
-
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
 			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/001-%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E6%97%A0%E5%BA%8F%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F%E5%90%8E%E6%9C%80%E5%A4%A7%E7%9B%B8%E9%82%BB%E5%B7%AE/">
 				<h2 class="index-title">
 					无序数组排序后最大相邻差
@@ -2350,34 +2433,6 @@
 技术排序思想
 
 求出原数组最大值、最小值的区间长度 k（k=max=min+1），以及偏移量 d -min
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/001-%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%AF%BB%E6%89%BE%E7%BC%BA%E5%A4%B1%E7%9A%84%E6%95%B4%E6%95%B0/">
-				<h2 class="index-title">
-					寻找缺失的整数
-				</h2>
-				<div class="index-brief">
-					题目
-数组
-无序
-99 个不重复的正整数
-范围是 1-100
-找出这个缺失的整数
-解决办法
-解决办法 1-哈希表（空间复杂度高）
-创建一个哈希表，以 1-100 这100 个整数位 key，然后遍历数组，读到一个整数，就删除一个 key，最后表中剩下一个 key
-时间复杂度 On，空间复杂度 On
-
 					...
 				</div>
 			</a>
@@ -2446,6 +2501,30 @@
 		</div>	
 	
 		<div class="index-li">
+			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/001-%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E9%93%BE%E8%A1%A8%E6%9C%89%E7%8E%AF/">
+				<h2 class="index-title">
+					如何判断链表有环
+				</h2>
+				<div class="index-brief">
+					题目：如何判断链表有环
+有一个单向链表，链表中可能出现“环”，如何判断链表是有环链表呢？
+
+方法 1：徒手遍历
+从头结点开始，依次遍历链表中的每一个结点
+每遍历一个新节点，就从头检查新节点之前的所有节点，用新节点与之前的所有节点作比较
+如果发现当前节点与之前的某个节点相同，说明该节点被遍历过两次，链
+					...
+				</div>
+			</a>
+                <div class="article-meta">
+				    <span>2020-07-22</span>
+                    
+                            
+                    
+                </div>
+		</div>	
+	
+		<div class="index-li">
 			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/001-%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E5%90%A6%E4%B8%BA2%E6%95%B4%E6%95%B0%E6%AC%A1%E5%B9%82/">
 				<h2 class="index-title">
 					如何判断一个数否为2整数次幂
@@ -2472,66 +2551,10 @@
                 </div>
 		</div>	
 	
-		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/001-%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E9%93%BE%E8%A1%A8%E6%9C%89%E7%8E%AF/">
-				<h2 class="index-title">
-					如何判断链表有环
-				</h2>
-				<div class="index-brief">
-					题目：如何判断链表有环
-有一个单向链表，链表中可能出现“环”，如何判断链表是有环链表呢？
-
-方法 1：徒手遍历
-从头结点开始，依次遍历链表中的每一个结点
-每遍历一个新节点，就从头检查新节点之前的所有节点，用新节点与之前的所有节点作比较
-如果发现当前节点与之前的某个节点相同，说明该节点被遍历过两次，链
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
-		<div class="index-li">
-			<a href="/2020/07/22/01%20%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/001-%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/%E5%88%A0%E5%8E%BBk%E4%B8%AA%E6%95%B0%E5%AD%97%E5%90%8E%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC/">
-				<h2 class="index-title">
-					删去k个数字后的最小值
-				</h2>
-				<div class="index-brief">
-					题目
-给出一个整数，删除指定个数字后，剩下的数最小
-翻译成人话
-
-
-
-思路
-贪心算法相关
-你的第一感觉是优先删除最大的数字？
-
-不对，数字的大小固然重要，但是数字的位置更重要，哪怕高位只减少 1，对数值的影响也是非常大的
-
-举个例子
-
-一个9 位整数 541270936，要求删除 1 个数字，让剩下
-					...
-				</div>
-			</a>
-                <div class="article-meta">
-				    <span>2020-07-22</span>
-                    
-                            
-                    
-                </div>
-		</div>	
-	
 	
 	<div id="index-paginator">
 		
-			<a class="extend prev" rel="prev" href="/archives/page/10/">&lt;</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/9/">9</a><a class="page-number" href="/archives/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/archives/page/12/">12</a><a class="page-number" href="/archives/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/19/">19</a><a class="extend next" rel="next" href="/archives/page/12/">&gt;</a>
+			<a class="extend prev" rel="prev" href="/archives/page/10/">&lt;</a><a class="page-number" href="/archives/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/9/">9</a><a class="page-number" href="/archives/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/archives/page/12/">12</a><a class="page-number" href="/archives/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/20/">20</a><a class="extend next" rel="next" href="/archives/page/12/">&gt;</a>
 		
 	</div>
 </div>
