@@ -2305,10 +2305,10 @@
 </ol>
 <h1>spring 的七种传播属性</h1>
 <ol>
-<li><strong><code>required</code></strong>：最常用，支持当前事务，如果没有，就新建</li>
+<li><strong>required</strong>：最常用，支持当前事务，如果没有，就新建</li>
 <li>supports：支持当前事务，如果没有，就没有</li>
 <li>mandatory：支持当前事务，如果没有，抛异常</li>
-<li><strong><code>requires_new</code></strong>：新建事务，如果当前有，则挂起当前事务</li>
+<li><strong>requires_new</strong>：新建事务，如果当前有，则挂起当前事务</li>
 <li>not_supports：非事务执行，如果有则挂起</li>
 <li>never：非事物执行，如果有，抛异常</li>
 <li>nested：如果有，则嵌套在事务内执行，如果没有，就新建</li>
